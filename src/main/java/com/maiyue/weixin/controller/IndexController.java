@@ -1,12 +1,13 @@
-package com.maiyue.app.controller;
-
-import com.maiyue.app.service.UserInfoService;
-import com.maiyue.app.utils.RedisUtil;
+package com.maiyue.weixin.controller;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import com.maiyue.weixin.base.service.UserService;
+import com.maiyue.weixin.utils.RedisUtil;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -19,8 +20,8 @@ import javax.servlet.http.HttpSession;
 @EnableAutoConfiguration
 public class IndexController extends BaseController{
 
-    @Resource(name = "userInfoService")
-    private UserInfoService userInfoService;
+    @Resource(name = "userService")
+    private UserService userService;
    
     @Resource(name = "redisUtil")
     private RedisUtil redisUtil;
