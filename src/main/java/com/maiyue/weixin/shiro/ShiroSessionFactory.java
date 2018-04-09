@@ -14,8 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 public class ShiroSessionFactory implements SessionFactory{
     
 	@Override
+	@SuppressWarnings("rawtypes")
     public Session createSession(SessionContext sessionContext) {
-        ShiroSession session = new ShiroSession();
+		com.maiyue.weixin.shiro.ShiroSession session = new com.maiyue.weixin.shiro.ShiroSession();
         HttpServletRequest request = (HttpServletRequest)sessionContext.get(DefaultWebSessionContext.class.getName() + ".SERVLET_REQUEST");
         session.setHost(getIpAddress(request));
         return session;

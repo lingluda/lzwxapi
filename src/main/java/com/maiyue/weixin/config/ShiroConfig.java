@@ -21,9 +21,8 @@ import java.util.Map;
 /**
  * @ConfigurationProperties 注入配置时,需要配合@Value使用
  * 如果不使用,需要配置prefix,并且有get/set方法
- * yml只能配置在 weixinlication.yml中
+ * yml只能配置在 application.yml中
  * properties 可以使用@PropertySource读取
- * Created by huang on 2017/12/25.
  */
 
 @Configuration

@@ -17,8 +17,8 @@ import com.maiyue.weixin.utils.RedisUtil;
 @Component("baseConfig")
 public class BaseConfig{
 
-	@Resource(name = "systemConfigService")
-    private BaseConfigService systemConfigService;
+	@Resource(name = "baseConfigService")
+    private BaseConfigService baseConfigService;
    
     @Resource(name = "redisUtil")
     private RedisUtil redisUtil;
@@ -39,10 +39,10 @@ public class BaseConfig{
      */
     private void loadUpAndDownPath(){
     	if(redisUtil.get(Constant.UP_DOWN_LOAD_PATH) == null){
-    		String path = systemConfigService.findByconfigName(Constant.UP_DOWN_LOAD_PATH);
+    		String path = baseConfigService.findByconfigName(Constant.UP_DOWN_LOAD_PATH);
         	if(StringUtils.isNotBlank(path)){
         	   redisUtil.set(Constant.UP_DOWN_LOAD_PATH, path);
-        	   //redisUtil.set(Constant.WHERE_DISK_PATH, path);
+        	   redisUtil.set(Constant.WHERE_DISK_PATH, path);
         	}
     	}
     }
@@ -52,7 +52,7 @@ public class BaseConfig{
      */
     private void loadTempPath(){
     	if(redisUtil.get(Constant.UP_DOWN_TEMP_PATH) == null){
-    		String path = systemConfigService.findByconfigName(Constant.UP_DOWN_TEMP_PATH);
+    		String path = baseConfigService.findByconfigName(Constant.UP_DOWN_TEMP_PATH);
         	if(StringUtils.isNotBlank(path)){
         	   redisUtil.set(Constant.UP_DOWN_TEMP_PATH, path);
         	}
