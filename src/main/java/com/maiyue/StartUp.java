@@ -11,10 +11,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @SpringBootApplication
 @ComponentScan(basePackages={"com.maiyue.weixin"})
-public class Application{
+public class StartUp{
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(StartUp.class, args);
     }
 
 }
