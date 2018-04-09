@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mweixiner PUBLIC "-//mybatis.org//DTD Mweixiner 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mweixiner.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.maiyue.weixin.mapper.TaskInfoMapper">
   <resultMap id="BaseResultMap" type="com.maiyue.weixin.bean.TaskInfo">
     <id column="id" jdbcType="VARCHAR" property="id" />
@@ -38,7 +38,7 @@
   </delete>
  
   
-  <insert id="insertSelective" parameterType="com.maiyue.weixin.bean.ManagerTaskInfo">
+  <insert id="insertSelective" parameterType="com.maiyue.weixin.bean.TaskInfo">
     insert into manager_task_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">

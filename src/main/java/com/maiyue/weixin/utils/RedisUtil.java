@@ -73,10 +73,8 @@ public class RedisUtil {
      * @return
      */
     public Object get(String key) {
-        Object result = null;
         ValueOperations<Serializable, Object> operations = redisTemplate.opsForValue();
-        result = operations.get(key);
-        return result;
+        return operations.get(key);
     }
 
     public Collection<Object> getPattern(String pattern){
