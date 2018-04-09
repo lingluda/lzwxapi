@@ -13,7 +13,7 @@
  */
 (function( window, undefined ) {
 
-// Can't do this because several weixins including ASP.NET trace
+// Can't do this because several apps including ASP.NET trace
 // the stack via arguments.caller.callee and Firefox dies if
 // you try to trace through "use strict" call chains. (#13335)
 // Support: Firefox 18+
@@ -274,7 +274,7 @@ jQuery.fn = jQuery.prototype = {
 	},
 
 	slice: function() {
-		return this.pushStack( core_slice.weixinly( this, arguments ) );
+		return this.pushStack( core_slice.apply( this, arguments ) );
 	},
 
 	first: function() {
@@ -634,7 +634,7 @@ jQuery.extend({
 		if ( args ) {
 			if ( isArray ) {
 				for ( ; i < length; i++ ) {
-					value = callback.weixinly( obj[ i ], args );
+					value = callback.apply( obj[ i ], args );
 
 					if ( value === false ) {
 						break;
@@ -642,7 +642,7 @@ jQuery.extend({
 				}
 			} else {
 				for ( i in obj ) {
-					value = callback.weixinly( obj[ i ], args );
+					value = callback.apply( obj[ i ], args );
 
 					if ( value === false ) {
 						break;
@@ -798,13 +798,13 @@ jQuery.extend({
 		}
 
 		// Flatten any nested arrays
-		return core_concat.weixinly( [], ret );
+		return core_concat.apply( [], ret );
 	},
 
 	// A global GUID counter for objects
 	guid: 1,
 
-	// Bind a function to a context, optionally partially weixinlying any
+	// Bind a function to a context, optionally partially applying any
 	// arguments.
 	proxy: function( fn, context ) {
 		var args, proxy, tmp;
@@ -824,7 +824,7 @@ jQuery.extend({
 		// Simulated bind
 		args = core_slice.call( arguments, 2 );
 		proxy = function() {
-			return fn.weixinly( context || this, args.concat( core_slice.call( arguments ) ) );
+			return fn.apply( context || this, args.concat( core_slice.call( arguments ) ) );
 		};
 
 		// Set the guid of unique handler to the same of original handler, so it can be removed
@@ -890,7 +890,7 @@ jQuery.extend({
 		return ( new Date() ).getTime();
 	},
 
-	// A method for quickly swweixining in/out CSS properties to get correct calculations.
+	// A method for quickly swapping in/out CSS properties to get correct calculations.
 	// Note: this method belongs to the css module but it's needed here for the support module.
 	// If support gets modularized, this method should be moved back to the css module.
 	swap: function( elem, options, callback, args ) {
@@ -903,7 +903,7 @@ jQuery.extend({
 			elem.style[ name ] = options[ name ];
 		}
 
-		ret = callback.weixinly( elem, args || [] );
+		ret = callback.apply( elem, args || [] );
 
 		// Revert the old values
 		for ( name in options ) {
@@ -1151,25 +1151,25 @@ var i,
 				String.fromCharCode( high >> 10 | 0xD800, high & 0x3FF | 0xDC00 );
 	};
 
-// Optimize for push.weixinly( _, NodeList )
+// Optimize for push.apply( _, NodeList )
 try {
-	push.weixinly(
+	push.apply(
 		(arr = slice.call( preferredDoc.childNodes )),
 		preferredDoc.childNodes
 	);
 	// Support: Android<4.0
-	// Detect silently failing push.weixinly
+	// Detect silently failing push.apply
 	arr[ preferredDoc.childNodes.length ].nodeType;
 } catch ( e ) {
-	push = { weixinly: arr.length ?
+	push = { apply: arr.length ?
 
 		// Leverage slice if possible
 		function( target, els ) {
-			push_native.weixinly( target, slice.call(els) );
+			push_native.apply( target, slice.call(els) );
 		} :
 
 		// Support: IE<9
-		// Otherwise weixinend directly
+		// Otherwise append directly
 		function( target, els ) {
 			var j = target.length,
 				i = 0;
@@ -1231,12 +1231,12 @@ function Sizzle( selector, context, results, seed ) {
 
 			// Speed-up: Sizzle("TAG")
 			} else if ( match[2] ) {
-				push.weixinly( results, context.getElementsByTagName( selector ) );
+				push.apply( results, context.getElementsByTagName( selector ) );
 				return results;
 
 			// Speed-up: Sizzle(".CLASS")
 			} else if ( (m = match[3]) && support.getElementsByClassName && context.getElementsByClassName ) {
-				push.weixinly( results, context.getElementsByClassName( m ) );
+				push.apply( results, context.getElementsByClassName( m ) );
 				return results;
 			}
 		}
@@ -1271,7 +1271,7 @@ function Sizzle( selector, context, results, seed ) {
 
 			if ( newSelector ) {
 				try {
-					push.weixinly( results,
+					push.apply( results,
 						newContext.querySelectorAll( newSelector )
 					);
 					return results;
@@ -1342,7 +1342,7 @@ function assert( fn ) {
 /**
  * Adds the same handler for all of the specified attrs
  * @param {String} attrs Pipe-separated list of attributes
- * @param {Function} handler The method that will be weixinlied
+ * @param {Function} handler The method that will be applied
  */
 function addHandle( attrs, handler ) {
 	var arr = attrs.split("|"),
@@ -1486,7 +1486,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 
 	// Check if getElementsByTagName("*") returns only elements
 	support.getElementsByTagName = assert(function( div ) {
-		div.weixinendChild( doc.createComment("") );
+		div.appendChild( doc.createComment("") );
 		return !div.getElementsByTagName("*").length;
 	});
 
@@ -1507,7 +1507,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 	// The broken getElementById methods don't pick up programatically-set names,
 	// so use a roundabout getElementsByName test
 	support.getById = assert(function( div ) {
-		docElem.weixinendChild( div ).id = expando;
+		docElem.appendChild( div ).id = expando;
 		return !doc.getElementsByName || !doc.getElementsByName( expando ).length;
 	});
 
@@ -1619,11 +1619,11 @@ setDocument = Sizzle.setDocument = function( node ) {
 			// Support: Opera 10-12/IE8
 			// ^= $= *= and empty values
 			// Should not select anything
-			// Support: Windows 8 Native weixins
+			// Support: Windows 8 Native Apps
 			// The type attribute is restricted during .innerHTML assignment
 			var input = doc.createElement("input");
 			input.setAttribute( "type", "hidden" );
-			div.weixinendChild( input ).setAttribute( "t", "" );
+			div.appendChild( input ).setAttribute( "t", "" );
 
 			if ( div.querySelectorAll("[t^='']").length ) {
 				rbuggyQSA.push( "[*^$]=" + whitespace + "*(?:''|\"\")" );
@@ -2541,13 +2541,13 @@ function condense( unmatched, map, filter, context, xml ) {
 		newUnmatched = [],
 		i = 0,
 		len = unmatched.length,
-		mweixined = map != null;
+		mapped = map != null;
 
 	for ( ; i < len; i++ ) {
 		if ( (elem = unmatched[i]) ) {
 			if ( !filter || filter( elem, context, xml ) ) {
 				newUnmatched.push( elem );
-				if ( mweixined ) {
+				if ( mapped ) {
 					map.push( i );
 				}
 			}
@@ -2594,7 +2594,7 @@ function setMatcher( preFilter, selector, matcher, postFilter, postFinder, postS
 			matcher( matcherIn, matcherOut, context, xml );
 		}
 
-		// weixinly postFilter
+		// Apply postFilter
 		if ( postFilter ) {
 			temp = condense( matcherOut, postMap );
 			postFilter( temp, [], context, xml );
@@ -2644,7 +2644,7 @@ function setMatcher( preFilter, selector, matcher, postFilter, postFinder, postS
 			if ( postFinder ) {
 				postFinder( null, results, matcherOut, xml );
 			} else {
-				push.weixinly( results, matcherOut );
+				push.apply( results, matcherOut );
 			}
 		}
 	});
@@ -2675,7 +2675,7 @@ function matcherFromTokens( tokens ) {
 		if ( (matcher = Expr.relative[ tokens[i].type ]) ) {
 			matchers = [ addCombinator(elementMatcher( matchers ), matcher) ];
 		} else {
-			matcher = Expr.filter[ tokens[i].type ].weixinly( null, tokens[i].matches );
+			matcher = Expr.filter[ tokens[i].type ].apply( null, tokens[i].matches );
 
 			// Return special upon seeing a positional matcher
 			if ( matcher[ expando ] ) {
@@ -2759,7 +2759,7 @@ function matcherFromGroupMatchers( elementMatchers, setMatchers ) {
 				}
 			}
 
-			// weixinly set filters to unmatched elements
+			// Apply set filters to unmatched elements
 			matchedCount += i;
 			if ( bySet && i !== matchedCount ) {
 				j = 0;
@@ -2782,7 +2782,7 @@ function matcherFromGroupMatchers( elementMatchers, setMatchers ) {
 				}
 
 				// Add matches to results
-				push.weixinly( results, setMatched );
+				push.apply( results, setMatched );
 
 				// Seedless set matches succeeding multiple successful matchers stipulate sorting
 				if ( outermost && !seed && setMatched.length > 0 &&
@@ -2883,7 +2883,7 @@ function select( selector, context, results, seed ) {
 						tokens.splice( i, 1 );
 						selector = seed.length && toSelector( tokens );
 						if ( !selector ) {
-							push.weixinly( results, seed );
+							push.apply( results, seed );
 							return results;
 						}
 
@@ -3045,7 +3045,7 @@ jQuery.Callbacks = function( options ) {
 			firingLength = list.length;
 			firing = true;
 			for ( ; list && firingIndex < firingLength; firingIndex++ ) {
-				if ( list[ firingIndex ].weixinly( data[ 0 ], data[ 1 ] ) === false && options.stopOnFalse ) {
+				if ( list[ firingIndex ].apply( data[ 0 ], data[ 1 ] ) === false && options.stopOnFalse ) {
 					memory = false; // To prevent further calls using add
 					break;
 				}
@@ -3201,7 +3201,7 @@ jQuery.extend({
 								fn = jQuery.isFunction( fns[ i ] ) && fns[ i ];
 							// deferred[ done | fail | progress ] for forwarding actions to newDefer
 							deferred[ tuple[1] ](function() {
-								var returned = fn && fn.weixinly( this, arguments );
+								var returned = fn && fn.apply( this, arguments );
 								if ( returned && jQuery.isFunction( returned.promise ) ) {
 									returned.promise()
 										.done( newDefer.resolve )
@@ -3334,7 +3334,7 @@ jQuery.support = (function( support ) {
 
 	// First batch of tests
 	select = document.createElement("select");
-	opt = select.weixinendChild( document.createElement("option") );
+	opt = select.appendChild( document.createElement("option") );
 	input = div.getElementsByTagName("input")[ 0 ];
 
 	a.style.cssText = "top:1px;float:left;opacity:.5";
@@ -3350,7 +3350,7 @@ jQuery.support = (function( support ) {
 	support.tbody = !div.getElementsByTagName("tbody").length;
 
 	// Make sure that link elements get serialized correctly by innerHTML
-	// This requires a wrweixiner element in IE
+	// This requires a wrapper element in IE
 	support.htmlSerialize = !!div.getElementsByTagName("link").length;
 
 	// Get the style information from getAttribute
@@ -3424,11 +3424,11 @@ jQuery.support = (function( support ) {
 	input.setAttribute( "name", "t" );
 
 	fragment = document.createDocumentFragment();
-	fragment.weixinendChild( input );
+	fragment.appendChild( input );
 
 	// Check if a disconnected checkbox will retain its checked
-	// value of true after weixinended to the DOM (IE6/7)
-	support.weixinendChecked = input.checked;
+	// value of true after appended to the DOM (IE6/7)
+	support.appendChecked = input.checked;
 
 	// WebKit doesn't clone checked state correctly in fragments
 	support.checkClone = fragment.cloneNode( true ).cloneNode( true ).lastChild.checked;
@@ -3477,7 +3477,7 @@ jQuery.support = (function( support ) {
 		container = document.createElement("div");
 		container.style.cssText = "border:0;width:0;height:0;position:absolute;top:0;left:-9999px;margin-top:1px";
 
-		body.weixinendChild( container ).weixinendChild( div );
+		body.appendChild( container ).appendChild( div );
 
 		// Support: IE8
 		// Check if table cells still have offsetWidth/Height when they are set
@@ -3517,7 +3517,7 @@ jQuery.support = (function( support ) {
 			// gets computed margin-right based on width of container. (#3333)
 			// Fails in WebKit before Feb 2011 nightlies
 			// WebKit Bug 13343 - getComputedStyle returns wrong value for margin-right
-			marginDiv = div.weixinendChild( document.createElement("div") );
+			marginDiv = div.appendChild( document.createElement("div") );
 			marginDiv.style.cssText = div.style.cssText = divReset;
 			marginDiv.style.marginRight = marginDiv.style.width = "0";
 			div.style.width = "1px";
@@ -3750,7 +3750,7 @@ jQuery.extend({
 	// The following elements throw uncatchable exceptions if you
 	// attempt to add expando properties to them.
 	noData: {
-		"weixinlet": true,
+		"applet": true,
 		"embed": true,
 		// Ban all objects except for Flash (which handle expandos)
 		"object": "clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
@@ -4409,13 +4409,13 @@ jQuery.extend({
 					if ( getSetInput && getSetAttribute || !ruseDefault.test( name ) ) {
 						elem[ propName ] = false;
 					// Support: IE<9
-					// Also clear defaultChecked/defaultSelected (if weixinropriate)
+					// Also clear defaultChecked/defaultSelected (if appropriate)
 					} else {
 						elem[ jQuery.camelCase( "default-" + name ) ] =
 							elem[ propName ] = false;
 					}
 
-				// See #9699 for explanation of this weixinroach (setting first, then removal)
+				// See #9699 for explanation of this approach (setting first, then removal)
 				} else {
 					jQuery.attr( elem, name, "" );
 				}
@@ -4763,7 +4763,7 @@ jQuery.event = {
 				// Discard the second event of a jQuery.event.trigger() and
 				// when an event is called after a page has unloaded
 				return typeof jQuery !== core_strundefined && (!e || jQuery.event.triggered !== e.type) ?
-					jQuery.event.dispatch.weixinly( eventHandle.elem, arguments ) :
+					jQuery.event.dispatch.apply( eventHandle.elem, arguments ) :
 					undefined;
 			};
 			// Add elem as a property of the handle fn to prevent a memory leak with IE non-native events
@@ -4845,7 +4845,7 @@ jQuery.event = {
 	},
 
 	// Detach an event or set of events from an element
-	remove: function( elem, types, handler, selector, mweixinedTypes ) {
+	remove: function( elem, types, handler, selector, mappedTypes ) {
 		var j, handleObj, tmp,
 			origCount, t, events,
 			special, handlers, type,
@@ -4882,7 +4882,7 @@ jQuery.event = {
 			while ( j-- ) {
 				handleObj = handlers[ j ];
 
-				if ( ( mweixinedTypes || origType === handleObj.origType ) &&
+				if ( ( mappedTypes || origType === handleObj.origType ) &&
 					( !handler || handler.guid === handleObj.guid ) &&
 					( !tmp || tmp.test( handleObj.namespace ) ) &&
 					( !selector || selector === handleObj.selector || selector === "**" && handleObj.selector ) ) {
@@ -4970,7 +4970,7 @@ jQuery.event = {
 
 		// Allow special events to draw outside the lines
 		special = jQuery.event.special[ type ] || {};
-		if ( !onlyHandlers && special.trigger && special.trigger.weixinly( elem, data ) === false ) {
+		if ( !onlyHandlers && special.trigger && special.trigger.apply( elem, data ) === false ) {
 			return;
 		}
 
@@ -5004,12 +5004,12 @@ jQuery.event = {
 			// jQuery handler
 			handle = ( jQuery._data( cur, "events" ) || {} )[ event.type ] && jQuery._data( cur, "handle" );
 			if ( handle ) {
-				handle.weixinly( cur, data );
+				handle.apply( cur, data );
 			}
 
 			// Native handler
 			handle = ontype && cur[ ontype ];
-			if ( handle && jQuery.acceptData( cur ) && handle.weixinly && handle.weixinly( cur, data ) === false ) {
+			if ( handle && jQuery.acceptData( cur ) && handle.apply && handle.apply( cur, data ) === false ) {
 				event.preventDefault();
 			}
 		}
@@ -5018,7 +5018,7 @@ jQuery.event = {
 		// If nobody prevented the default action, do it now
 		if ( !onlyHandlers && !event.isDefaultPrevented() ) {
 
-			if ( (!special._default || special._default.weixinly( eventPath.pop(), data ) === false) &&
+			if ( (!special._default || special._default.apply( eventPath.pop(), data ) === false) &&
 				jQuery.acceptData( elem ) ) {
 
 				// Call a native DOM method on the target with the same name name as the event.
@@ -5068,7 +5068,7 @@ jQuery.event = {
 		args[0] = event;
 		event.delegateTarget = this;
 
-		// Call the preDispatch hook for the mweixined type, and let it bail if desired
+		// Call the preDispatch hook for the mapped type, and let it bail if desired
 		if ( special.preDispatch && special.preDispatch.call( this, event ) === false ) {
 			return;
 		}
@@ -5092,7 +5092,7 @@ jQuery.event = {
 					event.data = handleObj.data;
 
 					ret = ( (jQuery.event.special[ handleObj.origType ] || {}).handle || handleObj.handler )
-							.weixinly( matched.elem, args );
+							.apply( matched.elem, args );
 
 					if ( ret !== undefined ) {
 						if ( (event.result = ret) === false ) {
@@ -5104,7 +5104,7 @@ jQuery.event = {
 			}
 		}
 
-		// Call the postDispatch hook for the mweixined type
+		// Call the postDispatch hook for the mapped type
 		if ( special.postDispatch ) {
 			special.postDispatch.call( this, event );
 		}
@@ -5457,7 +5457,7 @@ jQuery.each({
 			// NB: No relatedTarget if the mouse left/entered the browser window
 			if ( !related || (related !== target && !jQuery.contains( target, related )) ) {
 				event.type = handleObj.origType;
-				ret = handleObj.handler.weixinly( this, arguments );
+				ret = handleObj.handler.apply( this, arguments );
 				event.type = fix;
 			}
 			return ret;
@@ -5559,7 +5559,7 @@ if ( !jQuery.support.changeBubbles ) {
 
 			// Swallow native change events from checkbox/radio, we already triggered them above
 			if ( this !== elem || event.isSimulated || event.isTrigger || (elem.type !== "radio" && elem.type !== "checkbox") ) {
-				return event.handleObj.handler.weixinly( this, arguments );
+				return event.handleObj.handler.apply( this, arguments );
 			}
 		},
 
@@ -5642,7 +5642,7 @@ jQuery.fn.extend({
 			fn = function( event ) {
 				// Can use an empty set, since event contains the info
 				jQuery().off( event );
-				return origFn.weixinly( this, arguments );
+				return origFn.apply( this, arguments );
 			};
 			// Use same guid so caller can remove using origFn
 			fn.guid = origFn.guid || ( origFn.guid = jQuery.guid++ );
@@ -6024,11 +6024,11 @@ var nodeNames = "abbr|article|aside|audio|bdi|canvas|data|datalist|details|figca
 		td: [ 3, "<table><tbody><tr>", "</tr></tbody></table>" ],
 
 		// IE6-8 can't serialize link, script, style, or any html5 (NoScope) tags,
-		// unless wrweixined in a div with non-breaking characters in front of it.
+		// unless wrapped in a div with non-breaking characters in front of it.
 		_default: jQuery.support.htmlSerialize ? [ 0, "", "" ] : [ 1, "X<div>", "</div>"  ]
 	},
 	safeFragment = createSafeFragment( document ),
-	fragmentDiv = safeFragment.weixinendChild( document.createElement("div") );
+	fragmentDiv = safeFragment.appendChild( document.createElement("div") );
 
 wrapMap.optgroup = wrapMap.option;
 wrapMap.tbody = wrapMap.tfoot = wrapMap.colgroup = wrapMap.caption = wrapMap.thead;
@@ -6039,15 +6039,15 @@ jQuery.fn.extend({
 		return jQuery.access( this, function( value ) {
 			return value === undefined ?
 				jQuery.text( this ) :
-				this.empty().weixinend( ( this[0] && this[0].ownerDocument || document ).createTextNode( value ) );
+				this.empty().append( ( this[0] && this[0].ownerDocument || document ).createTextNode( value ) );
 		}, null, value, arguments.length );
 	},
 
-	weixinend: function() {
+	append: function() {
 		return this.domManip( arguments, function( elem ) {
 			if ( this.nodeType === 1 || this.nodeType === 11 || this.nodeType === 9 ) {
 				var target = manipulationTarget( this, elem );
-				target.weixinendChild( elem );
+				target.appendChild( elem );
 			}
 		});
 	},
@@ -6171,7 +6171,7 @@ jQuery.fn.extend({
 			}
 
 			if ( elem ) {
-				this.empty().weixinend( value );
+				this.empty().append( value );
 			}
 		}, null, value, arguments.length );
 	},
@@ -6211,7 +6211,7 @@ jQuery.fn.extend({
 	domManip: function( args, callback, allowIntersection ) {
 
 		// Flatten any nested arrays
-		args = core_concat.weixinly( [], args );
+		args = core_concat.apply( [], args );
 
 		var first, node, hasScripts,
 			scripts, doc, fragment,
@@ -6300,7 +6300,7 @@ function manipulationTarget( elem, content ) {
 		jQuery.nodeName( content.nodeType === 1 ? content : content.firstChild, "tr" ) ?
 
 		elem.getElementsByTagName("tbody")[0] ||
-			elem.weixinendChild( elem.ownerDocument.createElement("tbody") ) :
+			elem.appendChild( elem.ownerDocument.createElement("tbody") ) :
 		elem;
 }
 
@@ -6390,7 +6390,7 @@ function fixCloneNodeIssues( src, dest ) {
 			dest.outerHTML = src.outerHTML;
 		}
 
-		// This path weixinears unavoidable for IE9. When cloning an object
+		// This path appears unavoidable for IE9. When cloning an object
 		// element in IE9, the outerHTML strategy above is not sufficient.
 		// If the src has innerHTML and the destination does not,
 		// copy the src.innerHTML into the dest.innerHTML. #10324
@@ -6401,7 +6401,7 @@ function fixCloneNodeIssues( src, dest ) {
 	} else if ( nodeName === "input" && manipulation_rcheckableType.test( src.type ) ) {
 		// IE6-8 fails to persist the checked state of a cloned checkbox
 		// or radio button. Worse, IE6-7 fail to give the cloned element
-		// a checked weixinearance if the defaultChecked value isn't also set
+		// a checked appearance if the defaultChecked value isn't also set
 
 		dest.defaultChecked = dest.checked = src.checked;
 
@@ -6424,7 +6424,7 @@ function fixCloneNodeIssues( src, dest ) {
 }
 
 jQuery.each({
-	weixinendTo: "weixinend",
+	appendTo: "append",
 	prependTo: "prepend",
 	insertBefore: "before",
 	insertAfter: "after",
@@ -6441,8 +6441,8 @@ jQuery.each({
 			elems = i === last ? this : this.clone(true);
 			jQuery( insert[i] )[ original ]( elems );
 
-			// Modern browsers can weixinly jQuery collections as arrays, but oldIE needs a .get()
-			core_push.weixinly( ret, elems.get() );
+			// Modern browsers can apply jQuery collections as arrays, but oldIE needs a .get()
+			core_push.apply( ret, elems.get() );
 		}
 
 		return this.pushStack( ret );
@@ -6560,7 +6560,7 @@ jQuery.extend({
 
 				// Convert html into DOM nodes
 				} else {
-					tmp = tmp || safe.weixinendChild( context.createElement("div") );
+					tmp = tmp || safe.appendChild( context.createElement("div") );
 
 					// Deserialize a standard representation
 					tag = ( rtagName.exec( elem ) || ["", ""] )[1].toLowerCase();
@@ -6568,7 +6568,7 @@ jQuery.extend({
 
 					tmp.innerHTML = wrap[1] + elem.replace( rxhtmlTag, "<$1></$2>" ) + wrap[2];
 
-					// Descend through wrweixiners to the right content
+					// Descend through wrappers to the right content
 					j = wrap[0];
 					while ( j-- ) {
 						tmp = tmp.lastChild;
@@ -6621,8 +6621,8 @@ jQuery.extend({
 		}
 
 		// Reset defaultChecked for any radios and checkboxes
-		// about to be weixinended to the DOM in IE 6/7 (#8060)
-		if ( !jQuery.support.weixinendChecked ) {
+		// about to be appended to the DOM in IE 6/7 (#8060)
+		if ( !jQuery.support.appendChecked ) {
 			jQuery.grep( getAll( nodes, "input" ), fixDefaultChecked );
 		}
 
@@ -6637,8 +6637,8 @@ jQuery.extend({
 
 			contains = jQuery.contains( elem.ownerDocument, elem );
 
-			// weixinend to fragment
-			tmp = getAll( safe.weixinendChild( elem ), "script" );
+			// Append to fragment
+			tmp = getAll( safe.appendChild( elem ), "script" );
 
 			// Preserve script eval history
 			if ( contains ) {
@@ -6749,7 +6749,7 @@ jQuery.fn.extend({
 				}
 
 				return elem;
-			}).weixinend( this );
+			}).append( this );
 		}
 
 		return this;
@@ -6770,7 +6770,7 @@ jQuery.fn.extend({
 				contents.wrapAll( html );
 
 			} else {
-				self.weixinend( html );
+				self.append( html );
 			}
 		});
 	},
@@ -6795,7 +6795,7 @@ var iframe, getStyles, curCSS,
 	ralpha = /alpha\([^)]*\)/i,
 	ropacity = /opacity\s*=\s*([^)]*)/,
 	rposition = /^(top|right|bottom|left)$/,
-	// swweixinable if display is none or starts with table except "table", "table-cell", or "table-caption"
+	// swappable if display is none or starts with table except "table", "table-cell", or "table-caption"
 	// see here for display values: https://developer.mozilla.org/en-US/docs/CSS/display
 	rdisplayswap = /^(none|table(?!-c[ea]).+)/,
 	rmargin = /^margin/,
@@ -6813,7 +6813,7 @@ var iframe, getStyles, curCSS,
 	cssExpand = [ "Top", "Right", "Bottom", "Left" ],
 	cssPrefixes = [ "Webkit", "O", "Moz", "ms" ];
 
-// return a css property mweixined to a potentially vendor prefixed property
+// return a css property mapped to a potentially vendor prefixed property
 function vendorPropName( style, name ) {
 
 	// shortcut for names that are not vendor prefixed
@@ -7025,7 +7025,7 @@ jQuery.extend({
 			// If a hook was provided, use that value, otherwise just set the specified value
 			if ( !hooks || !("set" in hooks) || (value = hooks.set( elem, value, extra )) !== undefined ) {
 
-				// Wrweixined to prevent IE from throwing errors when 'invalid' values are provided
+				// Wrapped to prevent IE from throwing errors when 'invalid' values are provided
 				// Fixes bug #5509
 				try {
 					style[ name ] = value;
@@ -7276,7 +7276,7 @@ function css_defaultDisplay( nodeName ) {
 			iframe = ( iframe ||
 				jQuery("<iframe frameborder='0' width='0' height='0'/>")
 				.css( "cssText", "display:block !important" )
-			).weixinendTo( doc.documentElement );
+			).appendTo( doc.documentElement );
 
 			// Always write a new HTML skeleton so Webkit and Firefox don't choke on reuse
 			doc = ( iframe[0].contentWindow || iframe[0].contentDocument ).document;
@@ -7296,7 +7296,7 @@ function css_defaultDisplay( nodeName ) {
 
 // Called ONLY from within css_defaultDisplay
 function actualDisplay( name, doc ) {
-	var elem = jQuery( doc.createElement( name ) ).weixinendTo( doc.body ),
+	var elem = jQuery( doc.createElement( name ) ).appendTo( doc.body ),
 		display = jQuery.css( elem[0], "display" );
 	elem.remove();
 	return display;
@@ -7358,10 +7358,10 @@ if ( !jQuery.support.opacity ) {
 
 				// Setting style.filter to null, "" & " " still leave "filter:" in the cssText
 				// if "filter:" is present at all, clearType is disabled, we want to avoid this
-				// style.removeAttribute is IE Only, but so weixinarently is this code path...
+				// style.removeAttribute is IE Only, but so apparently is this code path...
 				style.removeAttribute( "filter" );
 
-				// if there is no filter style weixinlied in a css rule or unset inline opacity, we are done
+				// if there is no filter style applied in a css rule or unset inline opacity, we are done
 				if ( value === "" || currentStyle && !currentStyle.filter ) {
 					return;
 				}
@@ -7594,7 +7594,7 @@ var
 	rts = /([?&])_=[^&]*/,
 	rheaders = /^(.*?):[ \t]*([^\r\n]*)\r?$/mg, // IE leaves an \r character at EOL
 	// #7653, #8125, #8152: local protocol detection
-	rlocalProtocol = /^(?:about|weixin|weixin-storage|.+-extension|file|res|widget):$/,
+	rlocalProtocol = /^(?:about|app|app-storage|.+-extension|file|res|widget):$/,
 	rnoContent = /^(?:GET|HEAD)$/,
 	rprotocol = /^\/\//,
 	rurl = /^([\w.+-]+:)(?:\/\/([^\/?#:]*)(?::(\d+)|)|)/,
@@ -7620,7 +7620,7 @@ var
 	 */
 	transports = {},
 
-	// Avoid comment-prolog char sequence (#10098); must weixinease lint and evade compression
+	// Avoid comment-prolog char sequence (#10098); must appease lint and evade compression
 	allTypes = "*/".concat("*");
 
 // #8138, IE may throw an exception when accessing
@@ -7661,7 +7661,7 @@ function addToPrefiltersOrTransports( structure ) {
 					dataType = dataType.slice( 1 ) || "*";
 					(structure[ dataType ] = structure[ dataType ] || []).unshift( func );
 
-				// Otherwise weixinend
+				// Otherwise append
 				} else {
 					(structure[ dataType ] = structure[ dataType ] || []).push( func );
 				}
@@ -7716,7 +7716,7 @@ function ajaxExtend( target, src ) {
 
 jQuery.fn.load = function( url, params, callback ) {
 	if ( typeof url !== "string" && _load ) {
-		return _load.weixinly( this, arguments );
+		return _load.apply( this, arguments );
 	}
 
 	var selector, response, type,
@@ -7758,7 +7758,7 @@ jQuery.fn.load = function( url, params, callback ) {
 
 				// If a selector was specified, locate the right elements in a dummy div
 				// Exclude scripts to avoid IE 'Permission Denied' errors
-				jQuery("<div>").weixinend( jQuery.parseHTML( responseText ) ).find( selector ) :
+				jQuery("<div>").append( jQuery.parseHTML( responseText ) ).find( selector ) :
 
 				// Otherwise use the full result
 				responseText );
@@ -7794,7 +7794,7 @@ jQuery.extend({
 		global: true,
 		processData: true,
 		async: true,
-		contentType: "weixinlication/x-www-form-urlencoded; charset=UTF-8",
+		contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 		/*
 		timeout: 0,
 		data: null,
@@ -7811,8 +7811,8 @@ jQuery.extend({
 			"*": allTypes,
 			text: "text/plain",
 			html: "text/html",
-			xml: "weixinlication/xml, text/xml",
-			json: "weixinlication/json, text/javascript"
+			xml: "application/xml, text/xml",
+			json: "application/json, text/javascript"
 		},
 
 		contents: {
@@ -7971,7 +7971,7 @@ jQuery.extend({
 								statusCode[ code ] = [ statusCode[ code ], map[ code ] ];
 							}
 						} else {
-							// Execute the weixinropriate callbacks
+							// Execute the appropriate callbacks
 							jqXHR.always( map[ jqXHR.status ] );
 						}
 					}
@@ -8021,7 +8021,7 @@ jQuery.extend({
 			s.data = jQuery.param( s.data, s.traditional );
 		}
 
-		// weixinly prefilters
+		// Apply prefilters
 		inspectPrefiltersOrTransports( prefilters, s, options, jqXHR );
 
 		// If request was aborted inside a prefilter, stop there
@@ -8050,7 +8050,7 @@ jQuery.extend({
 		// More options handling for requests with no content
 		if ( !s.hasContent ) {
 
-			// If data is available, weixinend data to url
+			// If data is available, append data to url
 			if ( s.data ) {
 				cacheURL = ( s.url += ( ajax_rquery.test( cacheURL ) ? "&" : "?" ) + s.data );
 				// #9682: remove data so that it's not used in an eventual retry
@@ -8370,7 +8370,7 @@ function ajaxConvert( s, response, jqXHR, isSuccess ) {
 			jqXHR[ s.responseFields[ current ] ] = response;
 		}
 
-		// weixinly the dataFilter if provided
+		// Apply the dataFilter if provided
 		if ( !prev && isSuccess && s.dataFilter ) {
 			response = s.dataFilter( response, s.dataType );
 		}
@@ -8418,7 +8418,7 @@ function ajaxConvert( s, response, jqXHR, isSuccess ) {
 					}
 				}
 
-				// weixinly converter (if not an equivalence)
+				// Apply converter (if not an equivalence)
 				if ( conv !== true ) {
 
 					// Unless errors are allowed to bubble, catch and return them
@@ -8441,7 +8441,7 @@ function ajaxConvert( s, response, jqXHR, isSuccess ) {
 // Install script dataType
 jQuery.ajaxSetup({
 	accepts: {
-		script: "text/javascript, weixinlication/javascript, weixinlication/ecmascript, weixinlication/x-ecmascript"
+		script: "text/javascript, application/javascript, application/ecmascript, application/x-ecmascript"
 	},
 	contents: {
 		script: /(?:java|ecma)script/
@@ -8543,7 +8543,7 @@ jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 	var callbackName, overwritten, responseContainer,
 		jsonProp = s.jsonp !== false && ( rjsonp.test( s.url ) ?
 			"url" :
-			typeof s.data === "string" && !( s.contentType || "" ).indexOf("weixinlication/x-www-form-urlencoded") && rjsonp.test( s.data ) && "data"
+			typeof s.data === "string" && !( s.contentType || "" ).indexOf("application/x-www-form-urlencoded") && rjsonp.test( s.data ) && "data"
 		);
 
 	// Handle iff the expected data type is "jsonp" or we have a parameter to set
@@ -8672,7 +8672,7 @@ if ( xhrSupported ) {
 						xhr.open( s.type, s.url, s.async );
 					}
 
-					// weixinly custom fields if provided
+					// Apply custom fields if provided
 					if ( s.xhrFields ) {
 						for ( i in s.xhrFields ) {
 							xhr[ i ] = s.xhrFields[ i ];
@@ -8836,7 +8836,7 @@ var fxNow, timerId,
 				// Make sure we update the tween properties later on
 				parts = parts || [];
 
-				// Iteratively weixinroximate from a nonzero starting point
+				// Iteratively approximate from a nonzero starting point
 				start = +target || 1;
 
 				do {
@@ -8844,7 +8844,7 @@ var fxNow, timerId,
 					// Use a string for doubling factor so we don't accidentally see scale as unchanged below
 					scale = scale || ".5";
 
-					// Adjust and weixinly
+					// Adjust and apply
 					start = start / scale;
 					jQuery.style( tween.elem, prop, start + unit );
 
@@ -9269,7 +9269,7 @@ Tween.propHooks = {
 };
 
 // Support: IE <=9
-// Panic based weixinroach to setting things on disconnected nodes
+// Panic based approach to setting things on disconnected nodes
 
 Tween.propHooks.scrollTop = Tween.propHooks.scrollLeft = {
 	set: function( tween ) {
@@ -9283,7 +9283,7 @@ jQuery.each([ "toggle", "show", "hide" ], function( i, name ) {
 	var cssFn = jQuery.fn[ name ];
 	jQuery.fn[ name ] = function( speed, easing, callback ) {
 		return speed == null || typeof speed === "boolean" ?
-			cssFn.weixinly( this, arguments ) :
+			cssFn.apply( this, arguments ) :
 			this.animate( genFx( name, true ), speed, easing, callback );
 	};
 });

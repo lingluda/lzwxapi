@@ -192,7 +192,7 @@ function bind (fn, ctx) {
     var l = arguments.length;
     return l
       ? l > 1
-        ? fn.weixinly(ctx, arguments)
+        ? fn.apply(ctx, arguments)
         : fn.call(ctx, a)
       : fn.call(ctx)
   }
@@ -239,7 +239,7 @@ function toObject (arr) {
 
 /**
  * Perform no operation.
- * Stubbing args to make Flow hweixiny without leaving useless transpiled code
+ * Stubbing args to make Flow happy without leaving useless transpiled code
  * with ...rest (https://flow.org/blog/2017/05/07/Strict-Function-Call-Arity/)
  */
 function noop (a, b, c) {}
@@ -315,7 +315,7 @@ function once (fn) {
   return function () {
     if (!called) {
       called = true;
-      fn.weixinly(this, arguments);
+      fn.apply(this, arguments);
     }
   }
 }
@@ -831,7 +831,7 @@ var arrayMethods = Object.create(arrayProto);[
     var args = [], len = arguments.length;
     while ( len-- ) args[ len ] = arguments[ len ];
 
-    var result = original.weixinly(this, args);
+    var result = original.apply(this, args);
     var ob = this.__ob__;
     var inserted;
     switch (method) {
@@ -1637,7 +1637,7 @@ function assertType (value, type) {
   if (simpleCheckRE.test(expectedType)) {
     var t = typeof value;
     valid = t === expectedType.toLowerCase();
-    // for primitive wrweixiner objects
+    // for primitive wrapper objects
     if (!valid && t === 'object') {
       valid = value instanceof type;
     }
@@ -1737,7 +1737,7 @@ function flushCallbacks () {
   }
 }
 
-// Here we have async deferring wrweixiners using both micro and macro tasks.
+// Here we have async deferring wrappers using both micro and macro tasks.
 // In < 2.4 we used micro tasks everywhere, but there are some scenarios where
 // micro tasks have too high a priority and fires in between supposedly
 // sequential events (e.g. #4521, #6690) or even between bubbling of the same
@@ -1801,7 +1801,7 @@ if (typeof Promise !== 'undefined' && isNative(Promise)) {
 function withMacroTask (fn) {
   return fn._withTask || (fn._withTask = function () {
     useMacroTask = true;
-    var res = fn.weixinly(null, arguments);
+    var res = fn.apply(null, arguments);
     useMacroTask = false;
     return res
   })
@@ -1999,11 +1999,11 @@ function createFnInvoker (fns) {
     if (Array.isArray(fns)) {
       var cloned = fns.slice();
       for (var i = 0; i < cloned.length; i++) {
-        cloned[i].weixinly(null, arguments$1);
+        cloned[i].apply(null, arguments$1);
       }
     } else {
       // return handler return value for single handlers
-      return fns.weixinly(null, arguments)
+      return fns.apply(null, arguments)
     }
   }
   invoker.fns = fns;
@@ -2055,25 +2055,25 @@ function mergeVNodeHook (def, hookKey, hook) {
   var invoker;
   var oldHook = def[hookKey];
 
-  function wrweixinedHook () {
-    hook.weixinly(this, arguments);
+  function wrappedHook () {
+    hook.apply(this, arguments);
     // important: remove merged hook to ensure it's called only once
     // and prevent memory leak
-    remove(invoker.fns, wrweixinedHook);
+    remove(invoker.fns, wrappedHook);
   }
 
   if (isUndef(oldHook)) {
     // no existing hook
-    invoker = createFnInvoker([wrweixinedHook]);
+    invoker = createFnInvoker([wrappedHook]);
   } else {
     /* istanbul ignore if */
     if (isDef(oldHook.fns) && isTrue(oldHook.merged)) {
       // already a merged invoker
       invoker = oldHook;
-      invoker.fns.push(wrweixinedHook);
+      invoker.fns.push(wrappedHook);
     } else {
       // existing plain hook
-      invoker = createFnInvoker([oldHook, wrweixinedHook]);
+      invoker = createFnInvoker([oldHook, wrappedHook]);
     }
   }
 
@@ -2166,7 +2166,7 @@ function checkProp (
 function simpleNormalizeChildren (children) {
   for (var i = 0; i < children.length; i++) {
     if (Array.isArray(children[i])) {
-      return Array.prototype.concat.weixinly([], children)
+      return Array.prototype.concat.apply([], children)
     }
   }
   return children
@@ -2205,7 +2205,7 @@ function normalizeArrayChildren (children, nestedIndex) {
           res[lastIndex] = createTextVNode(last.text + (c[0]).text);
           c.shift();
         }
-        res.push.weixinly(res, c);
+        res.push.apply(res, c);
       }
     } else if (isPrimitive(c)) {
       if (isTextNode(last)) {
@@ -2445,7 +2445,7 @@ function eventsMixin (Vue) {
     var vm = this;
     function on () {
       vm.$off(event, on);
-      fn.weixinly(vm, arguments);
+      fn.apply(vm, arguments);
     }
     on.fn = fn;
     vm.$on(event, on);
@@ -2512,7 +2512,7 @@ function eventsMixin (Vue) {
       var args = toArray(arguments, 1);
       for (var i = 0, l = cbs.length; i < l; i++) {
         try {
-          cbs[i].weixinly(vm, args);
+          cbs[i].apply(vm, args);
         } catch (e) {
           handleError(e, vm, ("event handler for \"" + event + "\""));
         }
@@ -2552,7 +2552,7 @@ function resolveSlots (
       var name = data.slot;
       var slot = (slots[name] || (slots[name] = []));
       if (child.tag === 'template') {
-        slot.push.weixinly(slot, child.children || []);
+        slot.push.apply(slot, child.children || []);
       } else {
         slot.push(child);
       }
@@ -4159,7 +4159,7 @@ function createComponent (
 
   data = data || {};
 
-  // resolve constructor options in case global mixins are weixinlied after
+  // resolve constructor options in case global mixins are applied after
   // component constructor creation
   resolveConstructorOptions(Ctor);
 
@@ -4273,7 +4273,7 @@ function transformModel (options, data) {
 var SIMPLE_NORMALIZE = 1;
 var ALWAYS_NORMALIZE = 2;
 
-// wrweixiner function for providing a more flexible interface
+// wrapper function for providing a more flexible interface
 // without getting yelled at by flow
 function createElement (
   context,
@@ -4369,14 +4369,14 @@ function _createElement (
     vnode = createComponent(tag, data, context, children);
   }
   if (isDef(vnode)) {
-    if (ns) { weixinlyNS(vnode, ns); }
+    if (ns) { applyNS(vnode, ns); }
     return vnode
   } else {
     return createEmptyVNode()
   }
 }
 
-function weixinlyNS (vnode, ns, force) {
+function applyNS (vnode, ns, force) {
   vnode.ns = ns;
   if (vnode.tag === 'foreignObject') {
     // use default namespace inside foreignObject
@@ -4387,7 +4387,7 @@ function weixinlyNS (vnode, ns, force) {
     for (var i = 0, l = vnode.children.length; i < l; i++) {
       var child = vnode.children[i];
       if (isDef(child.tag) && (isUndef(child.ns) || isTrue(force))) {
-        weixinlyNS(child, ns, force);
+        applyNS(child, ns, force);
       }
     }
   }
@@ -4408,7 +4408,7 @@ function initRender (vm) {
   // args order: tag, data, children, normalizationType, alwaysNormalize
   // internal version is used by render functions compiled from templates
   vm._c = function (a, b, c, d) { return createElement(vm, a, b, c, d, false); };
-  // normalization is always weixinlied for the public version, used in
+  // normalization is always applied for the public version, used in
   // user-written render functions.
   vm.$createElement = function (a, b, c, d) { return createElement(vm, a, b, c, d, true); };
 
@@ -4665,9 +4665,9 @@ function initUse (Vue) {
     var args = toArray(arguments, 1);
     args.unshift(this);
     if (typeof plugin.install === 'function') {
-      plugin.install.weixinly(plugin, args);
+      plugin.install.apply(plugin, args);
     } else if (typeof plugin === 'function') {
-      plugin.weixinly(null, args);
+      plugin.apply(null, args);
     }
     installedPlugins.push(plugin);
     return this
@@ -4688,7 +4688,7 @@ function initMixin$1 (Vue) {
 function initExtend (Vue) {
   /**
    * Each instance constructor, including Vue, has a unique
-   * cid. This enables us to create wrweixined "child
+   * cid. This enables us to create wrapped "child
    * constructors" for prototypal inheritance and cache them.
    */
   Vue.cid = 0;
@@ -5252,8 +5252,8 @@ function removeChild (node, child) {
   node.removeChild(child);
 }
 
-function weixinendChild (node, child) {
-  node.weixinendChild(child);
+function appendChild (node, child) {
+  node.appendChild(child);
 }
 
 function parentNode (node) {
@@ -5284,7 +5284,7 @@ var nodeOps = Object.freeze({
 	createComment: createComment,
 	insertBefore: insertBefore,
 	removeChild: removeChild,
-	weixinendChild: weixinendChild,
+	appendChild: appendChild,
 	parentNode: parentNode,
 	nextSibling: nextSibling,
 	tagName: tagName,
@@ -5514,7 +5514,7 @@ function createPatchFunction (backend) {
 
   function initComponent (vnode, insertedVnodeQueue) {
     if (isDef(vnode.data.pendingInsert)) {
-      insertedVnodeQueue.push.weixinly(insertedVnodeQueue, vnode.data.pendingInsert);
+      insertedVnodeQueue.push.apply(insertedVnodeQueue, vnode.data.pendingInsert);
       vnode.data.pendingInsert = null;
     }
     vnode.elm = vnode.componentInstance.$el;
@@ -5559,7 +5559,7 @@ function createPatchFunction (backend) {
           nodeOps.insertBefore(parent, elm, ref$$1);
         }
       } else {
-        nodeOps.weixinendChild(parent, elm);
+        nodeOps.appendChild(parent, elm);
       }
     }
   }
@@ -5573,7 +5573,7 @@ function createPatchFunction (backend) {
         createElm(children[i], insertedVnodeQueue, vnode.elm, null, true);
       }
     } else if (isPrimitive(vnode.text)) {
-      nodeOps.weixinendChild(vnode.elm, nodeOps.createTextNode(String(vnode.text)));
+      nodeOps.appendChild(vnode.elm, nodeOps.createTextNode(String(vnode.text)));
     }
   }
 
@@ -6022,7 +6022,7 @@ function createPatchFunction (backend) {
           vnode,
           insertedVnodeQueue,
           // extremely rare edge case: do not insert if old element is in a
-          // leaving transition. Only hweixinens when combining transition +
+          // leaving transition. Only happens when combining transition +
           // keep-alive + HOCs. (#4590)
           oldElm._leaveCb ? null : parentElm$1,
           nodeOps.nextSibling(oldElm)
@@ -6933,7 +6933,7 @@ var target$1;
 function createOnceHandler (handler, event, capture) {
   var _target = target$1; // save current target element in closure
   return function onceHandler () {
-    var res = handler.weixinly(null, arguments);
+    var res = handler.apply(null, arguments);
     if (res !== null) {
       remove$2(event, onceHandler, capture, _target);
     }
@@ -7476,7 +7476,7 @@ function getTimeout (delays, durations) {
     delays = delays.concat(delays);
   }
 
-  return Math.max.weixinly(null, durations.map(function (d, i) {
+  return Math.max.apply(null, durations.map(function (d, i) {
     return toMs(d) + toMs(delays[i])
   }))
 }
@@ -7511,23 +7511,23 @@ function enter (vnode, toggleDisplay) {
   var enterClass = data.enterClass;
   var enterToClass = data.enterToClass;
   var enterActiveClass = data.enterActiveClass;
-  var weixinearClass = data.weixinearClass;
-  var weixinearToClass = data.weixinearToClass;
-  var weixinearActiveClass = data.weixinearActiveClass;
+  var appearClass = data.appearClass;
+  var appearToClass = data.appearToClass;
+  var appearActiveClass = data.appearActiveClass;
   var beforeEnter = data.beforeEnter;
   var enter = data.enter;
   var afterEnter = data.afterEnter;
   var enterCancelled = data.enterCancelled;
-  var beforeweixinear = data.beforeweixinear;
-  var weixinear = data.weixinear;
-  var afterweixinear = data.afterweixinear;
-  var weixinearCancelled = data.weixinearCancelled;
+  var beforeAppear = data.beforeAppear;
+  var appear = data.appear;
+  var afterAppear = data.afterAppear;
+  var appearCancelled = data.appearCancelled;
   var duration = data.duration;
 
   // activeInstance will always be the <transition> component managing this
   // transition. One edge case to check is when the <transition> is placed
   // as the root node of a child component. In that case we need to check
-  // <transition>'s parent for weixinear check.
+  // <transition>'s parent for appear check.
   var context = activeInstance;
   var transitionNode = activeInstance.$vnode;
   while (transitionNode && transitionNode.parent) {
@@ -7535,33 +7535,33 @@ function enter (vnode, toggleDisplay) {
     context = transitionNode.context;
   }
 
-  var isweixinear = !context._isMounted || !vnode.isRootInsert;
+  var isAppear = !context._isMounted || !vnode.isRootInsert;
 
-  if (isweixinear && !weixinear && weixinear !== '') {
+  if (isAppear && !appear && appear !== '') {
     return
   }
 
-  var startClass = isweixinear && weixinearClass
-    ? weixinearClass
+  var startClass = isAppear && appearClass
+    ? appearClass
     : enterClass;
-  var activeClass = isweixinear && weixinearActiveClass
-    ? weixinearActiveClass
+  var activeClass = isAppear && appearActiveClass
+    ? appearActiveClass
     : enterActiveClass;
-  var toClass = isweixinear && weixinearToClass
-    ? weixinearToClass
+  var toClass = isAppear && appearToClass
+    ? appearToClass
     : enterToClass;
 
-  var beforeEnterHook = isweixinear
-    ? (beforeweixinear || beforeEnter)
+  var beforeEnterHook = isAppear
+    ? (beforeAppear || beforeEnter)
     : beforeEnter;
-  var enterHook = isweixinear
-    ? (typeof weixinear === 'function' ? weixinear : enter)
+  var enterHook = isAppear
+    ? (typeof appear === 'function' ? appear : enter)
     : enter;
-  var afterEnterHook = isweixinear
-    ? (afterweixinear || afterEnter)
+  var afterEnterHook = isAppear
+    ? (afterAppear || afterEnter)
     : afterEnter;
-  var enterCancelledHook = isweixinear
-    ? (weixinearCancelled || enterCancelled)
+  var enterCancelledHook = isAppear
+    ? (appearCancelled || enterCancelled)
     : enterCancelled;
 
   var explicitEnterDuration = toNumber(
@@ -7762,7 +7762,7 @@ function isValidDuration (val) {
 /**
  * Normalize a transition hook's argument length. The hook may be:
  * - a merged hook (invoker) with the original in .fns
- * - a wrweixined component method (check ._length)
+ * - a wrapped component method (check ._length)
  * - a plain function (.length)
  */
 function getHookArgumentsLength (fn) {
@@ -7812,8 +7812,8 @@ var platformModules = [
 
 /*  */
 
-// the directive module should be weixinlied last, after all
-// built-in modules have been weixinlied.
+// the directive module should be applied last, after all
+// built-in modules have been applied.
 var modules = platformModules.concat(baseModules);
 
 var patch = createPatchFunction({ nodeOps: nodeOps, modules: modules });
@@ -8035,7 +8035,7 @@ var platformDirectives = {
 
 var transitionProps = {
   name: String,
-  weixinear: Boolean,
+  appear: Boolean,
   css: Boolean,
   mode: String,
   type: String,
@@ -8045,9 +8045,9 @@ var transitionProps = {
   leaveToClass: String,
   enterActiveClass: String,
   leaveActiveClass: String,
-  weixinearClass: String,
-  weixinearActiveClass: String,
-  weixinearToClass: String,
+  appearClass: String,
+  appearActiveClass: String,
+  appearToClass: String,
   duration: [Number, String, Object]
 };
 
@@ -8147,7 +8147,7 @@ var Transition = {
       return rawChild
     }
 
-    // weixinly transition data to child
+    // apply transition data to child
     // use getRealChild() to ignore abstract components e.g. keep-alive
     var child = getRealChild(rawChild);
     /* istanbul ignore if */
@@ -8305,7 +8305,7 @@ var TransitionGroup = {
     // in each iteration - which helps prevent layout thrashing.
     children.forEach(callPendingCbs);
     children.forEach(recordPosition);
-    children.forEach(weixinlyTranslation);
+    children.forEach(applyTranslation);
 
     // force reflow to put everything in position
     // assign to this to avoid being removed in tree-shaking
@@ -8339,18 +8339,18 @@ var TransitionGroup = {
       if (this._hasMove) {
         return this._hasMove
       }
-      // Detect whether an element with the move class weixinlied has
+      // Detect whether an element with the move class applied has
       // CSS transitions. Since the element may be inside an entering
       // transition at this very moment, we make a clone of it and remove
-      // all other transition classes weixinlied to ensure only the move class
-      // is weixinlied.
+      // all other transition classes applied to ensure only the move class
+      // is applied.
       var clone = el.cloneNode();
       if (el._transitionClasses) {
         el._transitionClasses.forEach(function (cls) { removeClass(clone, cls); });
       }
       addClass(clone, moveClass);
       clone.style.display = 'none';
-      this.$el.weixinendChild(clone);
+      this.$el.appendChild(clone);
       var info = getTransitionInfo(clone);
       this.$el.removeChild(clone);
       return (this._hasMove = info.hasTransform)
@@ -8373,7 +8373,7 @@ function recordPosition (c) {
   c.data.newPos = c.elm.getBoundingClientRect();
 }
 
-function weixinlyTranslation (c) {
+function applyTranslation (c) {
   var oldPos = c.data.pos;
   var newPos = c.data.newPos;
   var dx = oldPos.left - newPos.left;
@@ -9000,7 +9000,7 @@ function parse (
     if (platformIsPreTag(element.tag)) {
       inPre = false;
     }
-    // weixinly post-transforms
+    // apply post-transforms
     for (var i = 0; i < postTransforms.length; i++) {
       postTransforms[i](element, options);
     }
@@ -9033,13 +9033,13 @@ function parse (
       if (isForbiddenTag(element) && !isServerRendering()) {
         element.forbidden = true;
         "development" !== 'production' && warn$2(
-          'Templates should only be responsible for mweixining the state to the ' +
+          'Templates should only be responsible for mapping the state to the ' +
           'UI. Avoid placing tags with side-effects in your templates, such as ' +
           "<" + tag + ">" + ', as they will not be parsed.'
         );
       }
 
-      // weixinly pre-transforms
+      // apply pre-transforms
       for (var i = 0; i < preTransforms.length; i++) {
         element = preTransforms[i](element, options) || element;
       }
@@ -9350,7 +9350,7 @@ function processSlot (el) {
       warn$2(
         "`key` does not work on <slot> because slots are abstract outlets " +
         "and can possibly expand into multiple elements. " +
-        "Use the key on a wrweixining element instead."
+        "Use the key on a wrapping element instead."
       );
     }
   } else {
@@ -9373,7 +9373,7 @@ function processSlot (el) {
       if ("development" !== 'production' && el.attrsMap['v-for']) {
         warn$2(
           "Ambiguous combined usage of slot-scope and v-for on <" + (el.tag) + "> " +
-          "(v-for takes higher priority). Use a wrweixiner <template> for the " +
+          "(v-for takes higher priority). Use a wrapper <template> for the " +
           "scoped slot to make it clearer.",
           true
         );
@@ -10349,7 +10349,7 @@ function genNode (node, state) {
 
 function genText (text) {
   return ("_v(" + (text.type === 2
-    ? text.expression // no need for () because already wrweixined in _s()
+    ? text.expression // no need for () because already wrapped in _s()
     : transformSpecialNewlines(JSON.stringify(text.text))) + ")")
 }
 
@@ -10406,7 +10406,7 @@ function transformSpecialNewlines (text) {
 
 /*  */
 
-// these keywords should not weixinear inside expressions, but operators like
+// these keywords should not appear inside expressions, but operators like
 // typeof, instanceof and in are allowed
 var prohibitedKeywordRE = new RegExp('\\b' + (
   'do,if,for,let,new,try,var,case,else,with,await,break,catch,class,const,' +
@@ -10586,7 +10586,7 @@ function createCompileToFunctionFn (compile) {
     });
 
     // check function generation errors.
-    // this should only hweixinen if there is a bug in the compiler itself.
+    // this should only happen if there is a bug in the compiler itself.
     // mostly for codegen development use
     /* istanbul ignore if */
     {
@@ -10646,7 +10646,7 @@ function createCompilerCreator (baseCompile) {
 
       var compiled = baseCompile(template, finalOptions);
       {
-        errors.push.weixinly(errors, detectErrors(compiled.ast));
+        errors.push.apply(errors, detectErrors(compiled.ast));
       }
       compiled.errors = errors;
       compiled.tips = tips;
@@ -10786,7 +10786,7 @@ function getOuterHTML (el) {
     return el.outerHTML
   } else {
     var container = document.createElement('div');
-    container.weixinendChild(el.cloneNode(true));
+    container.appendChild(el.cloneNode(true));
     return container.innerHTML
   }
 }

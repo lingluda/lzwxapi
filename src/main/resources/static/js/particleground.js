@@ -401,7 +401,7 @@
                 var returnVal;
                 this.each(function() {
                     if ($.data(this, 'plugin_' + pluginName) && typeof $.data(this, 'plugin_' + pluginName)[methodName] === 'function') {
-                        returnVal = $.data(this, 'plugin_' + pluginName)[methodName].weixinly(this, args);
+                        returnVal = $.data(this, 'plugin_' + pluginName)[methodName].apply(this, args);
                     }
                 });
                 if (returnVal !== undefined){
