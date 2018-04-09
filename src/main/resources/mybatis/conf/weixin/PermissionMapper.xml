@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.maiyue.weixin.base.mapper.PermissionMapper" >
+  
+  <resultMap id="BaseResultMap" type="com.maiyue.weixin.base.bean.Permission" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="PID" property="pid" jdbcType="VARCHAR" />
+    <result column="PNAME" property="pname" jdbcType="VARCHAR" />
+    <result column="CREATETIME" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="PARENT_ID" property="parentId" jdbcType="VARCHAR" />
+    <result column="PTYPE" property="ptype" jdbcType="VARCHAR" />
+    <result column="URL" property="url" jdbcType="VARCHAR" />
+    <result column="SORT" property="sort" jdbcType="DECIMAL" />
+    <result column="CARD" property="card" jdbcType="VARCHAR" />
+    <result column="CARD_URL" property="cardUrl" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    ID, PID, PNAME, CREATETIME, STATUS, PTYPE, URL, SORT, CARD, CARD_URL, PARENT_ID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_BASE_PERMISSION
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_BASE_PERMISSION
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+  <insert id="insertSelective" parameterType="com.maiyue.weixin.base.bean.Permission" >
+    insert into T_BASE_PERMISSION
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="pid != null" >
+        PID,
+      </if>
+      <if test="pname != null" >
+        PNAME,
+      </if>
+      <if test="createtime != null" >
+        CREATETIME,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="ptype != null" >
+        PTYPE,
+      </if>
+      <if test="url != null" >
+        URL,
+      </if>
+      <if test="sort != null" >
+        SORT,
+      </if>
+      <if test="card != null" >
+        CARD,
+      </if>
+      <if test="cardUrl != null" >
+        CARD_URL,
+      </if>
+      <if test="parentId != null" >
+        PARENT_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="pname != null" >
+        #{pname,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="ptype != null" >
+        #{ptype,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=DECIMAL},
+      </if>
+      <if test="card != null" >
+        #{card,jdbcType=VARCHAR},
+      </if>
+      <if test="cardUrl != null" >
+        #{cardUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.weixin.base.bean.Permission" >
+    update T_BASE_PERMISSION
+    <set >
+      <if test="pid != null" >
+        PID = #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="pname != null" >
+        PNAME = #{pname,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="ptype != null" >
+        PTYPE = #{ptype,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        URL = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        SORT = #{sort,jdbcType=DECIMAL},
+      </if>
+      <if test="card != null" >
+        CARD = #{card,jdbcType=VARCHAR},
+      </if>
+      <if test="cardUrl != null" >
+        CARD_URL = #{cardUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        PARENT_ID = #{parentId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="findByPage" resultMap="BaseResultMap" parameterType="java.util.HashMap" >
+    select <include refid="Base_Column_List" /> from T_BASE_PERMISSION
+    <where>
+      STATUS = #{status,jdbcType=VARCHAR}
+      <if test="id != null">
+        AND ID = #{id,jdbcType=VARCHAR}
+      </if>
+      <if test="pid != null">
+        AND PID = #{pid,jdbcType=VARCHAR}
+      </if>
+      <if test="pname != null">
+        AND PNAME = #{pname,jdbcType=VARCHAR}
+      </if>
+      <if test="createtime != null">
+        AND CREATETIME = #{createtime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="status != null">
+        AND STATUS = #{status,jdbcType=VARCHAR}
+      </if>
+      <if test="ptype != null">
+        AND PTYPE = #{ptype,jdbcType=VARCHAR}
+      </if>
+      <if test="url != null">
+        AND URL = #{url,jdbcType=VARCHAR}
+      </if>
+      <if test="sort != null">
+        AND SORT = #{sort,jdbcType=DECIMAL}
+      </if>
+      <if test="card != null">
+        AND CARD = #{card,jdbcType=VARCHAR}
+      </if>
+      <if test="cardUrl != null">
+        AND CARD_URL = #{cardUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="parentId != null">
+        AND PARENT_ID = #{parentId,jdbcType=VARCHAR}
+      </if>
+      <if test="ids != null">
+        AND ID IN
+        <foreach collection="ids" index="index" item="item" open="(" separator="," close=")">  
+	         #{item,jdbcType=VARCHAR}
+	    </foreach>
+      </if>
+    </where>
+    <if test="order != null">
+    	 ORDER BY ${order} ${sort}
+    </if>
+  </select>
+  
+</mapper>

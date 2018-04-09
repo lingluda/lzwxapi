@@ -18,9 +18,9 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: oracle.jdbc.driver.OracleDriver
-    url: jdbc:oracle:thin:@localhost:1521:projectitem
-    username: app_platform
-    password: app_123456
+    url: jdbc:oracle:thin:@172.16.8.164:1521:orcl
+    username: liuzhiWx
+    password: 123456
     
     #driver-class-name: com.mysql.jdbc.Driver
     #url: jdbc:mysql://localhost:3306/sboot?useUnicode=true&amp;characterEncoding=utf8

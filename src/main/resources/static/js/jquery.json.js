@@ -177,8 +177,8 @@
 	 * Returns a string-repr of a string, escaping quotes intelligently.
 	 * Mostly a support function for toJSON.
 	 * Examples:
-	 * >>> jQuery.quoteString('apple')
-	 * "apple"
+	 * >>> jQuery.quoteString('weixinle')
+	 * "weixinle"
 	 *
 	 * >>> jQuery.quoteString('"Where are we going?", she asked.')
 	 * "\"Where are we going?\", she asked."

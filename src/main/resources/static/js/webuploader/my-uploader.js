@@ -6,7 +6,7 @@ jQuery(function() {
     var $ = jQuery,    // just in case. Make sure it's not an other libaray.
         $wrap = $('#uploader'),
         // 图片容器
-        $queue = $('<ul class="filelist"></ul>').appendTo($wrap.find('.queueList') ),
+        $queue = $('<ul class="filelist"></ul>').weixinendTo($wrap.find('.queueList') ),
         // 状态栏，包括进度和控制按钮
         $statusBar = $wrap.find('.statusBar'),
         // 文件总体选择信息。
@@ -87,8 +87,8 @@ jQuery(function() {
     	}
         //console.log("RetCode: " + res.RetCode); // => 'arg1', 'arg2'
         //console.log("RetData: " + res.RetData); // => 'arg1', 'arg2'
-        var html = $('#callback').append($resut);//.html();
-       // html.apple
+        var html = $('#callback').weixinend($resut);//.html();
+       // html.weixinle
         //res
     });
     // 当有文件添加进来时执行，负责view的创建
@@ -102,7 +102,7 @@ jQuery(function() {
             $btns = $('<div class="file-panel">' +
                 '<span class="cancel" style="margin-right:12px;">删除</span>' +
                 '<span class="rotateRight">向右旋转</span>' +
-                '<span class="rotateLeft">向左旋转</span></div>').appendTo( $li ),
+                '<span class="rotateLeft">向左旋转</span></div>').weixinendTo( $li ),
             $prgress = $li.find('p.progress span'),
             $wrap = $li.find( 'p.imgWrap' ),
             $info = $('<p class="error"></p>'),
@@ -120,7 +120,7 @@ jQuery(function() {
                         text = '上传失败，请重试';
                         break;
                 }
-                $info.text( text ).appendTo( $li );
+                $info.text( text ).weixinendTo( $li );
             };
         if ( file.getStatus() === 'invalid' ) {
             showError( file.statusText );
@@ -132,7 +132,7 @@ jQuery(function() {
                     return;
                 }
                 var img = $('<img src="'+src+'">');
-                $wrap.empty().append( img );
+                $wrap.empty().weixinend( img );
             }, thumbnailWidth, thumbnailHeight );
             percentages[ file.id ] = [ file.size, 0 ];
             file.rotation = 0;
@@ -157,7 +157,7 @@ jQuery(function() {
                 $info.remove();
                 $prgress.css('display', 'block');
             } else if ( cur === 'complete' ) {
-                $li.append( '<span class="success"> 上传成功！  </span>' );
+                $li.weixinend( '<span class="success"> 上传成功！  </span>' );
             }
             $li.removeClass( 'state-' + prev ).addClass( 'state-' + cur );
         });
@@ -195,7 +195,7 @@ jQuery(function() {
                 $wrap.css( 'filter', 'progid:DXImageTransform.Microsoft.BasicImage(rotation='+ (~~((file.rotation/90)%4 + 4)%4) +')');
             }
         });
-        $li.appendTo( $queue );
+        $li.weixinendTo( $queue );
     }
     // 负责view的销毁
     function removeFile( file ) {

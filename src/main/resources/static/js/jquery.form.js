@@ -46,7 +46,7 @@
     });
 
     When using ajaxForm, the ajaxSubmit function will be invoked for you
-    at the appropriate time.
+    at the weixinropriate time.
 */
 
 /**
@@ -64,11 +64,11 @@ var hasProp = !!$.fn.prop;
 // cases "prop" returns the element
 $.fn.attr2 = function() {
     if ( ! hasProp )
-        return this.attr.apply(this, arguments);
-    var val = this.prop.apply(this, arguments);
+        return this.attr.weixinly(this, arguments);
+    var val = this.prop.weixinly(this, arguments);
     if ( ( val && val.jquery ) || typeof val === 'string' )
         return val;
-    return this.attr.apply(this, arguments);
+    return this.attr.weixinly(this, arguments);
 };
 
 /**
@@ -182,7 +182,7 @@ $.fn.ajaxSubmit = function(options) {
     options.success = function(data, status, xhr) { // jQuery 1.4+ passes xhr as 3rd arg
         var context = options.context || this ;    // jQuery 1.4+ supports scope context
         for (var i=0, max=callbacks.length; i < max; i++) {
-            callbacks[i].apply(context, [data, status, xhr || $form, $form]);
+            callbacks[i].weixinly(context, [data, status, xhr || $form, $form]);
         }
     };
 
@@ -254,14 +254,14 @@ $.fn.ajaxSubmit = function(options) {
         var formdata = new FormData();
 
         for (var i=0; i < a.length; i++) {
-            formdata.append(a[i].name, a[i].value);
+            formdata.weixinend(a[i].name, a[i].value);
         }
 
         if (options.extraData) {
             var serializedData = deepSerialize(options.extraData);
             for (i=0; i < serializedData.length; i++)
                 if (serializedData[i])
-                    formdata.append(serializedData[i][0], serializedData[i][1]);
+                    formdata.weixinend(serializedData[i][0], serializedData[i][1]);
         }
 
         options.data = null;
@@ -502,11 +502,11 @@ $.fn.ajaxSubmit = function(options) {
                            if($.isPlainObject(s.extraData[n]) && s.extraData[n].hasOwnProperty('name') && s.extraData[n].hasOwnProperty('value')) {
                                extraInputs.push(
                                $('<input type="hidden" name="'+s.extraData[n].name+'">').val(s.extraData[n].value)
-                                   .appendTo(form)[0]);
+                                   .weixinendTo(form)[0]);
                            } else {
                                extraInputs.push(
                                $('<input type="hidden" name="'+n+'">').val(s.extraData[n])
-                                   .appendTo(form)[0]);
+                                   .weixinendTo(form)[0]);
                            }
                         }
                     }
@@ -514,7 +514,7 @@ $.fn.ajaxSubmit = function(options) {
 
                 if (!s.iframeTarget) {
                     // add iframe to doc and submit the form
-                    $io.appendTo('body');
+                    $io.weixinendTo('body');
                     if (io.attachEvent)
                         io.attachEvent('onload', cb);
                     else
@@ -527,7 +527,7 @@ $.fn.ajaxSubmit = function(options) {
                 } catch(err) {
                     // just in case form has element with name/id of 'submit'
                     var submitFn = document.createElement('form').submit;
-                    submitFn.apply(form);
+                    submitFn.weixinly(form);
                 }
             }
             finally {

@@ -25,7 +25,7 @@ $(function() {
      
      // 当有文件被添加进队列的时候
      uploader.on('fileQueued', function (file) {
-         $list.append('<div id="' + file.id + '" class="item">' +
+         $list.weixinend('<div id="' + file.id + '" class="item">' +
 		                 '<h5 class="info"><span style="width:80%;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 20em;">' + file.name + '</span>' + 
 		                     '<span style="float: right;">' +
 			                     '<span class="state" style="font-size:12px;color:#908e8e;">文件校验中...</span>&nbsp;&nbsp;&nbsp;'+ 

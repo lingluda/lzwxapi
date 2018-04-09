@@ -61,4 +61,4 @@ CREATE TABLE `manager_task_info` (
 -- ----------------------------
 -- Records of manager_task_info
 -- ----------------------------
-INSERT INTO `manager_task_info` VALUES ('1', 'testJob', 'testJob', 'com.maiyue.app.test.TestJob', '0/20 * * * * ?', null, '1', '2018-01-16 16:51:45');
+INSERT INTO `manager_task_info` VALUES ('1', 'testJob', 'testJob', 'com.maiyue.weixin.test.TestJob', '0/20 * * * * ?', null, '1', '2018-01-16 16:51:45');
