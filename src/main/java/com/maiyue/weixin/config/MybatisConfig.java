@@ -24,9 +24,9 @@ import javax.sql.DataSource;
  */
 @Configuration
 @EnableTransactionManagement
-@AutoConfigureAfter({ DruidConfig.class })
+@AutoConfigureAfter({DruidConfig.class })
 @ConfigurationProperties(prefix = "mybatis")
-@MapperScan(basePackages={"com.maiyue.**.mweixiner"})
+@MapperScan(basePackages={"com.maiyue.**.mapper"})
 public class MybatisConfig {
 
    private Logger logger = LoggerFactory.getLogger(MybatisConfig.class);
@@ -36,8 +36,8 @@ public class MybatisConfig {
 
     @Value("${mybatis.typeAliasesPackage}")
     private String typeAliasesPackage;
-    @Value("${mybatis.mweixinerLocations}")
-    private String mweixinerLocations;
+    @Value("${mybatis.mapperLocations}")
+    private String mapperLocations;
     @Value("${mybatis.configLocation}")
     private String configLocation;
 
@@ -49,7 +49,7 @@ public class MybatisConfig {
             sessionFactory.setDataSource(druidDataSource);
             sessionFactory.setTypeAliasesPackage(typeAliasesPackage);
             sessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver()
-                            .getResources(mweixinerLocations));
+                            .getResources(mapperLocations));
             sessionFactory.setConfigLocation(new DefaultResourceLoader()
                             .getResource(configLocation));
 

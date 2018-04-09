@@ -1,8 +1,8 @@
 package com.maiyue.weixin.service.impl;
 
-import com.maiyue.weixin.bean.ManagerTaskInfo;
+import com.maiyue.weixin.bean.TaskInfo;
 import com.maiyue.weixin.constant.Constant;
-import com.maiyue.weixin.service.ManagerTaskInfoService;
+import com.maiyue.weixin.service.TaskInfoService;
 import com.maiyue.weixin.service.QuartzService;
 import org.apache.commons.lang3.StringUtils;
 import org.quartz.*;

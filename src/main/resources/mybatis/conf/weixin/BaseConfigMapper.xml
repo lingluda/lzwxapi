@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mweixiner PUBLIC "-//mybatis.org//DTD Mweixiner 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mweixiner.dtd" >
-<mweixiner namespace="com.maiyue.weixin.mweixiner.SystemConfigMweixiner" >
-  <resultMap id="BaseResultMap" type="com.maiyue.weixin.bean.SystemConfig" >
+<mapper namespace="com.maiyue.weixin.mapper.BaseConfigMapper" >
+  
+  <resultMap id="BaseResultMap" type="com.maiyue.weixin.bean.BaseConfig" >
     <id column="ID" property="id" jdbcType="VARCHAR" />
     <result column="CONFIG_NAME" property="configName" jdbcType="VARCHAR" />
     <result column="CONFIG_VALUE" property="configValue" jdbcType="VARCHAR" />
@@ -16,21 +17,21 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
-    from SYSTEM_CONFIG
+    from T_BASE_CONFIG
     where ID = #{id,jdbcType=VARCHAR}
   </select>
   
   <select id="findByConfigName" resultType="java.lang.String" parameterType="java.lang.String" >
-    select  CONFIG_VALUE from SYSTEM_CONFIG where CONFIG_NAME = #{configName,jdbcType=VARCHAR}
+    select  CONFIG_VALUE from T_BASE_CONFIG where CONFIG_NAME = #{configName,jdbcType=VARCHAR}
   </select>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from SYSTEM_CONFIG
+    delete from T_BASE_CONFIG
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
   
-  <insert id="insertSelective" parameterType="com.maiyue.weixin.bean.SystemConfig" >
-    insert into SYSTEM_CONFIG
+  <insert id="insertSelective" parameterType="com.maiyue.weixin.bean.BaseConfig" >
+    insert into T_BASE_CONFIG
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         ID,
@@ -66,8 +67,8 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.weixin.bean.SystemConfig" >
-    update SYSTEM_CONFIG
+  <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.weixin.bean.BaseConfig" >
+    update T_BASE_CONFIG
     <set >
       <if test="configName != null" >
         CONFIG_NAME = #{configName,jdbcType=VARCHAR},
@@ -89,7 +90,7 @@
   
   
   <select id="findByPage" resultMap="BaseResultMap" parameterType="java.util.HashMap" >
-    select <include refid="Base_Column_List" /> from SYSTEM_CONFIG
+    select <include refid="Base_Column_List" /> from T_BASE_CONFIG
     <where>
       CONFIG_STATE = #{configState,jdbcType=VARCHAR}
       <if test="id != null">
@@ -121,4 +122,4 @@
   </select>
   
   
-</mweixiner>
+</mapper>

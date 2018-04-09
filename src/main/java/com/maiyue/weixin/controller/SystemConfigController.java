@@ -1,6 +1,6 @@
 package com.maiyue.weixin.controller;
 
-import com.maiyue.weixin.service.SystemConfigService;
+import com.maiyue.weixin.service.BaseConfigService;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +15,7 @@ public class SystemConfigController extends BaseController {
     
 	
 	@Resource(name = "systemConfigService")
-    private SystemConfigService systemConfigService;
+    private BaseConfigService systemConfigService;
 
     
 }

@@ -2,7 +2,7 @@ package com.maiyue.weixin.bean;
 
 import java.io.Serializable;
 
-public class SystemConfig extends BaseSort implements Serializable{
+public class BaseConfig extends BaseSort implements Serializable{
     /**
 	 * 
 	 */

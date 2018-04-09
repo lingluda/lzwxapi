@@ -1,6 +1,6 @@
 package com.maiyue.weixin.service;
 
-import com.maiyue.weixin.bean.ManagerTaskInfo;
+import com.maiyue.weixin.bean.TaskInfo;
 import org.quartz.CronTrigger;
 
 /**

@@ -1,7 +1,7 @@
 package com.maiyue.weixin.service.impl;
 
-import com.maiyue.weixin.bean.ManagerTaskInfo;
-import com.maiyue.weixin.service.ManagerTaskInfoService;
+import com.maiyue.weixin.bean.TaskInfo;
+import com.maiyue.weixin.service.TaskInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

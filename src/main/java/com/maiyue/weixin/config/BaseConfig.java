@@ -7,18 +7,18 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import com.maiyue.weixin.constant.Constant;
-import com.maiyue.weixin.service.SystemConfigService;
+import com.maiyue.weixin.service.BaseConfigService;
 import com.maiyue.weixin.utils.RedisUtil;
 
 /**
  * Created by huang on 2018/01/10.
  */
 @Scope("singleton")
-@Component("weixinConfig")
+@Component("baseConfig")
 public class BaseConfig{
 
 	@Resource(name = "systemConfigService")
-    private SystemConfigService systemConfigService;
+    private BaseConfigService systemConfigService;
    
     @Resource(name = "redisUtil")
     private RedisUtil redisUtil;

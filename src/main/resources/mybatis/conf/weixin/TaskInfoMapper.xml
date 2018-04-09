@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mweixiner PUBLIC "-//mybatis.org//DTD Mweixiner 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mweixiner.dtd">
-<mweixiner namespace="com.maiyue.weixin.mapper.TaskInfoMapper">
-  <resultMap id="BaseResultMap" type="com.maiyue.weixin.bean.ManagerTaskInfo">
+<mapper namespace="com.maiyue.weixin.mapper.TaskInfoMapper">
+  <resultMap id="BaseResultMap" type="com.maiyue.weixin.bean.TaskInfo">
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="task_name" jdbcType="VARCHAR" property="taskName" />
     <result column="task_group" jdbcType="VARCHAR" property="taskGroup" />
@@ -11,7 +11,7 @@
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
   
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.maiyue.weixin.bean.ManagerTaskInfo">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.maiyue.weixin.bean.TaskInfo">
     <result column="remark" jdbcType="LONGVARCHAR" property="remark" />
   </resultMap>
   
@@ -95,7 +95,7 @@
   </insert>
   
   
-  <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.weixin.bean.ManagerTaskInfo">
+  <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.weixin.bean.TaskInfo">
     update manager_task_info
     <set>
       <if test="taskName != null">
@@ -154,4 +154,4 @@
     </where>
   </select>
   
-</mweixiner>
+</mapper>

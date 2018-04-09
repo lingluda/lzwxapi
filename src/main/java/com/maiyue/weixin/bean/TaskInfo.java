@@ -8,7 +8,7 @@ import java.util.Date;
  * @author huang
  * 2018/01/16
  */
-public class ManagerTaskInfo extends BaseSort implements Serializable{
+public class TaskInfo extends BaseSort implements Serializable{
     /**
 	 * 
 	 */
