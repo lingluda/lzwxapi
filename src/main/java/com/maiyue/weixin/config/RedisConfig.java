@@ -57,24 +57,27 @@ public class RedisConfig{
      */
 
     
-    /**
+    
+	/**
      * JDK序列化
      * @return
      */
     @Bean(name="redisTemplate")
+    @SuppressWarnings("rawtypes")
     public RedisTemplate<Serializable, ?> redisTemplate(
     		@Qualifier("jedisConnectionFactory") JedisConnectionFactory jedisConnectionFactory,
     		@Qualifier("stringSerializer") StringRedisSerializer keySerializer,
             @Qualifier("customSerializable") CustomSerializable customSerializable){
-    	/*@Qualifier("kryoSerializable") KryoSerializable kryoSerializable,*/
-    	/*@Qualifier("customSerializable") CustomSerializable customSerializable,*/
+    	
         RedisTemplate<Serializable, ?> template = new RedisTemplate<>();
         template.setConnectionFactory(jedisConnectionFactory);
-        template.setKeySerializer(keySerializer);
+        
+        
         template.setValueSerializer(customSerializable);
         template.setHashValueSerializer(customSerializable);
-       /* template.setValueSerializer(kryoSerializable);
-        template.setHashValueSerializer(kryoSerializable);*/
+        
+        template.setKeySerializer(keySerializer);
+        
         template.afterPropertiesSet();
         return template;
     }
@@ -85,6 +88,7 @@ public class RedisConfig{
      * @return
      */
     @Bean(name="jsonRedisTemplate")
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public RedisTemplate<Serializable, ?> jsonRedisTemplate(
     	   @Qualifier("jedisConnectionFactory") JedisConnectionFactory jedisConnectionFactory,
            @Qualifier("stringSerializer") StringRedisSerializer keySerializer) {
@@ -118,7 +122,8 @@ public class RedisConfig{
         return stringRedisSerializer;
     }
 
-    @Bean(name="customSerializable")
+    @SuppressWarnings("rawtypes")
+	@Bean(name="customSerializable")
     public CustomSerializable customSerializable(){
         CustomSerializable customSerializable = new CustomSerializable();
         return customSerializable;
@@ -135,8 +140,9 @@ public class RedisConfig{
     
     
     @Bean(name="redisUtil")
+    @SuppressWarnings({"unchecked","rawtypes"})
     public RedisUtil redisUtil(@Qualifier("redisTemplate")RedisTemplate redisTemplate) {
-        RedisUtil redisUtil = new RedisUtil(redisTemplate);
+		RedisUtil redisUtil = new RedisUtil(redisTemplate);
         return redisUtil;
     }
 

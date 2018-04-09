@@ -1,9 +1,15 @@
 package com.maiyue.weixin.base.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Role {
-    /**
+import com.maiyue.weixin.bean.BaseSort;
+
+public class Role extends BaseSort implements Serializable{
+    
+	private static final long serialVersionUID = 6596004499965539231L;
+
+	/**
     * ID标识
     * 字段名:ID
     * 类型:VARCHAR
