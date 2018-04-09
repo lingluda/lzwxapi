@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.maiyue.app.mapper.AdinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.maiyue.app.bean.Adinfo" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+    <result column="AD_CATEGORY" property="adCategory" jdbcType="VARCHAR" />
+    <result column="AD_TYPE" property="adType" jdbcType="VARCHAR" />
+    <result column="AD_HREF" property="adHref" jdbcType="VARCHAR" />
+    <result column="AD_CONTENT" property="adContent" jdbcType="VARCHAR" />
+    <result column="ADS_START_TIME" property="adsStartTime" jdbcType="TIMESTAMP" />
+    <result column="ADS_END_TIME" property="adsEndTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, USER_ID, AD_CATEGORY, AD_TYPE, AD_HREF, AD_CONTENT, ADS_START_TIME, ADS_END_TIME, 
+    CREATE_TIME, STATE
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from APP_AD_INFO
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from APP_AD_INFO
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+  <insert id="insertSelective" parameterType="com.maiyue.app.bean.Adinfo" >
+    insert into APP_AD_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="adCategory != null" >
+        AD_CATEGORY,
+      </if>
+      <if test="adType != null" >
+        AD_TYPE,
+      </if>
+      <if test="adHref != null" >
+        AD_HREF,
+      </if>
+      <if test="adContent != null" >
+        AD_CONTENT,
+      </if>
+      <if test="adsStartTime != null" >
+        ADS_START_TIME,
+      </if>
+      <if test="adsEndTime != null" >
+        ADS_END_TIME,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="state != null" >
+        STATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="adCategory != null" >
+        #{adCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="adType != null" >
+        #{adType,jdbcType=VARCHAR},
+      </if>
+      <if test="adHref != null" >
+        #{adHref,jdbcType=VARCHAR},
+      </if>
+      <if test="adContent != null" >
+        #{adContent,jdbcType=VARCHAR},
+      </if>
+      <if test="adsStartTime != null" >
+        #{adsStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adsEndTime != null" >
+        #{adsEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.app.bean.Adinfo" >
+    update APP_AD_INFO
+    <set >
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="adCategory != null" >
+        AD_CATEGORY = #{adCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="adType != null" >
+        AD_TYPE = #{adType,jdbcType=VARCHAR},
+      </if>
+      <if test="adHref != null" >
+        AD_HREF = #{adHref,jdbcType=VARCHAR},
+      </if>
+      <if test="adContent != null" >
+        AD_CONTENT = #{adContent,jdbcType=VARCHAR},
+      </if>
+      <if test="adsStartTime != null" >
+        ADS_START_TIME = #{adsStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adsEndTime != null" >
+        ADS_END_TIME = #{adsEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="findByPage" resultMap="BaseResultMap" parameterType="java.util.HashMap" >
+    select <include refid="Base_Column_List" /> from APP_AD_INFO
+    <where>
+      STATE = #{state,jdbcType=VARCHAR}
+      <if test="id != null">
+        AND ID = #{id,jdbcType=VARCHAR}
+      </if>
+      <if test="userId != null">
+        AND USER_ID = #{userId,jdbcType=VARCHAR}
+      </if>
+      <if test="adCategory != null">
+        AND AD_CATEGORY = #{adCategory,jdbcType=VARCHAR}
+      </if>
+      <if test="adType != null">
+        AND AD_TYPE = #{adType,jdbcType=VARCHAR}
+      </if>
+      <if test="adHref != null">
+        AND AD_HREF = #{adHref,jdbcType=VARCHAR}
+      </if>
+      <if test="adContent != null">
+        AND AD_CONTENT = #{adContent,jdbcType=VARCHAR}
+      </if>
+      <if test="adsStartTime != null">
+        AND ADS_START_TIME = #{adsStartTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="adsEndTime != null">
+        AND ADS_END_TIME = #{adsEndTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="createTime != null">
+        AND CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="state != null">
+        AND STATE = #{state,jdbcType=VARCHAR}
+      </if>
+      <if test="ids != null">
+        AND ID IN
+        <foreach collection="ids" index="index" item="item" open="(" separator="," close=")">  
+	         #{item,jdbcType=VARCHAR}
+	    </foreach>
+      </if>
+    </where>
+    <if test="order != null">
+    	 ORDER BY ${order} ${sort}
+    </if>
+  </select>
+  
+</mapper>

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.maiyue.app.mapper.AppCategoryMapper" >
+  
+  <resultMap id="BaseResultMap" type="com.maiyue.app.bean.AppCategory" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="DETAILS" property="details" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="APP_NUM" property="appNum" jdbcType="DECIMAL" />
+    <result column="PENDING_NUM" property="pendingNum" jdbcType="DECIMAL" />
+    <result column="REVIEW_PASS_NUM" property="reviewPassNum" jdbcType="DECIMAL" />
+    <result column="REVIEW_NOPASS_NUM" property="reviewNopassNum" jdbcType="DECIMAL" />
+    <result column="SHELF_OFF_NUM" property="shelfOffNum" jdbcType="DECIMAL" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    ID, NAME, DETAILS, CREATE_TIME, APP_NUM, PENDING_NUM, REVIEW_PASS_NUM, REVIEW_NOPASS_NUM, 
+    SHELF_OFF_NUM, STATE
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from APP_CATEGORY
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from APP_CATEGORY
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+  <insert id="insertSelective" parameterType="com.maiyue.app.bean.AppCategory" >
+    insert into APP_CATEGORY
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="details != null" >
+        DETAILS,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="appNum != null" >
+        APP_NUM,
+      </if>
+      <if test="pendingNum != null" >
+        PENDING_NUM,
+      </if>
+      <if test="reviewPassNum != null" >
+        REVIEW_PASS_NUM,
+      </if>
+      <if test="reviewNopassNum != null" >
+        REVIEW_NOPASS_NUM,
+      </if>
+      <if test="shelfOffNum != null" >
+        SHELF_OFF_NUM,
+      </if>
+      <if test="state != null" >
+        STATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="details != null" >
+        #{details,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="appNum != null" >
+        #{appNum,jdbcType=DECIMAL},
+      </if>
+      <if test="pendingNum != null" >
+        #{pendingNum,jdbcType=DECIMAL},
+      </if>
+      <if test="reviewPassNum != null" >
+        #{reviewPassNum,jdbcType=DECIMAL},
+      </if>
+      <if test="reviewNopassNum != null" >
+        #{reviewNopassNum,jdbcType=DECIMAL},
+      </if>
+      <if test="shelfOffNum != null" >
+        #{shelfOffNum,jdbcType=DECIMAL},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.app.bean.AppCategory" >
+    update APP_CATEGORY
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="details != null" >
+        DETAILS = #{details,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="appNum != null" >
+        APP_NUM = #{appNum,jdbcType=DECIMAL},
+      </if>
+      <if test="pendingNum != null" >
+        PENDING_NUM = #{pendingNum,jdbcType=DECIMAL},
+      </if>
+      <if test="reviewPassNum != null" >
+        REVIEW_PASS_NUM = #{reviewPassNum,jdbcType=DECIMAL},
+      </if>
+      <if test="reviewNopassNum != null" >
+        REVIEW_NOPASS_NUM = #{reviewNopassNum,jdbcType=DECIMAL},
+      </if>
+      <if test="shelfOffNum != null" >
+        SHELF_OFF_NUM = #{shelfOffNum,jdbcType=DECIMAL},
+      </if>
+      <if test="state != null" >
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="findByPage" resultMap="BaseResultMap" parameterType="java.util.HashMap" >
+    select <include refid="Base_Column_List" /> from APP_CATEGORY
+    <where>
+        STATE = #{state,jdbcType=VARCHAR}
+      <if test="id != null">
+        AND ID = #{id,jdbcType=VARCHAR}
+      </if>
+      <if test="name != null">
+        AND NAME = #{name,jdbcType=VARCHAR}
+      </if>
+      <if test="details != null">
+        AND DETAILS = #{details,jdbcType=VARCHAR}
+      </if>
+      <if test="createTime != null">
+        AND CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="appNum != null">
+        AND APP_NUM = #{appNum,jdbcType=DECIMAL}
+      </if>
+      <if test="pendingNum != null">
+        AND PENDING_NUM = #{pendingNum,jdbcType=DECIMAL}
+      </if>
+      <if test="reviewPassNum != null">
+        AND REVIEW_PASS_NUM = #{reviewPassNum,jdbcType=DECIMAL}
+      </if>
+      <if test="reviewNopassNum != null">
+        AND REVIEW_NOPASS_NUM = #{reviewNopassNum,jdbcType=DECIMAL}
+      </if>
+      <if test="shelfOffNum != null">
+        AND SHELF_OFF_NUM = #{shelfOffNum,jdbcType=DECIMAL}
+      </if>
+      <!-- in id查询 -->
+      <if test="ids != null">
+        AND ID IN
+        <foreach collection="ids" index="index" item="item" open="(" separator="," close=")">  
+	         #{item,jdbcType=VARCHAR}
+	    </foreach>
+      </if>
+    </where>
+    <if test="order != null">
+    	 ORDER BY ${order} ${sort}
+    </if>
+  </select>
+  
+  
+</mapper>

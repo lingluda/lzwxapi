@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.maiyue.app.mapper.AdmediaMapper" >
+  <resultMap id="BaseResultMap" type="com.maiyue.app.bean.Admedia" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+    <result column="AD_ID" property="adId" jdbcType="VARCHAR" />
+    <result column="MEDIA_TYPE" property="mediaType" jdbcType="VARCHAR" />
+    <result column="MEDIA_ALIAS" property="mediaAlias" jdbcType="VARCHAR" />
+    <result column="MEDIA_ADDRESS" property="mediaAddress" jdbcType="VARCHAR" />
+    <result column="MEDIA_DISK" property="mediaDisk" jdbcType="VARCHAR" />
+    <result column="AUDIT_RESULT" property="auditResult" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, USER_ID, AD_ID, MEDIA_TYPE, MEDIA_ALIAS, MEDIA_ADDRESS, MEDIA_DISK, AUDIT_RESULT, 
+    CREATE_TIME, STATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from APP_AD_MEDIA
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from APP_AD_MEDIA
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+  <insert id="insertSelective" parameterType="com.maiyue.app.bean.Admedia" >
+    insert into APP_AD_MEDIA
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="adId != null" >
+        AD_ID,
+      </if>
+      <if test="mediaType != null" >
+        MEDIA_TYPE,
+      </if>
+      <if test="mediaAlias != null" >
+        MEDIA_ALIAS,
+      </if>
+      <if test="mediaAddress != null" >
+        MEDIA_ADDRESS,
+      </if>
+      <if test="mediaDisk != null" >
+        MEDIA_DISK,
+      </if>
+      <if test="auditResult != null" >
+        AUDIT_RESULT,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="state != null" >
+        STATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="adId != null" >
+        #{adId,jdbcType=VARCHAR},
+      </if>
+      <if test="mediaType != null" >
+        #{mediaType,jdbcType=VARCHAR},
+      </if>
+      <if test="mediaAlias != null" >
+        #{mediaAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="mediaAddress != null" >
+        #{mediaAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="mediaDisk != null" >
+        #{mediaDisk,jdbcType=VARCHAR},
+      </if>
+      <if test="auditResult != null" >
+        #{auditResult,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.app.bean.Admedia" >
+    update APP_AD_MEDIA
+    <set >
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="adId != null" >
+        AD_ID = #{adId,jdbcType=VARCHAR},
+      </if>
+      <if test="mediaType != null" >
+        MEDIA_TYPE = #{mediaType,jdbcType=VARCHAR},
+      </if>
+      <if test="mediaAlias != null" >
+        MEDIA_ALIAS = #{mediaAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="mediaAddress != null" >
+        MEDIA_ADDRESS = #{mediaAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="mediaDisk != null" >
+        MEDIA_DISK = #{mediaDisk,jdbcType=VARCHAR},
+      </if>
+      <if test="auditResult != null" >
+        AUDIT_RESULT = #{auditResult,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="findByPage" resultMap="BaseResultMap" parameterType="java.util.HashMap" >
+    select <include refid="Base_Column_List" /> from APP_AD_MEDIA
+    <where>
+       STATE = #{state,jdbcType=VARCHAR}
+      <if test="id != null">
+        AND ID = #{id,jdbcType=VARCHAR}
+      </if>
+      <if test="userId != null">
+        AND USER_ID = #{userId,jdbcType=VARCHAR}
+      </if>
+      <if test="adId != null">
+        AND AD_ID = #{adId,jdbcType=VARCHAR}
+      </if>
+      <if test="mediaType != null">
+        AND MEDIA_TYPE = #{mediaType,jdbcType=VARCHAR}
+      </if>
+      <if test="mediaAlias != null">
+        AND MEDIA_ALIAS = #{mediaAlias,jdbcType=VARCHAR}
+      </if>
+      <if test="mediaAddress != null">
+        AND MEDIA_ADDRESS = #{mediaAddress,jdbcType=VARCHAR}
+      </if>
+      <if test="mediaDisk != null">
+        AND MEDIA_DISK = #{mediaDisk,jdbcType=VARCHAR}
+      </if>
+      <if test="auditResult != null">
+        AND AUDIT_RESULT = #{auditResult,jdbcType=VARCHAR}
+      </if>
+      <if test="createTime != null">
+        AND CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="state != null">
+        AND STATE = #{state,jdbcType=VARCHAR}
+      </if>
+      <!-- in id查询 -->
+      <if test="ids != null">
+        AND ID IN
+        <foreach collection="ids" index="index" item="item" open="(" separator="," close=")">  
+	         #{item,jdbcType=VARCHAR}
+	    </foreach>
+      </if>
+    </where>
+    <if test="order != null">
+    	 ORDER BY ${order} ${sort}
+    </if>
+  </select>
+  
+  
+  
+</mapper>

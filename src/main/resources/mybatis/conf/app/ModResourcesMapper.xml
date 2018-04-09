@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.maiyue.app.mapper.ModResourcesMapper" >
+  <resultMap id="BaseResultMap" type="com.maiyue.app.bean.ModResources" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="MODULE_ID" property="moduleId" jdbcType="VARCHAR" />
+    <result column="AD_ID" property="adId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, MODULE_ID, AD_ID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from APP_MODULE_RESOURCES
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from APP_MODULE_RESOURCES
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+  <insert id="insertSelective" parameterType="com.maiyue.app.bean.ModResources" >
+    insert into APP_MODULE_RESOURCES
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="moduleId != null" >
+        MODULE_ID,
+      </if>
+      <if test="adId != null" >
+        AD_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleId != null" >
+        #{moduleId,jdbcType=VARCHAR},
+      </if>
+      <if test="adId != null" >
+        #{adId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.app.bean.ModResources" >
+    update APP_MODULE_RESOURCES
+    <set >
+      <if test="moduleId != null" >
+        MODULE_ID = #{moduleId,jdbcType=VARCHAR},
+      </if>
+      <if test="adId != null" >
+        AD_ID = #{adId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="findByPage" resultMap="BaseResultMap" parameterType="java.util.HashMap" >
+    select <include refid="Base_Column_List" /> from APP_MODULE_RESOURCES
+    <where>
+      <if test="id != null">
+        AND ID = #{id,jdbcType=VARCHAR}
+      </if>
+      <if test="moduleId != null">
+        AND MODULE_ID = #{moduleId,jdbcType=VARCHAR}
+      </if>
+      <if test="adId != null">
+        AND AD_ID = #{adId,jdbcType=VARCHAR}
+      </if>
+      <!-- in id查询 -->
+      <if test="ids != null">
+        AND ID IN
+        <foreach collection="ids" index="index" item="item" open="(" separator="," close=")">  
+	         #{item,jdbcType=VARCHAR}
+	    </foreach>
+      </if>
+      <!-- in id查询 -->
+      <if test="adIds != null">
+        AND AD_ID IN
+        <foreach collection="adIds" index="index" item="item" open="(" separator="," close=")">  
+	         #{item,jdbcType=VARCHAR}
+	    </foreach>
+      </if>
+      <!-- in id查询 -->
+      <if test="moduleIds != null">
+        AND MODULE_ID IN
+        <foreach collection="moduleIds" index="index" item="item" open="(" separator="," close=")">  
+	         #{item,jdbcType=VARCHAR}
+	    </foreach>
+      </if>
+    </where>
+    <if test="order != null">
+      ORDER BY ${order} ${sort}
+    </if>
+  </select>
+  
+  
+</mapper>

@@ -1,0 +1,126 @@
+#server端口 、 及次路径
+server:
+  port: 8100
+
+spring:
+# 数据源配置
+#文件上传大小配置    
+  multipart:
+      maxFileSize: 500Mb  
+      maxRequestSize: 1024Mb   
+  mvc:
+     #出现错误时, 直接抛出异常
+     throw-exception-if-no-handler-found: true
+  #resources: 
+     #不要为我们工程中的资源文件建立映射
+     #add-mappings: false   
+         
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@localhost:1521:projectitem
+    username: app_platform
+    password: app_123456
+    
+    #driver-class-name: com.mysql.jdbc.Driver
+    #url: jdbc:mysql://localhost:3306/sboot?useUnicode=true&amp;characterEncoding=utf8
+    
+# 下面为连接池的补充设置，应用到上面所有数据源中
+# 初始化大小，最小，最大
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+# 配置获取连接等待超时的时间
+    maxWait: 60000
+# 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+    timeBetweenEvictionRunsMillis: 60000
+# 配置一个连接在池中最小生存的时间，单位是毫秒
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+# 打开PSCache，并且指定每个连接上PSCache的大小
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+# 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    filters: stat,wall,log4j
+# 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+    logSlowSql: true
+
+    
+#druid登录
+  druid:
+    login:
+      username :  admin
+      password :  123456
+# REDIS (RedisProperties)
+# Redis数据库索引（默认为0）
+  redis:
+    database: 0
+# Redis服务器地址
+    host: 127.0.0.1
+# Redis服务器连接端口
+    port: 6379
+# Redis服务器连接密码（默认为空）
+    password: 
+    pool:
+# 连接池最大连接数（使用负值表示没有限制）
+      max-active: 8
+# 连接池最大阻塞等待时间（使用负值表示没有限制）
+      max-wait: -1
+# 连接池中的最大空闲连接
+      max-idle: 8
+# 连接池中的最小空闲连接
+      min-idle: 0
+# 连接超时时间（毫秒）
+    timeout: 0
+  freemarker:
+    template-loader-path: classpath:/templates/
+    suffix: .html
+    templateEncoding: UTF-8
+    content-type: text/html
+    static-path-pattern: classpath:/static/**
+
+
+# mybatis配额
+mybatis:
+  typeAliasesPackage: com.maiyue.**.bean
+  mapperLocations: classpath:/mybatis/conf/**/*.xml
+  configLocation: classpath:/mybatis/sqlConfig.xml
+
+# shiro配置
+shiro:
+#全局session有效时间30分钟(1800000)
+  globalSessionTimeout: 1800000
+#删除不可用的session,SessionDAO的delete,默认true
+  deleteInvalidSessions: true
+#检查session的间隔时间
+  sessionValidationInterval: 1800000
+#定时检查session
+  sessionValidationSchedulerEnabled: true
+  successUrl: /index
+  loginUrl: /login.html
+  unauthorizedUrl: /403
+  filterChainDefinitionMap:
+    /static/**: anon
+    /druid/**: anon
+    /403: anon
+    /manager/login: anon
+    /manager/code: anon
+    /manager/logout: anon
+    /manager/**: authc
+
+
+pagehelper:
+  # mysql
+  helperDialect: oracle
+  #分页参数合理化，默认false禁用
+  #启用合理化时，如果pageNum<1会查询第一页，如果pageNum>pages会查询最后一页
+  #禁用合理化时，如果pageNum<1或pageNum>pages会返回空数据
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+

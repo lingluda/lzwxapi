@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.maiyue.app.mapper.ManagerTaskInfoMapper">
+  <resultMap id="BaseResultMap" type="com.maiyue.app.bean.ManagerTaskInfo">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="task_name" jdbcType="VARCHAR" property="taskName" />
+    <result column="task_group" jdbcType="VARCHAR" property="taskGroup" />
+    <result column="cls_name" jdbcType="VARCHAR" property="clsName" />
+    <result column="express" jdbcType="VARCHAR" property="express" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.maiyue.app.bean.ManagerTaskInfo">
+    <result column="remark" jdbcType="LONGVARCHAR" property="remark" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    id, task_name, task_group, cls_name, express, status, create_time
+  </sql>
+  
+  <sql id="Blob_Column_List">
+    remark
+  </sql>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from manager_task_info
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from manager_task_info
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+ 
+  
+  <insert id="insertSelective" parameterType="com.maiyue.app.bean.ManagerTaskInfo">
+    insert into manager_task_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="taskName != null">
+        task_name,
+      </if>
+      <if test="taskGroup != null">
+        task_group,
+      </if>
+      <if test="clsName != null">
+        cls_name,
+      </if>
+      <if test="express != null">
+        express,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="taskName != null">
+        #{taskName,jdbcType=VARCHAR},
+      </if>
+      <if test="taskGroup != null">
+        #{taskGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="clsName != null">
+        #{clsName,jdbcType=VARCHAR},
+      </if>
+      <if test="express != null">
+        #{express,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.app.bean.ManagerTaskInfo">
+    update manager_task_info
+    <set>
+      <if test="taskName != null">
+        task_name = #{taskName,jdbcType=VARCHAR},
+      </if>
+      <if test="taskGroup != null">
+        task_group = #{taskGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="clsName != null">
+        cls_name = #{clsName,jdbcType=VARCHAR},
+      </if>
+      <if test="express != null">
+        express = #{express,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.maiyue.app.bean.ManagerTaskInfo">
+    update manager_task_info
+    set task_name = #{taskName,jdbcType=VARCHAR},
+      task_group = #{taskGroup,jdbcType=VARCHAR},
+      cls_name = #{clsName,jdbcType=VARCHAR},
+      express = #{express,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+ 
+  <select id="findByPage" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from manager_task_info
+    <where>
+      <if test="id != null">
+        AND id = #{id,jdbcType=VARCHAR}
+      </if>
+      <if test="taskName != null">
+        AND task_name = #{taskName,jdbcType=VARCHAR}
+      </if>
+      <if test="taskGroup != null">
+        AND task_group = #{taskGroup,jdbcType=VARCHAR}
+      </if>
+      <if test="clsName != null">
+        AND cls_name = #{clsName,jdbcType=VARCHAR}
+      </if>
+      <if test="express != null">
+        AND express = #{express,jdbcType=VARCHAR}
+      </if>
+      <if test="status != null">
+        AND status = #{status,jdbcType=INTEGER}
+      </if>
+      <if test="createTime != null">
+        AND create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="remark != null">
+        AND remark = #{remark,jdbcType=LONGVARCHAR}
+      </if>
+    </where>
+  </select>
+  
+</mapper>
