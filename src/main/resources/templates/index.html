@@ -1,64 +1,82 @@
 <html>
 <head>
-<meta charset="utf-8">
-<link   href="/css/login.css" rel="stylesheet" type="text/css">
-<script src="/js/jquery-1.11.3.js"></script>
-<script src="/js/Particleground.js"></script>
-<style>
-    body {
-        height: 100%;
-        background: #16a085;
-        overflow: hidden;
-    }
-    canvas {
-        z-index: -1;
-        position: absolute;
-    }
-    .ini{
-    	margin: 50px;
-    	height: 30px;
-    	width: 150px;
-    }
-    .but{
-    	height: 30px;
-    	width: 100px;
-    }
-</style>
-<script type="text/javascript">
-  $(document).ready(function () {
-	//粒子背景特效
-    $('body').particleground({
-        dotColor: '#5cbdaa',
-        lineColor: '#5cbdaa'
-    });
-	
-	
-	$('#getuser').click(function() {
-		$.post('/manager/getu',null,function (data) {
-            if(data){
-                alert('0');
-            }else{
-                alert('系统繁忙,请稍后重试');
-            }
+    <meta charset="utf-8">
+    <link href="/css/login.css" rel="stylesheet" type="text/css">
+    <script src="/js/jquery-1.11.3.js"></script>
+    <script src="/js/Particleground.js"></script>
+    <style>
+        body {
+            height: 100%;
+            background: #16a085;
+            overflow: hidden;
+        }
+
+        canvas {
+            z-index: -1;
+            position: absolute;
+        }
+
+        .ini {
+            margin: 50px;
+            height: 30px;
+            width: 150px;
+        }
+
+        .but {
+            height: 30px;
+            width: 100px;
+        }
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //粒子背景特效
+            $('body').particleground({
+                dotColor: '#5cbdaa',
+                lineColor: '#5cbdaa'
+            });
+
+
+            $('#getuser').click(function () {
+                $.post('/manager/getu', null, function (data) {
+                    if (data) {
+                        alert('0');
+                    } else {
+                        alert('系统繁忙,请稍后重试');
+                    }
+                });
+            });
+
+
         });
-	});
-	
-	
-  });  
-</script>
+    </script>
 </head>
 <body>
- <canvas class="pg-canvas" width="1134" height="535"></canvas>
+<canvas class="pg-canvas" width="1134" height="535"></canvas>
 
 
-  
-  <input type="text" class="ini" name="username">
-  <button class="but" id="getuser">获取登录名</button>
-   
-  
-  <button class="but" onclick="window.location='../uploader/upload-Picture.do?fileNumLimit=100'">上传图片</button>
-  <button class="but" onclick="window.location='../uploader/index2.do'">上传文件2</button>
-   
+<input type="text" class="ini" name="username">
+<button class="but" id="getuser">获取登录名</button>
 
+
+<button class="but" onclick="window.location='../uploader/upload-Picture.do?fileNumLimit=100'">上传图片</button>
+<button class="but" onclick="window.location='../uploader/index2.do'">上传文件2</button>
+
+
+<h1>学生端</h1>
+<div>
+    <span>勤工俭学</span>
+    <button class="but" onclick="">申请</button>
+    <button class="but" onclick="">审核</button>
+    <button class="but" onclick="">查看信息</button>
+</div>
+<div>
+    <button class="but" onclick="window.location='../student/courseTable'">课表查询</button>
+</div>
+<div>
+    <button class="but" onclick="window.location='../student/notice'">消息通告</button>
+</div>
+<div>
+    <button class="but" onclick="window.location='../student/score'">成绩查询</button>
+</div>
 </body>
 </html>
