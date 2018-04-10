@@ -110,8 +110,8 @@ shiro:
     /manager/login: anon
     /manager/code: anon
     /manager/logout: anon
-    /manager/**: authc
-
+ #/manager/**: authc
+    /**: anon
 
 pagehelper:
   # mysql

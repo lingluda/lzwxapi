@@ -5,9 +5,7 @@ import org.springframework.data.redis.serializer.SerializationException;
 
 import java.io.*;
 
-/**
- * Created by huang on 2018/01/19.
- */
+
 public class CustomSerializable<T> implements RedisSerializer<T>{
 
     private static final byte[] EMPTY_ARRAY = new byte[0];
@@ -27,7 +25,7 @@ public class CustomSerializable<T> implements RedisSerializer<T>{
             bytes = baos.toByteArray();
             baos.close();
             oos.close();
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new SerializationException( "Cannot serialize" , e);
         }
         return bytes;
@@ -43,7 +41,7 @@ public class CustomSerializable<T> implements RedisSerializer<T>{
         try {
             ByteArrayInputStream bais=new ByteArrayInputStream(bytes);
             ObjectInputStream ois=new ObjectInputStream(bais);
-            object=ois.readObject();
+            object = ois.readObject();
             return (T)object;
         } catch (Exception ex) {
             throw new SerializationException( "Cannot deserialize" , ex);
