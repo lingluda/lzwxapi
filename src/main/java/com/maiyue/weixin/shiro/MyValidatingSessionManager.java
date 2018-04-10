@@ -54,7 +54,6 @@ public class MyValidatingSessionManager extends AbstractValidatingSessionManager
 
     @Override
     protected Session doCreateSession(SessionContext sessionContext) throws AuthorizationException {
-
         Session session = sessionManager.getSessionFactory().createSession(sessionContext);
         if(log.isTraceEnabled()) {
             log.trace("Creating session for host {}", session.getHost());
@@ -67,7 +66,6 @@ public class MyValidatingSessionManager extends AbstractValidatingSessionManager
         if(log.isDebugEnabled()) {
             log.debug("Creating new EIS record for new session instance [" + session + "]");
         }
-
         sessionManager.getSessionDAO().create(session);
     }
 

@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.maiyue.weixin.base.bean.Permission;
 import com.maiyue.weixin.base.mapper.PermissionMapper;
 import com.maiyue.weixin.base.service.PermissionService;
+import com.maiyue.weixin.constant.Business;
 import com.maiyue.weixin.mapper.BaseMapper;
 import com.maiyue.weixin.service.impl.BaseServiceImpl;
 import java.util.Map;
@@ -22,14 +23,20 @@ public class PermissionServiceImpl extends BaseServiceImpl<Permission, String> i
     @Autowired
     private PermissionMapper permissionMapper;
 
+    @Override
+	public BaseMapper<Permission, String> getMapper() {
+		return permissionMapper;
+	}
+    
 	@Override
 	public PageInfo<Permission> getPageData(Map<String, Object> params) {
-		return null;
+		params = Business.defaultState(Permission.class, params, "status");
+		return super.findByPage(params);
 	}
 
 	@Override
-	public BaseMapper<Permission, String> getMapper() {
-		return permissionMapper;
+	public Permission findByPid(String pid) {
+		return permissionMapper.findByPid(pid);
 	}
 
 

@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class User implements Serializable{
-    
 
 	/**
     * ID标识
@@ -145,13 +144,13 @@ public class User implements Serializable{
     }
 
     
-	@Override
+	/*@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("{id:'").append(id).append("', username:'").append(username).append("', status:'").append(status)
 				.append("', type:'").append(type).append("'}");
 		return builder.toString();
-	}
+	}*/
     
     
     

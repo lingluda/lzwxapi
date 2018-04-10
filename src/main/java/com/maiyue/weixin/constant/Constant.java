@@ -27,20 +27,6 @@ public class Constant {
     //全部权限的redis缓存key
     public final static String CACHAE_MANAGER_PERMISSION_INDEX_TREE = "cacheManagerPermissionIndexTree";
 
-    //
-    public final static int MANAGER_PERMISSIONS_TYPE_LIST = 1; //列表显示
-    public final static int MANAGER_PERMISSIONS_TYPE_BUTTON = 2; //按钮显示
-    public final static int MANAGER_PERMISSIONS_TYPE_BUTTON_COMFIRM = 3; //按钮显示,需要确认
-    public final static int MANAGER_PERMISSIONS_TYPE_BUTTON_AJAX = 4;//按钮显示,ajax执行,需要确认,显示返回信息
-    public final static int MANAGER_PERMISSIONS_TYPE_ACTION = 5;
-    public final static int MANAGER_PERMISSIONS_TYPE_ACTION_AJAX = 6;//按钮显示,ajax执行,显示返回信息
-
-    //权限的根节点Pid
-    public final static String MANAGER_PERMISSION_ROOT_PID = "0";
-    //权限状态
-    public final static Integer MANAGER_PERMISSION_STATUS_DISABLE = 0;
-    public final static Integer MANAGER_PERMISSION_STATUS_ENABLE = 1;
-
     public final static Integer QUARTZ_TASK_INFO_ENABLE = 1;
     public final static Integer QUARTZ_TASK_INFO_DISABLE = 0;
 
@@ -67,63 +53,12 @@ public class Constant {
      */
     public final static String WHERE_DISK_PATH = "where_disk_path";
     
-    /***
-     * weixin信息ID
-     */
-    public final static String weixin_INFO_ID = "weixin_INFO_ID";
-    /***
-     * weixin评分信息ID
-     */
-    public final static String weixin_SCORE_ID = "weixin_SCORE_ID";
-    /***
-     * weixin分类ID
-     */
-    public final static String weixin_CATEGORY_ID = "weixin_CATEGORY_ID";
     
-    /***
-     * weixin评论ID
-     */
-    public final static String weixin_REWIEW_ID = "weixin_REWIEW_ID";
-    
-    /***
-     * weixin浏览历史
-     */
-    public final static String weixin_BROW_HIST = "weixin_BROW_HIST";
-    
-    /***
-     * weixin浏览历史
-     */
-    public final static String weixin_INSTALL_PACK = "weixin_INSTALL_PACK";
-    
-    /***
-     * weixin用户信息
-     */
-    public final static String weixin_USER_INFO = "weixin_USER_INFO";
-    
-    /***
-     * weixin图片信息
-     */
-    public final static String weixin_PICTURE = "weixin_PICTURE";
-    
-    /***
-     * AD信息
-     */
-    public final static String AD_INFO = "AD_INFO";
-    
-    /***
-     * AD模块信息
-     */
-    public final static String AD_MODULE = "AD_MODULE";
-    
-    /***
-     * AD资源
-     */
-    public final static String AD_MEDIA = "AD_MEDIA";
     
     
     
     /***
-     * 秒 30 - 80之间
+     * 秒 5 - 30之间
      * @return
      */
     public static long exTime() {

@@ -8,9 +8,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-/**
- * Created by huang on 2017/1/9.
- */
+
 public class RedisUtil {
 
     private RedisTemplate<Serializable,Object> redisTemplate;
@@ -18,9 +16,6 @@ public class RedisUtil {
     public RedisUtil(RedisTemplate<Serializable,Object> redisTemplate){
         this.redisTemplate = redisTemplate;
     }
-
-    
-    
 
     /**
      *
@@ -58,7 +53,6 @@ public class RedisUtil {
 
     /**
      * 判断缓存中是否有对应的value
-     *
      * @param key
      * @return
      */
@@ -134,7 +128,8 @@ public class RedisUtil {
      * 删除hash表数据
      * @param key
      */
-    public  void deleteHash(String key){
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	public  void deleteHash(String key){
         HashOperations hashOperations = redisTemplate.opsForHash();
         hashOperations.getOperations().delete(key);
     }
@@ -144,7 +139,8 @@ public class RedisUtil {
      * @param key
      * @param value
      */
-    public void setList(String key , List<?> value){
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	public void setList(String key , List<?> value){
         //ListOperations可以理解为List<Object>
         ListOperations listOperations= redisTemplate.opsForList();
         listOperations.leftPush(key, value);
@@ -155,7 +151,8 @@ public class RedisUtil {
      * 删除list
      * @param key
      */
-    public void deleteList(String key){
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	public void deleteList(String key){
         ListOperations listOperations= redisTemplate.opsForList();
         listOperations.getOperations().delete(key);
     }
@@ -175,7 +172,8 @@ public class RedisUtil {
      * @param key
      * @param value
      */
-    public void setSet(String key , Set<?> value){
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	public void setSet(String key , Set<?> value){
         SetOperations setOperations= redisTemplate.opsForSet();
         setOperations.add(key, value);
     }
@@ -194,8 +192,10 @@ public class RedisUtil {
      * 删除set
      * @param key
      */
-    public void deleteSet(String key){
-        SetOperations setOperations= redisTemplate.opsForSet();
+    @SuppressWarnings("unchecked")
+	public void deleteSet(String key){
+        @SuppressWarnings("rawtypes")
+		SetOperations setOperations= redisTemplate.opsForSet();
         setOperations.getOperations().delete(key);
     }
 
@@ -210,8 +210,7 @@ public class RedisUtil {
     public boolean set(final String key, Object value, Long expireTime) {
         boolean result = false;
         try {
-            ValueOperations<Serializable, Object> operations = redisTemplate
-                    .opsForValue();
+            ValueOperations<Serializable, Object> operations = redisTemplate.opsForValue();
             operations.set(key, value);
             redisTemplate.expire(key, expireTime, TimeUnit.SECONDS);
             result = true;

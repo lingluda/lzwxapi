@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.maiyue.weixin.constant.BusinessConstant;
+import com.maiyue.weixin.constant.Business;
 
 import java.beans.BeanInfo;
 import java.beans.IntrospectionException;
@@ -23,6 +23,7 @@ public class ComUtil {
 	
 	private static final int KB = 1024;
 	private static final int MB = 1024*1024;
+	private static final String iclass = "class";
 
 	private static final String[] chars = { "0", "1", "2", "3", "4", "5", "6","7",
 			"8", "9", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J","K", "L","M", "N","O",
@@ -130,17 +131,14 @@ public class ComUtil {
         return field.toUpperCase();
     }
 	
-	private static final String iclass = "class";
-    
-	
-	
 	/***
 	 * 获得类字段
 	 * @param obj
 	 * @param field
 	 * @return
 	 */
-    private static List<String> getFields(@SuppressWarnings("rawtypes") Class obj){
+    @SuppressWarnings("rawtypes") 
+    private static List<String> getFields(Class obj){
 		List<String> fields = new ArrayList<String>();
     	try {
 			 BeanInfo beanInfo = Introspector.getBeanInfo(obj);
@@ -148,8 +146,8 @@ public class ComUtil {
 	         for (PropertyDescriptor property : propertyDescriptors) {
 	             String key = property.getName();
 	             // 过滤class属性
-	             if (!key.equals(iclass) && !key.equals(BusinessConstant.ORDER) && !key.equals(BusinessConstant.SORT)
-	                 && !key.equals(BusinessConstant.PAGENUM) && !key.equals(BusinessConstant.PAGESIZE)) { 
+	             if (!key.equals(iclass) && !key.equals(Business.ORDER) && !key.equals(Business.SORT)
+	                 && !key.equals(Business.PAGENUM) && !key.equals(Business.PAGESIZE)) { 
 	            	 fields.add(key);
 	             }
 	         }
@@ -168,7 +166,6 @@ public class ComUtil {
 	 * @return 返回x天x时x分x秒的格式
 	 */
     public static String diffTime(long start, long end){
-        
         String str = null;
         long diff = end - start;
         if(diff<=0){
@@ -273,19 +270,6 @@ public class ComUtil {
         return b;
     }    
     
-    /**
-     * 字符是否为空
-     * @param str
-     * @return
-     */
-    public static boolean isEmpty(String str){
-    	if(str==null || str.length()==0){
-    		return true;
-    	}else{
-    		return false;
-    	}
-    }
-
 
 	/**
 	 * MD5值
@@ -349,9 +333,18 @@ public class ComUtil {
 		return sb.toString();
 	}
 
+	
 	/**
 	 * 产生一个36个字符的UUID
-	 *
+	 * @return UUID
+	 */
+	public static synchronized String BusinessID() {
+		return randomChar(18);
+	}
+	
+	
+	/**
+	 * 产生一个36个字符的UUID
 	 * @return UUID
 	 */
 	public static synchronized String randomUUID() {
@@ -359,14 +352,12 @@ public class ComUtil {
 		return s.substring(0,8)+s.substring(9,13)+s.substring(14,18)+s.substring(19,23)+s.substring(24);
 	}
 
+	
 	public static String getPercentage(Double number1, Double number2, int maximumFractionDigits){
 		if(number1 != null && number2 != null && !number1.equals(0) && !number2.equals(0)){
 			NumberFormat numberFormat = NumberFormat.getInstance();
-
 			numberFormat.setMaximumFractionDigits(maximumFractionDigits);
-
 			String result = numberFormat.format(number1 * 100/ number2);
-
 			return result;
 		}else{
 			return "0";
@@ -376,9 +367,7 @@ public class ComUtil {
 	public static String getPercentage(Integer number1, Integer number2, int maximumFractionDigits){
 		if(number1 != null && number2 != null && !number1.equals(0) && !number2.equals(0)){
 			NumberFormat numberFormat = NumberFormat.getInstance();
-
 			numberFormat.setMaximumFractionDigits(maximumFractionDigits);
-
 			Double result = Double.valueOf(number1) / Double.valueOf(number2) * 100;
 
 			return numberFormat.format( result);
@@ -386,4 +375,6 @@ public class ComUtil {
 			return "0";
 		}
 	}
+	
+	
 }

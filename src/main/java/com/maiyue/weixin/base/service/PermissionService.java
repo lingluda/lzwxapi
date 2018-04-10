@@ -17,4 +17,14 @@ public interface PermissionService extends BaseService<Permission, String> {
      * @return
      */
     PageInfo<Permission> getPageData(Map<String, Object> params);
+    
+    
+    /***
+     * 按标识查询
+     * @param pid
+     * @return
+     */
+    Permission findByPid(String pid);
+    
+    
 }

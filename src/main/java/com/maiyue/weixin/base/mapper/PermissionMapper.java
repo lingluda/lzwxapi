@@ -9,5 +9,5 @@ import com.maiyue.weixin.mapper.BaseMapper;
  */
 public interface PermissionMapper extends BaseMapper<Permission, String> {
 	
-	
+	Permission findByPid(String pid);
 }

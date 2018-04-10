@@ -40,133 +40,133 @@ public class MimeUtil {
 		mime.put("text/xml", "xml");
 		
 		
-		mime.put("weixinlication/msword", "msword");
-		mime.put("weixinlication/envoy", "evy");
+		mime.put("application/msword", "msword");
+		mime.put("application/envoy", "evy");
 		
-		mime.put("weixinlication/javascript", "js");
-		mime.put("weixinlication/json", "json");
+		mime.put("application/javascript", "js");
+		mime.put("application/json", "json");
 		
-		mime.put("weixinlication/pdf", "pdf");
-		mime.put("weixinlication/ogg", "ogg");
-		mime.put("weixinlication/rtf", "rtf");
+		mime.put("application/pdf", "pdf");
+		mime.put("application/ogg", "ogg");
+		mime.put("application/rtf", "rtf");
 		
-		mime.put("weixinlication/xhtml+xml", "xhtml");
-		mime.put("weixinlication/xml", "xml");
-		mime.put("weixinlication/xml-dtd", "dtd");
+		mime.put("application/xhtml+xml", "xhtml");
+		mime.put("application/xml", "xml");
+		mime.put("application/xml-dtd", "dtd");
 		
-		mime.put("weixinlication/vnd.ms-excel", "xls");
-		mime.put("weixinlication/vnd.ms-asf", "asf");
-		mime.put("weixinlication/vnd.ms-works", "wps");
-		mime.put("weixinlication/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "xlsx");
-		mime.put("weixinlication/vnd.ms-powerpoint", "ppt");
-		mime.put("weixinlication/vnd.ms-project", "mmp");
+		mime.put("application/vnd.ms-excel", "xls");
+		mime.put("application/vnd.ms-asf", "asf");
+		mime.put("application/vnd.ms-works", "wps");
+		mime.put("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "xlsx");
+		mime.put("application/vnd.ms-powerpoint", "ppt");
+		mime.put("application/vnd.ms-project", "mmp");
 		
 		mime.put("aplication/zip", "zip");
 		mime.put("aplication/octet-stream", "stream");
 		
 		
 		/*
-		weixinlication/fractals	fif
-		weixinlication/futuresplash	spl
-		weixinlication/hta	hta
-		weixinlication/internet-property-stream	acx
-		weixinlication/mac-binhex40	hqx
-		weixinlication/oda	oda
-		weixinlication/olescript	axs
-		weixinlication/pdf	pdf
-		weixinlication/pics-rules	prf
-		weixinlication/pkcs10	p10
-		weixinlication/pkix-crl	crl
-		weixinlication/postscript	ai
-		weixinlication/postscript	eps
-		weixinlication/postscript	ps
-		weixinlication/rtf	rtf
-		weixinlication/set-payment-initiation	setpay
-		weixinlication/set-registration-initiation	setreg
-		weixinlication/vnd.ms-excel	xla
-		weixinlication/vnd.ms-outlook	msg
-		weixinlication/vnd.ms-pkicertstore	sst
-		weixinlication/vnd.ms-pkiseccat	cat
-		weixinlication/vnd.ms-pkistl	stl
-		weixinlication/vnd.ms-powerpoint	pot
-		weixinlication/vnd.ms-powerpoint	pps
-		weixinlication/vnd.ms-powerpoint	ppt
-		weixinlication/vnd.ms-project	mpp
-		weixinlication/vnd.ms-works	wcm
-		weixinlication/vnd.ms-works	wdb
-		weixinlication/vnd.ms-works	wks
-		weixinlication/vnd.ms-works	wps
-		weixinlication/winhlp	hlp
-		weixinlication/x-bcpio	bcpio
-		weixinlication/x-cdf	cdf
-		weixinlication/x-compress	z
-		weixinlication/x-compressed	tgz
-		weixinlication/x-cpio	cpio
-		weixinlication/x-csh	csh
-		weixinlication/x-director	dcr
-		weixinlication/x-director	dir
-		weixinlication/x-director	dxr
-		weixinlication/x-dvi	dvi
-		weixinlication/x-gtar	gtar
-		weixinlication/x-gzip	gz
-		weixinlication/x-hdf	hdf
-		weixinlication/x-internet-signup	ins
-		weixinlication/x-internet-signup	isp
-		weixinlication/x-iphone	iii
-		weixinlication/x-javascript	js
-		weixinlication/x-latex	latex
-		weixinlication/x-msaccess	mdb
-		weixinlication/x-mscardfile	crd
-		weixinlication/x-msclip	clp
-		weixinlication/x-msdownload	dll
-		weixinlication/x-msmediaview	m13
-		weixinlication/x-msmediaview	m14
-		weixinlication/x-msmediaview	mvb
-		weixinlication/x-msmetafile	wmf
-		weixinlication/x-msmoney	mny
-		weixinlication/x-mspublisher	pub
-		weixinlication/x-msschedule	scd
-		weixinlication/x-msterminal	trm
-		weixinlication/x-mswrite	wri
-		weixinlication/x-netcdf	cdf
-		weixinlication/x-netcdf	nc
-		weixinlication/x-perfmon	pma
-		weixinlication/x-perfmon	pmc
-		weixinlication/x-perfmon	pml
-		weixinlication/x-perfmon	pmr
-		weixinlication/x-perfmon	pmw
-		weixinlication/x-pkcs12	p12
-		weixinlication/x-pkcs12	pfx
-		weixinlication/x-pkcs7-certificates	p7b
-		weixinlication/x-pkcs7-certificates	spc
-		weixinlication/x-pkcs7-certreqresp	p7r
-		weixinlication/x-pkcs7-mime	p7c
-		weixinlication/x-pkcs7-mime	p7m
-		weixinlication/x-pkcs7-signature	p7s
-		weixinlication/x-sh	sh
-		weixinlication/x-shar	shar
-		weixinlication/x-shockwave-flash	swf
-		weixinlication/x-stuffit	sit
-		weixinlication/x-sv4cpio	sv4cpio
-		weixinlication/x-sv4crc	sv4crc
-		weixinlication/x-tar	tar
-		weixinlication/x-tcl	tcl
-		weixinlication/x-tex	tex
-		weixinlication/x-texinfo	texi
-		weixinlication/x-texinfo	texinfo
-		weixinlication/x-troff	roff
-		weixinlication/x-troff	t
-		weixinlication/x-troff	tr
-		weixinlication/x-troff-man	man
-		weixinlication/x-troff-me	me
-		weixinlication/x-troff-ms	ms
-		weixinlication/x-ustar	ustar
-		weixinlication/x-wais-source	src
-		weixinlication/x-x509-ca-cert	cer
-		weixinlication/x-x509-ca-cert	crt
-		weixinlication/x-x509-ca-cert	der
-		weixinlication/ynd.ms-pkipko	pko
-		weixinlication/zip
+		application/fractals	fif
+		application/futuresplash	spl
+		application/hta	hta
+		application/internet-property-stream	acx
+		application/mac-binhex40	hqx
+		application/oda	oda
+		application/olescript	axs
+		application/pdf	pdf
+		application/pics-rules	prf
+		application/pkcs10	p10
+		application/pkix-crl	crl
+		application/postscript	ai
+		application/postscript	eps
+		application/postscript	ps
+		application/rtf	rtf
+		application/set-payment-initiation	setpay
+		application/set-registration-initiation	setreg
+		application/vnd.ms-excel	xla
+		application/vnd.ms-outlook	msg
+		application/vnd.ms-pkicertstore	sst
+		application/vnd.ms-pkiseccat	cat
+		application/vnd.ms-pkistl	stl
+		application/vnd.ms-powerpoint	pot
+		application/vnd.ms-powerpoint	pps
+		application/vnd.ms-powerpoint	ppt
+		application/vnd.ms-project	mpp
+		application/vnd.ms-works	wcm
+		application/vnd.ms-works	wdb
+		application/vnd.ms-works	wks
+		application/vnd.ms-works	wps
+		application/winhlp	hlp
+		application/x-bcpio	bcpio
+		application/x-cdf	cdf
+		application/x-compress	z
+		application/x-compressed	tgz
+		application/x-cpio	cpio
+		application/x-csh	csh
+		application/x-director	dcr
+		application/x-director	dir
+		application/x-director	dxr
+		application/x-dvi	dvi
+		application/x-gtar	gtar
+		application/x-gzip	gz
+		application/x-hdf	hdf
+		application/x-internet-signup	ins
+		application/x-internet-signup	isp
+		application/x-iphone	iii
+		application/x-javascript	js
+		application/x-latex	latex
+		application/x-msaccess	mdb
+		application/x-mscardfile	crd
+		application/x-msclip	clp
+		application/x-msdownload	dll
+		application/x-msmediaview	m13
+		application/x-msmediaview	m14
+		application/x-msmediaview	mvb
+		application/x-msmetafile	wmf
+		application/x-msmoney	mny
+		application/x-mspublisher	pub
+		application/x-msschedule	scd
+		application/x-msterminal	trm
+		application/x-mswrite	wri
+		application/x-netcdf	cdf
+		application/x-netcdf	nc
+		application/x-perfmon	pma
+		application/x-perfmon	pmc
+		application/x-perfmon	pml
+		application/x-perfmon	pmr
+		application/x-perfmon	pmw
+		application/x-pkcs12	p12
+		application/x-pkcs12	pfx
+		application/x-pkcs7-certificates	p7b
+		application/x-pkcs7-certificates	spc
+		application/x-pkcs7-certreqresp	p7r
+		application/x-pkcs7-mime	p7c
+		application/x-pkcs7-mime	p7m
+		application/x-pkcs7-signature	p7s
+		application/x-sh	sh
+		application/x-shar	shar
+		application/x-shockwave-flash	swf
+		application/x-stuffit	sit
+		application/x-sv4cpio	sv4cpio
+		application/x-sv4crc	sv4crc
+		application/x-tar	tar
+		application/x-tcl	tcl
+		application/x-tex	tex
+		application/x-texinfo	texi
+		application/x-texinfo	texinfo
+		application/x-troff	roff
+		application/x-troff	t
+		application/x-troff	tr
+		application/x-troff-man	man
+		application/x-troff-me	me
+		application/x-troff-ms	ms
+		application/x-ustar	ustar
+		application/x-wais-source	src
+		application/x-x509-ca-cert	cer
+		application/x-x509-ca-cert	crt
+		application/x-x509-ca-cert	der
+		application/ynd.ms-pkipko	pko
+		application/zip
 		
 		audio/basic	au
 		audio/basic	snd
@@ -245,8 +245,8 @@ public class MimeUtil {
 		x-world/x-vrml
 
 		323	text/h323
-		acx	weixinlication/internet-property-stream
-		ai	weixinlication/postscript
+		acx	application/internet-property-stream
+		ai	application/postscript
 		aif	audio/x-aiff
 		aifc	audio/x-aiff
 		aiff	audio/x-aiff
@@ -255,77 +255,77 @@ public class MimeUtil {
 		asx	video/x-ms-asf
 		au	audio/basic
 		avi	video/x-msvideo
-		axs	weixinlication/olescript
+		axs	application/olescript
 		bas	text/plain
-		bcpio	weixinlication/x-bcpio
-		bin	weixinlication/octet-stream
+		bcpio	application/x-bcpio
+		bin	application/octet-stream
 		bmp	image/bmp
 		c	text/plain
-		cat	weixinlication/vnd.ms-pkiseccat
-		cdf	weixinlication/x-cdf
-		cer	weixinlication/x-x509-ca-cert
-		class	weixinlication/octet-stream
-		clp	weixinlication/x-msclip
+		cat	application/vnd.ms-pkiseccat
+		cdf	application/x-cdf
+		cer	application/x-x509-ca-cert
+		class	application/octet-stream
+		clp	application/x-msclip
 		cmx	image/x-cmx
 		cod	image/cis-cod
-		cpio	weixinlication/x-cpio
-		crd	weixinlication/x-mscardfile
-		crl	weixinlication/pkix-crl
-		crt	weixinlication/x-x509-ca-cert
-		csh	weixinlication/x-csh
+		cpio	application/x-cpio
+		crd	application/x-mscardfile
+		crl	application/pkix-crl
+		crt	application/x-x509-ca-cert
+		csh	application/x-csh
 		css	text/css
-		dcr	weixinlication/x-director
-		der	weixinlication/x-x509-ca-cert
-		dir	weixinlication/x-director
-		dll	weixinlication/x-msdownload
-		dms	weixinlication/octet-stream
-		doc	weixinlication/msword
-		dot	weixinlication/msword
-		dvi	weixinlication/x-dvi
-		dxr	weixinlication/x-director
-		eps	weixinlication/postscript
+		dcr	application/x-director
+		der	application/x-x509-ca-cert
+		dir	application/x-director
+		dll	application/x-msdownload
+		dms	application/octet-stream
+		doc	application/msword
+		dot	application/msword
+		dvi	application/x-dvi
+		dxr	application/x-director
+		eps	application/postscript
 		etx	text/x-setext
-		evy	weixinlication/envoy
-		exe	weixinlication/octet-stream
-		fif	weixinlication/fractals
+		evy	application/envoy
+		exe	application/octet-stream
+		fif	application/fractals
 		flr	x-world/x-vrml
 		gif	image/gif
-		gtar	weixinlication/x-gtar
-		gz	weixinlication/x-gzip
+		gtar	application/x-gtar
+		gz	application/x-gzip
 		h	text/plain
-		hdf	weixinlication/x-hdf
-		hlp	weixinlication/winhlp
-		hqx	weixinlication/mac-binhex40
-		hta	weixinlication/hta
+		hdf	application/x-hdf
+		hlp	application/winhlp
+		hqx	application/mac-binhex40
+		hta	application/hta
 		htc	text/x-component
 		htm	text/html
 		html	text/html
 		htt	text/webviewhtml
 		ico	image/x-icon
 		ief	image/ief
-		iii	weixinlication/x-iphone
-		ins	weixinlication/x-internet-signup
-		isp	weixinlication/x-internet-signup
+		iii	application/x-iphone
+		ins	application/x-internet-signup
+		isp	application/x-internet-signup
 		jfif	image/pipeg
 		jpe	image/jpeg
 		jpeg	image/jpeg
 		jpg	image/jpeg
-		js	weixinlication/x-javascript
-		latex	weixinlication/x-latex
-		lha	weixinlication/octet-stream
+		js	application/x-javascript
+		latex	application/x-latex
+		lha	application/octet-stream
 		lsf	video/x-la-asf
 		lsx	video/x-la-asf
-		lzh	weixinlication/octet-stream
-		m13	weixinlication/x-msmediaview
-		m14	weixinlication/x-msmediaview
+		lzh	application/octet-stream
+		m13	application/x-msmediaview
+		m14	application/x-msmediaview
 		m3u	audio/x-mpegurl
-		man	weixinlication/x-troff-man
-		mdb	weixinlication/x-msaccess
-		me	weixinlication/x-troff-me
+		man	application/x-troff-man
+		mdb	application/x-msaccess
+		me	application/x-troff-me
 		mht	message/rfc822
 		mhtml	message/rfc822
 		mid	audio/mid
-		mny	weixinlication/x-msmoney
+		mny	application/x-msmoney
 		mov	video/quicktime
 		movie	video/x-sgi-movie
 		mp2	video/mpeg
@@ -334,103 +334,103 @@ public class MimeUtil {
 		mpe	video/mpeg
 		mpeg	video/mpeg
 		mpg	video/mpeg
-		mpp	weixinlication/vnd.ms-project
+		mpp	application/vnd.ms-project
 		mpv2	video/mpeg
-		ms	weixinlication/x-troff-ms
-		mvb	weixinlication/x-msmediaview
+		ms	application/x-troff-ms
+		mvb	application/x-msmediaview
 		nws	message/rfc822
-		oda	weixinlication/oda
-		p10	weixinlication/pkcs10
-		p12	weixinlication/x-pkcs12
-		p7b	weixinlication/x-pkcs7-certificates
-		p7c	weixinlication/x-pkcs7-mime
-		p7m	weixinlication/x-pkcs7-mime
-		p7r	weixinlication/x-pkcs7-certreqresp
-		p7s	weixinlication/x-pkcs7-signature
+		oda	application/oda
+		p10	application/pkcs10
+		p12	application/x-pkcs12
+		p7b	application/x-pkcs7-certificates
+		p7c	application/x-pkcs7-mime
+		p7m	application/x-pkcs7-mime
+		p7r	application/x-pkcs7-certreqresp
+		p7s	application/x-pkcs7-signature
 		pbm	image/x-portable-bitmap
-		pdf	weixinlication/pdf
-		pfx	weixinlication/x-pkcs12
+		pdf	application/pdf
+		pfx	application/x-pkcs12
 		pgm	image/x-portable-graymap
-		pko	weixinlication/ynd.ms-pkipko
-		pma	weixinlication/x-perfmon
-		pmc	weixinlication/x-perfmon
-		pml	weixinlication/x-perfmon
-		pmr	weixinlication/x-perfmon
-		pmw	weixinlication/x-perfmon
+		pko	application/ynd.ms-pkipko
+		pma	application/x-perfmon
+		pmc	application/x-perfmon
+		pml	application/x-perfmon
+		pmr	application/x-perfmon
+		pmw	application/x-perfmon
 		pnm	image/x-portable-anymap
-		pot,	weixinlication/vnd.ms-powerpoint
+		pot,	application/vnd.ms-powerpoint
 		ppm	image/x-portable-pixmap
-		pps	weixinlication/vnd.ms-powerpoint
-		ppt	weixinlication/vnd.ms-powerpoint
-		prf	weixinlication/pics-rules
-		ps	weixinlication/postscript
-		pub	weixinlication/x-mspublisher
+		pps	application/vnd.ms-powerpoint
+		ppt	application/vnd.ms-powerpoint
+		prf	application/pics-rules
+		ps	application/postscript
+		pub	application/x-mspublisher
 		qt	video/quicktime
 		ra	audio/x-pn-realaudio
 		ram	audio/x-pn-realaudio
 		ras	image/x-cmu-raster
 		rgb	image/x-rgb
 		rmi	audio/mid
-		roff	weixinlication/x-troff
-		rtf	weixinlication/rtf
+		roff	application/x-troff
+		rtf	application/rtf
 		rtx	text/richtext
-		scd	weixinlication/x-msschedule
+		scd	application/x-msschedule
 		sct	text/scriptlet
-		setpay	weixinlication/set-payment-initiation
-		setreg	weixinlication/set-registration-initiation
-		sh	weixinlication/x-sh
-		shar	weixinlication/x-shar
-		sit	weixinlication/x-stuffit
+		setpay	application/set-payment-initiation
+		setreg	application/set-registration-initiation
+		sh	application/x-sh
+		shar	application/x-shar
+		sit	application/x-stuffit
 		snd	audio/basic
-		spc	weixinlication/x-pkcs7-certificates
-		spl	weixinlication/futuresplash
-		src	weixinlication/x-wais-source
-		sst	weixinlication/vnd.ms-pkicertstore
-		stl	weixinlication/vnd.ms-pkistl
+		spc	application/x-pkcs7-certificates
+		spl	application/futuresplash
+		src	application/x-wais-source
+		sst	application/vnd.ms-pkicertstore
+		stl	application/vnd.ms-pkistl
 		stm	text/html
 		svg	image/svg+xml
-		sv4cpio	weixinlication/x-sv4cpio
-		sv4crc	weixinlication/x-sv4crc
-		swf	weixinlication/x-shockwave-flash
-		t	weixinlication/x-troff
-		tar	weixinlication/x-tar
-		tcl	weixinlication/x-tcl
-		tex	weixinlication/x-tex
-		texi	weixinlication/x-texinfo
-		texinfo	weixinlication/x-texinfo
-		tgz	weixinlication/x-compressed
+		sv4cpio	application/x-sv4cpio
+		sv4crc	application/x-sv4crc
+		swf	application/x-shockwave-flash
+		t	application/x-troff
+		tar	application/x-tar
+		tcl	application/x-tcl
+		tex	application/x-tex
+		texi	application/x-texinfo
+		texinfo	application/x-texinfo
+		tgz	application/x-compressed
 		tif	image/tiff
 		tiff	image/tiff
-		tr	weixinlication/x-troff
-		trm	weixinlication/x-msterminal
+		tr	application/x-troff
+		trm	application/x-msterminal
 		tsv	text/tab-separated-values
 		txt	text/plain
 		uls	text/iuls
-		ustar	weixinlication/x-ustar
+		ustar	application/x-ustar
 		vcf	text/x-vcard
 		vrml	x-world/x-vrml
 		wav	audio/x-wav
-		wcm	weixinlication/vnd.ms-works
-		wdb	weixinlication/vnd.ms-works
-		wks	weixinlication/vnd.ms-works
-		wmf	weixinlication/x-msmetafile
-		wps	weixinlication/vnd.ms-works
-		wri	weixinlication/x-mswrite
+		wcm	application/vnd.ms-works
+		wdb	application/vnd.ms-works
+		wks	application/vnd.ms-works
+		wmf	application/x-msmetafile
+		wps	application/vnd.ms-works
+		wri	application/x-mswrite
 		wrl	x-world/x-vrml
 		wrz	x-world/x-vrml
 		xaf	x-world/x-vrml
 		xbm	image/x-xbitmap
-		xla	weixinlication/vnd.ms-excel
-		xlc	weixinlication/vnd.ms-excel
-		xlm	weixinlication/vnd.ms-excel
-		xls	weixinlication/vnd.ms-excel
-		xlt	weixinlication/vnd.ms-excel
-		xlw	weixinlication/vnd.ms-excel
+		xla	application/vnd.ms-excel
+		xlc	application/vnd.ms-excel
+		xlm	application/vnd.ms-excel
+		xls	application/vnd.ms-excel
+		xlt	application/vnd.ms-excel
+		xlw	application/vnd.ms-excel
 		xof	x-world/x-vrml
 		xpm	image/x-xpixmap
 		xwd	image/x-xwindowdump
-		z	weixinlication/x-compress
-		zip	weixinlication/zip
+		z	application/x-compress
+		zip	application/zip
 		*/
 		
 	}

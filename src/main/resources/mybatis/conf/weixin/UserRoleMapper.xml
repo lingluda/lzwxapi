@@ -95,7 +95,7 @@
       </if>
     </where>
     <if test="order != null">
-    	 ORDER BY ${order} ${sort}
+    	 ORDER BY ${order} ${sorting}
     </if>
   </select>
   

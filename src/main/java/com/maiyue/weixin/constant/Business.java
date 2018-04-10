@@ -3,7 +3,7 @@ package com.maiyue.weixin.constant;
 import java.util.Map;
 import com.maiyue.weixin.utils.ComUtil;
 
-public class BusinessConstant {
+public class Business {
 
 	
 	  /***
@@ -82,7 +82,7 @@ public class BusinessConstant {
 	  
 	  /****************************** 排序 *****************************/
 	  public static final String ORDER = "order";
-	  public static final String SORT = "sort";
+	  public static final String SORT = "sorting";
 	  public static final String PAGENUM = "pageNum";
 	  public static final String PAGESIZE = "pageSize";
 	  
@@ -94,21 +94,21 @@ public class BusinessConstant {
 	   * @param field
 	   * @return
 	   */
-		@SuppressWarnings("null")
-		public static Map<String, Object> defaultState(@SuppressWarnings("rawtypes") Class object,Map<String, Object> params,String field){
-			   params = defaultSort(object,params);
+	   @SuppressWarnings({"null","rawtypes"})
+	   public static Map<String, Object> defaultState(Class object,Map<String, Object> params,String field){
 			   if(params != null){
 					if(params.get(field) != null){
 						String state = (String) params.get(field);
-						if(!BusinessConstant.COMMON_STATE_JUST.equals(state.trim()) || !BusinessConstant.COMMON_STATE_STAY.equals(state.trim())){
-							params.put(field, BusinessConstant.COMMON_STATE_STAY);
+						if(!Business.COMMON_STATE_JUST.equals(state.trim()) || !Business.COMMON_STATE_STAY.equals(state.trim())){
+							params.put(field, Business.COMMON_STATE_STAY);
 						}
 					}else{
-						params.put(field, BusinessConstant.COMMON_STATE_STAY);
+						params.put(field, Business.COMMON_STATE_STAY);
 					}
 				}else{
-					params.put(field, BusinessConstant.COMMON_STATE_STAY);
+					params.put(field, Business.COMMON_STATE_STAY);
 			  }
+			  params = defaultSort(object,params);
 			  return params;
 		  }
 	  
@@ -119,17 +119,19 @@ public class BusinessConstant {
 	    * @param params
 	    * @return
 	    */
-		private static Map<String, Object> defaultSort(@SuppressWarnings("rawtypes") Class object,Map<String, Object> params){
+	    @SuppressWarnings("rawtypes") 
+		private static Map<String, Object> defaultSort(Class object,Map<String, Object> params){
 			  if(params != null){
 				if(params.get(ORDER) != null){
 					String column = ComUtil.getCheckColumn(object, params.get(ORDER).toString().trim());
 					params.put(ORDER, column);
 				}
 				if(params.get(SORT) != null){
-					if(!params.get(SORT).toString().trim().toUpperCase().equals("DESC") && !params.get("sort").toString().trim().toUpperCase().equals("DESC")){
+					String S = params.get(SORT).toString().trim();
+					if(!S.toUpperCase().equals("DESC") || !S.toUpperCase().equals("ASC")){
 						params.put(SORT, "DESC");	
 					}
-				}
+				 }
 		      }
 			  return params;
 		 }

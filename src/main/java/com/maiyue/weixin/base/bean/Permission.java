@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class Permission implements Serializable{
+import com.maiyue.weixin.bean.BaseSort;
+
+public class Permission extends BaseSort implements Serializable{
    
 	private static final long serialVersionUID = -7944021604772793227L;
 
@@ -35,13 +37,6 @@ public class Permission implements Serializable{
     * 类型:TIMESTAMP
      */
     private Date createtime;
-
-    /**
-    * 状态 0 正常 -1 停用 1 锁定
-    * 字段名:STATUS
-    * 类型:VARCHAR
-     */
-    private String status;
 
     /**
     * 权限类型
@@ -85,6 +80,13 @@ public class Permission implements Serializable{
      */
     private String parentId;
 
+    /**
+     * 状态 0 正常 -1 停用 1 锁定
+     * 字段名:STATUS
+     * 类型:VARCHAR
+      */
+     private String status;
+    
     /**
      * ID标识
      * @return ID

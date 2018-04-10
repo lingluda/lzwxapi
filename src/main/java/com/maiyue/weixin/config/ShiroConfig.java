@@ -1,9 +1,11 @@
 package com.maiyue.weixin.config;
 
 import org.apache.shiro.authc.credential.SimpleCredentialsMatcher;
+import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.session.mgt.SessionValidationScheduler;
-import org.apache.shiro.session.mgt.eis.SessionDAO;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
+import org.apache.shiro.mgt.SecurityManager; 
+import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.SimpleCookie;
@@ -13,6 +15,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
+import com.maiyue.weixin.redis.RedisCacheManager;
 import com.maiyue.weixin.shiro.*;
 
 import java.util.LinkedHashMap;
@@ -39,15 +42,17 @@ public class ShiroConfig {
     private Long globalSessionTimeout;
     private Long sessionValidationInterval;
 
-    private Map filterChainDefinitionMap = new LinkedHashMap();
+    @SuppressWarnings("rawtypes")
+	private Map filterChainDefinitionMap = new LinkedHashMap();
 
     /**
      * shiro过滤器
      * @param securityManager
      * @return
      */
-    @Bean
-    public ShiroFilterFactoryBean shirFilter(DefaultWebSecurityManager securityManager) {
+    @SuppressWarnings("unchecked")
+	@Bean
+    public ShiroFilterFactoryBean shirFilter(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
         shiroFilterFactoryBean.setLoginUrl(loginUrl);
@@ -69,9 +74,10 @@ public class ShiroConfig {
      * @return
      */
     @Bean
-    public SessionDAO redisSessionDAO(){
-        return new RedisSessionDao();
+    public RedisSessionDAO redisSessionDAO(){
+        return new RedisSessionDAO();
     }
+    
 
     /**
      * 自定义的密码匹配器
@@ -82,12 +88,32 @@ public class ShiroConfig {
         return new MyCredentialsMatcher();
     }
 
+    
     @Bean
-    public DefaultWebSecurityManager securityManager(){
-        DefaultWebSecurityManager securityManager =  new DefaultWebSecurityManager();
-        securityManager.setRealm(myRealm());
-        securityManager.setSessionManager(sessionManager());
-        return securityManager;
+    public RedisCacheManager redisCacheManager() {
+        return new RedisCacheManager();
+    }
+    
+    @Bean
+    public SecurityManager securityManager(){
+    	 DefaultWebSecurityManager manager = new DefaultWebSecurityManager();  
+    	 manager.setRealm(myRealm());
+    	 manager.setSessionManager(sessionManager());
+    	 manager.setCacheManager(redisCacheManager());
+        return manager;
+    }
+    
+    /** 
+     * 开启shiro aop注解支持. 
+     * 使用代理方式;所以需要开启代码支持; 
+     * @param securityManager 
+     * @return 
+     */  
+    @Bean
+    public AuthorizationAttributeSourceAdvisor getAuthorizationAttributeSourceAdvisor() {
+        AuthorizationAttributeSourceAdvisor aasa = new AuthorizationAttributeSourceAdvisor();
+        aasa.setSecurityManager(securityManager());
+        return aasa;
     }
 
     @Bean
@@ -104,8 +130,10 @@ public class ShiroConfig {
      * @return
      */
     @Bean
-    public MySessionManager sessionManager(){
+    public SessionManager sessionManager(){
         MySessionManager sessionManager = new MySessionManager();
+        //sessionManager.setSessionIdCookie(sessionIdCookie());//
+        //sessionManager.setSessionIdCookieEnabled(true);
         sessionManager.setSessionDAO(redisSessionDAO());
         sessionManager.setSessionFactory(sessionFactory());
         sessionManager.setGlobalSessionTimeout(globalSessionTimeout);
@@ -157,7 +185,9 @@ public class ShiroConfig {
         return validatingSessionManager;
     }
 
-
+    
+    
+    
     public String getLoginUrl() {
         return loginUrl;
     }
@@ -175,11 +205,13 @@ public class ShiroConfig {
     }
 
     
+	@SuppressWarnings("rawtypes")
 	public Map getFilterChainDefinitionMap() {
         return filterChainDefinitionMap;
     }
 
-    public void setFilterChainDefinitionMap(Map filterChainDefinitionMap) {
+    @SuppressWarnings("rawtypes")
+	public void setFilterChainDefinitionMap(Map filterChainDefinitionMap) {
         this.filterChainDefinitionMap = filterChainDefinitionMap;
     }
 

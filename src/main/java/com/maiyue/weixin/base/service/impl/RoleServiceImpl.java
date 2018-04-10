@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.maiyue.weixin.base.bean.Role;
 import com.maiyue.weixin.base.mapper.RoleMapper;
 import com.maiyue.weixin.base.service.RoleService;
+import com.maiyue.weixin.constant.Business;
 import com.maiyue.weixin.mapper.BaseMapper;
 import com.maiyue.weixin.service.impl.BaseServiceImpl;
 
@@ -25,7 +26,8 @@ public class RoleServiceImpl extends BaseServiceImpl<Role, String> implements Ro
 
 	@Override
 	public PageInfo<Role> getPageData(Map<String, Object> params) {
-		return null;
+		params = Business.defaultState(Role.class, params, "status");
+		return super.findByPage(params);
 	}
 
 	@Override

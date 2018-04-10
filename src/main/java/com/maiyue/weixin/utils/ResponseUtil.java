@@ -3,9 +3,12 @@ package com.maiyue.weixin.utils;
 import java.util.Map;
 
 import org.springframework.ui.ModelMap;
+import com.maiyue.weixin.constant.Business;
 
-import com.maiyue.weixin.constant.BusinessConstant;
-
+/***
+ * 接口返回标准
+ * @author Admin
+ */
 public class ResponseUtil {
 
 		
@@ -16,10 +19,10 @@ public class ResponseUtil {
 	  */
 	 public static ModelMap RetCorrectInfo(String data){
 	    	ModelMap result = new ModelMap();
-	    	result.put(BusinessConstant.RESULT_STATUS,BusinessConstant.RESULT_STATUS_TRUE);
-	    	result.put(BusinessConstant.RESULT_CODE, BusinessConstant.RESULT_CODE_TRUE);
-	    	result.put(BusinessConstant.RESULT_DATA, data);
-	    	result.put(BusinessConstant.RESULT_MSG,"Request data to be normal!");
+	    	result.put(Business.RESULT_STATUS,Business.RESULT_STATUS_TRUE);
+	    	result.put(Business.RESULT_CODE, Business.RESULT_CODE_TRUE);
+	    	result.put(Business.RESULT_DATA, data);
+	    	result.put(Business.RESULT_MSG,"Request success!");
 			return result;
 	 }	
 	
@@ -30,27 +33,27 @@ public class ResponseUtil {
 	  */
 	 public static ModelMap RetErrorInfo(String msg){
 	    	ModelMap result = new ModelMap();
-	    	result.put(BusinessConstant.RESULT_STATUS,BusinessConstant.RESULT_STATUS_TRUE);
-	    	result.put(BusinessConstant.RESULT_CODE, BusinessConstant.RESULT_CODE_FALSE);
-	    	result.put(BusinessConstant.RESULT_DATA, null);
-	    	result.put(BusinessConstant.RESULT_MSG,msg);
+	    	result.put(Business.RESULT_STATUS,Business.RESULT_STATUS_TRUE);
+	    	result.put(Business.RESULT_CODE, Business.RESULT_CODE_FALSE);
+	    	result.put(Business.RESULT_DATA,"{}");
+	    	result.put(Business.RESULT_MSG,msg);
 			return result;
 	 }
 	  
+	 
 	 
 	 /***
 	  * 错误信息返回
 	  * @param msg
 	  * @return
 	  */
-	 public static Map<String, Object> ReqError(Object msg){
+	 public static ModelMap ReqError(Object msg){
 	    	ModelMap result = new ModelMap();
-	    	result.put(BusinessConstant.RESULT_STATUS,BusinessConstant.RESULT_STATUS_FALSE);
-	    	result.put(BusinessConstant.RESULT_CODE, BusinessConstant.RESULT_CODE_FALSE);
-	    	result.put(BusinessConstant.RESULT_DATA, null);
-	    	result.put(BusinessConstant.RESULT_MSG,msg);
+	    	result.put(Business.RESULT_STATUS,Business.RESULT_STATUS_FALSE);
+	    	result.put(Business.RESULT_CODE, Business.RESULT_CODE_FALSE);
+	    	result.put(Business.RESULT_DATA, null);
+	    	result.put(Business.RESULT_MSG,msg);
 			return result;
 	 }
-	 
 	 
 }

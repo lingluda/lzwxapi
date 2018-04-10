@@ -22,7 +22,7 @@ public class BaseSort {
 	/***
 	 * 排序
 	 */
-	private String sort;
+	private String sorting;
 	
 	public String getOrder() {
 		return order;
@@ -31,14 +31,15 @@ public class BaseSort {
 	public void setOrder(String order) {
 		this.order = order;
 	}
-
-	public String getSort() {
-		return sort;
+   
+	public String getSorting() {
+		return sorting;
 	}
 
-	public void setSort(String sort) {
-		this.sort = sort;
+	public void setSorting(String sorting) {
+		this.sorting = sorting;
 	}
+
 	public Integer getPageNum() {
 		return pageNum;
 	}

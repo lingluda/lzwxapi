@@ -60,6 +60,6 @@ public interface BaseService<Model, PK> {
      * @param pageSize
      * @return
      */
-    PageInfo<Model> findByPage(Map<String,Object> model,int page,int pageSize);
+    PageInfo<Model> findByPage(Map<String,Object> model);
 
 }
