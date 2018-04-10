@@ -8,9 +8,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-/**
- * Created by huang on 2017/1/9.
- */
+
 public class RedisUtil {
 
     private RedisTemplate<Serializable,Object> redisTemplate;
@@ -18,9 +16,6 @@ public class RedisUtil {
     public RedisUtil(RedisTemplate<Serializable,Object> redisTemplate){
         this.redisTemplate = redisTemplate;
     }
-
-    
-    
 
     /**
      *

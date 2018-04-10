@@ -9,15 +9,17 @@
     <result column="STATUS" property="status" jdbcType="VARCHAR" />
     <result column="TYPE" property="type" jdbcType="VARCHAR" />
   </resultMap>
+  
   <sql id="Base_Column_List" >
     ID, USERNAME, PASSWORD, CREATETIME, STATUS, TYPE
   </sql>
+  
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
-    <include refid="Base_Column_List" />
+    select <include refid="Base_Column_List" />
     from T_BASE_USER
     where ID = #{id,jdbcType=VARCHAR}
   </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from T_BASE_USER
     where ID = #{id,jdbcType=VARCHAR}
@@ -66,6 +68,8 @@
       </if>
     </trim>
   </insert>
+  
+  
   <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.weixin.base.bean.User" >
     update T_BASE_USER
     <set >
@@ -122,7 +126,7 @@
       </if>
     </where>
     <if test="order != null">
-    	 ORDER BY ${order} ${sort}
+    	 ORDER BY ${order} ${sorting}
     </if>
   </select>
   
