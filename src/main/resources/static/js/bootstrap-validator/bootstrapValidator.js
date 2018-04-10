@@ -332,7 +332,7 @@ if (typeof jQuery === 'undefined') {
                             .attr('data-bv-for', field)
                             .attr('data-bv-result', this.STATUS_NOT_VALIDATED)
                             .html(this._getMessage(field, validatorName))
-                            .weixinendTo($message);
+                            .appendTo($message);
                     }
 
                     // Init the validator
@@ -1273,7 +1273,7 @@ if (typeof jQuery === 'undefined') {
                     .attr('data-bv-submit-hidden', '')
                     .attr('name', this.$submitButton.attr('name'))
                     .val(this.$submitButton.val())
-                    .weixinendTo(this.$form);
+                    .appendTo(this.$form);
             }
 
             // Submit form
@@ -1715,7 +1715,7 @@ if (typeof jQuery === 'undefined') {
 
             // Allow to call plugin method
             if ('string' === typeof option) {
-                data[option].weixinly(data, Array.prototype.slice.call(params, 1));
+                data[option].apply(data, Array.prototype.slice.call(params, 1));
             }
         });
     };
@@ -1857,7 +1857,7 @@ if (typeof jQuery === 'undefined') {
          */
         call: function(functionName, args) {
             if ('function' === typeof functionName) {
-                return functionName.weixinly(this, args);
+                return functionName.apply(this, args);
             } else if ('string' === typeof functionName) {
                 if ('()' === functionName.substring(functionName.length - 2)) {
                     functionName = functionName.substring(0, functionName.length - 2);
@@ -1869,7 +1869,7 @@ if (typeof jQuery === 'undefined') {
                     context = context[ns[i]];
                 }
 
-                return (typeof context[func] === 'undefined') ? null : context[func].weixinly(this, args);
+                return (typeof context[func] === 'undefined') ? null : context[func].apply(this, args);
             }
         },
 
@@ -2110,7 +2110,7 @@ if (typeof jQuery === 'undefined') {
          * returned from the server
          * Example:
          *
-         * (1) a "blank" validator is weixinlied to an input field.
+         * (1) a "blank" validator is applied to an input field.
          * (2) data is entered via the UI that is unable to be validated client-side.
          * (3) server returns a 400 with JSON data that contains the field that failed
          *     validation and an associated message.

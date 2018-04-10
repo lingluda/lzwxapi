@@ -1,10 +1,14 @@
 package com.maiyue.weixin.base.bean;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class Permission {
-    /**
+public class Permission implements Serializable{
+   
+	private static final long serialVersionUID = -7944021604772793227L;
+
+	/**
     * ID标识
     * 字段名:ID
     * 类型:VARCHAR

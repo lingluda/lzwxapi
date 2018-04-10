@@ -73,8 +73,10 @@ public class RedisUtil {
      * @return
      */
     public Object get(String key) {
+    	Object result = null;
         ValueOperations<Serializable, Object> operations = redisTemplate.opsForValue();
-        return operations.get(key);
+        result = operations.get(key);
+        return result;
     }
 
     public Collection<Object> getPattern(String pattern){
@@ -111,8 +113,10 @@ public class RedisUtil {
      * @param key
      * @param value
      */
-    public void setHash(String key , Map<String,?> value){
-        HashOperations hashOperations = redisTemplate.opsForHash();
+    @SuppressWarnings("unchecked")
+	public void setHash(String key , Map<String,?> value){
+        @SuppressWarnings("rawtypes")
+		HashOperations hashOperations = redisTemplate.opsForHash();
         hashOperations.putAll(key,value);
     }
 

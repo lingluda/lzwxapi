@@ -29,16 +29,21 @@ public class BaseConfig{
     
     @PostConstruct
     private void init(){
-    	//this.loadUpAndDownPath();
-    	//this.loadTempPath();
+    	this.loadUpAndDownPath();
+    	this.loadTempPath();
     }
     
     
     /***
      * 加载文件上传下载路径
      */
+    
     private void loadUpAndDownPath(){
-    	if(redisUtil.get(Constant.UP_DOWN_LOAD_PATH) == null){
+    	
+    	Object object = redisUtil.get(Constant.UP_DOWN_LOAD_PATH);
+    	
+    	System.out.println("object:" + object);
+    	if(object == null){
     		String path = baseConfigService.findByconfigName(Constant.UP_DOWN_LOAD_PATH);
         	if(StringUtils.isNotBlank(path)){
         	   redisUtil.set(Constant.UP_DOWN_LOAD_PATH, path);
