@@ -7,10 +7,9 @@
     <result column="CREATETIME" property="createtime" jdbcType="TIMESTAMP" />
   </resultMap>
   
-  <sql id="Base_Column_List">
+  <sql id="Base_Column_List" >
     RID, PID, CREATETIME
   </sql>
-  
   <insert id="insertSelective" parameterType="com.maiyue.weixin.base.bean.RolePermission" >
     insert into T_BASE_ROLE_PERMISSION
     <trim prefix="(" suffix=")" suffixOverrides="," >
