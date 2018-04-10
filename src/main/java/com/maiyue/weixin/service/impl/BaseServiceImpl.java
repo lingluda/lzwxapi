@@ -2,6 +2,7 @@ package com.maiyue.weixin.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.maiyue.weixin.constant.Business;
 import com.maiyue.weixin.mapper.BaseMapper;
 import com.maiyue.weixin.service.BaseService;
 
@@ -91,8 +92,8 @@ public abstract class BaseServiceImpl<Model, PK> implements BaseService<Model, P
      * @param pageSize
      * @return
      */
-    public PageInfo<Model> findByPage(Map<String,Object> params,int page,int pageSize){
-        PageHelper.startPage(page,pageSize);
+    public PageInfo<Model> findByPage(Map<String,Object> params){
+        PageHelper.startPage((Integer)params.get(Business.PAGENUM), (Integer)params.get(Business.PAGESIZE));
         List<Model> list = getMapper().findByPage(params);
         return new PageInfo<Model>(list);
     }

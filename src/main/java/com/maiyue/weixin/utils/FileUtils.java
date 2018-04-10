@@ -14,9 +14,9 @@ import java.security.AccessController;
 import java.security.PrivilegedAction;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.maiyue.weixin.bean.FileBean;
 import com.maiyue.weixin.utils.jsonUtil.JSONUtils;
@@ -25,7 +25,7 @@ public class FileUtils {
 	
 	private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	
-	private static Logger logger = Logger.getLogger(FileUtils.class);
+	private static Logger logger = LoggerFactory.getLogger(FileUtils.class);
 	
 	/***
 	  * 合并文件
@@ -56,7 +56,7 @@ public class FileUtils {
 	             }
 	             fos.flush();
 		    	 long end = System.currentTimeMillis();
-		    	 logger.info("合并文件耗时：" + (end-strat) + " 毫秒");
+		    	 logger.debug("合并文件耗时:{}毫秒",(end-strat));
 	    	 }
 	    	 result = resultFile.length();
 	    }catch(Exception e) {
@@ -119,7 +119,7 @@ public class FileUtils {
              String sizeKB = String.valueOf(totalBytes/1024) + "KB";
              FileBean fileBean = new FileBean(filename,originName,(filepath + filename),disk,sizeKB);
              long end = System.currentTimeMillis();
-             logger.info("文件："+file.getName() + "("+totalBytes/1024+")KB" + ",文件上传耗时:" + (end-strat) + "毫秒！");
+             logger.debug("文件:{}({})KB,上传耗时:{} 毫秒!",file.getName(),totalBytes/1024,(end-strat));
              return JSONUtils.toJSONObject(fileBean, null);
          } catch (Exception e) {
              e.printStackTrace();
@@ -200,7 +200,7 @@ public class FileUtils {
 	            MappedByteBuffer byteBuffer = in.getChannel().map(FileChannel.MapMode.READ_ONLY, 0, file.length());  
 	            FileUtils.clean(byteBuffer);
 	            long end = System.currentTimeMillis();
-	            logger.info("文件："+file.getName() + "("+totalBytes/1024+")KB" + ",文件上传耗时:" + (end-strat) + "毫秒！");
+	            logger.debug("文件:{}({})KB,上传耗时:{} 毫秒!",file.getName(),totalBytes/1024,(end-strat));
             }
         } catch (Exception e) {
             logger.error(e.getCause().getMessage(),e);
@@ -216,51 +216,17 @@ public class FileUtils {
     }
     
     
-    
-    /***
-     * 合并文件
-     * @param tempFile
-     * @param resultFile
-     */
-    public static void FileCompose(File tempFile,File resultFile){
-	    long strat = System.currentTimeMillis();
-	    FileInputStream fis = null;
-	    FileOutputStream fos = null;
-	    try {
-	    	 fis = new FileInputStream(tempFile);
-             fos = new FileOutputStream(resultFile, true);
-             byte[] bys = new byte[fis.available()];
-             int len = 0;
-             while ((len = fis.read(bys)) != -1) {
-          	    fos.write(bys, 0, len);
-             }
-             fos.flush();
-	    	 long end = System.currentTimeMillis();
-	    	 logger.info(tempFile.getName() + "合并到" + resultFile.getName() + ",耗时：" + (end-strat) + " 毫秒");
-	    }catch(Exception e) {
-	    	 logger.error(e.getCause().getMessage(),e);
-	    }finally{
-	    	try {
-				if(fos != null){fos.close();}
-				if(fis != null){fis.close();}
-			} catch (Exception e2) {
-				logger.error(e2.getCause().getMessage(),e2);
-			}
-	    }
-    }
-    
-    
-    
-    
-    
-    
-    /***
-     * 清除缓存
-     * @param buffer
-     * @throws Exception
-     */
+    /**
+   	 * 在MweixinedByteBuffer释放后再对它进行读操作的话就会引发jvm crash，在并发情况下很容易发生
+   	 * 正在释放时另一个线程正开始读取，于是crash就发生了。所以为了系统稳定性释放前一般需要检
+   	 * 查是否还有线程在读或写
+   	 * @param mweixinedByteBuffer
+   	 */
     @SuppressWarnings({ "unchecked", "rawtypes" })
     public static void clean(final Object buffer) throws Exception {
+    	 if (buffer == null) {
+			return;
+		 }
          AccessController.doPrivileged(new PrivilegedAction() {
              public Object run() {
 	             try {
@@ -277,39 +243,6 @@ public class FileUtils {
      }
     
     
-    
-    /**
-	 * 在MweixinedByteBuffer释放后再对它进行读操作的话就会引发jvm crash，在并发情况下很容易发生
-	 * 正在释放时另一个线程正开始读取，于是crash就发生了。所以为了系统稳定性释放前一般需要检
-	 * 查是否还有线程在读或写
-	 * @param mweixinedByteBuffer
-	 */
-	public static void unmap(final MappedByteBuffer mweixinedByteBuffer) {
-		try {
-			if (mweixinedByteBuffer == null) {
-				return;
-			}
-			mweixinedByteBuffer.force();
-			AccessController.doPrivileged(new PrivilegedAction<Object>() {
-				@Override
-				public Object run() {
-					try {
-						Method getCleanerMethod = mweixinedByteBuffer.getClass().getMethod("cleaner", new Class[0]);
-						getCleanerMethod.setAccessible(true);
-						sun.misc.Cleaner cleaner = (sun.misc.Cleaner) getCleanerMethod.invoke(mweixinedByteBuffer, new Object[0]);
-						cleaner.clean();
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-					return null;
-				}
-			});
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-    
 	 /***
 	  * 年月日文件夹
 	  * @return
@@ -322,6 +255,7 @@ public class FileUtils {
 		   return (File.separator + year + File.separator + month + File.separator + day + File.separator);
 	 }
     
+	 
 	 /***
 	  * 年月日文件夹
 	  * @return

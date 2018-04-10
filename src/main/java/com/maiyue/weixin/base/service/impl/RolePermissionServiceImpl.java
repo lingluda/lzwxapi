@@ -24,8 +24,7 @@ public class RolePermissionServiceImpl extends BaseServiceImpl<RolePermission, S
 
 	@Override
 	public PageInfo<RolePermission> getPageData(Map<String, Object> params) {
-		// TODO Auto-generated method stub
-		return null;
+		return super.findByPage(params);
 	}
 
 	@Override

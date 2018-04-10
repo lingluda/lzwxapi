@@ -24,8 +24,7 @@ public class UserRoleServiceImpl extends BaseServiceImpl<UserRole, String> imple
 
 	@Override
 	public PageInfo<UserRole> getPageData(Map<String, Object> params) {
-		// TODO Auto-generated method stub
-		return null;
+		return super.findByPage(params);
 	}
 
 	@Override

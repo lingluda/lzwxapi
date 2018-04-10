@@ -15,7 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -49,7 +50,7 @@ public class UploaderController extends BaseController{
 	 */
 	private static final String Catalog = "catalog.txt";
 	
-	private static Logger logger = Logger.getLogger(UploaderController.class);
+	private static Logger logger = LoggerFactory.getLogger(UploaderController.class);
 	
 	
 	/****
@@ -125,7 +126,7 @@ public class UploaderController extends BaseController{
 		   //md5文件名称
 	       String fileName = md5value.substring(0, 16).toUpperCase() + name.substring(name.lastIndexOf("."),name.length());
 	       String address = this.FilePath(folder) + fileName;//地址
-	       System.out.println("fileName:" + name + ",chunks:" + chunks + " ,chunk: " + chunk + ",size:" + file.getSize());
+	       logger.debug("fileName:{},chunks(分片总数):{},chunk(当前分片):{},size:{}", name,chunks,chunk,file.getSize());
 	       //文件真实名称
 	       String OriginFilename = file.getOriginalFilename();
 	       try {
@@ -215,19 +216,17 @@ public class UploaderController extends BaseController{
 	   
 	   /***
 	     * 下载文件
-	     * @param filepath
+	     * @param path
 	     * @param request
 	     * @param response
 	     */
 	    @RequestMapping(value = "download",method=RequestMethod.GET) 
-		public void download(HttpServletRequest request,
-				@RequestParam(value="filepath",required=false)String filepath,
-				@RequestParam(value="filename",required=false)String filename,
-				HttpServletResponse response) {
+		public void download(HttpServletRequest request,HttpServletResponse response,
+			   @RequestParam(value="path",required=false)String path,@RequestParam(value="filename",required=false)String filename){
 	    	
-	    	String downPath = (this.DiskPath() + filepath);
+	    	String downPath = (this.DiskPath() + path);
 	    	if(StringUtils.isEmpty(filename) && StringUtils.isBlank(filename)){
-	    		filename = filepath.substring(filepath.lastIndexOf("/")+1);
+	    		filename = path.substring(path.lastIndexOf("/")+1);
 	    	}
 			File file = new File(downPath);
 			BufferedInputStream bis = null;
@@ -272,9 +271,7 @@ public class UploaderController extends BaseController{
 	     * @param response
 	     */
 	    @RequestMapping(value = "download",method=RequestMethod.POST) 
-		public void downloadPost(
-				@RequestParam(value="filepath",required=false)String filepath,
-				@RequestParam(value="filename",required=false)String filename,
+		public void downloadPost(@RequestParam(value="filepath",required=false)String filepath,@RequestParam(value="filename",required=false)String filename,
 				HttpServletRequest request, HttpServletResponse response) {
 	    	
 	    	String ctxPath = this.DiskPath() + filepath;
@@ -419,7 +416,7 @@ public class UploaderController extends BaseController{
 	    * @return
 	    */
 	   private String DiskPath(){
-		   return (String) redisUtil.get(Constant.UP_DOWN_LOAD_PATH);
+		   return (String) redisUtil.get(Constant.WHERE_DISK_PATH);
 	   }
 	   
 	   /***

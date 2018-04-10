@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.maiyue.weixin.base.bean.User;
 import com.maiyue.weixin.base.mapper.UserMapper;
 import com.maiyue.weixin.base.service.UserService;
+import com.maiyue.weixin.constant.Business;
 import com.maiyue.weixin.mapper.BaseMapper;
 import com.maiyue.weixin.service.impl.BaseServiceImpl;
 
@@ -25,12 +26,12 @@ public class UserServiceImpl extends BaseServiceImpl<User, String> implements Us
 
 	@Override
 	public PageInfo<User> getPageData(Map<String, Object> params) {
-		return null;
+		params = Business.defaultState(User.class, params,"status");
+		return super.findByPage(params);
 	}
 
 	@Override
 	public BaseMapper<User, String> getMapper() {
-		// TODO Auto-generated method stub
 		return userMapper;
 	}
 
