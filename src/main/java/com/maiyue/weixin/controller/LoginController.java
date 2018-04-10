@@ -75,6 +75,13 @@ public class LoginController extends BaseController{
                     //所以这一步在调用login(token)方法时,它会走到MyRealm.doGetAuthenticationInfo()方法中
                    currentUser.login(token);
                    User userInfo = userService.findByUsername(username);
+                   
+                   Map<String,Object> map = new HashMap<String, Object>();
+                   map.put("a", "sdvsdvsb");
+                   map.put("b", "6516131");
+                   
+                   
+                   super.setSession("test",map);
                    super.setSession(Constant.SESSION_MANAGER_USER_KEY,userInfo);
                    //redisUtil.set(Constant.SESSION_MANAGER_USER_KEY,userInfo,Constant.SessionTime());
                    success = true;
@@ -115,7 +122,7 @@ public class LoginController extends BaseController{
         try {
             //生产验证码字符串并保存到session中
             String createText = defaultKaptcha.createText();
-            super.getSession().setAttribute(Constant.SESSION_VERIFY_CODE, createText);
+            //super.getSession().setAttribute(Constant.SESSION_VERIFY_CODE, createText);
             //使用生产的验证码字符串返回一个BufferedImage对象并转为byte写入到byte数组中
             BufferedImage challenge = defaultKaptcha.createImage(createText);
             ImageIO.write(challenge, "jpg", jpegOutputStream);

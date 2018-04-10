@@ -9,9 +9,11 @@ import com.maiyue.weixin.redis.CustomSerializable;
 import com.maiyue.weixin.utils.RedisUtil;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
@@ -55,15 +57,8 @@ public class RedisConfig{
      - XML序列化：OxmSerializer ，速度慢空间占用较大
      * @return
      */
-
-    
-    
-	/**
-     * JDK序列化
-     * @return
-     */
-    @Bean(name="redisTemplate")
     @SuppressWarnings("rawtypes")
+    @Bean(name="redisTemplate")
     public RedisTemplate<Serializable, ?> redisTemplate(
     		@Qualifier("jedisConnectionFactory") JedisConnectionFactory jedisConnectionFactory,
     		@Qualifier("stringSerializer") StringRedisSerializer keySerializer,
@@ -71,13 +66,9 @@ public class RedisConfig{
     	
         RedisTemplate<Serializable, ?> template = new RedisTemplate<>();
         template.setConnectionFactory(jedisConnectionFactory);
-        
-        
         template.setValueSerializer(customSerializable);
         template.setHashValueSerializer(customSerializable);
-        
         template.setKeySerializer(keySerializer);
-        
         template.afterPropertiesSet();
         return template;
     }
@@ -108,6 +99,12 @@ public class RedisConfig{
         return template;
     }
 
+    @Bean
+    public CacheManager cacheManager(RedisTemplate<Object, Object> redisTemplate) {
+        RedisCacheManager cacheManager = new RedisCacheManager(redisTemplate);
+        cacheManager.setDefaultExpiration(1800);//30分钟
+        return cacheManager;
+    }
     
     @Bean(name="jdkSerializer")
     public JdkSerializationRedisSerializer jdkSerializer(){
@@ -128,15 +125,6 @@ public class RedisConfig{
         CustomSerializable customSerializable = new CustomSerializable();
         return customSerializable;
     }
-    
-    
-    /*@SuppressWarnings("rawtypes")
-	@Bean(name="kryoSerializable")
-    public KryoSerializable kryoSerializable() {
-    	KryoSerializable kryoSerializable = new KryoSerializable();
-		return kryoSerializable;
-	}*/
-
     
     
     @Bean(name="redisUtil")

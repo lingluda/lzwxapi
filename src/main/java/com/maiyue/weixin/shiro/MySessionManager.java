@@ -1,8 +1,8 @@
 package com.maiyue.weixin.shiro;
 
-import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
-
 import java.io.Serializable;
+
+import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 
 /**
  * 实现DefaultWebSessionManager的序列化
@@ -10,5 +10,7 @@ import java.io.Serializable;
  * Created by huang on 2018/01/16.
  */
 public class MySessionManager extends DefaultWebSessionManager implements Serializable{
-    private static final long serialVersionUID = 1529379071725399558L;
+
+	private static final long serialVersionUID = 1306070058364744798L;
+	
 }

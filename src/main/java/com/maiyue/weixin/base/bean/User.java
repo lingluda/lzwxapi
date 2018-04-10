@@ -143,13 +143,13 @@ public class User implements Serializable{
     }
 
     
-	@Override
+	/*@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("{id:'").append(id).append("', username:'").append(username).append("', status:'").append(status)
 				.append("', type:'").append(type).append("'}");
 		return builder.toString();
-	}
+	}*/
     
     
     
