@@ -25,16 +25,15 @@
                 dotColor: '#5cbdaa',
                 lineColor: '#5cbdaa'
             });
-
-
+            //登陆按钮
             $('#submit_btn').click(function(){
                 var formData = $('#inputForm').serializeArray();
-                $.post('/manager/login',formData,function (data) {
+                $.post('/sign/login',formData,function (data) {
                     if(data){
-                        if(data.success){
-                            window.location.href = '/manager/index'
+                        if(data.RetCode){
+                            window.location.href = '/business/index'
                         }else{
-                            alert(data.msg);
+                            alert(data.RetMsg);
                             refreshCode();
                         }
                     }else{
@@ -43,12 +42,9 @@
                     }
                 });
             });
-
-            
-            
         });
         function refreshCode(){
-            $('#code_img').attr('src',"/manager/code?"+(new Date()).getTime());
+            $('#code_img').attr('src',"/verify/code?"+(new Date()).getTime());
             $('#J_codetext').val('');
         }
     </script>
@@ -70,7 +66,7 @@
         <dd class="val_icon">
             <div class="checkcode">
                 <input type="text" id="J_codetext" placeholder="验证码" maxlength="4" name="verifyCode" class="login_txtbx">
-                <img src="/manager/code" id="code_img" onclick="refreshCode()"/>
+                <img src="/verify/code" id="code_img" onclick="refreshCode()"/>
             </div>
         </dd>
     </form>
@@ -78,7 +74,7 @@
         <input type="button" value="登陆" class="submit_btn" id="submit_btn">
     </dd>
     <dd>
-        <p>© 2015-2022 huang 版权所有</p>
+        <p>© 2015-2022 迈越软件 版权所有</p>
         <p></p>
     </dd>
 </dl>

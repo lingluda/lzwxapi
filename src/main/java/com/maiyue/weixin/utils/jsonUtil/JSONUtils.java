@@ -7,7 +7,7 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 
 import com.github.pagehelper.PageInfo;
-import com.maiyue.weixin.constant.BusinessConstant;
+import com.maiyue.weixin.constant.Business;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -20,8 +20,8 @@ public class JSONUtils {
 	
 	private static Logger logger = Logger.getLogger(JSONUtils.class);
 	
-	private static final String [] excludes = {BusinessConstant.ORDER,BusinessConstant.SORT,
-				BusinessConstant.PAGENUM,BusinessConstant.PAGESIZE};
+	private static final String [] excludes = {Business.ORDER,Business.SORT,
+				Business.PAGENUM,Business.PAGESIZE};
 	
 	/**
 	 * 把PageBean转化成JSONObject

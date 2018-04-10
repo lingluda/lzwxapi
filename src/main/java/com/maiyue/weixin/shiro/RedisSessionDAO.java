@@ -42,7 +42,6 @@ public class RedisSessionDAO extends EnterpriseCacheSessionDAO {
     @Override
     protected void doUpdate(Session session) {
         super.doUpdate(session);
-        logger.debug("更新session:{}", session.getId());
         //过期session
         if(session instanceof ValidatingSession && !((ValidatingSession)session).isValid()){
             this.deleteSession(this.getSessionId(session.getId()));

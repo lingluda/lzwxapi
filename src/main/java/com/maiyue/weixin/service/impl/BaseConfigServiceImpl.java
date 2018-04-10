@@ -2,7 +2,7 @@ package com.maiyue.weixin.service.impl;
 
 import com.github.pagehelper.PageInfo;
 import com.maiyue.weixin.bean.BaseConfig;
-import com.maiyue.weixin.constant.BusinessConstant;
+import com.maiyue.weixin.constant.Business;
 import com.maiyue.weixin.mapper.BaseMapper;
 import com.maiyue.weixin.mapper.BaseConfigMapper;
 import com.maiyue.weixin.service.BaseConfigService;
@@ -25,8 +25,8 @@ public class BaseConfigServiceImpl extends BaseServiceImpl<BaseConfig, String> i
 
 	@Override
 	public PageInfo<BaseConfig> getPageData(Map<String, Object> params) {
-		params = BusinessConstant.defaultState(BaseConfig.class,params,"configState");
-		return super.findByPage(params, (Integer)params.get("pageNum"), (Integer)params.get("pageSize"));
+		params = Business.defaultState(BaseConfig.class,params,"configState");
+		return super.findByPage(params);
 	}
 
 	@Override
