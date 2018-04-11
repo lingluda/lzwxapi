@@ -36,18 +36,6 @@ public class MessageController {
 		String json = "{'username':'Li','sex':'0'}";
 		return json;
 	}
-	
-	/*
-	 * @RequestMapping("/list2")
-	    @ResponseBody
-	    public Object list2(ModelMap map){
-	    	List<User> userList=userService.findAll();
-	    	map.addAttribute("userList", userList);
-	    	//return userList;
-	    	
-	    	return userList;
-	    }
-	 * */
 	 
 	//消息通知接口    消息通知列表
     @RequestMapping("/messageInfo")
@@ -65,7 +53,12 @@ public class MessageController {
     	
     	modelMap.addAttribute("messagesList", messagesList);
     	
-    	return messagesList;
+    	ModelMap modelMap1 = new ModelMap();
+    	
+    	modelMap1.addAttribute("status", "1");
+    	modelMap1.addAttribute("messagesList", messagesList);
+    	
+    	return modelMap1;
     }
     
     //消息通知-详情页面
@@ -76,7 +69,12 @@ public class MessageController {
     	Messages messages1 = new Messages("通知", sdf.format(new Date()) , "　原定今日上午进行的草坪杯足球对抗赛因雨改期，具体比赛日期经两公司协商后，另行通知。 另，午后的体育活动改为文艺活动，由各部按预案组织实施。");
     	
     	modelMap.addAttribute("messagesList", messages1);
-    	return messages1;
+    	//
+    	ModelMap modelMap1 = new ModelMap();
+    	
+    	modelMap1.addAttribute("status", "1");
+    	modelMap1.addAttribute("messages", messages1);
+    	return modelMap1;
     }
     
     
@@ -102,14 +100,20 @@ public class MessageController {
     	map.put(term1, coursesList1);
     	map.put(term2, coursesList2);
     	
-    	return map;
+    	ModelMap modelMap1 = new ModelMap();
+    	
+    	modelMap1.addAttribute("status", "1");
+    	modelMap1.addAttribute("teacherCourses", map);
+    	return modelMap1;
+    	//return map;
     }
     
-    //教师-查看"某专业"的 班级-学生-成绩  信息
+    //教师-查看"某专业"的 班级-学生-成绩  信息   sketch1.html
     @RequestMapping("/sketch")
     @ResponseBody
     public Object sketch(ModelMap map){
     	ModelMap map1 = new ModelMap();
+    	map1.addAttribute("status", "1");
     	map1.addAttribute("title", "素描（选修）");
     	map1.addAttribute("msg", "2018年第一学期的素描课教学 班级有3个课时共80节学生121人");
        	map1.addAttribute("studentNum", "40");
@@ -143,7 +147,12 @@ public class MessageController {
     	map.put("2018年4月1日", schedulesList);
     	map.put("2018年4月3日", schedulesList);
     	
-    	return map;
+    	
+    	ModelMap modelMap1 = new ModelMap();
+    	modelMap1.addAttribute("status", "1");
+    	modelMap1.addAttribute("schedulesList", map);
+    	return modelMap1;
+    	
     }
     
     
