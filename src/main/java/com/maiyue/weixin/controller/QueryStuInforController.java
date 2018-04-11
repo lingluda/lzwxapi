@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class QueryStuInforController extends BaseController {
 
 	/**
-	 * 学生ID查询信息
+	 * 学生ID查询学生信息
 	 * @param model
 	 * @return list
 	 */
@@ -39,10 +39,10 @@ public class QueryStuInforController extends BaseController {
 	  @RequestMapping(value="querybygrade")
 	    public Object getQueryByGrade(Model model) {
 	        List<String> list = new ArrayList<>();
-	        String json1 = "{'grade':'18级',"+"{'grade':'土木工程系'},{'grade':'信息工程系'},{'grade':'经济管理系'},{'grade':'机电系'},{'grade':'师范教育系'},{'grade':'艺术传媒系'},{'grade':'服装设计系'},{'grade':'新闻系'}}";
-	        String json2 = "{'grade':'17级',"+"{'grade':'土木工程系'},{'grade':'信息工程系'},{'grade':'经济管理系'},{'grade':'机电系'},{'grade':'师范教育系'},{'grade':'艺术传媒系'},{'grade':'服装设计系'},{'grade':'新闻系'}}";
-	        String json3 = "{'grade':'16级',"+"{'grade':'土木工程系'},{'grade':'信息工程系'},{'grade':'经济管理系'},{'grade':'机电系'},{'grade':'师范教育系'},{'grade':'艺术传媒系'},{'grade':'服装设计系'},{'grade':'新闻系'}}";
-	        String json4 = "{'grade':'15级',"+"{'grade':'土木工程系'},{'grade':'信息工程系'},{'grade':'经济管理系'},{'grade':'机电系'},{'grade':'师范教育系'},{'grade':'艺术传媒系'},{'grade':'服装设计系'},{'grade':'新闻系'}}";
+	        String json1 = "{'level':'18级',"+"{'grade':'土木工程系'},{'grade':'信息工程系'},{'grade':'经济管理系'},{'grade':'机电系'},{'grade':'师范教育系'},{'grade':'艺术传媒系'},{'grade':'服装设计系'},{'grade':'新闻系'}}";
+	        String json2 = "{'level':'17级',"+"{'grade':'土木工程系'},{'grade':'信息工程系'},{'grade':'经济管理系'},{'grade':'机电系'},{'grade':'师范教育系'},{'grade':'艺术传媒系'},{'grade':'服装设计系'},{'grade':'新闻系'}}";
+	        String json3 = "{'level':'16级',"+"{'grade':'土木工程系'},{'grade':'信息工程系'},{'grade':'经济管理系'},{'grade':'机电系'},{'grade':'师范教育系'},{'grade':'艺术传媒系'},{'grade':'服装设计系'},{'grade':'新闻系'}}";
+	        String json4 = "{'level':'15级',"+"{'grade':'土木工程系'},{'grade':'信息工程系'},{'grade':'经济管理系'},{'grade':'机电系'},{'grade':'师范教育系'},{'grade':'艺术传媒系'},{'grade':'服装设计系'},{'grade':'新闻系'}}";
 	        list.add(json1);
 	        list.add(json2);
 	        list.add(json3);
@@ -51,17 +51,17 @@ public class QueryStuInforController extends BaseController {
 	    }
 	  
 	  /**
-		 * 年级查询信息
+		 * 年级查询班级人数信息
 		 * @param model
 		 * @return list
 		 */
 		  @RequestMapping(value="querybyclas")
 		    public Object getQueryByClas(Model model) {
 		        List<String> list = new ArrayList<>();
-		        String json1 = "{'grade':'18级',"+"{'clas':'1801班','num':'48人'},{'clas':'1802班','num':'45人'},{'clas':'1803班','num':'35人'},{'clas':'1804班','num':'50人'},{'clas':'1805班','num':'42人'}}";
-		        String json2 = "{'grade':'17级',"+"{'clas':'1701班','num':'48人'},{'clas':'1702班','num':'45人'},{'clas':'1703班','num':'35人'},{'clas':'1704班','num':'50人'},{'clas':'1705班','num':'42人'}}";
-		        String json3 = "{'grade':'16级',"+"{'clas':'1601班','num':'48人'},{'clas':'1602班','num':'45人'},{'clas':'1603班','num':'35人'},{'clas':'1604班','num':'50人'},{'clas':'1605班','num':'42人'}}";
-		        String json4 = "{'grade':'15级',"+"{'clas':'1501班','num':'48人'},{'clas':'1502班','num':'45人'},{'clas':'1503班','num':'35人'},{'clas':'1504班','num':'50人'},{'clas':'1505班','num':'42人'}}";
+		        String json1 = "{'level':'18级',"+"{'clas':'1801班','num':'48人'},{'clas':'1802班','num':'45人'},{'clas':'1803班','num':'35人'},{'clas':'1804班','num':'50人'},{'clas':'1805班','num':'42人'}}";
+		        String json2 = "{'level':'17级',"+"{'clas':'1701班','num':'48人'},{'clas':'1702班','num':'45人'},{'clas':'1703班','num':'35人'},{'clas':'1704班','num':'50人'},{'clas':'1705班','num':'42人'}}";
+		        String json3 = "{'level':'16级',"+"{'clas':'1601班','num':'48人'},{'clas':'1602班','num':'45人'},{'clas':'1603班','num':'35人'},{'clas':'1604班','num':'50人'},{'clas':'1605班','num':'42人'}}";
+		        String json4 = "{'level':'15级',"+"{'clas':'1501班','num':'48人'},{'clas':'1502班','num':'45人'},{'clas':'1503班','num':'35人'},{'clas':'1504班','num':'50人'},{'clas':'1505班','num':'42人'}}";
 		        list.add(json1);
 		        list.add(json2);
 		        list.add(json3);
@@ -70,7 +70,7 @@ public class QueryStuInforController extends BaseController {
 		    }
 		  
 		  /**
-			 * 名字/学号查询信息
+			 * 学生名字查询课程成绩信息
 			 * @param model
 			 * @return list
 			 */
@@ -93,19 +93,19 @@ public class QueryStuInforController extends BaseController {
 			    }
 			  
 			  /**
-				 * 课程选修查询信息
+				 * 课程选修查询学分信息
 				 * @param model
 				 * @return list
 				 */
 				  @RequestMapping(value="querybysubject")
 				    public Object getqueryBySubject(Model model) {
 				        List<String> list = new ArrayList<>();
-				        String json1 = "{'semester':'18年上学期课程'," +"{'subjectname':'计算机应(选修)'},"+
+				        String json1 = "{'semester':'18年上学期课程'," +"{'course':'计算机应用(选修)'},"+
 				                "'messages':[" +
 				                "{'stuname':'白雪','id':'0000000001','teacher':'李磊','score':'80','point':'4'}," +
 				                "{'stuname':'黄雪','id':'0000000002','teacher':'未选修','score':' ','point':' '}," +
 				                "{'stuname':'红雪','id':'0000000003','teacher':'李磊','score':'50','point':'0'}]}";
-				        String json2 = "{'semester':'18年下学期课程'," +
+				        String json2 = "{'semester':'18年下学期课程'," +"{'course':'IT英语(选修)'},"+
 				                "'messages':[" +
 				                "{'stuname':'白雪','id':'0000000001','teacher':'李磊','score':'56','point':'4'}," +
 				                "{'stuname':'黄雪','id':'0000000002','teacher':'未选修','score':' ','point':' '}," +
