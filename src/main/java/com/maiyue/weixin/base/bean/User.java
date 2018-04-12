@@ -3,11 +3,7 @@ package com.maiyue.weixin.base.bean;
 import java.io.Serializable;
 import java.util.Date;
 
-import com.maiyue.weixin.bean.BaseSort;
-
-public class User extends BaseSort implements Serializable{
-   
-	private static final long serialVersionUID = 5442767707260701433L;
+public class User implements Serializable{
 
 	/**
     * ID标识

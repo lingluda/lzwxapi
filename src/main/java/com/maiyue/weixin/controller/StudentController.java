@@ -216,4 +216,125 @@ public class StudentController extends BaseController {
         list.add(json4);
         return list;
     }
+
+  
+    /**
+     * zf
+	 * 获取外部链接
+	 * @param model
+	 * @return
+	 */
+    @RequestMapping(value="link")
+	public Object getLink(Model model) {
+    	List<String> list = new ArrayList<>();
+		String json1="{'icon':'就业网'}";
+		String json2="{'icon':'面试技巧'}";
+		String json3="{'icon':'大学生创业园'}";
+		list.add(json1);
+		list.add(json2);
+		list.add(json3);
+		return list;
+	}
+	
+	/**
+	 * 获取教师通讯录
+	 * 1.type,种类
+	 * 2.teacher,老师
+	 * 3.contacts,通讯录
+	 * @param model
+	 * @return
+	 */
+    @RequestMapping(value="contacts")
+	public Object getContacts(Model model) {
+    	List<String> list = new ArrayList<>();
+		String json1="{'type':'辅导员','teacher':'张华','contacts':'18577964239'}";
+		String json2="{'type':'语文课','teacher':'李强','contacts':'19768673212'}";
+		String json3="{'type':'数学课','teacher':'王文','contacts':'15536354567'}";
+		String json4="{'type':'体育课','teacher':'刘健','contacts':'15646377767'}";
+		list.add(json1);
+		list.add(json2);
+		list.add(json3);
+		list.add(json4);
+		return list;
+	}
+	
+	/**
+	 * 获取综合素质考评
+	 * 1.time,时间
+	 * 2.avg,学年各科成绩平均分
+	 * 3.faith,诚信分
+	 * 4.activity,活动分
+	 * 5.grade,综合素质考评成绩
+	 * 6.describle,简介
+	 * @param model
+	 * @return
+	 */
+    @RequestMapping(value="/quality/mixed")
+	public Object getQuality(Model model) {
+		List<String> list = new ArrayList<>();
+		String json1="{'time':'2018','avg':'80.07','faith':'800','activity':'0','grade':'89'}";
+		String json2="{'time':'2017','avg':'91.32','faith':'800','activity':'10','grade':'90'}";
+		String json3="{'time':'2016','avg':'87.65','faith':'800','activity':'0','grade':'87'}";
+		String json4="{'describle':'综合素质测评一般是对大学生的一种评价指标，综合素质测评的内容包括德育测评、智育测评、体育测评和能力测评四个方面。'}";
+		list.add(json1);
+		list.add(json2);
+		list.add(json3);
+		list.add(json4);
+		return list;
+	}
+	
+	/**
+	 * 获取诚信分
+	 * 1.time,时间
+	 * 2.reason,扣存原因
+	 * @param model
+	 * @return
+	 */
+    @RequestMapping(value="/quality/faithPoint")
+	public Object getFaithPoint(Model model) {
+		List<String> list = new ArrayList<>();
+		String json1="{'time':'2018/03/12','reason':'显示10个字符，剩余...','score':'-30'}";
+		String json2="{'time':'2018/02/12','reason':'显示10个字符，剩余...','score':'+30'}";
+		list.add(json1);
+		list.add(json2);
+		return list;
+	}
+	
+	/**
+	 * 获取活动分
+	 * 1.time,时间
+	 * 2.reason,扣存原因
+	 * @param model
+	 * @return
+	 */
+    @RequestMapping(value="/quality/activityPoint")
+	public Object getActivityPoint(Model model) {
+    	List<String> list = new ArrayList<>();
+		String json1="{'time':'2018/03/12','reason':'显示10个字符，剩余...','score':'-30'}";
+		String json2="{'time':'2018/02/12','reason':'显示10个字符，剩余...','score':'+30'}";
+		list.add(json1);
+		list.add(json2);
+		return list;
+	}
+	/**
+	 * 获取缴费信息
+	 * 1.semester,学期
+	 * 2.tuition,学费
+	 * 3.account,缴入账号
+	 * 4.state,状态
+	 * 5.time.时间
+	 * @param model
+	 * @return
+	 */
+    @RequestMapping(value="payment")
+	public Object getPayment(Model model) {
+    	List<String> list = new ArrayList<>();
+		String json1="{'semester':'2018年第一学期','tuition':'4000','account':'354564562866666128','state':'已缴清','time':'2018/01/23'}";
+		String json2="{'semester':'2018年第二学期','tuition':'4000','account':'354564562866666128','state':'已缴清','time':'2017/11/23'}";
+		String json3="{'semester':'2017年第一学期','tuition':'4000','account':'354564562866666128','state':'已缴清','time':'2017/01/23'}";
+		list.add(json1);
+		list.add(json2);
+		list.add(json3);
+		return list;
+	}
 }
