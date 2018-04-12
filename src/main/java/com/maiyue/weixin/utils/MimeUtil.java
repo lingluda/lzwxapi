@@ -26,7 +26,7 @@ public class MimeUtil {
 		mime.put("image/vnd.dxf", "dxf");
 		mime.put("image/gif", "gif");
 		mime.put("image/jp2", "jp2");
-		mime.put("image/jpeg", "jpe-jpeg-jpg");
+		mime.put("image/jpeg", "jpg");
 		mime.put("image/vnd.svf", "svf");
 		mime.put("image/tiff", "tif");
 		mime.put("image/png", "png");
@@ -62,7 +62,7 @@ public class MimeUtil {
 		mime.put("application/vnd.ms-project", "mmp");
 		
 		mime.put("aplication/zip", "zip");
-		mime.put("aplication/octet-stream", "stream");
+		mime.put("application/octet-stream", "stream");
 		
 		
 		/*

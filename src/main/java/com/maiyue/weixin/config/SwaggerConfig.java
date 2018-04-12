@@ -27,10 +27,13 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class SwaggerConfig {
 
 
-    @Bean
+    @SuppressWarnings("unused")
+	@Bean
     public Docket createBaseApi() {
         Predicate<RequestHandler> predicate = new Predicate<RequestHandler>() {
-            @Override
+            
+        	@SuppressWarnings("deprecation")
+			@Override
             public boolean apply(RequestHandler input) {
                 Class<?> declaringClass = input.declaringClass();
                 if (declaringClass == BasicErrorController.class){
@@ -57,20 +60,15 @@ public class SwaggerConfig {
                 .build();
     }
 
-
+    //大标题  详细描述 版本 作者
     private ApiInfo apiInfo() {
-        return new ApiInfoBuilder()
-                //大标题
-                .title("Swagger API")
-                //详细描述
-                .description("Swagger API")
-                //版本
-                .version("1.0")
-                //作者
-                .contact(new Contact("huang", "", "hym950@qq.com"))
-                .license("The Apache License, Version 2.0")
-                .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
-                .build();
+        return new ApiInfoBuilder().title("微信API接口文档")
+                .description("微信API接口文档,所有开放接口皆在此展示！").version("1.0")
+                .contact(new Contact("迈越软件", "http://www.maiyuesoft.com/", "info@MaiyueSoft.com"))
+                .license("南宁市迈越软件有限责任公司").licenseUrl("http://www.maiyuesoft.com/").build();
     }
 
+    
+    
+    
 }

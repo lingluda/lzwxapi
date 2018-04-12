@@ -67,7 +67,7 @@ jQuery(function() {
         prepareNextFile:true,
         compress :false,//不压缩
         chunked: true,
-        server: '/uploader/upPicture.do',
+        server: '/uploader/file/upload',
         threads:5,
         fileNumLimit: NumLimit,
         fileSizeLimit: SizeLimit,    // 200 M
@@ -80,16 +80,11 @@ jQuery(function() {
         label: '继续添加'
     });
     uploader.on( 'uploadSuccess', function(file,res) {
-    	//$resut
     	if(res.RetStatus == '0' && res.RetCode){
     		$resut.push(res.RetData);//返回值
     		console.log("res:" + res);
     	}
-        //console.log("RetCode: " + res.RetCode); // => 'arg1', 'arg2'
-        //console.log("RetData: " + res.RetData); // => 'arg1', 'arg2'
         var html = $('#callback').append($resut);//.html();
-       // html.apple
-        //res
     });
     // 当有文件添加进来时执行，负责view的创建
     function addFile( file ) {

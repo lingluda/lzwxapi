@@ -7,7 +7,8 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>weixin-api</groupId>
     <artifactId>weixin-api</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
+    <packaging>jar</packaging> 
 
     <!-- 通过继承 config-boot-starter-parent 实现依赖配置-->
     <parent>
@@ -75,7 +76,10 @@
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
         </dependency>
-
+		<dependency>
+		  	<groupId>org.springframework.boot</groupId>
+		  	<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-tx</artifactId>
@@ -222,15 +226,27 @@
 		    <artifactId>kryo</artifactId>
 		    <version>${kryo.varsion}</version>
 		</dependency>
-		
+		<dependency>
+	        <groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-resources-plugin</artifactId>
+	        <version>2.6</version>
+	    </dependency>
     </dependencies>
 
 
+    <!-- jar -->
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+					<execution>  
+						<goals>
+							<goal>repackage</goal>  
+						</goals>
+					</execution>
+				</executions>
                 <configuration>
                     <fork>true</fork>
                     <jvmArguments>  
@@ -238,6 +254,15 @@
           			</jvmArguments> 
                 </configuration>
             </plugin>
+            <plugin>  
+		       <artifactId>maven-compiler-plugin</artifactId>  
+		       <version>3.1</version>  
+		       <configuration>  
+		         <source>1.8</source>  
+		         <target>1.8</target>  
+		       </configuration>  
+		    </plugin> 
         </plugins>
     </build>
+    
 </project>

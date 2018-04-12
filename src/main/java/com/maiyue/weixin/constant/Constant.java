@@ -2,9 +2,7 @@ package com.maiyue.weixin.constant;
 
 import org.apache.commons.lang3.RandomUtils;
 
-/**
- * Created by huang on 2016/3/8.
- */
+
 public class Constant {
 
 
@@ -29,29 +27,41 @@ public class Constant {
 
     public final static Integer QUARTZ_TASK_INFO_ENABLE = 1;
     public final static Integer QUARTZ_TASK_INFO_DISABLE = 0;
+    
+    /**
+     * ID-in查询
+     */
+    public final static String IN_SELECT_IDS = "ids";
 
     
-    
-    
-    
-    
-    
-    
-    
+    /*************************************************** 系统 配置 存入Redis的键***************************************************/
+    /***
+     * 程序域名
+     */
+    public final static String DOMAIN_NAME = "SdTC01ZRIT7fUEic6nbM";
     /***
      * 上传下载路径键
      */
-    public final static String UP_DOWN_LOAD_PATH = "up_down_load_path";
-    
+    public final static String UP_DOWN_LOAD_PATH = "d0fRGLd747Nc0cytLdKB";
     /***
      * 缓存路径
      */
-    public final static String UP_DOWN_TEMP_PATH = "up_down_temp_path";
-    
+    public final static String UP_DOWN_TEMP_PATH = "HIOiKggAh1mLurL4zzU9";
     /***
      * 所在盘符
      */
-    public final static String WHERE_DISK_PATH = "where_disk_path";
+    public final static String WHERE_DISK_PATH = "a45KIdPRG8sBLnjv4WFg";
+    /***
+     * 程序端口
+     */
+    public final static String SERVER_PORT = "JPRDYHoPNu2Sk5ZcTRZ6";
+    /***
+     * 程序默认端口
+     */
+    public final static Integer DEFAULT_SERVER_PORT = 8100;
+    
+    /*************************************************** 系统 配置 存入Redis的键 end ***************************************************/
+    
     
     
     

@@ -3,11 +3,15 @@ package com.maiyue.weixin.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.maiyue.weixin.constant.Business;
+import com.maiyue.weixin.constant.Constant;
 import com.maiyue.weixin.mapper.BaseMapper;
 import com.maiyue.weixin.service.BaseService;
+import com.maiyue.weixin.utils.RedisUtil;
 
 import java.util.List;
 import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 
 /**
@@ -18,6 +22,9 @@ import java.util.Map;
  * PK :代表对象的主键类型
  */
 public abstract class BaseServiceImpl<Model, PK> implements BaseService<Model, PK> {
+	
+	@Autowired
+	private RedisUtil redisUtil;
 	
     /**
      * 定义成抽象方法,由子类实现,完成dao的注入
@@ -58,7 +65,19 @@ public abstract class BaseServiceImpl<Model, PK> implements BaseService<Model, P
      * @return
      */
     public Model selectById(PK id) {
-        return getMapper().selectByPrimaryKey(id);
+    	Model model = null;
+    	if(redisUtil.get((String)id) == null){
+    		model = getMapper().selectByPrimaryKey(id);
+    		if(model == null)
+    			redisUtil.set((String)id, false, Constant.exTime());
+    		else
+    			redisUtil.set((String)id, true, Constant.exTime());
+    	}else{
+    		boolean flag = (boolean) redisUtil.get((String)id);
+    		if(flag)
+    		model = getMapper().selectByPrimaryKey(id);
+    	}
+        return model;
     }
 
     

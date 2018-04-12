@@ -1,0 +1,64 @@
+<html>
+<head>
+<meta charset="utf-8">
+<script src="/js/jquery-1.11.3.js"></script>
+<link href="/css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/css/webuploader/webuploader.css" rel="stylesheet" type="text/css">
+<script src="/js/webuploader/webuploader.min.js" type="text/javascript"></script>
+<style type="text/css">
+#up-content{width: 80%;height: 60%;margin: auto;}
+.up-btns{float: right; margin-right: 10px;}
+.up-dateil{float: left;}
+</style>
+</head>
+<body>
+<input type="hidden" id="fileNumLimit" value="${fileNumLimit}">
+<input type="hidden" id="fileSizeLimit" value="${fileSizeLimit}">
+<input type="hidden" id="fileSingleSizeLimit" value="${fileSingleSizeLimit}">
+<script type="text/javascript">
+$(function() {
+	var sizeLimitMB = parseInt($('#fileSizeLimit').val());
+	var singleSizeLimitMB = parseInt($('#fileSingleSizeLimit').val());
+	$('#sizeLimitMB').html((sizeLimitMB/1024/1024) + " MB");
+	$('#singleSizeLimitMB').html((singleSizeLimitMB/1024/1024) + " MB");
+});
+</script>
+<br>
+<div class="container" id="up-content">
+  <div class="row clearfix">
+	<div class="col-md-12 column">
+		<div class="panel panel-default" style="border:none;">
+			<div class="panel-heading" style="background-color: #c1d5ecba;border-color: #c1d5ecba;">
+				<h4 class="panel-title"><i class="glyphicon glyphicon-th-list"></i>
+					上传附件<small>多文件</small>
+				</h4>
+			</div>
+			<div class="panel-body">
+			    <h4 style="color: #9a9898;" id="up-title">请选择文件</h4>
+			    <!-- 文件容器 -->
+				<div id="uploader" class="container" style="width: 100%;">
+				    <!--存放文件的容器-->
+	                <div id="fileList" class="uploader-list"></div>
+	            </div>
+			</div>
+			<div class="panel-footer" style="background-color: #fbfbfb6b;">
+			    <div class="up-dateil"></div>
+				<!-- 按钮组 -->
+					<div class="btns container" id="up-btns">
+	                    <div id="UploadBtn" class="webuploader-pick up-btns">
+	                    	<i class="glyphicon glyphicon-upload"></i> 开始上传
+	                    </div>
+	                    <div id="picker" class="webuploader-container up-btns">
+	                        <i class="glyphicon glyphicon-paperclip"></i> 选择文件 
+	                        <input type="file" name="file" class="webuploader-element-invisible" multiple="multiple">
+	                    </div>
+	                </div>
+	                
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="/js/webuploader/my-uploader-slice.js" type="text/javascript"></script>
+</body>
+</html>

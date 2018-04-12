@@ -6,6 +6,10 @@ import java.util.Date;
 
 import com.maiyue.weixin.bean.BaseSort;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(value="权限实体信息",description="")
 public class Permission extends BaseSort implements Serializable{
    
 	private static final long serialVersionUID = -7944021604772793227L;
@@ -15,6 +19,7 @@ public class Permission extends BaseSort implements Serializable{
     * 字段名:ID
     * 类型:VARCHAR
      */
+	@ApiModelProperty(name="id",value="ID唯一标识",required=false,dataType="String")
     private String id;
 
     /**
@@ -22,6 +27,7 @@ public class Permission extends BaseSort implements Serializable{
     * 字段名:PID
     * 类型:VARCHAR
      */
+	@ApiModelProperty(name="pid",value="权限标记唯一标识",required=false,dataType="String")
     private String pid;
 
     /**
@@ -29,6 +35,7 @@ public class Permission extends BaseSort implements Serializable{
     * 字段名:PNAME
     * 类型:VARCHAR
      */
+	@ApiModelProperty(name="pname",value="权限名称",required=false,dataType="String")
     private String pname;
 
     /**
@@ -36,6 +43,7 @@ public class Permission extends BaseSort implements Serializable{
     * 字段名:CREATETIME
     * 类型:TIMESTAMP
      */
+	@ApiModelProperty(name="createtime",value="创建时间",required=false,dataType="Date")
     private Date createtime;
 
     /**
@@ -43,6 +51,7 @@ public class Permission extends BaseSort implements Serializable{
     * 字段名:PTYPE
     * 类型:VARCHAR
      */
+	@ApiModelProperty(name="ptype",value="权限类型",required=false,dataType="String")
     private String ptype;
 
     /**
@@ -50,6 +59,7 @@ public class Permission extends BaseSort implements Serializable{
     * 字段名:URL
     * 类型:VARCHAR
      */
+	@ApiModelProperty(name="url",value="权限URL",required=false,dataType="String")
     private String url;
 
     /**
@@ -57,6 +67,7 @@ public class Permission extends BaseSort implements Serializable{
     * 字段名:SORT
     * 类型:DECIMAL
      */
+	@ApiModelProperty(name="sort",value="权限排序",required=false,dataType="long")
     private BigDecimal sort;
 
     /**
@@ -64,6 +75,7 @@ public class Permission extends BaseSort implements Serializable{
     * 字段名:CARD
     * 类型:VARCHAR
      */
+	@ApiModelProperty(name="card",value="权限卡片",required=false,dataType="String")
     private String card;
 
     /**
@@ -71,6 +83,7 @@ public class Permission extends BaseSort implements Serializable{
     * 字段名:CARD_URL
     * 类型:VARCHAR
      */
+	@ApiModelProperty(name="cardUrl",value="权限卡片地址",required=false,dataType="String")
     private String cardUrl;
 
     /**
@@ -78,6 +91,7 @@ public class Permission extends BaseSort implements Serializable{
     * 字段名:PARENT_ID
     * 类型:VARCHAR
      */
+	@ApiModelProperty(name="parentId",value="上级ID",required=false,dataType="String")
     private String parentId;
 
     /**
@@ -85,6 +99,7 @@ public class Permission extends BaseSort implements Serializable{
      * 字段名:STATUS
      * 类型:VARCHAR
       */
+	 @ApiModelProperty(name="status",value="状态 0 正常 -1 停用 1 锁定",required=false,dataType="String")
      private String status;
     
     /**

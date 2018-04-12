@@ -1,3 +1,6 @@
+var NumLimit = $('#fileNumLimit').val();
+var SizeLimit = $('#fileSizeLimit').val();//200MB
+var SingleSizeLimit = $('#fileSingleSizeLimit').val();//3MB
 $(function() {
 	 $list = $('#fileList');
      var flie_count = 0;
@@ -8,7 +11,7 @@ $(function() {
          //swf文件路径
          swf: '/swf/Uploader.swf',
          // 文件接收服务端。
-         server: 'chunkUpload.do',
+         server: '/uploader/file/slice',
          // 选择文件的按钮。可选。
          // 内部根据当前运行是创建，可能是input元素，也可能是flash.
          pick: '#picker',
@@ -16,9 +19,9 @@ $(function() {
          chunkSize: 3 * 1024 * 1024,//8MB
          chunkRetry: 3,//网络问题上传失败后重试次数
          threads: 1, //上传并发数
-         //fileNumLimit :1,
-         fileSizeLimit: 2000 * 1024 * 1024,//最大2GB
-         fileSingleSizeLimit: 2000 * 1024 * 1024,
+         fileNumLimit: NumLimit,
+         fileSizeLimit: SizeLimit,    // 200 M
+         fileSingleSizeLimit: SingleSizeLimit,   //单文件大小限制 3 M
          resize: false,//不压缩
          prepareNextFile:true,
      });
@@ -102,10 +105,9 @@ $(function() {
      uploader.on('uploadBeforeSend', function(block,data) {
          // block为分块数据。
          // file为分块对应的file对象。
-         var fileMd5 = block.file.wholeMd5;
-         // 修改data可以控制发送哪些携带数据。
+    	 // 修改data可以控制发送哪些携带数据。
          // 将存在file对象中的md5数据携带发送过去。
-         data.md5value = fileMd5;//md5
+         data.md5Id = block.file.wholeMd5;//md5
      });
    
      // 文件上传过程中创建进度条实时显示。
@@ -132,6 +134,16 @@ $(function() {
          console.log("res:" + res.RetData);
          
      });
+     
+     uploader.onError = function( code ) {
+     	if(code == 'F_EXCEED_SIZE'){
+     		alert('文件超出指定上传大小！');
+     	}else if(code == 'Q_TYPE_DENIED'){
+     		alert('文件类型不正确！');
+     	}else{
+     		alert('error: ' + code );
+     	}
+     };
      
      //出错
      uploader.on('uploadError', function (file) {

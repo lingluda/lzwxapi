@@ -7,19 +7,19 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Method;
+import java.net.URLEncoder;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.maiyue.weixin.bean.FileBean;
-import com.maiyue.weixin.utils.jsonUtil.JSONUtils;
 
 public class FileUtils {
 	
@@ -56,7 +56,7 @@ public class FileUtils {
 	             }
 	             fos.flush();
 		    	 long end = System.currentTimeMillis();
-		    	 logger.debug("合并文件耗时:{}毫秒",(end-strat));
+		    	 logger.info("合并文件耗时：" + (end-strat) + " 毫秒");
 	    	 }
 	    	 result = resultFile.length();
 	    }catch(Exception e) {
@@ -78,9 +78,50 @@ public class FileUtils {
 	
 	
 	
+	  /**
+     * URL 解码
+     * @return String
+     * @date 2015-3-17 下午04:09:51
+     */
+	public static String getURLDecoderString(String str) {
+        String result = "";
+        if (StringUtils.isBlank(str)) {
+            return "";
+        }
+        try {
+            result = java.net.URLDecoder.decode(str,"UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
 	
 	
-	
+	/***
+	 * 设置相对应的 浏览器文件名编码
+	 * @param userAgent
+	 * @param filename
+	 * @return
+	 */
+	public static String setBrowserEncoding(String userAgent,String filename){
+		 if(StringUtils.isBlank(userAgent) && StringUtils.isBlank(filename)){
+			 return null;
+		 }
+		 if (userAgent.contains("MSIE")||userAgent.contains("Trident")) {
+	            try {
+	            	filename = URLEncoder.encode(filename,"UTF-8");
+	            } catch (UnsupportedEncodingException e) {
+	                e.printStackTrace();
+	            }
+	      } else { //非IE浏览器的处理：
+	            try {
+	            	filename = new String(filename.getBytes("UTF-8"),"ISO-8859-1");
+	            } catch (UnsupportedEncodingException e) {
+	                e.printStackTrace();
+	            }
+	     }
+		return filename;
+	}
 	
 	/***
 	 * 保存文件流到文件
@@ -91,17 +132,21 @@ public class FileUtils {
 	 * @param disk
 	 * @return
 	 */
-    public static String copyInputStreamToFile(InputStream inputStream,String filepath,String filename,
-    		String originName,String disk){
-    	 
+    public static boolean copyStreamToFile(InputStream inputStream,String filepath,String filename,String originName,String disk){
     	 FileOutputStream fos = null;
     	 FileInputStream in = null;
+    	 File file = null;
     	 try {
              if(inputStream == null || StringUtils.isBlank(filepath)) {
-                 return null;
+                 return false;
              }
              long strat = System.currentTimeMillis();
-             File file = new File(filepath,filename);
+             String path = (disk + filepath);
+             file = new File(path);
+             if(!file.exists()){
+            	 file.mkdirs();
+             }
+             file = new File(path,filename);
              byte[] b = new byte[102400];//set b 100Kb byte.
              int len = 0;
              long totalBytes = 0; //文件大小
@@ -116,14 +161,11 @@ public class FileUtils {
              //文件内存映射，提高读写超大文件可能和速度，但会造成文件锁定不可操作。
              MappedByteBuffer byteBuffer = in.getChannel().map(FileChannel.MapMode.READ_ONLY, 0, file.length());  
              FileUtils.clean(byteBuffer);
-             String sizeKB = String.valueOf(totalBytes/1024) + "KB";
-             FileBean fileBean = new FileBean(filename,originName,(filepath + filename),disk,sizeKB);
              long end = System.currentTimeMillis();
-             logger.debug("文件:{}({})KB,上传耗时:{} 毫秒!",file.getName(),totalBytes/1024,(end-strat));
-             return JSONUtils.toJSONObject(fileBean, null);
+             logger.info("文件名:{},UUID文件名称:{},文件大小:{}KB,上传耗时:{}毫秒", originName,file.getName(),(totalBytes/1024),(end-strat));
+             return true;
          } catch (Exception e) {
              e.printStackTrace();
-             return null;
          } finally {
          	try {
  				if(fos != null){fos.close();}
@@ -133,6 +175,7 @@ public class FileUtils {
  				logger.error(e2.getCause().getMessage(),e2);
  			}
          }
+    	 return false;
     }
     
     
@@ -200,7 +243,7 @@ public class FileUtils {
 	            MappedByteBuffer byteBuffer = in.getChannel().map(FileChannel.MapMode.READ_ONLY, 0, file.length());  
 	            FileUtils.clean(byteBuffer);
 	            long end = System.currentTimeMillis();
-	            logger.debug("文件:{}({})KB,上传耗时:{} 毫秒!",file.getName(),totalBytes/1024,(end-strat));
+	            logger.info("文件名称:{},文件大小:{}KB,上传耗时:{}毫秒",file.getName(),(totalBytes/1024),(end-strat));
             }
         } catch (Exception e) {
             logger.error(e.getCause().getMessage(),e);
@@ -216,17 +259,17 @@ public class FileUtils {
     }
     
     
-    /**
-   	 * 在MweixinedByteBuffer释放后再对它进行读操作的话就会引发jvm crash，在并发情况下很容易发生
-   	 * 正在释放时另一个线程正开始读取，于是crash就发生了。所以为了系统稳定性释放前一般需要检
-   	 * 查是否还有线程在读或写
-   	 * @param mweixinedByteBuffer
-   	 */
+    
+   
+    
+    
+    /***
+     * 清除缓存
+     * @param buffer
+     * @throws Exception
+     */
     @SuppressWarnings({ "unchecked", "rawtypes" })
     public static void clean(final Object buffer) throws Exception {
-    	 if (buffer == null) {
-			return;
-		 }
          AccessController.doPrivileged(new PrivilegedAction() {
              public Object run() {
 	             try {
@@ -243,6 +286,39 @@ public class FileUtils {
      }
     
     
+    
+    /**
+	 * 在MappedByteBuffer释放后再对它进行读操作的话就会引发jvm crash，在并发情况下很容易发生
+	 * 正在释放时另一个线程正开始读取，于是crash就发生了。所以为了系统稳定性释放前一般需要检
+	 * 查是否还有线程在读或写
+	 * @param mappedByteBuffer
+	 */
+	public static void unmap(final MappedByteBuffer mappedByteBuffer) {
+		try {
+			if (mappedByteBuffer == null) {
+				return;
+			}
+			mappedByteBuffer.force();
+			AccessController.doPrivileged(new PrivilegedAction<Object>() {
+				@Override
+				public Object run() {
+					try {
+						Method getCleanerMethod = mappedByteBuffer.getClass().getMethod("cleaner", new Class[0]);
+						getCleanerMethod.setAccessible(true);
+						sun.misc.Cleaner cleaner = (sun.misc.Cleaner) getCleanerMethod.invoke(mappedByteBuffer, new Object[0]);
+						cleaner.clean();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					return null;
+				}
+			});
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+    
 	 /***
 	  * 年月日文件夹
 	  * @return
@@ -255,7 +331,6 @@ public class FileUtils {
 		   return (File.separator + year + File.separator + month + File.separator + day + File.separator);
 	 }
     
-	 
 	 /***
 	  * 年月日文件夹
 	  * @return
@@ -264,6 +339,45 @@ public class FileUtils {
 		  return ComUtil.randomChar(16);
 	 }
 	 
-	 
-	 
+	 /*
+	 public void downloadPost(String filepath,String filename,HttpServletRequest request, HttpServletResponse response) {
+	    	String ctxPath = this.DiskPath() + filepath;
+	    	if(StringUtils.isEmpty(filename) && StringUtils.isBlank(filename)){
+	    		filename = filepath.substring(filepath.lastIndexOf("/")+1);
+	    	}
+			File file = new File(ctxPath);
+			BufferedInputStream bis = null;
+			BufferedOutputStream bos = null;
+			OutputStream fos = null;
+			InputStream fis = null;
+			try {
+		    	String userAgent = request.getHeader("User-Agent");
+				String downloadFielName = setBrowserEncoding(userAgent,filename);
+				response.setContentType("application/octet-stream; charset=utf-8"); 
+				response.setHeader("Content-Disposition", "attachment; filename="+downloadFielName);
+				response.setContentLength(org.apache.commons.io.FileUtils.readFileToByteArray(file).length);//文件大小   k 
+				fis = new FileInputStream(file.getAbsolutePath());
+				bis = new BufferedInputStream(fis);
+				fos = response.getOutputStream();
+				bos = new BufferedOutputStream(fos);
+				int bytesRead = 0;
+				byte[] buffer = new byte[5 * 1024];
+				while ((bytesRead = bis.read(buffer)) != -1) {
+					bos.write(buffer, 0, bytesRead);
+				}
+				bos.flush();
+			}catch (Exception e) {
+				logger.error(e.getMessage(), e);
+			}finally {
+				try {
+					bis.close();
+					bos.close();
+					fos.close();
+					fis.close();
+				}catch (IOException e) {
+					logger.error(e.getMessage(), e);
+				}
+			}
+		}
+	 */
 }

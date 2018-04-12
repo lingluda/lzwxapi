@@ -1,7 +1,13 @@
 #server端口 、 及次路径
 server:
   port: 8100
-
+  
+#启用shutdown不需要验证
+endpoints:
+  shutdown:
+      enabled: true
+      sensitive: false
+      path: /basic/system/shutdown
 spring:
 # 数据源配置
 #文件上传大小配置    

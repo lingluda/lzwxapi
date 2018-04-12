@@ -1,28 +1,6 @@
 package com.maiyue.weixin.config;
 
-import com.maiyue.weixin.quartz.MyJobFactory;
-import org.quartz.JobDetail;
-import org.quartz.Scheduler;
-import org.quartz.ee.servlet.QuartzInitializerListener;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.config.PropertiesFactoryBean;
-import org.springframework.boot.autoconfigure.AutoConfigureAfter;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.scheduling.quartz.CronTriggerFactoryBean;
-import org.springframework.scheduling.quartz.JobDetailFactoryBean;
-import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 
-import javax.annotation.Resource;
-import javax.sql.DataSource;
-import java.io.IOException;
-import java.util.Properties;
-
-
-/**
- * Created by huang on 2018/01/12.
- */
 /*
 @Configuration
 @AutoConfigureAfter({ DruidConfig.class })
