@@ -33,7 +33,7 @@ public class IndexController extends BaseController{
      * @param request
      * @return
      */
-    @RequestMapping("/business/index")
+    @RequestMapping(value="/business/index")
     public String index(ModelMap model,HttpSession session,HttpServletRequest request) {
     	String uid = getCurrUser().getId();
     	System.out.println("uid:" + uid);

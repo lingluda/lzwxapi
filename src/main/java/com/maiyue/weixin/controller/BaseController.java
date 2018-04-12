@@ -5,14 +5,11 @@ import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.maiyue.weixin.base.bean.User;
 import com.maiyue.weixin.constant.Constant;
 import com.maiyue.weixin.redis.KryoUtil;
 
 
-@RestController
 public class BaseController{
 	
 	private static Logger logger = LoggerFactory.getLogger(BaseController.class);

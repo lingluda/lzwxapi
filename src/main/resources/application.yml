@@ -16,7 +16,7 @@ spring:
       maxRequestSize: 1024Mb   
   mvc:
      #出现错误时, 直接抛出异常
-     throw-exception-if-no-handler-found: false
+     throw-exception-if-no-handler-found: true
   #resources: 
      #不要为我们工程中的资源文件建立映射
      #add-mappings: false   
@@ -106,7 +106,7 @@ shiro:
   sessionValidationInterval: 1800000
 #定时检查session
   sessionValidationSchedulerEnabled: true
-  successUrl: /index
+  successUrl: /business/index
   loginUrl: /login.html
   unauthorizedUrl: /403
   filterChainDefinitionMap:
