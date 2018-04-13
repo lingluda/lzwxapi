@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.maiyue.business.mapper.ScheduleMapper" >
+  <resultMap id="BaseResultMap" type="com.maiyue.business.bean.Schedule" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="TERM_YEAR" property="termYear" jdbcType="VARCHAR" />
+    <result column="TERM_ID" property="termId" jdbcType="VARCHAR" />
+    <result column="CLASS_ID" property="classId" jdbcType="VARCHAR" />
+    <result column="SCHEDULE_NAME" property="scheduleName" jdbcType="VARCHAR" />
+    <result column="WEEKS_NUM" property="weeksNum" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="STATR" property="statr" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, TERM_YEAR, TERM_ID, CLASS_ID, SCHEDULE_NAME, WEEKS_NUM, CREATE_TIME, STATR
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_BIS_SCHEDULE
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_BIS_SCHEDULE
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.maiyue.business.bean.Schedule" >
+    insert into T_BIS_SCHEDULE (ID, TERM_YEAR, TERM_ID, 
+      CLASS_ID, SCHEDULE_NAME, WEEKS_NUM, 
+      CREATE_TIME, STATR)
+    values (#{id,jdbcType=VARCHAR}, #{termYear,jdbcType=VARCHAR}, #{termId,jdbcType=VARCHAR}, 
+      #{classId,jdbcType=VARCHAR}, #{scheduleName,jdbcType=VARCHAR}, #{weeksNum,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{statr,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.maiyue.business.bean.Schedule" >
+    insert into T_BIS_SCHEDULE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="termYear != null" >
+        TERM_YEAR,
+      </if>
+      <if test="termId != null" >
+        TERM_ID,
+      </if>
+      <if test="classId != null" >
+        CLASS_ID,
+      </if>
+      <if test="scheduleName != null" >
+        SCHEDULE_NAME,
+      </if>
+      <if test="weeksNum != null" >
+        WEEKS_NUM,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="statr != null" >
+        STATR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="termYear != null" >
+        #{termYear,jdbcType=VARCHAR},
+      </if>
+      <if test="termId != null" >
+        #{termId,jdbcType=VARCHAR},
+      </if>
+      <if test="classId != null" >
+        #{classId,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduleName != null" >
+        #{scheduleName,jdbcType=VARCHAR},
+      </if>
+      <if test="weeksNum != null" >
+        #{weeksNum,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="statr != null" >
+        #{statr,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.business.bean.Schedule" >
+    update T_BIS_SCHEDULE
+    <set >
+      <if test="termYear != null" >
+        TERM_YEAR = #{termYear,jdbcType=VARCHAR},
+      </if>
+      <if test="termId != null" >
+        TERM_ID = #{termId,jdbcType=VARCHAR},
+      </if>
+      <if test="classId != null" >
+        CLASS_ID = #{classId,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduleName != null" >
+        SCHEDULE_NAME = #{scheduleName,jdbcType=VARCHAR},
+      </if>
+      <if test="weeksNum != null" >
+        WEEKS_NUM = #{weeksNum,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="statr != null" >
+        STATR = #{statr,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.maiyue.business.bean.Schedule" >
+    update T_BIS_SCHEDULE
+    set TERM_YEAR = #{termYear,jdbcType=VARCHAR},
+      TERM_ID = #{termId,jdbcType=VARCHAR},
+      CLASS_ID = #{classId,jdbcType=VARCHAR},
+      SCHEDULE_NAME = #{scheduleName,jdbcType=VARCHAR},
+      WEEKS_NUM = #{weeksNum,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      STATR = #{statr,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="findByPage" resultMap="BaseResultMap" parameterType="java.util.HashMap" >
+    select <include refid="Base_Column_List"/> from T_BIS_SCHEDULE
+    <where>
+      <if test="id != null">
+        AND ID = #{id,jdbcType=VARCHAR}
+      </if>
+      <if test="termYear != null">
+        AND TERM_YEAR = #{termYear,jdbcType=VARCHAR}
+      </if>
+      <if test="termId != null">
+        AND TERM_ID = #{termId,jdbcType=VARCHAR}
+      </if>
+      <if test="classId != null">
+        AND CLASS_ID = #{classId,jdbcType=VARCHAR}
+      </if>
+      <if test="scheduleName != null">
+        AND SCHEDULE_NAME = #{scheduleName,jdbcType=VARCHAR}
+      </if>
+      <if test="weeksNum != null">
+        AND WEEKS_NUM = #{weeksNum,jdbcType=VARCHAR}
+      </if>
+      <if test="createTime != null">
+        AND CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="statr != null">
+        AND STATR = #{statr,jdbcType=VARCHAR}
+      </if>
+      <if test="ids != null">
+       AND ID IN 
+         <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> 
+        #{item,jdbcType=VARCHAR}
+         </foreach>
+      </if>
+    </where>
+      <if test="order != null">
+      ORDER BY ${order} ${sorting}
+      </if>
+  </select>
+</mapper>

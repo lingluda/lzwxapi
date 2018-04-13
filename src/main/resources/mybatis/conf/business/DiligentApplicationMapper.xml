@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.maiyue.business.mapper.DiligentApplicationMapper" >
+  <resultMap id="BaseResultMap" type="com.maiyue.business.bean.DiligentApplication" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="DILIGENT_ID" property="diligentId" jdbcType="VARCHAR" />
+    <result column="APPLICANT_ID" property="applicantId" jdbcType="VARCHAR" />
+    <result column="START_TIME" property="startTime" jdbcType="VARCHAR" />
+    <result column="END_TIME" property="endTime" jdbcType="VARCHAR" />
+    <result column="AUDIT_STATE" property="auditState" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, DILIGENT_ID, APPLICANT_ID, START_TIME, END_TIME, AUDIT_STATE, STATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_BIS_DILIGENT_APPLICATION
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_BIS_DILIGENT_APPLICATION
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.maiyue.business.bean.DiligentApplication" >
+    insert into T_BIS_DILIGENT_APPLICATION (ID, DILIGENT_ID, APPLICANT_ID, 
+      START_TIME, END_TIME, AUDIT_STATE, 
+      STATE)
+    values (#{id,jdbcType=VARCHAR}, #{diligentId,jdbcType=VARCHAR}, #{applicantId,jdbcType=VARCHAR}, 
+      #{startTime,jdbcType=VARCHAR}, #{endTime,jdbcType=VARCHAR}, #{auditState,jdbcType=VARCHAR}, 
+      #{state,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.maiyue.business.bean.DiligentApplication" >
+    insert into T_BIS_DILIGENT_APPLICATION
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="diligentId != null" >
+        DILIGENT_ID,
+      </if>
+      <if test="applicantId != null" >
+        APPLICANT_ID,
+      </if>
+      <if test="startTime != null" >
+        START_TIME,
+      </if>
+      <if test="endTime != null" >
+        END_TIME,
+      </if>
+      <if test="auditState != null" >
+        AUDIT_STATE,
+      </if>
+      <if test="state != null" >
+        STATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="diligentId != null" >
+        #{diligentId,jdbcType=VARCHAR},
+      </if>
+      <if test="applicantId != null" >
+        #{applicantId,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="auditState != null" >
+        #{auditState,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.business.bean.DiligentApplication" >
+    update T_BIS_DILIGENT_APPLICATION
+    <set >
+      <if test="diligentId != null" >
+        DILIGENT_ID = #{diligentId,jdbcType=VARCHAR},
+      </if>
+      <if test="applicantId != null" >
+        APPLICANT_ID = #{applicantId,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        START_TIME = #{startTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null" >
+        END_TIME = #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="auditState != null" >
+        AUDIT_STATE = #{auditState,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.maiyue.business.bean.DiligentApplication" >
+    update T_BIS_DILIGENT_APPLICATION
+    set DILIGENT_ID = #{diligentId,jdbcType=VARCHAR},
+      APPLICANT_ID = #{applicantId,jdbcType=VARCHAR},
+      START_TIME = #{startTime,jdbcType=VARCHAR},
+      END_TIME = #{endTime,jdbcType=VARCHAR},
+      AUDIT_STATE = #{auditState,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="findByPage" resultMap="BaseResultMap" parameterType="java.util.HashMap" >
+    select <include refid="Base_Column_List"/> from T_BIS_DILIGENT_APPLICATION
+    <where>
+      <if test="id != null">
+        AND ID = #{id,jdbcType=VARCHAR}
+      </if>
+      <if test="diligentId != null">
+        AND DILIGENT_ID = #{diligentId,jdbcType=VARCHAR}
+      </if>
+      <if test="applicantId != null">
+        AND APPLICANT_ID = #{applicantId,jdbcType=VARCHAR}
+      </if>
+      <if test="startTime != null">
+        AND START_TIME = #{startTime,jdbcType=VARCHAR}
+      </if>
+      <if test="endTime != null">
+        AND END_TIME = #{endTime,jdbcType=VARCHAR}
+      </if>
+      <if test="auditState != null">
+        AND AUDIT_STATE = #{auditState,jdbcType=VARCHAR}
+      </if>
+      <if test="state != null">
+        AND STATE = #{state,jdbcType=VARCHAR}
+      </if>
+      <if test="ids != null">
+       AND ID IN 
+         <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> 
+        #{item,jdbcType=VARCHAR}
+         </foreach>
+      </if>
+    </where>
+      <if test="order != null">
+      ORDER BY ${order} ${sorting}
+      </if>
+  </select>
+</mapper>

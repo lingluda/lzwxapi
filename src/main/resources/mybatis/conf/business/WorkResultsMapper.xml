@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.maiyue.business.mapper.WorkResultsMapper" >
+  <resultMap id="BaseResultMap" type="com.maiyue.business.bean.WorkResults" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="WORK_LOG_ID" property="workLogId" jdbcType="VARCHAR" />
+    <result column="APPLICANT_ID" property="applicantId" jdbcType="VARCHAR" />
+    <result column="RESUT_URL" property="resutUrl" jdbcType="VARCHAR" />
+    <result column="RESUT_TYPE" property="resutType" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, WORK_LOG_ID, APPLICANT_ID, RESUT_URL, RESUT_TYPE, CREATE_TIME, STATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_BIS_WORK_RESULTS
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_BIS_WORK_RESULTS
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.maiyue.business.bean.WorkResults" >
+    insert into T_BIS_WORK_RESULTS (ID, WORK_LOG_ID, APPLICANT_ID, 
+      RESUT_URL, RESUT_TYPE, CREATE_TIME, 
+      STATE)
+    values (#{id,jdbcType=VARCHAR}, #{workLogId,jdbcType=VARCHAR}, #{applicantId,jdbcType=VARCHAR}, 
+      #{resutUrl,jdbcType=VARCHAR}, #{resutType,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{state,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.maiyue.business.bean.WorkResults" >
+    insert into T_BIS_WORK_RESULTS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="workLogId != null" >
+        WORK_LOG_ID,
+      </if>
+      <if test="applicantId != null" >
+        APPLICANT_ID,
+      </if>
+      <if test="resutUrl != null" >
+        RESUT_URL,
+      </if>
+      <if test="resutType != null" >
+        RESUT_TYPE,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="state != null" >
+        STATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="workLogId != null" >
+        #{workLogId,jdbcType=VARCHAR},
+      </if>
+      <if test="applicantId != null" >
+        #{applicantId,jdbcType=VARCHAR},
+      </if>
+      <if test="resutUrl != null" >
+        #{resutUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="resutType != null" >
+        #{resutType,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.business.bean.WorkResults" >
+    update T_BIS_WORK_RESULTS
+    <set >
+      <if test="workLogId != null" >
+        WORK_LOG_ID = #{workLogId,jdbcType=VARCHAR},
+      </if>
+      <if test="applicantId != null" >
+        APPLICANT_ID = #{applicantId,jdbcType=VARCHAR},
+      </if>
+      <if test="resutUrl != null" >
+        RESUT_URL = #{resutUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="resutType != null" >
+        RESUT_TYPE = #{resutType,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.maiyue.business.bean.WorkResults" >
+    update T_BIS_WORK_RESULTS
+    set WORK_LOG_ID = #{workLogId,jdbcType=VARCHAR},
+      APPLICANT_ID = #{applicantId,jdbcType=VARCHAR},
+      RESUT_URL = #{resutUrl,jdbcType=VARCHAR},
+      RESUT_TYPE = #{resutType,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      STATE = #{state,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="findByPage" resultMap="BaseResultMap" parameterType="java.util.HashMap" >
+    select <include refid="Base_Column_List"/> from T_BIS_WORK_RESULTS
+    <where>
+      <if test="id != null">
+        AND ID = #{id,jdbcType=VARCHAR}
+      </if>
+      <if test="workLogId != null">
+        AND WORK_LOG_ID = #{workLogId,jdbcType=VARCHAR}
+      </if>
+      <if test="applicantId != null">
+        AND APPLICANT_ID = #{applicantId,jdbcType=VARCHAR}
+      </if>
+      <if test="resutUrl != null">
+        AND RESUT_URL = #{resutUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="resutType != null">
+        AND RESUT_TYPE = #{resutType,jdbcType=VARCHAR}
+      </if>
+      <if test="createTime != null">
+        AND CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="state != null">
+        AND STATE = #{state,jdbcType=VARCHAR}
+      </if>
+      <if test="ids != null">
+       AND ID IN 
+         <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> 
+        #{item,jdbcType=VARCHAR}
+         </foreach>
+      </if>
+    </where>
+      <if test="order != null">
+      ORDER BY ${order} ${sorting}
+      </if>
+  </select>
+</mapper>

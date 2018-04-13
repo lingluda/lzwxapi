@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE generatorConfiguration  
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"  
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">  
+<generatorConfiguration>  
+<!-- 数据库驱动 -->  
+    <!--<classPathEntry  location="F:\.m2\repository\mysql\mysql-connector-java\5.1.30\mysql-connector-java-5.1.30.jar"/>-->
+    <classPathEntry  location="H:\Studio\oracle\install\patches\5923165\files\jdbc\lib\classes12.jar"/>
+    <context id="DB2Tables"  targetRuntime="MyBatis3">
+        <!-- 注释 -->
+        <!-- 指定生成的java文件的编码,没有直接生成到项目时中文可能会乱码 -->
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <plugin type="com.mbase.mybatis.MapperPlugin">
+            <!-- 生成文件项目路径 -->
+            <property name="daoTargetProject" value="src/main/java"></property>
+            <!-- 生成Mapper的包路径 -->
+            <property name="daoTargetPackage" value="com.maiyue.business.mapper"></property>
+            <!-- Mapper继承的BaseDao类 -->
+            <property name="daoSuperClass" value="com.maiyue.weixin.mapper.BaseMapper"></property>
+            <!-- 继承BaseDao的序列化类 -->
+            <property name="serializeSuperClass" value="String"></property>
+        </plugin>
+		
+        <plugin type="com.mbase.mybatis.ServicePlugin">
+            <!-- 继承的BaseService序列化类 -->
+            <property name="serializeSuperClass" value="String"></property>
+            <!-- 生成service接口的项目路径 -->
+            <property name="serviceTargetProject" value="src/main/java"></property>
+            <!-- 生成service接口的包路径 -->
+            <property name="serviceTargetPackage" value="com.maiyue.business.service"></property>
+            <!-- 生成service接口实现类的包 -->
+            <property name="serviceImplTargetPackage" value="com.maiyue.business.service.impl"></property>
+            <!-- Service接口继承的BaseService -->
+            <property name="serviceSuperClass" value="com.maiyue.weixin.service.BaseService"></property>
+            <!-- 继承的BaseDao类 -->
+            <property name="daoSuperClass" value="com.maiyue.weixin.mapper.BaseMapper"></property>
+            <!-- Service实现类继承的BaseServiceImpl类 -->
+            <property name="serviceImplSuperClass" value="com.maiyue.weixin.service.impl.BaseServiceImpl"></property>
+        </plugin>
+		
+		
+        <plugin type="com.mbase.mybatis.ControllerPlugin">
+            <!-- 生成controller的项目路径 -->
+            <property name="controllerTargetProject" value="src/main/java"></property>
+            <!-- 生成controller的包路径 -->
+            <property name="controllerTargetPackage" value="com.maiyue.business.controller"></property>
+            <!-- 继承的BaseController类 -->
+            <property name="baseControllerClass" value="com.maiyue.weixin.controller.BaseController"></property>
+            <!-- service包 -->
+            <property name="servicePackage" value="com.maiyue.business.service"></property>
+            <!-- URL地址 -->
+            <property name="controllerDir" value="/"></property>
+            <!-- 绑定时间转换器的类 -->
+            <!-- <property name="bindDataClass" value="com.maiyue.base.spring.MyCustomDateEditor"></property> -->
+            <!-- 权限ID,没有权限为0 -->
+            <property name="pid" value="0"></property>
+            <!-- jsp路径 -->
+            <property name="jspDir" value="/"></property>
+        </plugin>
+		
+		
+		
+        <commentGenerator type="com.mbase.mybatis.ModelCommentGenerator"> </commentGenerator>
+
+        <!-- 数据库链接URL，用户名、密码   -->  
+        <!--<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/bdm?useUnicode=true&amp;characterEncoding=utf8" userId="root" password="hym@mpoorstu">-->
+        <!-- <property name="useInformationSchema" value="true"></property>-->
+        <!--</jdbcConnection>-->
+        <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
+                        connectionURL="jdbc:oracle:thin:@172.16.8.164:1521:orcl"
+                        userId="liuzhiWx"
+                        password="123456">
+        <property name="remarksReporting" value="true"></property>
+        </jdbcConnection>
+        <javaTypeResolver>
+            <!-- 是否使用bigDecimal， false可自动转化以下类型（Long, Integer, Short, etc.） -->
+            <property name="forceBigDecimals" value="true"/>  
+        </javaTypeResolver>  
+        <!-- 生成模型的包名和位置 -->  
+        <javaModelGenerator targetPackage="com.maiyue.business.bean" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>  
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!-- 生成映射文件的包名和位置 -->  
+        <sqlMapGenerator targetPackage="mybatis.conf.business" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>  
+        </sqlMapGenerator>
+        <!-- 生成DAO的包名和位置 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.maiyue.business.mapper" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+        <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名 -->
+        <!--<table  tableName="USERINFO" schema="UIA" domainObjectName="UserInfo" enableCountByExample="false" -->
+                <!--enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="true" -->
+                <!--selectByExampleQueryId="false" ></table>-->
+        
+				
+				
+				<table  tableName="T_BIS_QUALITY_EVALUATION"  domainObjectName="QualityEvaluation" enableCountByExample="false"
+                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+                selectByExampleQueryId="false" ></table>
+				<table  tableName="T_BIS_SCHEDULE"  domainObjectName="Schedule" enableCountByExample="false"
+                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+                selectByExampleQueryId="false" ></table>
+				<table  tableName="T_BIS_SCHEDULE_ARRANGE"  domainObjectName="ScheduleArrange" enableCountByExample="false"
+                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+                selectByExampleQueryId="false" ></table>
+				<table  tableName="T_BIS_SCORE"  domainObjectName="Score" enableCountByExample="false"
+                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+                selectByExampleQueryId="false" ></table>
+				<table  tableName="T_BIS_WORK_LOG"  domainObjectName="WorkLog" enableCountByExample="false"
+                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+                selectByExampleQueryId="false" ></table>
+				<table  tableName="T_BIS_WORK_RESULTS"  domainObjectName="WorkResults" enableCountByExample="false"
+                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+                selectByExampleQueryId="false" ></table>
+
+				
+	
+				
+    </context>
+</generatorConfiguration>

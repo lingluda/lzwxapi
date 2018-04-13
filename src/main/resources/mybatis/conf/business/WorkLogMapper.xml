@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.maiyue.business.mapper.WorkLogMapper" >
+  <resultMap id="BaseResultMap" type="com.maiyue.business.bean.WorkLog" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="APPLICANT_ID" property="applicantId" jdbcType="VARCHAR" />
+    <result column="JOB_POST" property="jobPost" jdbcType="VARCHAR" />
+    <result column="JOB_TIME" property="jobTime" jdbcType="VARCHAR" />
+    <result column="JOB_CONTENT" property="jobContent" jdbcType="VARCHAR" />
+    <result column="AUDIT_LEVLE" property="auditLevle" jdbcType="VARCHAR" />
+    <result column="CURRENT_LEVEL" property="currentLevel" jdbcType="VARCHAR" />
+    <result column="FIRST_LEVEL" property="firstLevel" jdbcType="VARCHAR" />
+    <result column="FIRST_LEVEL_STATE" property="firstLevelState" jdbcType="VARCHAR" />
+    <result column="FIRST_LEVEL_OPINION" property="firstLevelOpinion" jdbcType="VARCHAR" />
+    <result column="SEC_LEVEL" property="secLevel" jdbcType="VARCHAR" />
+    <result column="SEC_LEVEL_STATE" property="secLevelState" jdbcType="VARCHAR" />
+    <result column="SEC_LEVEL_OPINION" property="secLevelOpinion" jdbcType="VARCHAR" />
+    <result column="THREE_LEVEL" property="threeLevel" jdbcType="VARCHAR" />
+    <result column="THREE_LEVEL_STATE" property="threeLevelState" jdbcType="VARCHAR" />
+    <result column="THREE_LEVEL_OPINION" property="threeLevelOpinion" jdbcType="VARCHAR" />
+    <result column="PROCESS_STATE" property="processState" jdbcType="VARCHAR" />
+    <result column="AUDIT_RESULT" property="auditResult" jdbcType="VARCHAR" />
+    <result column="SUBMIT" property="submit" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, APPLICANT_ID, JOB_POST, JOB_TIME, JOB_CONTENT, AUDIT_LEVLE, CURRENT_LEVEL, FIRST_LEVEL, 
+    FIRST_LEVEL_STATE, FIRST_LEVEL_OPINION, SEC_LEVEL, SEC_LEVEL_STATE, SEC_LEVEL_OPINION, 
+    THREE_LEVEL, THREE_LEVEL_STATE, THREE_LEVEL_OPINION, PROCESS_STATE, AUDIT_RESULT, 
+    SUBMIT, CREATE_TIME, STATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_BIS_WORK_LOG
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_BIS_WORK_LOG
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.maiyue.business.bean.WorkLog" >
+    insert into T_BIS_WORK_LOG (ID, APPLICANT_ID, JOB_POST, 
+      JOB_TIME, JOB_CONTENT, AUDIT_LEVLE, 
+      CURRENT_LEVEL, FIRST_LEVEL, FIRST_LEVEL_STATE, 
+      FIRST_LEVEL_OPINION, SEC_LEVEL, SEC_LEVEL_STATE, 
+      SEC_LEVEL_OPINION, THREE_LEVEL, THREE_LEVEL_STATE, 
+      THREE_LEVEL_OPINION, PROCESS_STATE, AUDIT_RESULT, 
+      SUBMIT, CREATE_TIME, STATE
+      )
+    values (#{id,jdbcType=VARCHAR}, #{applicantId,jdbcType=VARCHAR}, #{jobPost,jdbcType=VARCHAR}, 
+      #{jobTime,jdbcType=VARCHAR}, #{jobContent,jdbcType=VARCHAR}, #{auditLevle,jdbcType=VARCHAR}, 
+      #{currentLevel,jdbcType=VARCHAR}, #{firstLevel,jdbcType=VARCHAR}, #{firstLevelState,jdbcType=VARCHAR}, 
+      #{firstLevelOpinion,jdbcType=VARCHAR}, #{secLevel,jdbcType=VARCHAR}, #{secLevelState,jdbcType=VARCHAR}, 
+      #{secLevelOpinion,jdbcType=VARCHAR}, #{threeLevel,jdbcType=VARCHAR}, #{threeLevelState,jdbcType=VARCHAR}, 
+      #{threeLevelOpinion,jdbcType=VARCHAR}, #{processState,jdbcType=VARCHAR}, #{auditResult,jdbcType=VARCHAR}, 
+      #{submit,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{state,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.maiyue.business.bean.WorkLog" >
+    insert into T_BIS_WORK_LOG
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="applicantId != null" >
+        APPLICANT_ID,
+      </if>
+      <if test="jobPost != null" >
+        JOB_POST,
+      </if>
+      <if test="jobTime != null" >
+        JOB_TIME,
+      </if>
+      <if test="jobContent != null" >
+        JOB_CONTENT,
+      </if>
+      <if test="auditLevle != null" >
+        AUDIT_LEVLE,
+      </if>
+      <if test="currentLevel != null" >
+        CURRENT_LEVEL,
+      </if>
+      <if test="firstLevel != null" >
+        FIRST_LEVEL,
+      </if>
+      <if test="firstLevelState != null" >
+        FIRST_LEVEL_STATE,
+      </if>
+      <if test="firstLevelOpinion != null" >
+        FIRST_LEVEL_OPINION,
+      </if>
+      <if test="secLevel != null" >
+        SEC_LEVEL,
+      </if>
+      <if test="secLevelState != null" >
+        SEC_LEVEL_STATE,
+      </if>
+      <if test="secLevelOpinion != null" >
+        SEC_LEVEL_OPINION,
+      </if>
+      <if test="threeLevel != null" >
+        THREE_LEVEL,
+      </if>
+      <if test="threeLevelState != null" >
+        THREE_LEVEL_STATE,
+      </if>
+      <if test="threeLevelOpinion != null" >
+        THREE_LEVEL_OPINION,
+      </if>
+      <if test="processState != null" >
+        PROCESS_STATE,
+      </if>
+      <if test="auditResult != null" >
+        AUDIT_RESULT,
+      </if>
+      <if test="submit != null" >
+        SUBMIT,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="state != null" >
+        STATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="applicantId != null" >
+        #{applicantId,jdbcType=VARCHAR},
+      </if>
+      <if test="jobPost != null" >
+        #{jobPost,jdbcType=VARCHAR},
+      </if>
+      <if test="jobTime != null" >
+        #{jobTime,jdbcType=VARCHAR},
+      </if>
+      <if test="jobContent != null" >
+        #{jobContent,jdbcType=VARCHAR},
+      </if>
+      <if test="auditLevle != null" >
+        #{auditLevle,jdbcType=VARCHAR},
+      </if>
+      <if test="currentLevel != null" >
+        #{currentLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="firstLevel != null" >
+        #{firstLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="firstLevelState != null" >
+        #{firstLevelState,jdbcType=VARCHAR},
+      </if>
+      <if test="firstLevelOpinion != null" >
+        #{firstLevelOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="secLevel != null" >
+        #{secLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="secLevelState != null" >
+        #{secLevelState,jdbcType=VARCHAR},
+      </if>
+      <if test="secLevelOpinion != null" >
+        #{secLevelOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="threeLevel != null" >
+        #{threeLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="threeLevelState != null" >
+        #{threeLevelState,jdbcType=VARCHAR},
+      </if>
+      <if test="threeLevelOpinion != null" >
+        #{threeLevelOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="processState != null" >
+        #{processState,jdbcType=VARCHAR},
+      </if>
+      <if test="auditResult != null" >
+        #{auditResult,jdbcType=VARCHAR},
+      </if>
+      <if test="submit != null" >
+        #{submit,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.business.bean.WorkLog" >
+    update T_BIS_WORK_LOG
+    <set >
+      <if test="applicantId != null" >
+        APPLICANT_ID = #{applicantId,jdbcType=VARCHAR},
+      </if>
+      <if test="jobPost != null" >
+        JOB_POST = #{jobPost,jdbcType=VARCHAR},
+      </if>
+      <if test="jobTime != null" >
+        JOB_TIME = #{jobTime,jdbcType=VARCHAR},
+      </if>
+      <if test="jobContent != null" >
+        JOB_CONTENT = #{jobContent,jdbcType=VARCHAR},
+      </if>
+      <if test="auditLevle != null" >
+        AUDIT_LEVLE = #{auditLevle,jdbcType=VARCHAR},
+      </if>
+      <if test="currentLevel != null" >
+        CURRENT_LEVEL = #{currentLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="firstLevel != null" >
+        FIRST_LEVEL = #{firstLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="firstLevelState != null" >
+        FIRST_LEVEL_STATE = #{firstLevelState,jdbcType=VARCHAR},
+      </if>
+      <if test="firstLevelOpinion != null" >
+        FIRST_LEVEL_OPINION = #{firstLevelOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="secLevel != null" >
+        SEC_LEVEL = #{secLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="secLevelState != null" >
+        SEC_LEVEL_STATE = #{secLevelState,jdbcType=VARCHAR},
+      </if>
+      <if test="secLevelOpinion != null" >
+        SEC_LEVEL_OPINION = #{secLevelOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="threeLevel != null" >
+        THREE_LEVEL = #{threeLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="threeLevelState != null" >
+        THREE_LEVEL_STATE = #{threeLevelState,jdbcType=VARCHAR},
+      </if>
+      <if test="threeLevelOpinion != null" >
+        THREE_LEVEL_OPINION = #{threeLevelOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="processState != null" >
+        PROCESS_STATE = #{processState,jdbcType=VARCHAR},
+      </if>
+      <if test="auditResult != null" >
+        AUDIT_RESULT = #{auditResult,jdbcType=VARCHAR},
+      </if>
+      <if test="submit != null" >
+        SUBMIT = #{submit,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.maiyue.business.bean.WorkLog" >
+    update T_BIS_WORK_LOG
+    set APPLICANT_ID = #{applicantId,jdbcType=VARCHAR},
+      JOB_POST = #{jobPost,jdbcType=VARCHAR},
+      JOB_TIME = #{jobTime,jdbcType=VARCHAR},
+      JOB_CONTENT = #{jobContent,jdbcType=VARCHAR},
+      AUDIT_LEVLE = #{auditLevle,jdbcType=VARCHAR},
+      CURRENT_LEVEL = #{currentLevel,jdbcType=VARCHAR},
+      FIRST_LEVEL = #{firstLevel,jdbcType=VARCHAR},
+      FIRST_LEVEL_STATE = #{firstLevelState,jdbcType=VARCHAR},
+      FIRST_LEVEL_OPINION = #{firstLevelOpinion,jdbcType=VARCHAR},
+      SEC_LEVEL = #{secLevel,jdbcType=VARCHAR},
+      SEC_LEVEL_STATE = #{secLevelState,jdbcType=VARCHAR},
+      SEC_LEVEL_OPINION = #{secLevelOpinion,jdbcType=VARCHAR},
+      THREE_LEVEL = #{threeLevel,jdbcType=VARCHAR},
+      THREE_LEVEL_STATE = #{threeLevelState,jdbcType=VARCHAR},
+      THREE_LEVEL_OPINION = #{threeLevelOpinion,jdbcType=VARCHAR},
+      PROCESS_STATE = #{processState,jdbcType=VARCHAR},
+      AUDIT_RESULT = #{auditResult,jdbcType=VARCHAR},
+      SUBMIT = #{submit,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      STATE = #{state,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="findByPage" resultMap="BaseResultMap" parameterType="java.util.HashMap" >
+    select <include refid="Base_Column_List"/> from T_BIS_WORK_LOG
+    <where>
+      <if test="id != null">
+        AND ID = #{id,jdbcType=VARCHAR}
+      </if>
+      <if test="applicantId != null">
+        AND APPLICANT_ID = #{applicantId,jdbcType=VARCHAR}
+      </if>
+      <if test="jobPost != null">
+        AND JOB_POST = #{jobPost,jdbcType=VARCHAR}
+      </if>
+      <if test="jobTime != null">
+        AND JOB_TIME = #{jobTime,jdbcType=VARCHAR}
+      </if>
+      <if test="jobContent != null">
+        AND JOB_CONTENT = #{jobContent,jdbcType=VARCHAR}
+      </if>
+      <if test="auditLevle != null">
+        AND AUDIT_LEVLE = #{auditLevle,jdbcType=VARCHAR}
+      </if>
+      <if test="currentLevel != null">
+        AND CURRENT_LEVEL = #{currentLevel,jdbcType=VARCHAR}
+      </if>
+      <if test="firstLevel != null">
+        AND FIRST_LEVEL = #{firstLevel,jdbcType=VARCHAR}
+      </if>
+      <if test="firstLevelState != null">
+        AND FIRST_LEVEL_STATE = #{firstLevelState,jdbcType=VARCHAR}
+      </if>
+      <if test="firstLevelOpinion != null">
+        AND FIRST_LEVEL_OPINION = #{firstLevelOpinion,jdbcType=VARCHAR}
+      </if>
+      <if test="secLevel != null">
+        AND SEC_LEVEL = #{secLevel,jdbcType=VARCHAR}
+      </if>
+      <if test="secLevelState != null">
+        AND SEC_LEVEL_STATE = #{secLevelState,jdbcType=VARCHAR}
+      </if>
+      <if test="secLevelOpinion != null">
+        AND SEC_LEVEL_OPINION = #{secLevelOpinion,jdbcType=VARCHAR}
+      </if>
+      <if test="threeLevel != null">
+        AND THREE_LEVEL = #{threeLevel,jdbcType=VARCHAR}
+      </if>
+      <if test="threeLevelState != null">
+        AND THREE_LEVEL_STATE = #{threeLevelState,jdbcType=VARCHAR}
+      </if>
+      <if test="threeLevelOpinion != null">
+        AND THREE_LEVEL_OPINION = #{threeLevelOpinion,jdbcType=VARCHAR}
+      </if>
+      <if test="processState != null">
+        AND PROCESS_STATE = #{processState,jdbcType=VARCHAR}
+      </if>
+      <if test="auditResult != null">
+        AND AUDIT_RESULT = #{auditResult,jdbcType=VARCHAR}
+      </if>
+      <if test="submit != null">
+        AND SUBMIT = #{submit,jdbcType=VARCHAR}
+      </if>
+      <if test="createTime != null">
+        AND CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="state != null">
+        AND STATE = #{state,jdbcType=VARCHAR}
+      </if>
+      <if test="ids != null">
+       AND ID IN 
+         <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> 
+        #{item,jdbcType=VARCHAR}
+         </foreach>
+      </if>
+    </where>
+      <if test="order != null">
+      ORDER BY ${order} ${sorting}
+      </if>
+  </select>
+</mapper>

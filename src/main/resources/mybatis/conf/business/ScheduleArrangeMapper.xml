@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.maiyue.business.mapper.ScheduleArrangeMapper" >
+  <resultMap id="BaseResultMap" type="com.maiyue.business.bean.ScheduleArrange" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="CLASS_ID" property="classId" jdbcType="VARCHAR" />
+    <result column="TEACHER_ID" property="teacherId" jdbcType="VARCHAR" />
+    <result column="STUDENT_ID" property="studentId" jdbcType="VARCHAR" />
+    <result column="TERM_YEAR" property="termYear" jdbcType="VARCHAR" />
+    <result column="TERM_ID" property="termId" jdbcType="VARCHAR" />
+    <result column="COURSE_DATE" property="courseDate" jdbcType="TIMESTAMP" />
+    <result column="SECTION" property="section" jdbcType="VARCHAR" />
+    <result column="FEW_WEEKS" property="fewWeeks" jdbcType="VARCHAR" />
+    <result column="WHAT_DAY" property="whatDay" jdbcType="VARCHAR" />
+    <result column="COURSE_NAME" property="courseName" jdbcType="VARCHAR" />
+    <result column="START_TIME" property="startTime" jdbcType="VARCHAR" />
+    <result column="END_TIME" property="endTime" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="TEACHER" property="teacher" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, CLASS_ID, TEACHER_ID, STUDENT_ID, TERM_YEAR, TERM_ID, COURSE_DATE, SECTION, FEW_WEEKS, 
+    WHAT_DAY, COURSE_NAME, START_TIME, END_TIME, ADDRESS, TEACHER, CREATE_TIME, STATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_BIS_SCHEDULE_ARRANGE
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_BIS_SCHEDULE_ARRANGE
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.maiyue.business.bean.ScheduleArrange" >
+    insert into T_BIS_SCHEDULE_ARRANGE (ID, CLASS_ID, TEACHER_ID, 
+      STUDENT_ID, TERM_YEAR, TERM_ID, 
+      COURSE_DATE, SECTION, FEW_WEEKS, 
+      WHAT_DAY, COURSE_NAME, START_TIME, 
+      END_TIME, ADDRESS, TEACHER, 
+      CREATE_TIME, STATE)
+    values (#{id,jdbcType=VARCHAR}, #{classId,jdbcType=VARCHAR}, #{teacherId,jdbcType=VARCHAR}, 
+      #{studentId,jdbcType=VARCHAR}, #{termYear,jdbcType=VARCHAR}, #{termId,jdbcType=VARCHAR}, 
+      #{courseDate,jdbcType=TIMESTAMP}, #{section,jdbcType=VARCHAR}, #{fewWeeks,jdbcType=VARCHAR}, 
+      #{whatDay,jdbcType=VARCHAR}, #{courseName,jdbcType=VARCHAR}, #{startTime,jdbcType=VARCHAR}, 
+      #{endTime,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{teacher,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{state,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.maiyue.business.bean.ScheduleArrange" >
+    insert into T_BIS_SCHEDULE_ARRANGE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="classId != null" >
+        CLASS_ID,
+      </if>
+      <if test="teacherId != null" >
+        TEACHER_ID,
+      </if>
+      <if test="studentId != null" >
+        STUDENT_ID,
+      </if>
+      <if test="termYear != null" >
+        TERM_YEAR,
+      </if>
+      <if test="termId != null" >
+        TERM_ID,
+      </if>
+      <if test="courseDate != null" >
+        COURSE_DATE,
+      </if>
+      <if test="section != null" >
+        SECTION,
+      </if>
+      <if test="fewWeeks != null" >
+        FEW_WEEKS,
+      </if>
+      <if test="whatDay != null" >
+        WHAT_DAY,
+      </if>
+      <if test="courseName != null" >
+        COURSE_NAME,
+      </if>
+      <if test="startTime != null" >
+        START_TIME,
+      </if>
+      <if test="endTime != null" >
+        END_TIME,
+      </if>
+      <if test="address != null" >
+        ADDRESS,
+      </if>
+      <if test="teacher != null" >
+        TEACHER,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="state != null" >
+        STATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="classId != null" >
+        #{classId,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherId != null" >
+        #{teacherId,jdbcType=VARCHAR},
+      </if>
+      <if test="studentId != null" >
+        #{studentId,jdbcType=VARCHAR},
+      </if>
+      <if test="termYear != null" >
+        #{termYear,jdbcType=VARCHAR},
+      </if>
+      <if test="termId != null" >
+        #{termId,jdbcType=VARCHAR},
+      </if>
+      <if test="courseDate != null" >
+        #{courseDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="section != null" >
+        #{section,jdbcType=VARCHAR},
+      </if>
+      <if test="fewWeeks != null" >
+        #{fewWeeks,jdbcType=VARCHAR},
+      </if>
+      <if test="whatDay != null" >
+        #{whatDay,jdbcType=VARCHAR},
+      </if>
+      <if test="courseName != null" >
+        #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="teacher != null" >
+        #{teacher,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.business.bean.ScheduleArrange" >
+    update T_BIS_SCHEDULE_ARRANGE
+    <set >
+      <if test="classId != null" >
+        CLASS_ID = #{classId,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherId != null" >
+        TEACHER_ID = #{teacherId,jdbcType=VARCHAR},
+      </if>
+      <if test="studentId != null" >
+        STUDENT_ID = #{studentId,jdbcType=VARCHAR},
+      </if>
+      <if test="termYear != null" >
+        TERM_YEAR = #{termYear,jdbcType=VARCHAR},
+      </if>
+      <if test="termId != null" >
+        TERM_ID = #{termId,jdbcType=VARCHAR},
+      </if>
+      <if test="courseDate != null" >
+        COURSE_DATE = #{courseDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="section != null" >
+        SECTION = #{section,jdbcType=VARCHAR},
+      </if>
+      <if test="fewWeeks != null" >
+        FEW_WEEKS = #{fewWeeks,jdbcType=VARCHAR},
+      </if>
+      <if test="whatDay != null" >
+        WHAT_DAY = #{whatDay,jdbcType=VARCHAR},
+      </if>
+      <if test="courseName != null" >
+        COURSE_NAME = #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        START_TIME = #{startTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null" >
+        END_TIME = #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="teacher != null" >
+        TEACHER = #{teacher,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.maiyue.business.bean.ScheduleArrange" >
+    update T_BIS_SCHEDULE_ARRANGE
+    set CLASS_ID = #{classId,jdbcType=VARCHAR},
+      TEACHER_ID = #{teacherId,jdbcType=VARCHAR},
+      STUDENT_ID = #{studentId,jdbcType=VARCHAR},
+      TERM_YEAR = #{termYear,jdbcType=VARCHAR},
+      TERM_ID = #{termId,jdbcType=VARCHAR},
+      COURSE_DATE = #{courseDate,jdbcType=TIMESTAMP},
+      SECTION = #{section,jdbcType=VARCHAR},
+      FEW_WEEKS = #{fewWeeks,jdbcType=VARCHAR},
+      WHAT_DAY = #{whatDay,jdbcType=VARCHAR},
+      COURSE_NAME = #{courseName,jdbcType=VARCHAR},
+      START_TIME = #{startTime,jdbcType=VARCHAR},
+      END_TIME = #{endTime,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      TEACHER = #{teacher,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      STATE = #{state,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="findByPage" resultMap="BaseResultMap" parameterType="java.util.HashMap" >
+    select <include refid="Base_Column_List"/> from T_BIS_SCHEDULE_ARRANGE
+    <where>
+      <if test="id != null">
+        AND ID = #{id,jdbcType=VARCHAR}
+      </if>
+      <if test="classId != null">
+        AND CLASS_ID = #{classId,jdbcType=VARCHAR}
+      </if>
+      <if test="teacherId != null">
+        AND TEACHER_ID = #{teacherId,jdbcType=VARCHAR}
+      </if>
+      <if test="studentId != null">
+        AND STUDENT_ID = #{studentId,jdbcType=VARCHAR}
+      </if>
+      <if test="termYear != null">
+        AND TERM_YEAR = #{termYear,jdbcType=VARCHAR}
+      </if>
+      <if test="termId != null">
+        AND TERM_ID = #{termId,jdbcType=VARCHAR}
+      </if>
+      <if test="courseDate != null">
+        AND COURSE_DATE = #{courseDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="section != null">
+        AND SECTION = #{section,jdbcType=VARCHAR}
+      </if>
+      <if test="fewWeeks != null">
+        AND FEW_WEEKS = #{fewWeeks,jdbcType=VARCHAR}
+      </if>
+      <if test="whatDay != null">
+        AND WHAT_DAY = #{whatDay,jdbcType=VARCHAR}
+      </if>
+      <if test="courseName != null">
+        AND COURSE_NAME = #{courseName,jdbcType=VARCHAR}
+      </if>
+      <if test="startTime != null">
+        AND START_TIME = #{startTime,jdbcType=VARCHAR}
+      </if>
+      <if test="endTime != null">
+        AND END_TIME = #{endTime,jdbcType=VARCHAR}
+      </if>
+      <if test="address != null">
+        AND ADDRESS = #{address,jdbcType=VARCHAR}
+      </if>
+      <if test="teacher != null">
+        AND TEACHER = #{teacher,jdbcType=VARCHAR}
+      </if>
+      <if test="createTime != null">
+        AND CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="state != null">
+        AND STATE = #{state,jdbcType=VARCHAR}
+      </if>
+      <if test="ids != null">
+       AND ID IN 
+         <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> 
+        #{item,jdbcType=VARCHAR}
+         </foreach>
+      </if>
+    </where>
+      <if test="order != null">
+      ORDER BY ${order} ${sorting}
+      </if>
+  </select>
+</mapper>

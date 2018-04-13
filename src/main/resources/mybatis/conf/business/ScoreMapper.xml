@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.maiyue.business.mapper.ScoreMapper" >
+  <resultMap id="BaseResultMap" type="com.maiyue.business.bean.Score" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="TERM_ID" property="termId" jdbcType="VARCHAR" />
+    <result column="TEACHER_ID" property="teacherId" jdbcType="VARCHAR" />
+    <result column="STUDENT_ID" property="studentId" jdbcType="VARCHAR" />
+    <result column="COURSE_ID" property="courseId" jdbcType="VARCHAR" />
+    <result column="SCORE" property="score" jdbcType="VARCHAR" />
+    <result column="CREDIT" property="credit" jdbcType="VARCHAR" />
+    <result column="CREATION_TIME" property="creationTime" jdbcType="TIMESTAMP" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, TERM_ID, TEACHER_ID, STUDENT_ID, COURSE_ID, SCORE, CREDIT, CREATION_TIME, STATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_BIS_SCORE
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_BIS_SCORE
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.maiyue.business.bean.Score" >
+    insert into T_BIS_SCORE (ID, TERM_ID, TEACHER_ID, 
+      STUDENT_ID, COURSE_ID, SCORE, 
+      CREDIT, CREATION_TIME, STATE
+      )
+    values (#{id,jdbcType=VARCHAR}, #{termId,jdbcType=VARCHAR}, #{teacherId,jdbcType=VARCHAR}, 
+      #{studentId,jdbcType=VARCHAR}, #{courseId,jdbcType=VARCHAR}, #{score,jdbcType=VARCHAR}, 
+      #{credit,jdbcType=VARCHAR}, #{creationTime,jdbcType=TIMESTAMP}, #{state,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.maiyue.business.bean.Score" >
+    insert into T_BIS_SCORE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="termId != null" >
+        TERM_ID,
+      </if>
+      <if test="teacherId != null" >
+        TEACHER_ID,
+      </if>
+      <if test="studentId != null" >
+        STUDENT_ID,
+      </if>
+      <if test="courseId != null" >
+        COURSE_ID,
+      </if>
+      <if test="score != null" >
+        SCORE,
+      </if>
+      <if test="credit != null" >
+        CREDIT,
+      </if>
+      <if test="creationTime != null" >
+        CREATION_TIME,
+      </if>
+      <if test="state != null" >
+        STATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="termId != null" >
+        #{termId,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherId != null" >
+        #{teacherId,jdbcType=VARCHAR},
+      </if>
+      <if test="studentId != null" >
+        #{studentId,jdbcType=VARCHAR},
+      </if>
+      <if test="courseId != null" >
+        #{courseId,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=VARCHAR},
+      </if>
+      <if test="credit != null" >
+        #{credit,jdbcType=VARCHAR},
+      </if>
+      <if test="creationTime != null" >
+        #{creationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.business.bean.Score" >
+    update T_BIS_SCORE
+    <set >
+      <if test="termId != null" >
+        TERM_ID = #{termId,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherId != null" >
+        TEACHER_ID = #{teacherId,jdbcType=VARCHAR},
+      </if>
+      <if test="studentId != null" >
+        STUDENT_ID = #{studentId,jdbcType=VARCHAR},
+      </if>
+      <if test="courseId != null" >
+        COURSE_ID = #{courseId,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        SCORE = #{score,jdbcType=VARCHAR},
+      </if>
+      <if test="credit != null" >
+        CREDIT = #{credit,jdbcType=VARCHAR},
+      </if>
+      <if test="creationTime != null" >
+        CREATION_TIME = #{creationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.maiyue.business.bean.Score" >
+    update T_BIS_SCORE
+    set TERM_ID = #{termId,jdbcType=VARCHAR},
+      TEACHER_ID = #{teacherId,jdbcType=VARCHAR},
+      STUDENT_ID = #{studentId,jdbcType=VARCHAR},
+      COURSE_ID = #{courseId,jdbcType=VARCHAR},
+      SCORE = #{score,jdbcType=VARCHAR},
+      CREDIT = #{credit,jdbcType=VARCHAR},
+      CREATION_TIME = #{creationTime,jdbcType=TIMESTAMP},
+      STATE = #{state,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="findByPage" resultMap="BaseResultMap" parameterType="java.util.HashMap" >
+    select <include refid="Base_Column_List"/> from T_BIS_SCORE
+    <where>
+      <if test="id != null">
+        AND ID = #{id,jdbcType=VARCHAR}
+      </if>
+      <if test="termId != null">
+        AND TERM_ID = #{termId,jdbcType=VARCHAR}
+      </if>
+      <if test="teacherId != null">
+        AND TEACHER_ID = #{teacherId,jdbcType=VARCHAR}
+      </if>
+      <if test="studentId != null">
+        AND STUDENT_ID = #{studentId,jdbcType=VARCHAR}
+      </if>
+      <if test="courseId != null">
+        AND COURSE_ID = #{courseId,jdbcType=VARCHAR}
+      </if>
+      <if test="score != null">
+        AND SCORE = #{score,jdbcType=VARCHAR}
+      </if>
+      <if test="credit != null">
+        AND CREDIT = #{credit,jdbcType=VARCHAR}
+      </if>
+      <if test="creationTime != null">
+        AND CREATION_TIME = #{creationTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="state != null">
+        AND STATE = #{state,jdbcType=VARCHAR}
+      </if>
+      <if test="ids != null">
+       AND ID IN 
+         <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> 
+        #{item,jdbcType=VARCHAR}
+         </foreach>
+      </if>
+    </where>
+      <if test="order != null">
+      ORDER BY ${order} ${sorting}
+      </if>
+  </select>
+</mapper>

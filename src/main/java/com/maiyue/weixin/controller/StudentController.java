@@ -32,9 +32,14 @@ public class StudentController extends BaseController {
      * @return
      */
     @RequestMapping(value="/workStudy/add")
-    public String add(Model model){
+    public Object add(Model model){
+    	List<String> list = new ArrayList<>();
+    	String state = "0";
         String json = "{'summary':'负责日常图书管理与图书馆开馆闭馆工作','time':'2018年4月11日','address':'3栋教学楼402','entered':'5人','worked':'6人','status':'','endTime':'4月20日'}";
-        return json;
+        state = "1";
+        list.add(state);
+        list.add(json);
+        return list;
     }
 
     /**
@@ -48,8 +53,11 @@ public class StudentController extends BaseController {
     @RequestMapping(value="/workStudy/myJob")
     public Object myJob(){
         List<String> list = new ArrayList<>();
+        String state = "0";
         String json1 = "{'name':'图书管理员','time':'2018-04-11 2018-12-11','status':'进行中'}";
         String json2 = "{'name':'食堂工作人员','time':'2018-06-01 2018-08-01','status':'暂停'}";
+        state = "1";
+        list.add(state);
         list.add(json1);
         list.add(json2);
         return list;
@@ -68,11 +76,14 @@ public class StudentController extends BaseController {
     @RequestMapping(value="/workStudy/notes")
     public Object notes(Model model){
         List<String> list = new ArrayList<>();
+        String state = "0";
         String json1 = "{'title':'图书管理员日志','status':'未审核','content':'“刷刷”，一个中等身材的女孩不停地在图书架之间来回穿梭，专注地整理者着每一本图书。走近了才发现：她是一个五年级的学生，有着红扑扑的鹅蛋脸，梳着一条麻花辫，一对浓黑的眉毛下面嵌着一双水灵灵的大眼睛，再加上小鼻子和小嘴巴，凑成了认真执着的她。\n" +
                 "      女孩刚刚来时，还是一脸的茫然。管理员阿姨让她先坐下，待会儿填写信息表。女孩坐下了，看了一下时间，才1：10呢。她笑了笑，问阿姨：“我可以先填了吗？”阿姨有些不解：“为什么呢？还有20分钟。”女孩脸红了，不语。阿姨似乎明白了女孩的心思，便让女孩先填了。\n" +
                 "     大约1：35，小小管理员们来齐了。阿姨耐心地向我们布置了任务。阿姨让两位男孩去楼下运书，我们三位女孩被分到了右边的①—⑨号书架，整理图书，还要把男孩运回的图书分类准确无误地插进图书架上。','createTime':'2018年03月04日 12:13'}";
         String json2 = "{'title':'食堂工作人员日志','status':'审核通过','content':'她们看过最早出的太阳，了解学生的口味，收拾过布满残羹的桌子，关过饭堂的最后一盏灯，她们把大部分时间都花在食物方面，却并没有为此感到枯燥；她们没有许多朋友，却有着两三个可以聊得很开心的同伙们，面对油烟她们顾不上把自己打扮得漂漂亮亮；但她们是最可爱的人——饭堂阿姨。\n" +
                 "与她们有相似经历的组员们，在为期一周的三下乡支教活动中与该校的饭堂阿姨合作为学生提供日常饮食服务。活动开展了三天，组员们体验了饭堂相关工作，比别人起得早是他们每天要做的事，做好饭堂保洁工作也是必须的，照顾每个人的胃口也是很大的难题，但是与饭堂阿姨相比，他们还是小巫见大巫。在组员的采访中，得知该校的饭堂阿姨的儿女也在该校读书，在照顾他人孩子的同时也照顾着自己的孩子，没有偏心之意。','createTime':'2018年04月11日 16:26'}";
+        state = "1";
+        list.add(state);
         list.add(json1);
         list.add(json2);
         return list;

@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.maiyue.business.mapper.DiligentStudyMapper" >
+  <resultMap id="BaseResultMap" type="com.maiyue.business.bean.DiligentStudy" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="RELEASER_ID" property="releaserId" jdbcType="VARCHAR" />
+    <result column="RELEASE_UNIT" property="releaseUnit" jdbcType="VARCHAR" />
+    <result column="EMPLOYMENT" property="employment" jdbcType="VARCHAR" />
+    <result column="INTRODUCE" property="introduce" jdbcType="VARCHAR" />
+    <result column="REQUIRES" property="requires" jdbcType="VARCHAR" />
+    <result column="SALARY" property="salary" jdbcType="VARCHAR" />
+    <result column="WITH_NUMBER" property="withNumber" jdbcType="VARCHAR" />
+    <result column="INTERVIEW_PLACE" property="interviewPlace" jdbcType="VARCHAR" />
+    <result column="INTERVIEW_TIME" property="interviewTime" jdbcType="VARCHAR" />
+    <result column="START_TIME" property="startTime" jdbcType="VARCHAR" />
+    <result column="END_TIME" property="endTime" jdbcType="VARCHAR" />
+    <result column="SIGNUP_NUM" property="signupNum" jdbcType="VARCHAR" />
+    <result column="EMPLOY_NUM" property="employNum" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, RELEASER_ID, RELEASE_UNIT, EMPLOYMENT, INTRODUCE, REQUIRES, SALARY, WITH_NUMBER, 
+    INTERVIEW_PLACE, INTERVIEW_TIME, START_TIME, END_TIME, SIGNUP_NUM, EMPLOY_NUM, CREATE_TIME, 
+    STATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_BIS_DILIGENT_STUDY
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_BIS_DILIGENT_STUDY
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.maiyue.business.bean.DiligentStudy" >
+    insert into T_BIS_DILIGENT_STUDY (ID, RELEASER_ID, RELEASE_UNIT, 
+      EMPLOYMENT, INTRODUCE, REQUIRES, 
+      SALARY, WITH_NUMBER, INTERVIEW_PLACE, 
+      INTERVIEW_TIME, START_TIME, END_TIME, 
+      SIGNUP_NUM, EMPLOY_NUM, CREATE_TIME, 
+      STATE)
+    values (#{id,jdbcType=VARCHAR}, #{releaserId,jdbcType=VARCHAR}, #{releaseUnit,jdbcType=VARCHAR}, 
+      #{employment,jdbcType=VARCHAR}, #{introduce,jdbcType=VARCHAR}, #{requires,jdbcType=VARCHAR}, 
+      #{salary,jdbcType=VARCHAR}, #{withNumber,jdbcType=VARCHAR}, #{interviewPlace,jdbcType=VARCHAR}, 
+      #{interviewTime,jdbcType=VARCHAR}, #{startTime,jdbcType=VARCHAR}, #{endTime,jdbcType=VARCHAR}, 
+      #{signupNum,jdbcType=VARCHAR}, #{employNum,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{state,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.maiyue.business.bean.DiligentStudy" >
+    insert into T_BIS_DILIGENT_STUDY
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="releaserId != null" >
+        RELEASER_ID,
+      </if>
+      <if test="releaseUnit != null" >
+        RELEASE_UNIT,
+      </if>
+      <if test="employment != null" >
+        EMPLOYMENT,
+      </if>
+      <if test="introduce != null" >
+        INTRODUCE,
+      </if>
+      <if test="requires != null" >
+        REQUIRES,
+      </if>
+      <if test="salary != null" >
+        SALARY,
+      </if>
+      <if test="withNumber != null" >
+        WITH_NUMBER,
+      </if>
+      <if test="interviewPlace != null" >
+        INTERVIEW_PLACE,
+      </if>
+      <if test="interviewTime != null" >
+        INTERVIEW_TIME,
+      </if>
+      <if test="startTime != null" >
+        START_TIME,
+      </if>
+      <if test="endTime != null" >
+        END_TIME,
+      </if>
+      <if test="signupNum != null" >
+        SIGNUP_NUM,
+      </if>
+      <if test="employNum != null" >
+        EMPLOY_NUM,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="state != null" >
+        STATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="releaserId != null" >
+        #{releaserId,jdbcType=VARCHAR},
+      </if>
+      <if test="releaseUnit != null" >
+        #{releaseUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="employment != null" >
+        #{employment,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null" >
+        #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="requires != null" >
+        #{requires,jdbcType=VARCHAR},
+      </if>
+      <if test="salary != null" >
+        #{salary,jdbcType=VARCHAR},
+      </if>
+      <if test="withNumber != null" >
+        #{withNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="interviewPlace != null" >
+        #{interviewPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="interviewTime != null" >
+        #{interviewTime,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="signupNum != null" >
+        #{signupNum,jdbcType=VARCHAR},
+      </if>
+      <if test="employNum != null" >
+        #{employNum,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.business.bean.DiligentStudy" >
+    update T_BIS_DILIGENT_STUDY
+    <set >
+      <if test="releaserId != null" >
+        RELEASER_ID = #{releaserId,jdbcType=VARCHAR},
+      </if>
+      <if test="releaseUnit != null" >
+        RELEASE_UNIT = #{releaseUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="employment != null" >
+        EMPLOYMENT = #{employment,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null" >
+        INTRODUCE = #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="requires != null" >
+        REQUIRES = #{requires,jdbcType=VARCHAR},
+      </if>
+      <if test="salary != null" >
+        SALARY = #{salary,jdbcType=VARCHAR},
+      </if>
+      <if test="withNumber != null" >
+        WITH_NUMBER = #{withNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="interviewPlace != null" >
+        INTERVIEW_PLACE = #{interviewPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="interviewTime != null" >
+        INTERVIEW_TIME = #{interviewTime,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        START_TIME = #{startTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null" >
+        END_TIME = #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="signupNum != null" >
+        SIGNUP_NUM = #{signupNum,jdbcType=VARCHAR},
+      </if>
+      <if test="employNum != null" >
+        EMPLOY_NUM = #{employNum,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.maiyue.business.bean.DiligentStudy" >
+    update T_BIS_DILIGENT_STUDY
+    set RELEASER_ID = #{releaserId,jdbcType=VARCHAR},
+      RELEASE_UNIT = #{releaseUnit,jdbcType=VARCHAR},
+      EMPLOYMENT = #{employment,jdbcType=VARCHAR},
+      INTRODUCE = #{introduce,jdbcType=VARCHAR},
+      REQUIRES = #{requires,jdbcType=VARCHAR},
+      SALARY = #{salary,jdbcType=VARCHAR},
+      WITH_NUMBER = #{withNumber,jdbcType=VARCHAR},
+      INTERVIEW_PLACE = #{interviewPlace,jdbcType=VARCHAR},
+      INTERVIEW_TIME = #{interviewTime,jdbcType=VARCHAR},
+      START_TIME = #{startTime,jdbcType=VARCHAR},
+      END_TIME = #{endTime,jdbcType=VARCHAR},
+      SIGNUP_NUM = #{signupNum,jdbcType=VARCHAR},
+      EMPLOY_NUM = #{employNum,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      STATE = #{state,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="findByPage" resultMap="BaseResultMap" parameterType="java.util.HashMap" >
+    select <include refid="Base_Column_List"/> from T_BIS_DILIGENT_STUDY
+    <where>
+      <if test="id != null">
+        AND ID = #{id,jdbcType=VARCHAR}
+      </if>
+      <if test="releaserId != null">
+        AND RELEASER_ID = #{releaserId,jdbcType=VARCHAR}
+      </if>
+      <if test="releaseUnit != null">
+        AND RELEASE_UNIT = #{releaseUnit,jdbcType=VARCHAR}
+      </if>
+      <if test="employment != null">
+        AND EMPLOYMENT = #{employment,jdbcType=VARCHAR}
+      </if>
+      <if test="introduce != null">
+        AND INTRODUCE = #{introduce,jdbcType=VARCHAR}
+      </if>
+      <if test="requires != null">
+        AND REQUIRES = #{requires,jdbcType=VARCHAR}
+      </if>
+      <if test="salary != null">
+        AND SALARY = #{salary,jdbcType=VARCHAR}
+      </if>
+      <if test="withNumber != null">
+        AND WITH_NUMBER = #{withNumber,jdbcType=VARCHAR}
+      </if>
+      <if test="interviewPlace != null">
+        AND INTERVIEW_PLACE = #{interviewPlace,jdbcType=VARCHAR}
+      </if>
+      <if test="interviewTime != null">
+        AND INTERVIEW_TIME = #{interviewTime,jdbcType=VARCHAR}
+      </if>
+      <if test="startTime != null">
+        AND START_TIME = #{startTime,jdbcType=VARCHAR}
+      </if>
+      <if test="endTime != null">
+        AND END_TIME = #{endTime,jdbcType=VARCHAR}
+      </if>
+      <if test="signupNum != null">
+        AND SIGNUP_NUM = #{signupNum,jdbcType=VARCHAR}
+      </if>
+      <if test="employNum != null">
+        AND EMPLOY_NUM = #{employNum,jdbcType=VARCHAR}
+      </if>
+      <if test="createTime != null">
+        AND CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="state != null">
+        AND STATE = #{state,jdbcType=VARCHAR}
+      </if>
+      <if test="ids != null">
+       AND ID IN 
+         <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> 
+        #{item,jdbcType=VARCHAR}
+         </foreach>
+      </if>
+    </where>
+      <if test="order != null">
+      ORDER BY ${order} ${sorting}
+      </if>
+  </select>
+</mapper>
