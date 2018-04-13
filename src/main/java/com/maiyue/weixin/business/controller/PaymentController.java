@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -79,6 +80,7 @@ public class PaymentController extends BaseController {
             }
             if(payment != null){
                 payment.setId(ComUtil.randomUUID());
+                payment.setCreateTime(new Date());
                 paymentService.insert(payment);
                  logger.info("调用payment数据新增接口,执行保存数据成功！");
                 return ResponseUtil.RetCorrectInfo(JSONUtils.toJSONObject(payment));

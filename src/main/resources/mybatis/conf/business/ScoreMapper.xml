@@ -1,22 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<mapper namespace="com.maiyue.business.mapper.ScoreMapper" >
-  <resultMap id="BaseResultMap" type="com.maiyue.business.bean.Score" >
-=======
+
 <mapper namespace="com.maiyue.weixin.business.mapper.ScoreMapper" >
   <resultMap id="BaseResultMap" type="com.maiyue.weixin.business.bean.Score" >
->>>>>>> master
-=======
-<mapper namespace="com.maiyue.weixin.business.mapper.ScoreMapper" >
-  <resultMap id="BaseResultMap" type="com.maiyue.weixin.business.bean.Score" >
->>>>>>> master
-=======
-<mapper namespace="com.maiyue.weixin.business.mapper.ScoreMapper" >
-  <resultMap id="BaseResultMap" type="com.maiyue.weixin.business.bean.Score" >
->>>>>>> remotes/origin/master
     <id column="ID" property="id" jdbcType="VARCHAR" />
     <result column="TERM_ID" property="termId" jdbcType="VARCHAR" />
     <result column="TEACHER_ID" property="teacherId" jdbcType="VARCHAR" />
@@ -40,19 +26,8 @@
     delete from T_BIS_SCORE
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-  <insert id="insert" parameterType="com.maiyue.business.bean.Score" >
-=======
+
   <insert id="insert" parameterType="com.maiyue.weixin.business.bean.Score" >
->>>>>>> master
-=======
-  <insert id="insert" parameterType="com.maiyue.weixin.business.bean.Score" >
->>>>>>> master
-=======
-  <insert id="insert" parameterType="com.maiyue.weixin.business.bean.Score" >
->>>>>>> remotes/origin/master
     insert into T_BIS_SCORE (ID, TERM_ID, TEACHER_ID, 
       STUDENT_ID, COURSE_ID, SCORE, 
       CREDIT, CREATION_TIME, STATE
@@ -62,19 +37,8 @@
       #{credit,jdbcType=VARCHAR}, #{creationTime,jdbcType=TIMESTAMP}, #{state,jdbcType=VARCHAR}
       )
   </insert>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-  <insert id="insertSelective" parameterType="com.maiyue.business.bean.Score" >
-=======
+
   <insert id="insertSelective" parameterType="com.maiyue.weixin.business.bean.Score" >
->>>>>>> master
-=======
-  <insert id="insertSelective" parameterType="com.maiyue.weixin.business.bean.Score" >
->>>>>>> master
-=======
-  <insert id="insertSelective" parameterType="com.maiyue.weixin.business.bean.Score" >
->>>>>>> remotes/origin/master
     insert into T_BIS_SCORE
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -135,19 +99,8 @@
       </if>
     </trim>
   </insert>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-  <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.business.bean.Score" >
-=======
+
   <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.weixin.business.bean.Score" >
->>>>>>> master
-=======
-  <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.weixin.business.bean.Score" >
->>>>>>> master
-=======
-  <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.weixin.business.bean.Score" >
->>>>>>> remotes/origin/master
     update T_BIS_SCORE
     <set >
       <if test="termId != null" >
@@ -177,19 +130,8 @@
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-  <update id="updateByPrimaryKey" parameterType="com.maiyue.business.bean.Score" >
-=======
+
   <update id="updateByPrimaryKey" parameterType="com.maiyue.weixin.business.bean.Score" >
->>>>>>> master
-=======
-  <update id="updateByPrimaryKey" parameterType="com.maiyue.weixin.business.bean.Score" >
->>>>>>> master
-=======
-  <update id="updateByPrimaryKey" parameterType="com.maiyue.weixin.business.bean.Score" >
->>>>>>> remotes/origin/master
     update T_BIS_SCORE
     set TERM_ID = #{termId,jdbcType=VARCHAR},
       TEACHER_ID = #{teacherId,jdbcType=VARCHAR},

@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -79,6 +80,7 @@ public class ScheduleArrangeController extends BaseController {
             }
             if(scheduleArrange != null){
                 scheduleArrange.setId(ComUtil.randomUUID());
+                scheduleArrange.setCreateTime(new Date());
                 scheduleArrangeService.insert(scheduleArrange);
                  logger.info("调用scheduleArrange数据新增接口,执行保存数据成功！");
                 return ResponseUtil.RetCorrectInfo(JSONUtils.toJSONObject(scheduleArrange));

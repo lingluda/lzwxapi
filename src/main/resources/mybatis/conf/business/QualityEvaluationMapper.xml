@@ -1,22 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<mapper namespace="com.maiyue.business.mapper.QualityEvaluationMapper" >
-  <resultMap id="BaseResultMap" type="com.maiyue.business.bean.QualityEvaluation" >
-=======
+
 <mapper namespace="com.maiyue.weixin.business.mapper.QualityEvaluationMapper" >
   <resultMap id="BaseResultMap" type="com.maiyue.weixin.business.bean.QualityEvaluation" >
->>>>>>> master
-=======
-<mapper namespace="com.maiyue.weixin.business.mapper.QualityEvaluationMapper" >
-  <resultMap id="BaseResultMap" type="com.maiyue.weixin.business.bean.QualityEvaluation" >
->>>>>>> master
-=======
-<mapper namespace="com.maiyue.weixin.business.mapper.QualityEvaluationMapper" >
-  <resultMap id="BaseResultMap" type="com.maiyue.weixin.business.bean.QualityEvaluation" >
->>>>>>> remotes/origin/master
     <id column="ID" property="id" jdbcType="VARCHAR" />
     <result column="TERM_YEAR" property="termYear" jdbcType="VARCHAR" />
     <result column="TERM_ID" property="termId" jdbcType="VARCHAR" />
@@ -43,19 +29,8 @@
     delete from T_BIS_QUALITY_EVALUATION
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-  <insert id="insert" parameterType="com.maiyue.business.bean.QualityEvaluation" >
-=======
+
   <insert id="insert" parameterType="com.maiyue.weixin.business.bean.QualityEvaluation" >
->>>>>>> master
-=======
-  <insert id="insert" parameterType="com.maiyue.weixin.business.bean.QualityEvaluation" >
->>>>>>> master
-=======
-  <insert id="insert" parameterType="com.maiyue.weixin.business.bean.QualityEvaluation" >
->>>>>>> remotes/origin/master
     insert into T_BIS_QUALITY_EVALUATION (ID, TERM_YEAR, TERM_ID, 
       STUDENT_ID, CHECK_ID, OPER_TYPE, 
       OPER_SCORE, OPER_REASON, OPER_TIME, 
@@ -65,19 +40,8 @@
       #{operScore,jdbcType=DECIMAL}, #{operReason,jdbcType=VARCHAR}, #{operTime,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP}, #{state,jdbcType=VARCHAR})
   </insert>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-  <insert id="insertSelective" parameterType="com.maiyue.business.bean.QualityEvaluation" >
-=======
+
   <insert id="insertSelective" parameterType="com.maiyue.weixin.business.bean.QualityEvaluation" >
->>>>>>> master
-=======
-  <insert id="insertSelective" parameterType="com.maiyue.weixin.business.bean.QualityEvaluation" >
->>>>>>> master
-=======
-  <insert id="insertSelective" parameterType="com.maiyue.weixin.business.bean.QualityEvaluation" >
->>>>>>> remotes/origin/master
     insert into T_BIS_QUALITY_EVALUATION
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -150,19 +114,8 @@
       </if>
     </trim>
   </insert>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-  <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.business.bean.QualityEvaluation" >
-=======
+
   <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.weixin.business.bean.QualityEvaluation" >
->>>>>>> master
-=======
-  <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.weixin.business.bean.QualityEvaluation" >
->>>>>>> master
-=======
-  <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.weixin.business.bean.QualityEvaluation" >
->>>>>>> remotes/origin/master
     update T_BIS_QUALITY_EVALUATION
     <set >
       <if test="termYear != null" >
@@ -198,19 +151,8 @@
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-  <update id="updateByPrimaryKey" parameterType="com.maiyue.business.bean.QualityEvaluation" >
-=======
+
   <update id="updateByPrimaryKey" parameterType="com.maiyue.weixin.business.bean.QualityEvaluation" >
->>>>>>> master
-=======
-  <update id="updateByPrimaryKey" parameterType="com.maiyue.weixin.business.bean.QualityEvaluation" >
->>>>>>> master
-=======
-  <update id="updateByPrimaryKey" parameterType="com.maiyue.weixin.business.bean.QualityEvaluation" >
->>>>>>> remotes/origin/master
     update T_BIS_QUALITY_EVALUATION
     set TERM_YEAR = #{termYear,jdbcType=VARCHAR},
       TERM_ID = #{termId,jdbcType=VARCHAR},
