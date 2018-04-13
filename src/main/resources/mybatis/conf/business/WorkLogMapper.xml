@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <mapper namespace="com.maiyue.business.mapper.WorkLogMapper" >
   <resultMap id="BaseResultMap" type="com.maiyue.business.bean.WorkLog" >
 =======
@@ -12,6 +13,10 @@
 <mapper namespace="com.maiyue.weixin.business.mapper.WorkLogMapper" >
   <resultMap id="BaseResultMap" type="com.maiyue.weixin.business.bean.WorkLog" >
 >>>>>>> master
+=======
+<mapper namespace="com.maiyue.weixin.business.mapper.WorkLogMapper" >
+  <resultMap id="BaseResultMap" type="com.maiyue.weixin.business.bean.WorkLog" >
+>>>>>>> remotes/origin/master
     <id column="ID" property="id" jdbcType="VARCHAR" />
     <result column="APPLICANT_ID" property="applicantId" jdbcType="VARCHAR" />
     <result column="JOB_POST" property="jobPost" jdbcType="VARCHAR" />
@@ -52,6 +57,7 @@
   </delete>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   <insert id="insert" parameterType="com.maiyue.business.bean.WorkLog" >
 =======
   <insert id="insert" parameterType="com.maiyue.weixin.business.bean.WorkLog" >
@@ -59,6 +65,9 @@
 =======
   <insert id="insert" parameterType="com.maiyue.weixin.business.bean.WorkLog" >
 >>>>>>> master
+=======
+  <insert id="insert" parameterType="com.maiyue.weixin.business.bean.WorkLog" >
+>>>>>>> remotes/origin/master
     insert into T_BIS_WORK_LOG (ID, APPLICANT_ID, JOB_POST, 
       JOB_TIME, JOB_CONTENT, AUDIT_LEVLE, 
       CURRENT_LEVEL, FIRST_LEVEL, FIRST_LEVEL_STATE, 
@@ -78,6 +87,7 @@
   </insert>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   <insert id="insertSelective" parameterType="com.maiyue.business.bean.WorkLog" >
 =======
   <insert id="insertSelective" parameterType="com.maiyue.weixin.business.bean.WorkLog" >
@@ -85,6 +95,9 @@
 =======
   <insert id="insertSelective" parameterType="com.maiyue.weixin.business.bean.WorkLog" >
 >>>>>>> master
+=======
+  <insert id="insertSelective" parameterType="com.maiyue.weixin.business.bean.WorkLog" >
+>>>>>>> remotes/origin/master
     insert into T_BIS_WORK_LOG
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -219,6 +232,7 @@
   </insert>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.business.bean.WorkLog" >
 =======
   <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.weixin.business.bean.WorkLog" >
@@ -226,6 +240,9 @@
 =======
   <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.weixin.business.bean.WorkLog" >
 >>>>>>> master
+=======
+  <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.weixin.business.bean.WorkLog" >
+>>>>>>> remotes/origin/master
     update T_BIS_WORK_LOG
     <set >
       <if test="applicantId != null" >
@@ -293,6 +310,7 @@
   </update>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   <update id="updateByPrimaryKey" parameterType="com.maiyue.business.bean.WorkLog" >
 =======
   <update id="updateByPrimaryKey" parameterType="com.maiyue.weixin.business.bean.WorkLog" >
@@ -300,6 +318,9 @@
 =======
   <update id="updateByPrimaryKey" parameterType="com.maiyue.weixin.business.bean.WorkLog" >
 >>>>>>> master
+=======
+  <update id="updateByPrimaryKey" parameterType="com.maiyue.weixin.business.bean.WorkLog" >
+>>>>>>> remotes/origin/master
     update T_BIS_WORK_LOG
     set APPLICANT_ID = #{applicantId,jdbcType=VARCHAR},
       JOB_POST = #{jobPost,jdbcType=VARCHAR},

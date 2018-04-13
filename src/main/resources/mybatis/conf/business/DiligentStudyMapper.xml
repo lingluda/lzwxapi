@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <mapper namespace="com.maiyue.business.mapper.DiligentStudyMapper" >
   <resultMap id="BaseResultMap" type="com.maiyue.business.bean.DiligentStudy" >
 =======
@@ -12,6 +13,10 @@
 <mapper namespace="com.maiyue.weixin.business.mapper.DiligentStudyMapper" >
   <resultMap id="BaseResultMap" type="com.maiyue.weixin.business.bean.DiligentStudy" >
 >>>>>>> master
+=======
+<mapper namespace="com.maiyue.weixin.business.mapper.DiligentStudyMapper" >
+  <resultMap id="BaseResultMap" type="com.maiyue.weixin.business.bean.DiligentStudy" >
+>>>>>>> remotes/origin/master
     <id column="ID" property="id" jdbcType="VARCHAR" />
     <result column="RELEASER_ID" property="releaserId" jdbcType="VARCHAR" />
     <result column="RELEASE_UNIT" property="releaseUnit" jdbcType="VARCHAR" />
@@ -46,6 +51,7 @@
   </delete>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   <insert id="insert" parameterType="com.maiyue.business.bean.DiligentStudy" >
 =======
   <insert id="insert" parameterType="com.maiyue.weixin.business.bean.DiligentStudy" >
@@ -53,6 +59,9 @@
 =======
   <insert id="insert" parameterType="com.maiyue.weixin.business.bean.DiligentStudy" >
 >>>>>>> master
+=======
+  <insert id="insert" parameterType="com.maiyue.weixin.business.bean.DiligentStudy" >
+>>>>>>> remotes/origin/master
     insert into T_BIS_DILIGENT_STUDY (ID, RELEASER_ID, RELEASE_UNIT, 
       EMPLOYMENT, INTRODUCE, REQUIRES, 
       SALARY, WITH_NUMBER, INTERVIEW_PLACE, 
@@ -68,6 +77,7 @@
   </insert>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   <insert id="insertSelective" parameterType="com.maiyue.business.bean.DiligentStudy" >
 =======
   <insert id="insertSelective" parameterType="com.maiyue.weixin.business.bean.DiligentStudy" >
@@ -75,6 +85,9 @@
 =======
   <insert id="insertSelective" parameterType="com.maiyue.weixin.business.bean.DiligentStudy" >
 >>>>>>> master
+=======
+  <insert id="insertSelective" parameterType="com.maiyue.weixin.business.bean.DiligentStudy" >
+>>>>>>> remotes/origin/master
     insert into T_BIS_DILIGENT_STUDY
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -179,6 +192,7 @@
   </insert>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.business.bean.DiligentStudy" >
 =======
   <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.weixin.business.bean.DiligentStudy" >
@@ -186,6 +200,9 @@
 =======
   <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.weixin.business.bean.DiligentStudy" >
 >>>>>>> master
+=======
+  <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.weixin.business.bean.DiligentStudy" >
+>>>>>>> remotes/origin/master
     update T_BIS_DILIGENT_STUDY
     <set >
       <if test="releaserId != null" >
@@ -238,6 +255,7 @@
   </update>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   <update id="updateByPrimaryKey" parameterType="com.maiyue.business.bean.DiligentStudy" >
 =======
   <update id="updateByPrimaryKey" parameterType="com.maiyue.weixin.business.bean.DiligentStudy" >
@@ -245,6 +263,9 @@
 =======
   <update id="updateByPrimaryKey" parameterType="com.maiyue.weixin.business.bean.DiligentStudy" >
 >>>>>>> master
+=======
+  <update id="updateByPrimaryKey" parameterType="com.maiyue.weixin.business.bean.DiligentStudy" >
+>>>>>>> remotes/origin/master
     update T_BIS_DILIGENT_STUDY
     set RELEASER_ID = #{releaserId,jdbcType=VARCHAR},
       RELEASE_UNIT = #{releaseUnit,jdbcType=VARCHAR},
