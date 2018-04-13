@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<<<<<<< HEAD
 <mapper namespace="com.maiyue.business.mapper.DiligentStudyMapper" >
   <resultMap id="BaseResultMap" type="com.maiyue.business.bean.DiligentStudy" >
+=======
+<mapper namespace="com.maiyue.weixin.business.mapper.DiligentStudyMapper" >
+  <resultMap id="BaseResultMap" type="com.maiyue.weixin.business.bean.DiligentStudy" >
+>>>>>>> master
     <id column="ID" property="id" jdbcType="VARCHAR" />
     <result column="RELEASER_ID" property="releaserId" jdbcType="VARCHAR" />
     <result column="RELEASE_UNIT" property="releaseUnit" jdbcType="VARCHAR" />
@@ -34,7 +39,11 @@
     delete from T_BIS_DILIGENT_STUDY
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
+<<<<<<< HEAD
   <insert id="insert" parameterType="com.maiyue.business.bean.DiligentStudy" >
+=======
+  <insert id="insert" parameterType="com.maiyue.weixin.business.bean.DiligentStudy" >
+>>>>>>> master
     insert into T_BIS_DILIGENT_STUDY (ID, RELEASER_ID, RELEASE_UNIT, 
       EMPLOYMENT, INTRODUCE, REQUIRES, 
       SALARY, WITH_NUMBER, INTERVIEW_PLACE, 
@@ -48,7 +57,11 @@
       #{signupNum,jdbcType=VARCHAR}, #{employNum,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{state,jdbcType=VARCHAR})
   </insert>
+<<<<<<< HEAD
   <insert id="insertSelective" parameterType="com.maiyue.business.bean.DiligentStudy" >
+=======
+  <insert id="insertSelective" parameterType="com.maiyue.weixin.business.bean.DiligentStudy" >
+>>>>>>> master
     insert into T_BIS_DILIGENT_STUDY
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -151,7 +164,11 @@
       </if>
     </trim>
   </insert>
+<<<<<<< HEAD
   <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.business.bean.DiligentStudy" >
+=======
+  <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.weixin.business.bean.DiligentStudy" >
+>>>>>>> master
     update T_BIS_DILIGENT_STUDY
     <set >
       <if test="releaserId != null" >
@@ -202,7 +219,11 @@
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
+<<<<<<< HEAD
   <update id="updateByPrimaryKey" parameterType="com.maiyue.business.bean.DiligentStudy" >
+=======
+  <update id="updateByPrimaryKey" parameterType="com.maiyue.weixin.business.bean.DiligentStudy" >
+>>>>>>> master
     update T_BIS_DILIGENT_STUDY
     set RELEASER_ID = #{releaserId,jdbcType=VARCHAR},
       RELEASE_UNIT = #{releaseUnit,jdbcType=VARCHAR},

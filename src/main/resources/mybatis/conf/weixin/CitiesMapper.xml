@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.maiyue.weixin.base.mapper.CitiesMapper" >
+  <resultMap id="BaseResultMap" type="com.maiyue.weixin.base.bean.Cities" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="CITYID" property="cityid" jdbcType="VARCHAR" />
+    <result column="CITY" property="city" jdbcType="VARCHAR" />
+    <result column="PROVINCEID" property="provinceid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, CITYID, CITY, PROVINCEID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_BASE_CITIES
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_BASE_CITIES
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.maiyue.weixin.base.bean.Cities" >
+    insert into T_BASE_CITIES (ID, CITYID, CITY, 
+      PROVINCEID)
+    values (#{id,jdbcType=VARCHAR}, #{cityid,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{provinceid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.maiyue.weixin.base.bean.Cities" >
+    insert into T_BASE_CITIES
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="cityid != null" >
+        CITYID,
+      </if>
+      <if test="city != null" >
+        CITY,
+      </if>
+      <if test="provinceid != null" >
+        PROVINCEID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="cityid != null" >
+        #{cityid,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceid != null" >
+        #{provinceid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.weixin.base.bean.Cities" >
+    update T_BASE_CITIES
+    <set >
+      <if test="cityid != null" >
+        CITYID = #{cityid,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        CITY = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceid != null" >
+        PROVINCEID = #{provinceid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.maiyue.weixin.base.bean.Cities" >
+    update T_BASE_CITIES
+    set CITYID = #{cityid,jdbcType=VARCHAR},
+      CITY = #{city,jdbcType=VARCHAR},
+      PROVINCEID = #{provinceid,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="findByPage" resultMap="BaseResultMap" parameterType="java.util.HashMap" >
+    select <include refid="Base_Column_List"/> from T_BASE_CITIES
+    <where>
+      <if test="id != null">
+        AND ID = #{id,jdbcType=VARCHAR}
+      </if>
+      <if test="cityid != null">
+        AND CITYID = #{cityid,jdbcType=VARCHAR}
+      </if>
+      <if test="city != null">
+        AND CITY = #{city,jdbcType=VARCHAR}
+      </if>
+      <if test="provinceid != null">
+        AND PROVINCEID = #{provinceid,jdbcType=VARCHAR}
+      </if>
+      <if test="ids != null">
+       AND ID IN 
+         <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> 
+        #{item,jdbcType=VARCHAR}
+         </foreach>
+      </if>
+    </where>
+      <if test="order != null">
+      ORDER BY ${order} ${sorting}
+      </if>
+  </select>
+</mapper>

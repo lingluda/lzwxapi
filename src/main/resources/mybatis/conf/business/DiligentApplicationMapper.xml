@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<<<<<<< HEAD
 <mapper namespace="com.maiyue.business.mapper.DiligentApplicationMapper" >
   <resultMap id="BaseResultMap" type="com.maiyue.business.bean.DiligentApplication" >
+=======
+<mapper namespace="com.maiyue.weixin.business.mapper.DiligentApplicationMapper" >
+  <resultMap id="BaseResultMap" type="com.maiyue.weixin.business.bean.DiligentApplication" >
+>>>>>>> master
     <id column="ID" property="id" jdbcType="VARCHAR" />
     <result column="DILIGENT_ID" property="diligentId" jdbcType="VARCHAR" />
     <result column="APPLICANT_ID" property="applicantId" jdbcType="VARCHAR" />
@@ -23,7 +28,11 @@
     delete from T_BIS_DILIGENT_APPLICATION
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
+<<<<<<< HEAD
   <insert id="insert" parameterType="com.maiyue.business.bean.DiligentApplication" >
+=======
+  <insert id="insert" parameterType="com.maiyue.weixin.business.bean.DiligentApplication" >
+>>>>>>> master
     insert into T_BIS_DILIGENT_APPLICATION (ID, DILIGENT_ID, APPLICANT_ID, 
       START_TIME, END_TIME, AUDIT_STATE, 
       STATE)
@@ -31,7 +40,11 @@
       #{startTime,jdbcType=VARCHAR}, #{endTime,jdbcType=VARCHAR}, #{auditState,jdbcType=VARCHAR}, 
       #{state,jdbcType=VARCHAR})
   </insert>
+<<<<<<< HEAD
   <insert id="insertSelective" parameterType="com.maiyue.business.bean.DiligentApplication" >
+=======
+  <insert id="insertSelective" parameterType="com.maiyue.weixin.business.bean.DiligentApplication" >
+>>>>>>> master
     insert into T_BIS_DILIGENT_APPLICATION
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -80,7 +93,11 @@
       </if>
     </trim>
   </insert>
+<<<<<<< HEAD
   <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.business.bean.DiligentApplication" >
+=======
+  <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.weixin.business.bean.DiligentApplication" >
+>>>>>>> master
     update T_BIS_DILIGENT_APPLICATION
     <set >
       <if test="diligentId != null" >
@@ -104,7 +121,11 @@
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
+<<<<<<< HEAD
   <update id="updateByPrimaryKey" parameterType="com.maiyue.business.bean.DiligentApplication" >
+=======
+  <update id="updateByPrimaryKey" parameterType="com.maiyue.weixin.business.bean.DiligentApplication" >
+>>>>>>> master
     update T_BIS_DILIGENT_APPLICATION
     set DILIGENT_ID = #{diligentId,jdbcType=VARCHAR},
       APPLICANT_ID = #{applicantId,jdbcType=VARCHAR},

@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<<<<<<< HEAD
 <mapper namespace="com.maiyue.business.mapper.PaymentMapper" >
   <resultMap id="BaseResultMap" type="com.maiyue.business.bean.Payment" >
+=======
+<mapper namespace="com.maiyue.weixin.business.mapper.PaymentMapper" >
+  <resultMap id="BaseResultMap" type="com.maiyue.weixin.business.bean.Payment" >
+>>>>>>> master
     <id column="ID" property="id" jdbcType="VARCHAR" />
     <result column="HUMAN_ID" property="humanId" jdbcType="VARCHAR" />
     <result column="TERM_ID" property="termId" jdbcType="VARCHAR" />
@@ -30,7 +35,11 @@
     delete from T_BIS_PAYMENT
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
+<<<<<<< HEAD
   <insert id="insert" parameterType="com.maiyue.business.bean.Payment" >
+=======
+  <insert id="insert" parameterType="com.maiyue.weixin.business.bean.Payment" >
+>>>>>>> master
     insert into T_BIS_PAYMENT (ID, HUMAN_ID, TERM_ID, 
       STUDENT_ID, TRANSFER_ACCOUNTS, INCOME_ACCOUNTS, 
       PAY_TYPE, PURPOSE, MONEY, 
@@ -42,7 +51,11 @@
       #{payDate,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{payState,jdbcType=VARCHAR}, 
       #{state,jdbcType=VARCHAR})
   </insert>
+<<<<<<< HEAD
   <insert id="insertSelective" parameterType="com.maiyue.business.bean.Payment" >
+=======
+  <insert id="insertSelective" parameterType="com.maiyue.weixin.business.bean.Payment" >
+>>>>>>> master
     insert into T_BIS_PAYMENT
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -127,7 +140,11 @@
       </if>
     </trim>
   </insert>
+<<<<<<< HEAD
   <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.business.bean.Payment" >
+=======
+  <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.weixin.business.bean.Payment" >
+>>>>>>> master
     update T_BIS_PAYMENT
     <set >
       <if test="humanId != null" >
@@ -169,7 +186,11 @@
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
+<<<<<<< HEAD
   <update id="updateByPrimaryKey" parameterType="com.maiyue.business.bean.Payment" >
+=======
+  <update id="updateByPrimaryKey" parameterType="com.maiyue.weixin.business.bean.Payment" >
+>>>>>>> master
     update T_BIS_PAYMENT
     set HUMAN_ID = #{humanId,jdbcType=VARCHAR},
       TERM_ID = #{termId,jdbcType=VARCHAR},

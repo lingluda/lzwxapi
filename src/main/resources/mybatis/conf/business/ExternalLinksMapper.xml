@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<<<<<<< HEAD
 <mapper namespace="com.maiyue.business.mapper.ExternalLinksMapper" >
   <resultMap id="BaseResultMap" type="com.maiyue.business.bean.ExternalLinks" >
+=======
+<mapper namespace="com.maiyue.weixin.business.mapper.ExternalLinksMapper" >
+  <resultMap id="BaseResultMap" type="com.maiyue.weixin.business.bean.ExternalLinks" >
+>>>>>>> master
     <id column="ID" property="id" jdbcType="VARCHAR" />
     <result column="LINK_NAME" property="linkName" jdbcType="VARCHAR" />
     <result column="OPEN_MODE" property="openMode" jdbcType="VARCHAR" />
@@ -24,7 +29,11 @@
     delete from T_BIS_EXTERNAL_LINKS
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
+<<<<<<< HEAD
   <insert id="insert" parameterType="com.maiyue.business.bean.ExternalLinks" >
+=======
+  <insert id="insert" parameterType="com.maiyue.weixin.business.bean.ExternalLinks" >
+>>>>>>> master
     insert into T_BIS_EXTERNAL_LINKS (ID, LINK_NAME, OPEN_MODE, 
       LINK_URL, LINK_PICTURE, OPEN_TYPE, 
       CREATE_TIME, STATE)
@@ -32,7 +41,11 @@
       #{linkUrl,jdbcType=VARCHAR}, #{linkPicture,jdbcType=VARCHAR}, #{openType,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP}, #{state,jdbcType=VARCHAR})
   </insert>
+<<<<<<< HEAD
   <insert id="insertSelective" parameterType="com.maiyue.business.bean.ExternalLinks" >
+=======
+  <insert id="insertSelective" parameterType="com.maiyue.weixin.business.bean.ExternalLinks" >
+>>>>>>> master
     insert into T_BIS_EXTERNAL_LINKS
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -87,7 +100,11 @@
       </if>
     </trim>
   </insert>
+<<<<<<< HEAD
   <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.business.bean.ExternalLinks" >
+=======
+  <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.weixin.business.bean.ExternalLinks" >
+>>>>>>> master
     update T_BIS_EXTERNAL_LINKS
     <set >
       <if test="linkName != null" >
@@ -114,7 +131,11 @@
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
+<<<<<<< HEAD
   <update id="updateByPrimaryKey" parameterType="com.maiyue.business.bean.ExternalLinks" >
+=======
+  <update id="updateByPrimaryKey" parameterType="com.maiyue.weixin.business.bean.ExternalLinks" >
+>>>>>>> master
     update T_BIS_EXTERNAL_LINKS
     set LINK_NAME = #{linkName,jdbcType=VARCHAR},
       OPEN_MODE = #{openMode,jdbcType=VARCHAR},
