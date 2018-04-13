@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-
 <mapper namespace="com.maiyue.weixin.business.mapper.PaymentMapper" >
   <resultMap id="BaseResultMap" type="com.maiyue.weixin.business.bean.Payment" >
     <id column="ID" property="id" jdbcType="VARCHAR" />
@@ -31,7 +30,6 @@
     delete from T_BIS_PAYMENT
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
-
   <insert id="insert" parameterType="com.maiyue.weixin.business.bean.Payment" >
     insert into T_BIS_PAYMENT (ID, HUMAN_ID, TERM_ID, 
       STUDENT_ID, TRANSFER_ACCOUNTS, INCOME_ACCOUNTS, 
@@ -44,7 +42,6 @@
       #{payDate,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{payState,jdbcType=VARCHAR}, 
       #{state,jdbcType=VARCHAR})
   </insert>
-
   <insert id="insertSelective" parameterType="com.maiyue.weixin.business.bean.Payment" >
     insert into T_BIS_PAYMENT
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -130,7 +127,6 @@
       </if>
     </trim>
   </insert>
-
   <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.weixin.business.bean.Payment" >
     update T_BIS_PAYMENT
     <set >
@@ -173,7 +169,6 @@
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-
   <update id="updateByPrimaryKey" parameterType="com.maiyue.weixin.business.bean.Payment" >
     update T_BIS_PAYMENT
     set HUMAN_ID = #{humanId,jdbcType=VARCHAR},

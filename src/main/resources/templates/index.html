@@ -2,14 +2,19 @@
 <head>
 <meta charset="utf-8">
 <link   href="/css/login.css" rel="stylesheet" type="text/css">
+<link   href="/js/simple-calendar/css/simple-calendar.css" rel="stylesheet" type="text/css">
+<link 	href="/css/calendar.css" rel="stylesheet" >
+
 <script src="/js/jquery-1.11.3.js"></script>
 <script src="/js/particleground.js"></script>
+<script src="/js/calendar.js"></script> 
+<script src="/js/simple-calendar/js/simple-calendar.js"></script>
 <style>
-    body {
+   /*  body {
         height: 100%;
         background: #16a085;
         overflow: hidden;
-    }
+    } */
     canvas {
         z-index: -1;
         position: absolute;
@@ -24,14 +29,52 @@
     	width: 120px;
     	margin: 50px;
     }
+	a {
+		text-decoration: none;
+	}
+	ul, ol, li {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+	#demo {
+		width: 300px;
+		margin: 150px auto;
+	}
+	p {
+		margin: 0;
+	}
+	#dt {
+		margin: 30px auto;
+		height: 28px;
+		width: 200px;
+		padding: 0 6px;
+		border: 1px solid #ccc;
+		outline: none;
+	}
+	
+	.calendar .calendar-views .dot{
+		position: absolute;
+	    left: 43%;
+	    bottom: 9px;
+	    margin-left: -11px;
+	    width: 30px;
+	    height: 30px;
+	    background: #51aee673;
+	    border-radius: 50%;
+	}	
+	.calendar .calendar-views .now {
+	    color: #fff;
+	    background: #b4ca12!important;
+	}
 </style>
 <script type="text/javascript">
 $(document).ready(function () {
 	//粒子背景特效
-    $('body').particleground({
+    /* $('body').particleground({
         dotColor: '#5cbdaa',
         lineColor: '#5cbdaa'
-    });
+    }); */
 	//fileSingleSizeLimit=419430400
 	$('#shutdown').click(function() {
 		alert("重启过程中大概需要3-5分钟！请耐心等待。系统将在 5秒后关闭。");
@@ -46,11 +89,124 @@ $(document).ready(function () {
 </script>
 </head>
 <body>
-  <canvas class="pg-canvas" width="1134" height="535"></canvas>
+  <!-- <canvas class="pg-canvas" width="1134" height="535"></canvas> -->
   
   <!-- <button class="but" id="shutdown">重启程序</button> -->
   <button class="but" onclick="window.location='../swagger-ui.html'">接口信息</button>
   <button class="but" onclick="window.location='../uploader/web/picture.html?fileNumLimit=50'">上传图片</button>
   <button class="but" onclick="window.location='../uploader/web/file.html?fileSingleSizeLimit=419430400'">上传文件</button>
+
+
+  <!-- 超级课表 -->
+  <!-- <div id="demo">
+	  <div id="ca"></div>
+	  <input type="text" id="dt" placeholder="trigger calendar">
+	  <div id="dd"></div>
+  </div> -->
+
+
+	<div id='calendar'></div>
+
+	<button class="but" id="tt">获取选择时间</button>
+
+<script>
+    $('#ca').calendar({
+        width: 320,
+        height: 320,
+		format: 'yyyy-mm-dd',
+        data: [{
+			  date: '2018/04/12',
+			  value: 'Christmas Eve',
+			  id:'ffff',
+			  label: '777',
+			},/*{
+			  date: '2018/04/13',
+			  value: 'Christmas Eve'
+			},*/{
+			  date: '2018/04/15',
+			  label: '666',
+			  value: '{"address":"",\n"teacher":"老李",\n"wid":2,"course":"大学英语",\n"startTime":"",\n"endTime":"12:00"}',
+			  address : '1号教学楼',
+			},{
+			  date: '2016/04/16',
+			  value: 'Happy New Year'
+			}
+		],
+		//{d}\n{v}
+        onSelected: function (view, date, data) {
+            console.log('view:' + view)
+            alert('date:' + date)
+            console.log('data:' + (data || 'None'));
+        }
+    });
+    
+    $('#dd').calendar({
+        trigger: '#dt',
+        zIndex: 999,
+		format: 'yyyy-mm-dd',
+        onSelected: function (view, date, data) {
+            console.log('event: onSelected')
+        },
+        onClose: function (view, date, data) {
+            console.log('event: onClose')
+            console.log('view:' + view)
+            console.log('date:' + date)
+            console.log('data:' + (data || 'None'));
+        }
+    });
+    
+    
+    $(function() {
+    	var options = {
+    	      width: '45%',
+    	      height: '50%',
+    	      language: 'CH', //语言
+    	      showLunarCalendar: true, //阴历
+    	      showHoliday: true, //休假
+    	      showFestival: true, //节日
+    	      showLunarFestival: true, //农历节日
+    	      showSolarTerm: true, //节气
+    	      showMark: true, //标记
+    	      timeRange: {
+    	        startYear: 1900,
+    	        endYear: 2050
+    	      },
+    	      mark: {
+    	          '2018-4-15':'v55',
+    	          '2018-4-16':'vvv555',
+    	          '2018-4-17':'v555',
+    	          '2018-4-18':'vv555'
+    	      },
+    	      theme: {
+    	        changeAble: false,
+    	        weeks: {
+    	          backgroundColor: '#FBEC9C',
+    	          fontColor: '#4A4A4A',
+    	          fontSize: '20px',
+    	        },
+    	        days: {
+    	          backgroundColor: '#ffffff',
+    	          fontColor: '#565555',
+    	          fontSize: '24px'
+    	        },
+    	        todaycolor: 'orange',
+    	        activeSelectColor: 'orange',
+    	      },
+    	}
+    	var myCalendar = new SimpleCalendar('#calendar',options);
+    	
+    	/* myCalendar.updateSelect : function updateSelect(year, month) {
+    		
+    		alert(year);
+    		
+    	} */
+    	//sc-mark .sc-active-day .sc-selected  .sc-active-day .sc-selected
+    	$('#tt').click(function(){
+    		console.log("年:" + myCalendar.getCurrYear());
+    		console.log("月:" + myCalendar.getCurrMonth());
+    	});
+    	
+    });
+</script>
 </body>
 </html>

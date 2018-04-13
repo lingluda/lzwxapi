@@ -204,7 +204,7 @@ public class JSONUtils {
 		if("[null]".equals(jsonJAVA)){
 			jsonJAVA = "[]";
 		}
-		logger.info(jsonJAVA);
+		//logger.info(jsonJAVA);
 		return jsonJAVA;
 	}
 	

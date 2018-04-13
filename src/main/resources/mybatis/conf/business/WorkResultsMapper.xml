@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-
 <mapper namespace="com.maiyue.weixin.business.mapper.WorkResultsMapper" >
   <resultMap id="BaseResultMap" type="com.maiyue.weixin.business.bean.WorkResults" >
     <id column="ID" property="id" jdbcType="VARCHAR" />
@@ -24,7 +23,6 @@
     delete from T_BIS_WORK_RESULTS
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
-
   <insert id="insert" parameterType="com.maiyue.weixin.business.bean.WorkResults" >
     insert into T_BIS_WORK_RESULTS (ID, WORK_LOG_ID, APPLICANT_ID, 
       RESUT_URL, RESUT_TYPE, CREATE_TIME, 
@@ -33,7 +31,6 @@
       #{resutUrl,jdbcType=VARCHAR}, #{resutType,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{state,jdbcType=VARCHAR})
   </insert>
-
   <insert id="insertSelective" parameterType="com.maiyue.weixin.business.bean.WorkResults" >
     insert into T_BIS_WORK_RESULTS
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -83,7 +80,6 @@
       </if>
     </trim>
   </insert>
-
   <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.weixin.business.bean.WorkResults" >
     update T_BIS_WORK_RESULTS
     <set >
@@ -108,7 +104,6 @@
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-
   <update id="updateByPrimaryKey" parameterType="com.maiyue.weixin.business.bean.WorkResults" >
     update T_BIS_WORK_RESULTS
     set WORK_LOG_ID = #{workLogId,jdbcType=VARCHAR},

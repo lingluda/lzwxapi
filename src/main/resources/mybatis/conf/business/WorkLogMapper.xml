@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-
 <mapper namespace="com.maiyue.weixin.business.mapper.WorkLogMapper" >
   <resultMap id="BaseResultMap" type="com.maiyue.weixin.business.bean.WorkLog" >
     <id column="ID" property="id" jdbcType="VARCHAR" />
@@ -41,7 +40,6 @@
     delete from T_BIS_WORK_LOG
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
-
   <insert id="insert" parameterType="com.maiyue.weixin.business.bean.WorkLog" >
     insert into T_BIS_WORK_LOG (ID, APPLICANT_ID, JOB_POST, 
       JOB_TIME, JOB_CONTENT, AUDIT_LEVLE, 
@@ -60,7 +58,6 @@
       #{submit,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{state,jdbcType=VARCHAR}
       )
   </insert>
-
   <insert id="insertSelective" parameterType="com.maiyue.weixin.business.bean.WorkLog" >
     insert into T_BIS_WORK_LOG
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -194,7 +191,6 @@
       </if>
     </trim>
   </insert>
-
   <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.weixin.business.bean.WorkLog" >
     update T_BIS_WORK_LOG
     <set >
@@ -261,7 +257,6 @@
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-
   <update id="updateByPrimaryKey" parameterType="com.maiyue.weixin.business.bean.WorkLog" >
     update T_BIS_WORK_LOG
     set APPLICANT_ID = #{applicantId,jdbcType=VARCHAR},

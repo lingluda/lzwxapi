@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-
 <mapper namespace="com.maiyue.weixin.business.mapper.ScoreMapper" >
   <resultMap id="BaseResultMap" type="com.maiyue.weixin.business.bean.Score" >
     <id column="ID" property="id" jdbcType="VARCHAR" />
@@ -26,7 +25,6 @@
     delete from T_BIS_SCORE
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
-
   <insert id="insert" parameterType="com.maiyue.weixin.business.bean.Score" >
     insert into T_BIS_SCORE (ID, TERM_ID, TEACHER_ID, 
       STUDENT_ID, COURSE_ID, SCORE, 
@@ -37,7 +35,6 @@
       #{credit,jdbcType=VARCHAR}, #{creationTime,jdbcType=TIMESTAMP}, #{state,jdbcType=VARCHAR}
       )
   </insert>
-
   <insert id="insertSelective" parameterType="com.maiyue.weixin.business.bean.Score" >
     insert into T_BIS_SCORE
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -99,7 +96,6 @@
       </if>
     </trim>
   </insert>
-
   <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.weixin.business.bean.Score" >
     update T_BIS_SCORE
     <set >
@@ -130,7 +126,6 @@
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-
   <update id="updateByPrimaryKey" parameterType="com.maiyue.weixin.business.bean.Score" >
     update T_BIS_SCORE
     set TERM_ID = #{termId,jdbcType=VARCHAR},

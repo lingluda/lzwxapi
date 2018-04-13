@@ -17,6 +17,7 @@ import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,6 +35,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("///*")
 @Api(value = "CitiesController", description = "")
+@EnableAutoConfiguration
 public class CitiesController extends BaseController {
     
     
@@ -122,11 +124,10 @@ public class CitiesController extends BaseController {
      */
     @ApiOperation(value="按ID查询cities数据接口", notes="按ID查询数据接口")
     @ApiImplicitParams({
-    @ApiImplicitParam(name = "id", value = "ID查询", dataType = "String")
+    	@ApiImplicitParam(name = "id", value = "ID查询", dataType = "String")
     })
     @RequestMapping(value="findById",method= RequestMethod.POST)
     public ModelMap findById(@RequestParam(value ="id",required=false) String id) {
-        
          try {
               logger.info("调用cities按ID查询数据接口！");
              if(StringUtils.isBlank(id)){

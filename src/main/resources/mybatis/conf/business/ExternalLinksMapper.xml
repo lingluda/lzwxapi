@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-
 <mapper namespace="com.maiyue.weixin.business.mapper.ExternalLinksMapper" >
   <resultMap id="BaseResultMap" type="com.maiyue.weixin.business.bean.ExternalLinks" >
     <id column="ID" property="id" jdbcType="VARCHAR" />
@@ -25,10 +24,16 @@
     delete from T_BIS_EXTERNAL_LINKS
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
-
- 
-
+  <insert id="insert" parameterType="com.maiyue.weixin.business.bean.ExternalLinks" >
+    insert into T_BIS_EXTERNAL_LINKS (ID, LINK_NAME, OPEN_MODE, 
+      LINK_URL, LINK_PICTURE, OPEN_TYPE, 
+      CREATE_TIME, STATE)
+    values (#{id,jdbcType=VARCHAR}, #{linkName,jdbcType=VARCHAR}, #{openMode,jdbcType=VARCHAR}, 
+      #{linkUrl,jdbcType=VARCHAR}, #{linkPicture,jdbcType=VARCHAR}, #{openType,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{state,jdbcType=VARCHAR})
+  </insert>
   <insert id="insertSelective" parameterType="com.maiyue.weixin.business.bean.ExternalLinks" >
+    insert into T_BIS_EXTERNAL_LINKS
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         ID,
@@ -82,7 +87,6 @@
       </if>
     </trim>
   </insert>
-
   <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.weixin.business.bean.ExternalLinks" >
     update T_BIS_EXTERNAL_LINKS
     <set >
@@ -110,7 +114,6 @@
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-
   <update id="updateByPrimaryKey" parameterType="com.maiyue.weixin.business.bean.ExternalLinks" >
     update T_BIS_EXTERNAL_LINKS
     set LINK_NAME = #{linkName,jdbcType=VARCHAR},
