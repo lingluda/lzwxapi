@@ -15,7 +15,11 @@
             <property name="daoTargetProject" value="src/main/java"></property>
             <!-- 生成Mapper的包路径 -->
 <<<<<<< HEAD
+<<<<<<< HEAD
             <property name="daoTargetPackage" value="com.maiyue.business.mapper"></property>
+=======
+            <property name="daoTargetPackage" value="com.maiyue.weixin.base.mapper"></property>
+>>>>>>> master
 =======
             <property name="daoTargetPackage" value="com.maiyue.weixin.base.mapper"></property>
 >>>>>>> master
@@ -32,9 +36,15 @@
             <property name="serviceTargetProject" value="src/main/java"></property>
             <!-- 生成service接口的包路径 -->
 <<<<<<< HEAD
+<<<<<<< HEAD
             <property name="serviceTargetPackage" value="com.maiyue.business.service"></property>
             <!-- 生成service接口实现类的包 -->
             <property name="serviceImplTargetPackage" value="com.maiyue.business.service.impl"></property>
+=======
+            <property name="serviceTargetPackage" value="com.maiyue.weixin.base.service"></property>
+            <!-- 生成service接口实现类的包 -->
+            <property name="serviceImplTargetPackage" value="com.maiyue.weixin.base.service.impl"></property>
+>>>>>>> master
 =======
             <property name="serviceTargetPackage" value="com.maiyue.weixin.base.service"></property>
             <!-- 生成service接口实现类的包 -->
@@ -54,17 +64,23 @@
             <property name="controllerTargetProject" value="src/main/java"></property>
             <!-- 生成controller的包路径 -->
 <<<<<<< HEAD
+<<<<<<< HEAD
             <property name="controllerTargetPackage" value="com.maiyue.business.controller"></property>
             <!-- 继承的BaseController类 -->
             <property name="baseControllerClass" value="com.maiyue.weixin.controller.BaseController"></property>
             <!-- service包 -->
             <property name="servicePackage" value="com.maiyue.business.service"></property>
 =======
+=======
+>>>>>>> master
             <property name="controllerTargetPackage" value="com.maiyue.weixin.base.controller"></property>
             <!-- 继承的BaseController类 -->
             <property name="baseControllerClass" value="com.maiyue.weixin.controller.BaseController"></property>
             <!-- service包 -->
             <property name="servicePackage" value="com.maiyue.weixin.base.service"></property>
+<<<<<<< HEAD
+>>>>>>> master
+=======
 >>>>>>> master
             <!-- URL地址 -->
             <property name="controllerDir" value="/"></property>
@@ -96,7 +112,11 @@
         </javaTypeResolver>  
         <!-- 生成模型的包名和位置 -->  
 <<<<<<< HEAD
+<<<<<<< HEAD
         <javaModelGenerator targetPackage="com.maiyue.business.bean" targetProject="src/main/java">
+=======
+        <javaModelGenerator targetPackage="com.maiyue.weixin.base.bean" targetProject="src/main/java">
+>>>>>>> master
 =======
         <javaModelGenerator targetPackage="com.maiyue.weixin.base.bean" targetProject="src/main/java">
 >>>>>>> master
@@ -105,17 +125,23 @@
         </javaModelGenerator>
         <!-- 生成映射文件的包名和位置 -->  
 <<<<<<< HEAD
+<<<<<<< HEAD
         <sqlMapGenerator targetPackage="mybatis.conf.business" targetProject="src/main/resources">
             <property name="enableSubPackages" value="true"/>  
         </sqlMapGenerator>
         <!-- 生成DAO的包名和位置 -->
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.maiyue.business.mapper" targetProject="src/main/java">
 =======
+=======
+>>>>>>> master
         <sqlMapGenerator targetPackage="mybatis.conf.weixin" targetProject="src/main/resources">
             <property name="enableSubPackages" value="true"/>  
         </sqlMapGenerator>
         <!-- 生成DAO的包名和位置 -->
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.maiyue.weixin.base.mapper" targetProject="src/main/java">
+<<<<<<< HEAD
+>>>>>>> master
+=======
 >>>>>>> master
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
@@ -126,6 +152,7 @@
         
 				
 				
+<<<<<<< HEAD
 <<<<<<< HEAD
 				<table  tableName="T_BIS_QUALITY_EVALUATION"  domainObjectName="QualityEvaluation" enableCountByExample="false"
                 enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
@@ -144,6 +171,8 @@
                 selectByExampleQueryId="false" ></table>
 				<table  tableName="T_BIS_WORK_RESULTS"  domainObjectName="WorkResults" enableCountByExample="false"
 =======
+=======
+>>>>>>> master
 				<table  tableName="T_BASE_PROVINCES"  domainObjectName="Provinces" enableCountByExample="false"
                 enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                 selectByExampleQueryId="false" ></table>
@@ -151,6 +180,9 @@
                 enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                 selectByExampleQueryId="false" ></table>
 				<table  tableName="T_BASE_AREA"  domainObjectName="Area" enableCountByExample="false"
+<<<<<<< HEAD
+>>>>>>> master
+=======
 >>>>>>> master
                 enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                 selectByExampleQueryId="false" ></table>

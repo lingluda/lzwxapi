@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <<<<<<< HEAD
+<<<<<<< HEAD
 <mapper namespace="com.maiyue.business.mapper.DiligentApplicationMapper" >
   <resultMap id="BaseResultMap" type="com.maiyue.business.bean.DiligentApplication" >
+=======
+<mapper namespace="com.maiyue.weixin.business.mapper.DiligentApplicationMapper" >
+  <resultMap id="BaseResultMap" type="com.maiyue.weixin.business.bean.DiligentApplication" >
+>>>>>>> master
 =======
 <mapper namespace="com.maiyue.weixin.business.mapper.DiligentApplicationMapper" >
   <resultMap id="BaseResultMap" type="com.maiyue.weixin.business.bean.DiligentApplication" >
@@ -29,7 +34,11 @@
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
 <<<<<<< HEAD
+<<<<<<< HEAD
   <insert id="insert" parameterType="com.maiyue.business.bean.DiligentApplication" >
+=======
+  <insert id="insert" parameterType="com.maiyue.weixin.business.bean.DiligentApplication" >
+>>>>>>> master
 =======
   <insert id="insert" parameterType="com.maiyue.weixin.business.bean.DiligentApplication" >
 >>>>>>> master
@@ -41,7 +50,11 @@
       #{state,jdbcType=VARCHAR})
   </insert>
 <<<<<<< HEAD
+<<<<<<< HEAD
   <insert id="insertSelective" parameterType="com.maiyue.business.bean.DiligentApplication" >
+=======
+  <insert id="insertSelective" parameterType="com.maiyue.weixin.business.bean.DiligentApplication" >
+>>>>>>> master
 =======
   <insert id="insertSelective" parameterType="com.maiyue.weixin.business.bean.DiligentApplication" >
 >>>>>>> master
@@ -94,7 +107,11 @@
     </trim>
   </insert>
 <<<<<<< HEAD
+<<<<<<< HEAD
   <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.business.bean.DiligentApplication" >
+=======
+  <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.weixin.business.bean.DiligentApplication" >
+>>>>>>> master
 =======
   <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.weixin.business.bean.DiligentApplication" >
 >>>>>>> master
@@ -122,7 +139,11 @@
     where ID = #{id,jdbcType=VARCHAR}
   </update>
 <<<<<<< HEAD
+<<<<<<< HEAD
   <update id="updateByPrimaryKey" parameterType="com.maiyue.business.bean.DiligentApplication" >
+=======
+  <update id="updateByPrimaryKey" parameterType="com.maiyue.weixin.business.bean.DiligentApplication" >
+>>>>>>> master
 =======
   <update id="updateByPrimaryKey" parameterType="com.maiyue.weixin.business.bean.DiligentApplication" >
 >>>>>>> master

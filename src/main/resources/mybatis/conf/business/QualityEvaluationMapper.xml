@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <<<<<<< HEAD
+<<<<<<< HEAD
 <mapper namespace="com.maiyue.business.mapper.QualityEvaluationMapper" >
   <resultMap id="BaseResultMap" type="com.maiyue.business.bean.QualityEvaluation" >
+=======
+<mapper namespace="com.maiyue.weixin.business.mapper.QualityEvaluationMapper" >
+  <resultMap id="BaseResultMap" type="com.maiyue.weixin.business.bean.QualityEvaluation" >
+>>>>>>> master
 =======
 <mapper namespace="com.maiyue.weixin.business.mapper.QualityEvaluationMapper" >
   <resultMap id="BaseResultMap" type="com.maiyue.weixin.business.bean.QualityEvaluation" >
@@ -34,7 +39,11 @@
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
 <<<<<<< HEAD
+<<<<<<< HEAD
   <insert id="insert" parameterType="com.maiyue.business.bean.QualityEvaluation" >
+=======
+  <insert id="insert" parameterType="com.maiyue.weixin.business.bean.QualityEvaluation" >
+>>>>>>> master
 =======
   <insert id="insert" parameterType="com.maiyue.weixin.business.bean.QualityEvaluation" >
 >>>>>>> master
@@ -48,7 +57,11 @@
       #{createTime,jdbcType=TIMESTAMP}, #{state,jdbcType=VARCHAR})
   </insert>
 <<<<<<< HEAD
+<<<<<<< HEAD
   <insert id="insertSelective" parameterType="com.maiyue.business.bean.QualityEvaluation" >
+=======
+  <insert id="insertSelective" parameterType="com.maiyue.weixin.business.bean.QualityEvaluation" >
+>>>>>>> master
 =======
   <insert id="insertSelective" parameterType="com.maiyue.weixin.business.bean.QualityEvaluation" >
 >>>>>>> master
@@ -125,7 +138,11 @@
     </trim>
   </insert>
 <<<<<<< HEAD
+<<<<<<< HEAD
   <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.business.bean.QualityEvaluation" >
+=======
+  <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.weixin.business.bean.QualityEvaluation" >
+>>>>>>> master
 =======
   <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.weixin.business.bean.QualityEvaluation" >
 >>>>>>> master
@@ -165,7 +182,11 @@
     where ID = #{id,jdbcType=VARCHAR}
   </update>
 <<<<<<< HEAD
+<<<<<<< HEAD
   <update id="updateByPrimaryKey" parameterType="com.maiyue.business.bean.QualityEvaluation" >
+=======
+  <update id="updateByPrimaryKey" parameterType="com.maiyue.weixin.business.bean.QualityEvaluation" >
+>>>>>>> master
 =======
   <update id="updateByPrimaryKey" parameterType="com.maiyue.weixin.business.bean.QualityEvaluation" >
 >>>>>>> master

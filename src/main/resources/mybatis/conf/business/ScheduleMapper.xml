@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <<<<<<< HEAD
+<<<<<<< HEAD
 <mapper namespace="com.maiyue.business.mapper.ScheduleMapper" >
   <resultMap id="BaseResultMap" type="com.maiyue.business.bean.Schedule" >
+=======
+<mapper namespace="com.maiyue.weixin.business.mapper.ScheduleMapper" >
+  <resultMap id="BaseResultMap" type="com.maiyue.weixin.business.bean.Schedule" >
+>>>>>>> master
 =======
 <mapper namespace="com.maiyue.weixin.business.mapper.ScheduleMapper" >
   <resultMap id="BaseResultMap" type="com.maiyue.weixin.business.bean.Schedule" >
@@ -30,7 +35,11 @@
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
 <<<<<<< HEAD
+<<<<<<< HEAD
   <insert id="insert" parameterType="com.maiyue.business.bean.Schedule" >
+=======
+  <insert id="insert" parameterType="com.maiyue.weixin.business.bean.Schedule" >
+>>>>>>> master
 =======
   <insert id="insert" parameterType="com.maiyue.weixin.business.bean.Schedule" >
 >>>>>>> master
@@ -42,7 +51,11 @@
       #{createTime,jdbcType=TIMESTAMP}, #{statr,jdbcType=VARCHAR})
   </insert>
 <<<<<<< HEAD
+<<<<<<< HEAD
   <insert id="insertSelective" parameterType="com.maiyue.business.bean.Schedule" >
+=======
+  <insert id="insertSelective" parameterType="com.maiyue.weixin.business.bean.Schedule" >
+>>>>>>> master
 =======
   <insert id="insertSelective" parameterType="com.maiyue.weixin.business.bean.Schedule" >
 >>>>>>> master
@@ -101,7 +114,11 @@
     </trim>
   </insert>
 <<<<<<< HEAD
+<<<<<<< HEAD
   <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.business.bean.Schedule" >
+=======
+  <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.weixin.business.bean.Schedule" >
+>>>>>>> master
 =======
   <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.weixin.business.bean.Schedule" >
 >>>>>>> master
@@ -132,7 +149,11 @@
     where ID = #{id,jdbcType=VARCHAR}
   </update>
 <<<<<<< HEAD
+<<<<<<< HEAD
   <update id="updateByPrimaryKey" parameterType="com.maiyue.business.bean.Schedule" >
+=======
+  <update id="updateByPrimaryKey" parameterType="com.maiyue.weixin.business.bean.Schedule" >
+>>>>>>> master
 =======
   <update id="updateByPrimaryKey" parameterType="com.maiyue.weixin.business.bean.Schedule" >
 >>>>>>> master
