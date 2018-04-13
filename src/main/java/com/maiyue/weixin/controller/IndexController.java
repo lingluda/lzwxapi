@@ -40,7 +40,11 @@ public class IndexController extends BaseController{
         return "index";
     }
     
-  
+    @RequestMapping(value="/business/schedule")
+    public String schedule(ModelMap model,HttpSession session,HttpServletRequest request) {
+        return "schedule";
+    }
+    
     
 //    public synchronized ModelMap rebootSystem(){
 //    	try {
