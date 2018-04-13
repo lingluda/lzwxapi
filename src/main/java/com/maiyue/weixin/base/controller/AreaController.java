@@ -13,6 +13,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +24,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.Map;
 
 /**
@@ -50,8 +50,7 @@ public class AreaController extends BaseController {
     @ApiImplicitParam(name = "ids", value = "ID-IN查询", dataType = "List")
     })
     @RequestMapping(value="getPage",method= RequestMethod.POST)
-    public ModelMap getPage(@RequestParam(value ="ids[]",required=false) ArrayList ids[], Area area) {
-        
+    public ModelMap getPage(@RequestParam(value ="ids[]",required=false) String[] ids, Area area) {
         try {
             logger.info("调用area分页查询接口！");
             Map<String,Object> params = ReflectUtil.beanToMap(area, true);
@@ -71,7 +70,6 @@ public class AreaController extends BaseController {
     @ApiOperation(value="新增area数据接口", notes="新增数据接口")
     @RequestMapping(value="newly",method= RequestMethod.POST)
     public ModelMap newly(Area area) {
-        
          try {
              logger.info("调用area数据新增接口！");
             if(getCurrUser() == null){
@@ -97,7 +95,6 @@ public class AreaController extends BaseController {
     @ApiOperation(value="编辑area数据接口", notes="编辑数据接口")
     @RequestMapping(value="editor",method= RequestMethod.POST)
     public ModelMap editor(Area area) {
-        
          try {
              logger.info("调用area数据编辑接口！");
             if(getCurrUser() == null){
@@ -120,12 +117,9 @@ public class AreaController extends BaseController {
      * @param area 实体
      */
     @ApiOperation(value="按ID查询area数据接口", notes="按ID查询数据接口")
-    @ApiImplicitParams({
-    @ApiImplicitParam(name = "id", value = "ID查询", dataType = "String")
-    })
-    @RequestMapping(value="findById",method= RequestMethod.POST)
+    @ApiParam(name = "id", value = "ID查询",required=true)
+    @RequestMapping(value="findById",method= {RequestMethod.POST,RequestMethod.GET})
     public ModelMap findById(@RequestParam(value ="id",required=false) String id) {
-        
          try {
               logger.info("调用area按ID查询数据接口！");
              if(StringUtils.isBlank(id)){
