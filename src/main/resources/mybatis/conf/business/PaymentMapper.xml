@@ -30,6 +30,18 @@
     delete from T_BIS_PAYMENT
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
+  <insert id="insert" parameterType="com.maiyue.weixin.business.bean.Payment" >
+    insert into T_BIS_PAYMENT (ID, HUMAN_ID, TERM_ID, 
+      STUDENT_ID, TRANSFER_ACCOUNTS, INCOME_ACCOUNTS, 
+      PAY_TYPE, PURPOSE, MONEY, 
+      PAY_DATE, CREATE_TIME, PAY_STATE, 
+      STATE)
+    values (#{id,jdbcType=VARCHAR}, #{humanId,jdbcType=VARCHAR}, #{termId,jdbcType=VARCHAR}, 
+      #{studentId,jdbcType=VARCHAR}, #{transferAccounts,jdbcType=VARCHAR}, #{incomeAccounts,jdbcType=VARCHAR}, 
+      #{payType,jdbcType=VARCHAR}, #{purpose,jdbcType=VARCHAR}, #{money,jdbcType=DECIMAL}, 
+      #{payDate,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{payState,jdbcType=VARCHAR}, 
+      #{state,jdbcType=VARCHAR})
+  </insert>
   <insert id="insertSelective" parameterType="com.maiyue.weixin.business.bean.Payment" >
     insert into T_BIS_PAYMENT
     <trim prefix="(" suffix=")" suffixOverrides="," >

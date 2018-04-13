@@ -25,7 +25,16 @@
     delete from T_BIS_SCORE
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
-  
+  <insert id="insert" parameterType="com.maiyue.weixin.business.bean.Score" >
+    insert into T_BIS_SCORE (ID, TERM_ID, TEACHER_ID, 
+      STUDENT_ID, COURSE_ID, SCORE, 
+      CREDIT, CREATION_TIME, STATE
+      )
+    values (#{id,jdbcType=VARCHAR}, #{termId,jdbcType=VARCHAR}, #{teacherId,jdbcType=VARCHAR}, 
+      #{studentId,jdbcType=VARCHAR}, #{courseId,jdbcType=VARCHAR}, #{score,jdbcType=VARCHAR}, 
+      #{credit,jdbcType=VARCHAR}, #{creationTime,jdbcType=TIMESTAMP}, #{state,jdbcType=VARCHAR}
+      )
+  </insert>
   <insert id="insertSelective" parameterType="com.maiyue.weixin.business.bean.Score" >
     insert into T_BIS_SCORE
     <trim prefix="(" suffix=")" suffixOverrides="," >

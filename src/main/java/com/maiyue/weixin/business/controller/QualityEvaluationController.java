@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -79,6 +80,7 @@ public class QualityEvaluationController extends BaseController {
             }
             if(qualityEvaluation != null){
                 qualityEvaluation.setId(ComUtil.randomUUID());
+                qualityEvaluation.setCreateTime(new Date());
                 qualityEvaluationService.insert(qualityEvaluation);
                  logger.info("调用qualityEvaluation数据新增接口,执行保存数据成功！");
                 return ResponseUtil.RetCorrectInfo(JSONUtils.toJSONObject(qualityEvaluation));

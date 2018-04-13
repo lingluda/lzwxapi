@@ -23,7 +23,14 @@
     delete from T_BIS_WORK_RESULTS
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
-  
+  <insert id="insert" parameterType="com.maiyue.weixin.business.bean.WorkResults" >
+    insert into T_BIS_WORK_RESULTS (ID, WORK_LOG_ID, APPLICANT_ID, 
+      RESUT_URL, RESUT_TYPE, CREATE_TIME, 
+      STATE)
+    values (#{id,jdbcType=VARCHAR}, #{workLogId,jdbcType=VARCHAR}, #{applicantId,jdbcType=VARCHAR}, 
+      #{resutUrl,jdbcType=VARCHAR}, #{resutType,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{state,jdbcType=VARCHAR})
+  </insert>
   <insert id="insertSelective" parameterType="com.maiyue.weixin.business.bean.WorkResults" >
     insert into T_BIS_WORK_RESULTS
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -73,7 +80,6 @@
       </if>
     </trim>
   </insert>
-  
   <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.weixin.business.bean.WorkResults" >
     update T_BIS_WORK_RESULTS
     <set >
@@ -98,7 +104,16 @@
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-  
+  <update id="updateByPrimaryKey" parameterType="com.maiyue.weixin.business.bean.WorkResults" >
+    update T_BIS_WORK_RESULTS
+    set WORK_LOG_ID = #{workLogId,jdbcType=VARCHAR},
+      APPLICANT_ID = #{applicantId,jdbcType=VARCHAR},
+      RESUT_URL = #{resutUrl,jdbcType=VARCHAR},
+      RESUT_TYPE = #{resutType,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      STATE = #{state,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
   <select id="findByPage" resultMap="BaseResultMap" parameterType="java.util.HashMap" >
     select <include refid="Base_Column_List"/> from T_BIS_WORK_RESULTS
     <where>
@@ -131,7 +146,7 @@
       </if>
     </where>
       <if test="order != null">
-      	ORDER BY ${order} ${sorting}
+      ORDER BY ${order} ${sorting}
       </if>
   </select>
 </mapper>

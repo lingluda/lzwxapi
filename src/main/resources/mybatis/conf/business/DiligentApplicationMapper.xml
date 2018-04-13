@@ -10,24 +10,27 @@
     <result column="AUDIT_STATE" property="auditState" jdbcType="VARCHAR" />
     <result column="STATE" property="state" jdbcType="VARCHAR" />
   </resultMap>
-  
   <sql id="Base_Column_List" >
     ID, DILIGENT_ID, APPLICANT_ID, START_TIME, END_TIME, AUDIT_STATE, STATE
   </sql>
-  
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from T_BIS_DILIGENT_APPLICATION
     where ID = #{id,jdbcType=VARCHAR}
   </select>
-  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from T_BIS_DILIGENT_APPLICATION
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
-  
-  
+  <insert id="insert" parameterType="com.maiyue.weixin.business.bean.DiligentApplication" >
+    insert into T_BIS_DILIGENT_APPLICATION (ID, DILIGENT_ID, APPLICANT_ID, 
+      START_TIME, END_TIME, AUDIT_STATE, 
+      STATE)
+    values (#{id,jdbcType=VARCHAR}, #{diligentId,jdbcType=VARCHAR}, #{applicantId,jdbcType=VARCHAR}, 
+      #{startTime,jdbcType=VARCHAR}, #{endTime,jdbcType=VARCHAR}, #{auditState,jdbcType=VARCHAR}, 
+      #{state,jdbcType=VARCHAR})
+  </insert>
   <insert id="insertSelective" parameterType="com.maiyue.weixin.business.bean.DiligentApplication" >
     insert into T_BIS_DILIGENT_APPLICATION
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -77,8 +80,6 @@
       </if>
     </trim>
   </insert>
-  
-
   <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.weixin.business.bean.DiligentApplication" >
     update T_BIS_DILIGENT_APPLICATION
     <set >
@@ -103,8 +104,16 @@
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-
-  
+  <update id="updateByPrimaryKey" parameterType="com.maiyue.weixin.business.bean.DiligentApplication" >
+    update T_BIS_DILIGENT_APPLICATION
+    set DILIGENT_ID = #{diligentId,jdbcType=VARCHAR},
+      APPLICANT_ID = #{applicantId,jdbcType=VARCHAR},
+      START_TIME = #{startTime,jdbcType=VARCHAR},
+      END_TIME = #{endTime,jdbcType=VARCHAR},
+      AUDIT_STATE = #{auditState,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
   <select id="findByPage" resultMap="BaseResultMap" parameterType="java.util.HashMap" >
     select <include refid="Base_Column_List"/> from T_BIS_DILIGENT_APPLICATION
     <where>
@@ -132,7 +141,7 @@
       <if test="ids != null">
        AND ID IN 
          <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> 
-        	#{item,jdbcType=VARCHAR}
+        #{item,jdbcType=VARCHAR}
          </foreach>
       </if>
     </where>
@@ -140,6 +149,4 @@
       ORDER BY ${order} ${sorting}
       </if>
   </select>
-  
-  
 </mapper>

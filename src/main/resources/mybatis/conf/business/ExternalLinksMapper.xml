@@ -11,7 +11,6 @@
     <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
     <result column="STATE" property="state" jdbcType="VARCHAR" />
   </resultMap>
-  
   <sql id="Base_Column_List" >
     ID, LINK_NAME, OPEN_MODE, LINK_URL, LINK_PICTURE, OPEN_TYPE, CREATE_TIME, STATE
   </sql>
@@ -25,7 +24,14 @@
     delete from T_BIS_EXTERNAL_LINKS
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
-  
+  <insert id="insert" parameterType="com.maiyue.weixin.business.bean.ExternalLinks" >
+    insert into T_BIS_EXTERNAL_LINKS (ID, LINK_NAME, OPEN_MODE, 
+      LINK_URL, LINK_PICTURE, OPEN_TYPE, 
+      CREATE_TIME, STATE)
+    values (#{id,jdbcType=VARCHAR}, #{linkName,jdbcType=VARCHAR}, #{openMode,jdbcType=VARCHAR}, 
+      #{linkUrl,jdbcType=VARCHAR}, #{linkPicture,jdbcType=VARCHAR}, #{openType,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{state,jdbcType=VARCHAR})
+  </insert>
   <insert id="insertSelective" parameterType="com.maiyue.weixin.business.bean.ExternalLinks" >
     insert into T_BIS_EXTERNAL_LINKS
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -81,7 +87,6 @@
       </if>
     </trim>
   </insert>
-  
   <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.weixin.business.bean.ExternalLinks" >
     update T_BIS_EXTERNAL_LINKS
     <set >
@@ -109,7 +114,17 @@
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-
+  <update id="updateByPrimaryKey" parameterType="com.maiyue.weixin.business.bean.ExternalLinks" >
+    update T_BIS_EXTERNAL_LINKS
+    set LINK_NAME = #{linkName,jdbcType=VARCHAR},
+      OPEN_MODE = #{openMode,jdbcType=VARCHAR},
+      LINK_URL = #{linkUrl,jdbcType=VARCHAR},
+      LINK_PICTURE = #{linkPicture,jdbcType=VARCHAR},
+      OPEN_TYPE = #{openType,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      STATE = #{state,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
   <select id="findByPage" resultMap="BaseResultMap" parameterType="java.util.HashMap" >
     select <include refid="Base_Column_List"/> from T_BIS_EXTERNAL_LINKS
     <where>

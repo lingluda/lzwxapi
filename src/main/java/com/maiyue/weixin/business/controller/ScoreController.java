@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -51,7 +52,7 @@ public class ScoreController extends BaseController {
     })
     @RequestMapping(value="getPage",method= RequestMethod.POST)
     public ModelMap getPage(@RequestParam(value ="ids[]",required=false) ArrayList ids[], Score score) {
-        
+    	
         try {
             logger.info("调用score分页查询接口！");
             Map<String,Object> params = ReflectUtil.beanToMap(score, true);
@@ -79,6 +80,7 @@ public class ScoreController extends BaseController {
             }
             if(score != null){
                 score.setId(ComUtil.randomUUID());
+                score.setCreationTime(new Date());
                 scoreService.insert(score);
                  logger.info("调用score数据新增接口,执行保存数据成功！");
                 return ResponseUtil.RetCorrectInfo(JSONUtils.toJSONObject(score));

@@ -40,6 +40,24 @@
     delete from T_BIS_WORK_LOG
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
+  <insert id="insert" parameterType="com.maiyue.weixin.business.bean.WorkLog" >
+    insert into T_BIS_WORK_LOG (ID, APPLICANT_ID, JOB_POST, 
+      JOB_TIME, JOB_CONTENT, AUDIT_LEVLE, 
+      CURRENT_LEVEL, FIRST_LEVEL, FIRST_LEVEL_STATE, 
+      FIRST_LEVEL_OPINION, SEC_LEVEL, SEC_LEVEL_STATE, 
+      SEC_LEVEL_OPINION, THREE_LEVEL, THREE_LEVEL_STATE, 
+      THREE_LEVEL_OPINION, PROCESS_STATE, AUDIT_RESULT, 
+      SUBMIT, CREATE_TIME, STATE
+      )
+    values (#{id,jdbcType=VARCHAR}, #{applicantId,jdbcType=VARCHAR}, #{jobPost,jdbcType=VARCHAR}, 
+      #{jobTime,jdbcType=VARCHAR}, #{jobContent,jdbcType=VARCHAR}, #{auditLevle,jdbcType=VARCHAR}, 
+      #{currentLevel,jdbcType=VARCHAR}, #{firstLevel,jdbcType=VARCHAR}, #{firstLevelState,jdbcType=VARCHAR}, 
+      #{firstLevelOpinion,jdbcType=VARCHAR}, #{secLevel,jdbcType=VARCHAR}, #{secLevelState,jdbcType=VARCHAR}, 
+      #{secLevelOpinion,jdbcType=VARCHAR}, #{threeLevel,jdbcType=VARCHAR}, #{threeLevelState,jdbcType=VARCHAR}, 
+      #{threeLevelOpinion,jdbcType=VARCHAR}, #{processState,jdbcType=VARCHAR}, #{auditResult,jdbcType=VARCHAR}, 
+      #{submit,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{state,jdbcType=VARCHAR}
+      )
+  </insert>
   <insert id="insertSelective" parameterType="com.maiyue.weixin.business.bean.WorkLog" >
     insert into T_BIS_WORK_LOG
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -337,7 +355,7 @@
       </if>
     </where>
       <if test="order != null">
-      	ORDER BY ${order} ${sorting}
+      ORDER BY ${order} ${sorting}
       </if>
   </select>
 </mapper>
