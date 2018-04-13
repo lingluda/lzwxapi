@@ -2,15 +2,19 @@
 <head>
 <meta charset="utf-8">
 <link   href="/css/login.css" rel="stylesheet" type="text/css">
+<link   href="/js/simple-calendar/css/simple-calendar.css" rel="stylesheet" type="text/css">
+<link 	href="/css/calendar.css" rel="stylesheet" >
+
 <script src="/js/jquery-1.11.3.js"></script>
 <script src="/js/particleground.js"></script>
-<script src="js/calendar.js"></script> 
+<script src="/js/calendar.js"></script> 
+<script src="/js/simple-calendar/js/simple-calendar.js"></script>
 <style>
-    body {
+   /*  body {
         height: 100%;
         background: #16a085;
         overflow: hidden;
-    }
+    } */
     canvas {
         z-index: -1;
         position: absolute;
@@ -67,10 +71,10 @@
 <script type="text/javascript">
 $(document).ready(function () {
 	//粒子背景特效
-    $('body').particleground({
+    /* $('body').particleground({
         dotColor: '#5cbdaa',
         lineColor: '#5cbdaa'
-    });
+    }); */
 	//fileSingleSizeLimit=419430400
 	$('#shutdown').click(function() {
 		alert("重启过程中大概需要3-5分钟！请耐心等待。系统将在 5秒后关闭。");
@@ -85,21 +89,25 @@ $(document).ready(function () {
 </script>
 </head>
 <body>
-  <canvas class="pg-canvas" width="1134" height="535"></canvas>
+  <!-- <canvas class="pg-canvas" width="1134" height="535"></canvas> -->
   
   <!-- <button class="but" id="shutdown">重启程序</button> -->
   <button class="but" onclick="window.location='../swagger-ui.html'">接口信息</button>
   <button class="but" onclick="window.location='../uploader/web/picture.html?fileNumLimit=50'">上传图片</button>
   <button class="but" onclick="window.location='../uploader/web/file.html?fileSingleSizeLimit=419430400'">上传文件</button>
 
+
   <!-- 超级课表 -->
-  <div id="demo">
+  <!-- <div id="demo">
 	  <div id="ca"></div>
 	  <input type="text" id="dt" placeholder="trigger calendar">
 	  <div id="dd"></div>
-  </div>
+  </div> -->
 
 
+	<div id='calendar'></div>
+
+	<button class="but" id="tt">获取选择时间</button>
 
 <script>
     $('#ca').calendar({
@@ -145,6 +153,59 @@ $(document).ready(function () {
             console.log('date:' + date)
             console.log('data:' + (data || 'None'));
         }
+    });
+    
+    
+    $(function() {
+    	var options = {
+    	      width: '45%',
+    	      height: '50%',
+    	      language: 'CH', //语言
+    	      showLunarCalendar: true, //阴历
+    	      showHoliday: true, //休假
+    	      showFestival: true, //节日
+    	      showLunarFestival: true, //农历节日
+    	      showSolarTerm: true, //节气
+    	      showMark: true, //标记
+    	      timeRange: {
+    	        startYear: 1900,
+    	        endYear: 2050
+    	      },
+    	      mark: {
+    	          '2018-4-15':'v55',
+    	          '2018-4-16':'vvv555',
+    	          '2018-4-17':'v555',
+    	          '2018-4-18':'vv555'
+    	      },
+    	      theme: {
+    	        changeAble: false,
+    	        weeks: {
+    	          backgroundColor: '#FBEC9C',
+    	          fontColor: '#4A4A4A',
+    	          fontSize: '20px',
+    	        },
+    	        days: {
+    	          backgroundColor: '#ffffff',
+    	          fontColor: '#565555',
+    	          fontSize: '24px'
+    	        },
+    	        todaycolor: 'orange',
+    	        activeSelectColor: 'orange',
+    	      },
+    	}
+    	var myCalendar = new SimpleCalendar('#calendar',options);
+    	
+    	/* myCalendar.updateSelect : function updateSelect(year, month) {
+    		
+    		alert(year);
+    		
+    	} */
+    	//sc-mark .sc-active-day .sc-selected  .sc-active-day .sc-selected
+    	$('#tt').click(function(){
+    		console.log("年:" + myCalendar.getCurrYear());
+    		console.log("月:" + myCalendar.getCurrMonth());
+    	});
+    	
     });
 </script>
 </body>

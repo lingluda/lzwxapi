@@ -128,7 +128,6 @@ public class CitiesController extends BaseController {
     })
     @RequestMapping(value="findById",method= RequestMethod.POST)
     public ModelMap findById(@RequestParam(value ="id",required=false) String id) {
-        
          try {
               logger.info("调用cities按ID查询数据接口！");
              if(StringUtils.isBlank(id)){
