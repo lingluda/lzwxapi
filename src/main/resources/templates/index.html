@@ -4,6 +4,7 @@
 <link   href="/css/login.css" rel="stylesheet" type="text/css">
 <script src="/js/jquery-1.11.3.js"></script>
 <script src="/js/particleground.js"></script>
+<script src="js/calendar.js"></script> 
 <style>
     body {
         height: 100%;
@@ -24,6 +25,44 @@
     	width: 120px;
     	margin: 50px;
     }
+	a {
+		text-decoration: none;
+	}
+	ul, ol, li {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+	#demo {
+		width: 300px;
+		margin: 150px auto;
+	}
+	p {
+		margin: 0;
+	}
+	#dt {
+		margin: 30px auto;
+		height: 28px;
+		width: 200px;
+		padding: 0 6px;
+		border: 1px solid #ccc;
+		outline: none;
+	}
+	
+	.calendar .calendar-views .dot{
+		position: absolute;
+	    left: 43%;
+	    bottom: 9px;
+	    margin-left: -11px;
+	    width: 30px;
+	    height: 30px;
+	    background: #51aee673;
+	    border-radius: 50%;
+	}	
+	.calendar .calendar-views .now {
+	    color: #fff;
+	    background: #b4ca12!important;
+	}
 </style>
 <script type="text/javascript">
 $(document).ready(function () {
@@ -52,5 +91,61 @@ $(document).ready(function () {
   <button class="but" onclick="window.location='../swagger-ui.html'">接口信息</button>
   <button class="but" onclick="window.location='../uploader/web/picture.html?fileNumLimit=50'">上传图片</button>
   <button class="but" onclick="window.location='../uploader/web/file.html?fileSingleSizeLimit=419430400'">上传文件</button>
+
+  <!-- 超级课表 -->
+  <div id="demo">
+	  <div id="ca"></div>
+	  <input type="text" id="dt" placeholder="trigger calendar">
+	  <div id="dd"></div>
+  </div>
+
+
+
+<script>
+    $('#ca').calendar({
+        width: 320,
+        height: 320,
+		format: 'yyyy-mm-dd',
+        data: [{
+			  date: '2018/04/12',
+			  value: 'Christmas Eve',
+			  id:'ffff',
+			  label: '777',
+			},/*{
+			  date: '2018/04/13',
+			  value: 'Christmas Eve'
+			},*/{
+			  date: '2018/04/15',
+			  label: '666',
+			  value: '{"address":"",\n"teacher":"老李",\n"wid":2,"course":"大学英语",\n"startTime":"",\n"endTime":"12:00"}',
+			  address : '1号教学楼',
+			},{
+			  date: '2016/04/16',
+			  value: 'Happy New Year'
+			}
+		],
+		//{d}\n{v}
+        onSelected: function (view, date, data) {
+            console.log('view:' + view)
+            alert('date:' + date)
+            console.log('data:' + (data || 'None'));
+        }
+    });
+    
+    $('#dd').calendar({
+        trigger: '#dt',
+        zIndex: 999,
+		format: 'yyyy-mm-dd',
+        onSelected: function (view, date, data) {
+            console.log('event: onSelected')
+        },
+        onClose: function (view, date, data) {
+            console.log('event: onClose')
+            console.log('view:' + view)
+            console.log('date:' + date)
+            console.log('data:' + (data || 'None'));
+        }
+    });
+</script>
 </body>
 </html>

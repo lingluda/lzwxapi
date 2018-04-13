@@ -1,22 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<mapper namespace="com.maiyue.business.mapper.DiligentApplicationMapper" >
-  <resultMap id="BaseResultMap" type="com.maiyue.business.bean.DiligentApplication" >
-=======
 <mapper namespace="com.maiyue.weixin.business.mapper.DiligentApplicationMapper" >
   <resultMap id="BaseResultMap" type="com.maiyue.weixin.business.bean.DiligentApplication" >
->>>>>>> master
-=======
-<mapper namespace="com.maiyue.weixin.business.mapper.DiligentApplicationMapper" >
-  <resultMap id="BaseResultMap" type="com.maiyue.weixin.business.bean.DiligentApplication" >
->>>>>>> master
-=======
-<mapper namespace="com.maiyue.weixin.business.mapper.DiligentApplicationMapper" >
-  <resultMap id="BaseResultMap" type="com.maiyue.weixin.business.bean.DiligentApplication" >
->>>>>>> remotes/origin/master
     <id column="ID" property="id" jdbcType="VARCHAR" />
     <result column="DILIGENT_ID" property="diligentId" jdbcType="VARCHAR" />
     <result column="APPLICANT_ID" property="applicantId" jdbcType="VARCHAR" />
@@ -25,52 +10,25 @@
     <result column="AUDIT_STATE" property="auditState" jdbcType="VARCHAR" />
     <result column="STATE" property="state" jdbcType="VARCHAR" />
   </resultMap>
+  
   <sql id="Base_Column_List" >
     ID, DILIGENT_ID, APPLICANT_ID, START_TIME, END_TIME, AUDIT_STATE, STATE
   </sql>
+  
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from T_BIS_DILIGENT_APPLICATION
     where ID = #{id,jdbcType=VARCHAR}
   </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from T_BIS_DILIGENT_APPLICATION
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-  <insert id="insert" parameterType="com.maiyue.business.bean.DiligentApplication" >
-=======
-  <insert id="insert" parameterType="com.maiyue.weixin.business.bean.DiligentApplication" >
->>>>>>> master
-=======
-  <insert id="insert" parameterType="com.maiyue.weixin.business.bean.DiligentApplication" >
->>>>>>> master
-=======
-  <insert id="insert" parameterType="com.maiyue.weixin.business.bean.DiligentApplication" >
->>>>>>> remotes/origin/master
-    insert into T_BIS_DILIGENT_APPLICATION (ID, DILIGENT_ID, APPLICANT_ID, 
-      START_TIME, END_TIME, AUDIT_STATE, 
-      STATE)
-    values (#{id,jdbcType=VARCHAR}, #{diligentId,jdbcType=VARCHAR}, #{applicantId,jdbcType=VARCHAR}, 
-      #{startTime,jdbcType=VARCHAR}, #{endTime,jdbcType=VARCHAR}, #{auditState,jdbcType=VARCHAR}, 
-      #{state,jdbcType=VARCHAR})
-  </insert>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-  <insert id="insertSelective" parameterType="com.maiyue.business.bean.DiligentApplication" >
-=======
+  
+  
   <insert id="insertSelective" parameterType="com.maiyue.weixin.business.bean.DiligentApplication" >
->>>>>>> master
-=======
-  <insert id="insertSelective" parameterType="com.maiyue.weixin.business.bean.DiligentApplication" >
->>>>>>> master
-=======
-  <insert id="insertSelective" parameterType="com.maiyue.weixin.business.bean.DiligentApplication" >
->>>>>>> remotes/origin/master
     insert into T_BIS_DILIGENT_APPLICATION
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -119,19 +77,9 @@
       </if>
     </trim>
   </insert>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-  <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.business.bean.DiligentApplication" >
-=======
+  
+
   <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.weixin.business.bean.DiligentApplication" >
->>>>>>> master
-=======
-  <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.weixin.business.bean.DiligentApplication" >
->>>>>>> master
-=======
-  <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.weixin.business.bean.DiligentApplication" >
->>>>>>> remotes/origin/master
     update T_BIS_DILIGENT_APPLICATION
     <set >
       <if test="diligentId != null" >
@@ -155,28 +103,8 @@
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-  <update id="updateByPrimaryKey" parameterType="com.maiyue.business.bean.DiligentApplication" >
-=======
-  <update id="updateByPrimaryKey" parameterType="com.maiyue.weixin.business.bean.DiligentApplication" >
->>>>>>> master
-=======
-  <update id="updateByPrimaryKey" parameterType="com.maiyue.weixin.business.bean.DiligentApplication" >
->>>>>>> master
-=======
-  <update id="updateByPrimaryKey" parameterType="com.maiyue.weixin.business.bean.DiligentApplication" >
->>>>>>> remotes/origin/master
-    update T_BIS_DILIGENT_APPLICATION
-    set DILIGENT_ID = #{diligentId,jdbcType=VARCHAR},
-      APPLICANT_ID = #{applicantId,jdbcType=VARCHAR},
-      START_TIME = #{startTime,jdbcType=VARCHAR},
-      END_TIME = #{endTime,jdbcType=VARCHAR},
-      AUDIT_STATE = #{auditState,jdbcType=VARCHAR},
-      STATE = #{state,jdbcType=VARCHAR}
-    where ID = #{id,jdbcType=VARCHAR}
-  </update>
+
+  
   <select id="findByPage" resultMap="BaseResultMap" parameterType="java.util.HashMap" >
     select <include refid="Base_Column_List"/> from T_BIS_DILIGENT_APPLICATION
     <where>
@@ -204,7 +132,7 @@
       <if test="ids != null">
        AND ID IN 
          <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> 
-        #{item,jdbcType=VARCHAR}
+        	#{item,jdbcType=VARCHAR}
          </foreach>
       </if>
     </where>
@@ -212,4 +140,6 @@
       ORDER BY ${order} ${sorting}
       </if>
   </select>
+  
+  
 </mapper>

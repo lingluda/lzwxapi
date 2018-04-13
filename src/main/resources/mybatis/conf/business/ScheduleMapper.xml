@@ -1,22 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<mapper namespace="com.maiyue.business.mapper.ScheduleMapper" >
-  <resultMap id="BaseResultMap" type="com.maiyue.business.bean.Schedule" >
-=======
 <mapper namespace="com.maiyue.weixin.business.mapper.ScheduleMapper" >
   <resultMap id="BaseResultMap" type="com.maiyue.weixin.business.bean.Schedule" >
->>>>>>> master
-=======
-<mapper namespace="com.maiyue.weixin.business.mapper.ScheduleMapper" >
-  <resultMap id="BaseResultMap" type="com.maiyue.weixin.business.bean.Schedule" >
->>>>>>> master
-=======
-<mapper namespace="com.maiyue.weixin.business.mapper.ScheduleMapper" >
-  <resultMap id="BaseResultMap" type="com.maiyue.weixin.business.bean.Schedule" >
->>>>>>> remotes/origin/master
     <id column="ID" property="id" jdbcType="VARCHAR" />
     <result column="TERM_YEAR" property="termYear" jdbcType="VARCHAR" />
     <result column="TERM_ID" property="termId" jdbcType="VARCHAR" />
@@ -39,19 +24,7 @@
     delete from T_BIS_SCHEDULE
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-  <insert id="insert" parameterType="com.maiyue.business.bean.Schedule" >
-=======
   <insert id="insert" parameterType="com.maiyue.weixin.business.bean.Schedule" >
->>>>>>> master
-=======
-  <insert id="insert" parameterType="com.maiyue.weixin.business.bean.Schedule" >
->>>>>>> master
-=======
-  <insert id="insert" parameterType="com.maiyue.weixin.business.bean.Schedule" >
->>>>>>> remotes/origin/master
     insert into T_BIS_SCHEDULE (ID, TERM_YEAR, TERM_ID, 
       CLASS_ID, SCHEDULE_NAME, WEEKS_NUM, 
       CREATE_TIME, STATR)
@@ -59,19 +32,7 @@
       #{classId,jdbcType=VARCHAR}, #{scheduleName,jdbcType=VARCHAR}, #{weeksNum,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP}, #{statr,jdbcType=VARCHAR})
   </insert>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-  <insert id="insertSelective" parameterType="com.maiyue.business.bean.Schedule" >
-=======
   <insert id="insertSelective" parameterType="com.maiyue.weixin.business.bean.Schedule" >
->>>>>>> master
-=======
-  <insert id="insertSelective" parameterType="com.maiyue.weixin.business.bean.Schedule" >
->>>>>>> master
-=======
-  <insert id="insertSelective" parameterType="com.maiyue.weixin.business.bean.Schedule" >
->>>>>>> remotes/origin/master
     insert into T_BIS_SCHEDULE
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -126,19 +87,7 @@
       </if>
     </trim>
   </insert>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-  <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.business.bean.Schedule" >
-=======
   <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.weixin.business.bean.Schedule" >
->>>>>>> master
-=======
-  <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.weixin.business.bean.Schedule" >
->>>>>>> master
-=======
-  <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.weixin.business.bean.Schedule" >
->>>>>>> remotes/origin/master
     update T_BIS_SCHEDULE
     <set >
       <if test="termYear != null" >
@@ -165,19 +114,7 @@
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-  <update id="updateByPrimaryKey" parameterType="com.maiyue.business.bean.Schedule" >
-=======
   <update id="updateByPrimaryKey" parameterType="com.maiyue.weixin.business.bean.Schedule" >
->>>>>>> master
-=======
-  <update id="updateByPrimaryKey" parameterType="com.maiyue.weixin.business.bean.Schedule" >
->>>>>>> master
-=======
-  <update id="updateByPrimaryKey" parameterType="com.maiyue.weixin.business.bean.Schedule" >
->>>>>>> remotes/origin/master
     update T_BIS_SCHEDULE
     set TERM_YEAR = #{termYear,jdbcType=VARCHAR},
       TERM_ID = #{termId,jdbcType=VARCHAR},
