@@ -1,9 +1,18 @@
 package com.maiyue.weixin.business.bean;
 
+import java.io.Serializable;
+
+import com.maiyue.weixin.bean.BaseSort;
+
 import io.swagger.annotations.ApiModelProperty;
 
-public class DiligentApplication {
+public class DiligentApplication extends BaseSort implements Serializable{
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 3422206559833709532L;
+
+	/**
     * id标识
     * 字段名:ID
     * 类型:VARCHAR
