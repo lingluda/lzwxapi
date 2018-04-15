@@ -1,7 +1,5 @@
 package com.maiyue.weixin.utils;
 
-import java.util.Map;
-
 import org.springframework.ui.ModelMap;
 import com.maiyue.weixin.constant.Business;
 
@@ -11,9 +9,8 @@ import com.maiyue.weixin.constant.Business;
  */
 public class ResponseUtil {
 
-		
 	 /***
-	  * 正确信息返回
+	  * 请求数据成功、正确信息返回
 	  * @param msg
 	  * @return
 	  */
@@ -27,7 +24,7 @@ public class ResponseUtil {
 	 }	
 	
 	 /***
-	  * 错误信息返回
+	  * 校验错误信息返回
 	  * @param msg
 	  * @return
 	  */
@@ -39,11 +36,9 @@ public class ResponseUtil {
 	    	result.put(Business.RESULT_MSG,msg);
 			return result;
 	 }
-	  
-	 
 	 
 	 /***
-	  * 错误信息返回
+	  * 请求错误信息返回
 	  * @param msg
 	  * @return
 	  */
