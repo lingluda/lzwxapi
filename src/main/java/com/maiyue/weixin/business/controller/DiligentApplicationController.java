@@ -1,18 +1,10 @@
 package com.maiyue.weixin.business.controller;
 
-import com.github.pagehelper.PageInfo;
-import com.maiyue.weixin.business.bean.DiligentApplication;
-import com.maiyue.weixin.business.service.DiligentApplicationService;
-import com.maiyue.weixin.constant.Constant;
-import com.maiyue.weixin.controller.BaseController;
-import com.maiyue.weixin.utils.ComUtil;
-import com.maiyue.weixin.utils.ReflectUtil;
-import com.maiyue.weixin.utils.ResponseUtil;
-import com.maiyue.weixin.utils.jsonUtil.JSONUtils;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
+import java.util.ArrayList;
+import java.util.Map;
+
+import javax.annotation.Resource;
+
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,9 +14,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.Map;
+import com.github.pagehelper.PageInfo;
+import com.maiyue.weixin.business.bean.DiligentApplication;
+import com.maiyue.weixin.business.service.DiligentApplicationService;
+import com.maiyue.weixin.constant.Constant;
+import com.maiyue.weixin.controller.BaseController;
+import com.maiyue.weixin.utils.ComUtil;
+import com.maiyue.weixin.utils.ReflectUtil;
+import com.maiyue.weixin.utils.ResponseUtil;
+import com.maiyue.weixin.utils.jsonUtil.JSONUtils;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
 /**
  * DiligentApplicationController
@@ -50,7 +54,7 @@ public class DiligentApplicationController extends BaseController {
     @ApiImplicitParam(name = "ids", value = "ID-IN查询", dataType = "List")
     })
     @RequestMapping(value="getPage",method= RequestMethod.POST)
-    public ModelMap getPage(@RequestParam(value ="ids[]",required=false) ArrayList ids[], DiligentApplication diligentApplication) {
+    public ModelMap getPage(@RequestParam(value ="ids",required=false) ArrayList ids[], DiligentApplication diligentApplication) {
         
         try {
             logger.info("调用diligentApplication分页查询接口！");
@@ -120,9 +124,7 @@ public class DiligentApplicationController extends BaseController {
      * @param diligentApplication 实体
      */
     @ApiOperation(value="按ID查询diligentApplication数据接口", notes="按ID查询数据接口")
-    @ApiImplicitParams({
-    @ApiImplicitParam(name = "id", value = "ID查询", dataType = "String")
-    })
+    @ApiParam(name = "id", value = "ID查询")
     @RequestMapping(value="findById",method= RequestMethod.POST)
     public ModelMap findById(@RequestParam(value ="id",required=false) String id) {
         

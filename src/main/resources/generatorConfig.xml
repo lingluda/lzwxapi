@@ -14,19 +14,7 @@
             <!-- 生成文件项目路径 -->
             <property name="daoTargetProject" value="src/main/java"></property>
             <!-- 生成Mapper的包路径 -->
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <property name="daoTargetPackage" value="com.maiyue.business.mapper"></property>
-=======
             <property name="daoTargetPackage" value="com.maiyue.weixin.base.mapper"></property>
->>>>>>> master
-=======
-            <property name="daoTargetPackage" value="com.maiyue.weixin.base.mapper"></property>
->>>>>>> master
-=======
-            <property name="daoTargetPackage" value="com.maiyue.weixin.base.mapper"></property>
->>>>>>> remotes/origin/master
             <!-- Mapper继承的BaseDao类 -->
             <property name="daoSuperClass" value="com.maiyue.weixin.mapper.BaseMapper"></property>
             <!-- 继承BaseDao的序列化类 -->
@@ -39,27 +27,9 @@
             <!-- 生成service接口的项目路径 -->
             <property name="serviceTargetProject" value="src/main/java"></property>
             <!-- 生成service接口的包路径 -->
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <property name="serviceTargetPackage" value="com.maiyue.business.service"></property>
-            <!-- 生成service接口实现类的包 -->
-            <property name="serviceImplTargetPackage" value="com.maiyue.business.service.impl"></property>
-=======
             <property name="serviceTargetPackage" value="com.maiyue.weixin.base.service"></property>
             <!-- 生成service接口实现类的包 -->
             <property name="serviceImplTargetPackage" value="com.maiyue.weixin.base.service.impl"></property>
->>>>>>> master
-=======
-            <property name="serviceTargetPackage" value="com.maiyue.weixin.base.service"></property>
-            <!-- 生成service接口实现类的包 -->
-            <property name="serviceImplTargetPackage" value="com.maiyue.weixin.base.service.impl"></property>
->>>>>>> master
-=======
-            <property name="serviceTargetPackage" value="com.maiyue.weixin.base.service"></property>
-            <!-- 生成service接口实现类的包 -->
-            <property name="serviceImplTargetPackage" value="com.maiyue.weixin.base.service.impl"></property>
->>>>>>> remotes/origin/master
             <!-- Service接口继承的BaseService -->
             <property name="serviceSuperClass" value="com.maiyue.weixin.service.BaseService"></property>
             <!-- 继承的BaseDao类 -->
@@ -73,31 +43,11 @@
             <!-- 生成controller的项目路径 -->
             <property name="controllerTargetProject" value="src/main/java"></property>
             <!-- 生成controller的包路径 -->
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <property name="controllerTargetPackage" value="com.maiyue.business.controller"></property>
-            <!-- 继承的BaseController类 -->
-            <property name="baseControllerClass" value="com.maiyue.weixin.controller.BaseController"></property>
-            <!-- service包 -->
-            <property name="servicePackage" value="com.maiyue.business.service"></property>
-=======
-=======
->>>>>>> master
-=======
->>>>>>> remotes/origin/master
             <property name="controllerTargetPackage" value="com.maiyue.weixin.base.controller"></property>
             <!-- 继承的BaseController类 -->
             <property name="baseControllerClass" value="com.maiyue.weixin.controller.BaseController"></property>
             <!-- service包 -->
             <property name="servicePackage" value="com.maiyue.weixin.base.service"></property>
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> master
-=======
->>>>>>> master
-=======
->>>>>>> remotes/origin/master
             <!-- URL地址 -->
             <property name="controllerDir" value="/"></property>
             <!-- 绑定时间转换器的类 -->
@@ -127,48 +77,16 @@
             <property name="forceBigDecimals" value="true"/>  
         </javaTypeResolver>  
         <!-- 生成模型的包名和位置 -->  
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <javaModelGenerator targetPackage="com.maiyue.business.bean" targetProject="src/main/java">
-=======
         <javaModelGenerator targetPackage="com.maiyue.weixin.base.bean" targetProject="src/main/java">
->>>>>>> master
-=======
-        <javaModelGenerator targetPackage="com.maiyue.weixin.base.bean" targetProject="src/main/java">
->>>>>>> master
-=======
-        <javaModelGenerator targetPackage="com.maiyue.weixin.base.bean" targetProject="src/main/java">
->>>>>>> remotes/origin/master
             <property name="enableSubPackages" value="true"/>  
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
         <!-- 生成映射文件的包名和位置 -->  
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <sqlMapGenerator targetPackage="mybatis.conf.business" targetProject="src/main/resources">
-            <property name="enableSubPackages" value="true"/>  
-        </sqlMapGenerator>
-        <!-- 生成DAO的包名和位置 -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.maiyue.business.mapper" targetProject="src/main/java">
-=======
-=======
->>>>>>> master
-=======
->>>>>>> remotes/origin/master
         <sqlMapGenerator targetPackage="mybatis.conf.weixin" targetProject="src/main/resources">
             <property name="enableSubPackages" value="true"/>  
         </sqlMapGenerator>
         <!-- 生成DAO的包名和位置 -->
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.maiyue.weixin.base.mapper" targetProject="src/main/java">
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> master
-=======
->>>>>>> master
-=======
->>>>>>> remotes/origin/master
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
         <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名 -->
@@ -178,30 +96,6 @@
         
 				
 				
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-				<table  tableName="T_BIS_QUALITY_EVALUATION"  domainObjectName="QualityEvaluation" enableCountByExample="false"
-                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-                selectByExampleQueryId="false" ></table>
-				<table  tableName="T_BIS_SCHEDULE"  domainObjectName="Schedule" enableCountByExample="false"
-                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-                selectByExampleQueryId="false" ></table>
-				<table  tableName="T_BIS_SCHEDULE_ARRANGE"  domainObjectName="ScheduleArrange" enableCountByExample="false"
-                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-                selectByExampleQueryId="false" ></table>
-				<table  tableName="T_BIS_SCORE"  domainObjectName="Score" enableCountByExample="false"
-                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-                selectByExampleQueryId="false" ></table>
-				<table  tableName="T_BIS_WORK_LOG"  domainObjectName="WorkLog" enableCountByExample="false"
-                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-                selectByExampleQueryId="false" ></table>
-				<table  tableName="T_BIS_WORK_RESULTS"  domainObjectName="WorkResults" enableCountByExample="false"
-=======
-=======
->>>>>>> master
-=======
->>>>>>> remotes/origin/master
 				<table  tableName="T_BASE_PROVINCES"  domainObjectName="Provinces" enableCountByExample="false"
                 enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                 selectByExampleQueryId="false" ></table>
@@ -209,13 +103,6 @@
                 enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                 selectByExampleQueryId="false" ></table>
 				<table  tableName="T_BASE_AREA"  domainObjectName="Area" enableCountByExample="false"
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> master
-=======
->>>>>>> master
-=======
->>>>>>> remotes/origin/master
                 enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                 selectByExampleQueryId="false" ></table>
 

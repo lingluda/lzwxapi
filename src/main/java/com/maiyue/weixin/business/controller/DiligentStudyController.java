@@ -13,6 +13,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,7 +53,7 @@ public class DiligentStudyController extends BaseController {
     @ApiImplicitParam(name = "ids", value = "ID-IN查询", dataType = "List")
     })
     @RequestMapping(value="getPage",method= RequestMethod.POST)
-    public ModelMap getPage(@RequestParam(value ="ids[]",required=false) ArrayList ids[], DiligentStudy diligentStudy) {
+    public ModelMap getPage(@RequestParam(value ="ids",required=false) ArrayList ids[], DiligentStudy diligentStudy) {
         
         try {
             logger.info("调用diligentStudy分页查询接口！");
@@ -122,9 +124,7 @@ public class DiligentStudyController extends BaseController {
      * @param diligentStudy 实体
      */
     @ApiOperation(value="按ID查询diligentStudy数据接口", notes="按ID查询数据接口")
-    @ApiImplicitParams({
-    @ApiImplicitParam(name = "id", value = "ID查询", dataType = "String")
-    })
+    @ApiParam(name = "id", value = "ID查询")
     @RequestMapping(value="findById",method= RequestMethod.POST)
     public ModelMap findById(@RequestParam(value ="id",required=false) String id) {
         
