@@ -37,29 +37,30 @@ public class TestClass {
         
         */
         
-        TestClass.getWeeks("2018-02-26", "2018-11-30");
+        //TestClass.getWeeks("2018-02-26", "2018-11-30");
         
         
         
         List<CBean> data = new ArrayList<CBean>();
         
         CBean cb = new CBean();
-        cb.setWid(2);
+        cb.setWid(2);//星期3
         cb.setCourse("大学英语");
         cb.setAddress("1号教学楼");
         cb.setEndTime("09:00");
         cb.setEndTime("12:00");
         cb.setTeacher("老李");
+        cb.setSign("第2节");
         data.add(cb);
         
-        
         cb = new CBean();
-        cb.setWid(3);
+        cb.setWid(2);
         cb.setCourse("大学英语||");
         cb.setAddress("1号教学楼");
         cb.setEndTime("9:00");
         cb.setEndTime("12:00");
         cb.setTeacher("老李00");
+        cb.setSign("第3节");
         data.add(cb);
         
         
@@ -73,7 +74,10 @@ public class TestClass {
         
         data.add(cb);
         
-        //TestClass.getDays("2018-02-26", "2018-07-02",data);
+        
+        int i = 19*7;
+        
+        TestClass.getDays("2018-02-26", "2018-07-02",data);
         
         
         //TestClass.getWeeks("2018-01-01","2018-12-31");

@@ -1,8 +1,10 @@
 package com.maiyue.weixin.business.bean;
 
+import com.maiyue.weixin.bean.BaseSort;
+
 import io.swagger.annotations.ApiModelProperty;
 
-public class DiligentApplication {
+public class DiligentApplication extends BaseSort{
     /**
     * id标识
     * 字段名:ID

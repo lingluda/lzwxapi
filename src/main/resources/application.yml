@@ -9,6 +9,10 @@ endpoints:
       sensitive: false
       path: /basic/system/shutdown
 spring:
+# AOP
+  aop:
+      proxy-target-class: true
+      auto: true
 # 数据源配置
 #文件上传大小配置    
   multipart:
