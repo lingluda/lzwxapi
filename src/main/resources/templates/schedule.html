@@ -1,0 +1,241 @@
+<html>
+<head>
+<meta charset="utf-8">
+<link   href="/css/bootstrap/bootstrap.css" rel="stylesheet" type="text/css">
+<link   href="/js/simple-calendar/css/simple-calendar.css" rel="stylesheet" type="text/css">
+<link 	href="/css/calendar.css" rel="stylesheet" >
+
+<script src="/js/jquery-1.11.3.js"></script>
+<script src="/js/particleground.js"></script>
+<script src="/js/calendar.js"></script> 
+<script src="/js/simple-calendar/js/simple-calendar.js"></script>
+<style>
+    canvas {
+        z-index: -1;
+        position: absolute;
+    }
+    .ini{
+    	margin: 50px;
+    	height: 30px;
+    	width: 150px;
+    }
+    .but{
+    	height: 35px;
+    	width: 120px;
+    	margin: 50px;
+    }
+	a {
+		text-decoration: none;
+	}
+	ul, ol, li {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+	#demo {
+		width: 300px;
+		margin: 150px auto;
+	}
+	p {
+		margin: 0;
+	}
+	#dt {
+		margin: 30px auto;
+		height: 28px;
+		width: 200px;
+		padding: 0 6px;
+		border: 1px solid #ccc;
+		outline: none;
+	}
+	
+	.calendar .calendar-views .dot{
+		position: absolute;
+	    left: 43%;
+	    bottom: 9px;
+	    margin-left: -11px;
+	    width: 30px;
+	    height: 30px;
+	    background: #51aee673;
+	    border-radius: 50%;
+	}	
+	.calendar .calendar-views .now {
+	    color: #fff;
+	    background: #b4ca12!important;
+	}
+	.sc-body{
+		height: 83%;
+    	clear: both;
+    	box-shadow: none;
+    	margin-left:-1px;
+	}
+	.sc-calendar{
+		text-align: center;
+	    font-family: "Microsoft Yahei";
+	    color: #4A4A4A;
+	    box-shadow: none;
+	    border-width: 1px 1px 1px 1px;
+	    border-color: #E6E4E0;
+	    border-style: solid;
+	    float: left;
+	    margin-right: 20px;
+	    font-size:10px;
+	}
+	.sc-week{
+		font-size: 16px;
+	}
+</style>
+<script type="text/javascript">
+$(document).ready(function () {
+	//粒子背景特效
+    /* $('body').particleground({
+        dotColor: '#5cbdaa',
+        lineColor: '#5cbdaa'
+    }); */
+	//fileSingleSizeLimit=419430400
+	$('#shutdown').click(function() {
+		alert("重启过程中大概需要3-5分钟！请耐心等待。系统将在 5秒后关闭。");
+		setTimeout(function() {
+			$.post('/manager/tz',null,function(msg){
+				alert(msg.message);
+				console.log(msg);
+			});
+		},5000)
+	});
+});  
+</script>
+</head>
+<body>
+ 
+ <div class="container">
+	<div class="row clearfix">
+		<div style="width: 950px;margin: auto;">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">课表生成器</h3>
+				</div>
+				<div class="panel-body">
+					<div id="calendar"></div>
+					<br>
+					<div style="width: 400px;float: right;margin-right: 20px;">
+							<form class="form-horizontal" role="form">
+								<div class="form-group">
+									 <label for="inputEmail3" class="col-sm-3 control-label">开始日期:</label>
+									<div class="col-sm-9">
+										<input type="email" class="form-control" placeholder="开始日期，必填！" />
+									</div>
+								</div>
+								<div class="form-group">
+									 <label for="inputPassword3" class="col-sm-3 control-label">周&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数:</label>
+									<div class="col-sm-9">
+										<input type="password" class="form-control" id="inputPassword3" />
+									</div>
+								</div>
+								<div class="form-group">
+									 <label for="inputPassword3" class="col-sm-3 control-label">结束日期:</label>
+									<div class="col-sm-9">
+										<input type="password" class="form-control" id="inputPassword3" placeholder="与周数选填！"/>
+									</div>
+								</div>
+								<div class="form-group">
+									 <label for="inputPassword3" class="col-sm-3 control-label">周一课程:</label>
+									<div class="col-sm-9">
+										<input type="password" class="form-control" id="inputPassword3" />
+									</div>
+								</div>
+								<div class="form-group">
+									 <label for="inputPassword3" class="col-sm-3 control-label">周二课程:</label>
+									<div class="col-sm-9">
+										<input type="password" class="form-control" id="inputPassword3" />
+									</div>
+								</div>
+								<div class="form-group">
+									 <label for="inputPassword3" class="col-sm-3 control-label">周三课程:</label>
+									<div class="col-sm-9">
+										<input type="password" class="form-control" id="inputPassword3" />
+									</div>
+								</div>
+								<div class="form-group">
+									 <label for="inputPassword3" class="col-sm-3 control-label">周四课程:</label>
+									<div class="col-sm-9">
+										<input type="password" class="form-control" id="inputPassword3" />
+									</div>
+								</div>
+								<div class="form-group">
+									 <label for="inputPassword3" class="col-sm-3 control-label">周五课程:</label>
+									<div class="col-sm-9">
+										<input type="password" class="form-control" id="inputPassword3" />
+									</div>
+								</div>
+								<div class="form-group">
+									 <label for="inputPassword3" class="col-sm-3 control-label">周六课程:</label>
+									<div class="col-sm-9">
+										<input type="password" class="form-control" id="inputPassword3" />
+									</div>
+								</div>
+								<div class="form-group">
+									 <label for="inputPassword3" class="col-sm-3 control-label">周日课程:</label>
+									<div class="col-sm-9">
+										<input type="password" class="form-control" id="inputPassword3" />
+									</div>
+								</div>
+							</form>
+					</div>
+				</div>
+				<div class="panel-footer">
+					<button class="but" id="tt">获取选择时间</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+    $(function() {
+    	var options = {
+    	      width: '400px',
+    	      height: '400px',
+    	      language: 'CH', //语言
+    	      showLunarCalendar: true, //阴历
+    	      showHoliday: true, //休假
+    	      showFestival: true, //节日
+    	      showLunarFestival: true, //农历节日
+    	      showSolarTerm: true, //节气
+    	      showMark: true, //标记
+    	      timeRange: {
+    	        startYear: 1900,
+    	        endYear: 2050
+    	      },
+    	      mark: {
+    	          '2018-4-15':'v55',
+    	          '2018-4-16':'vvv555',
+    	          '2018-4-17':'v555',
+    	          '2018-4-18':'vv555'
+    	      },
+    	      theme: {
+    	        changeAble: false,
+    	        weeks: {
+    	          backgroundColor: '#FBEC9C',
+    	          fontColor: '#4A4A4A',
+    	          fontSize: '20px',
+    	        },
+    	        days: {
+    	          backgroundColor: '#ffffff',
+    	          fontColor: '#565555',
+    	          fontSize: '24px'
+    	        },
+    	        todaycolor: 'orange',
+    	        activeSelectColor: 'orange',
+    	      },
+    	}
+    	var myCalendar = new SimpleCalendar('#calendar',options);
+    	
+    	//sc-mark .sc-active-day .sc-selected  .sc-active-day .sc-selected
+    	$('#tt').click(function(){
+    		console.log("年:" + myCalendar.getCurrYear());
+    		console.log("月:" + myCalendar.getCurrMonth());
+    	});
+    	
+    });
+</script>
+</body>
+</html>
