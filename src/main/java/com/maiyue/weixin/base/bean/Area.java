@@ -1,8 +1,10 @@
 package com.maiyue.weixin.base.bean;
 
+import com.maiyue.weixin.bean.BaseSort;
+
 import io.swagger.annotations.ApiModelProperty;
 
-public class Area {
+public class Area extends BaseSort{
     /**
     * null
     * 字段名:ID

@@ -56,7 +56,6 @@ public class ScoreController extends BaseController {
     })
     @RequestMapping(value="getPage",method= RequestMethod.POST)
     public ModelMap getPage(@RequestParam(value ="ids",required=false) ArrayList ids[], Score score) {
-    	
         try {
             logger.info("调用score分页查询接口！");
             Map<String,Object> params = ReflectUtil.beanToMap(score, true);
@@ -76,7 +75,6 @@ public class ScoreController extends BaseController {
     @ApiOperation(value="新增score数据接口", notes="新增数据接口")
     @RequestMapping(value="newly",method= RequestMethod.POST)
     public ModelMap newly(Score score) {
-        
          try {
              logger.info("调用score数据新增接口！");
             if(getCurrUser() == null){

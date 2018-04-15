@@ -1,12 +1,12 @@
 package com.maiyue.weixin.business.bean;
 
-import java.io.Serializable;
 
 import com.maiyue.weixin.bean.BaseSort;
 
 import io.swagger.annotations.ApiModelProperty;
 
 public class DiligentApplication extends BaseSort implements Serializable{
+
     /**
 	 * 
 	 */

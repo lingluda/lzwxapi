@@ -60,12 +60,12 @@ public class Business {
 	  
 	  
 	  /***
-	   * 成功
+	   * 执行码：成功
 	   */
 	  public static final boolean RESULT_CODE_TRUE = true;
 	  
 	  /***
-	   * 失败
+	   * 执行码：失败
 	   */
 	  public static final boolean RESULT_CODE_FALSE = false;
 	  

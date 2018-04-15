@@ -9,12 +9,12 @@ import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSource
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.SimpleCookie;
-import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
+
 import com.maiyue.weixin.redis.RedisCacheManager;
 import com.maiyue.weixin.shiro.*;
 
@@ -27,11 +27,10 @@ import java.util.Map;
  * yml只能配置在 application.yml中
  * properties 可以使用@PropertySource读取
  */
-
-@Configuration
 @Component
-@AutoConfigureAfter({MybatisConfig.class })
+@Configuration
 @ConfigurationProperties(prefix = "shiro")
+@AutoConfigureAfter({MybatisConfig.class })
 public class ShiroConfig {
 
     private String loginUrl;
@@ -153,12 +152,12 @@ public class ShiroConfig {
         return new ShiroSessionFactory();
     }
 
-    @Bean
+    /*@Bean
     public DefaultAdvisorAutoProxyCreator getDefaultAdvisorAutoProxyCreator() {
         DefaultAdvisorAutoProxyCreator daap = new DefaultAdvisorAutoProxyCreator();
         daap.setProxyTargetClass(true);
         return daap;
-    }
+    }*/
 
     /**
      * 注入自定义的session调度器

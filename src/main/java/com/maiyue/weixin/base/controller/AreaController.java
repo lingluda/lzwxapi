@@ -47,7 +47,7 @@ public class AreaController extends BaseController {
      */
     @ApiOperation(value="area分页查询接口", notes="分页查询数据接口")
     @ApiImplicitParams({
-    @ApiImplicitParam(name = "ids", value = "ID-IN查询", dataType = "List")
+    	@ApiImplicitParam(name = "ids", value = "ID-IN查询", dataType = "List")
     })
     @RequestMapping(value="getPage",method= RequestMethod.POST)
     public ModelMap getPage(@RequestParam(value ="ids[]",required=false) String[] ids, Area area) {
@@ -110,6 +110,7 @@ public class AreaController extends BaseController {
             logger.error("调用area数据编辑接口异常:" + e.getCause().getMessage(),e);
             return ResponseUtil.RetErrorInfo(e.getCause().getMessage());
         }
+         
     }
 
     /**
