@@ -5,7 +5,7 @@ import com.maiyue.weixin.mapper.BaseMapper;
 
 /**
  * StudentMapper
- * 2018/04/15
+ * 2018/04/16
  */
 public interface StudentMapper extends BaseMapper<Student, String> {
 }

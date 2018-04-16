@@ -1,19 +1,5 @@
 package com.maiyue.weixin.business.controller;
 
-import java.util.ArrayList;
-import java.util.Map;
-
-import javax.annotation.Resource;
-
-import org.apache.commons.lang.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.github.pagehelper.PageInfo;
 import com.maiyue.weixin.business.bean.Student;
 import com.maiyue.weixin.business.service.StudentService;
@@ -23,20 +9,27 @@ import com.maiyue.weixin.utils.ComUtil;
 import com.maiyue.weixin.utils.ReflectUtil;
 import com.maiyue.weixin.utils.ResponseUtil;
 import com.maiyue.weixin.utils.jsonUtil.JSONUtils;
+import io.swagger.annotations.*;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * StudentController
- * 2018/04/15
+ * 2018/04/16
  */
 @RestController
 @RequestMapping("/student/*")
-@Api(value = "StudentController", description = "学生信息接口")
+@Api(value = "StudentController", description = "学生个人信息接口")
 public class StudentController extends BaseController {
     
     
@@ -54,7 +47,7 @@ public class StudentController extends BaseController {
     @ApiImplicitParam(name = "ids", value = "ID-IN查询", dataType = "List")
     })
     @RequestMapping(value="getPage",method= RequestMethod.POST)
-    public ModelMap getPage(@RequestParam(value ="ids",required=false) ArrayList ids[], Student student) {
+    public ModelMap getPage(@RequestParam(value ="ids",required=false) ArrayList ids, Student student) {
         
         try {
             logger.info("调用student分页查询接口！");
@@ -124,7 +117,7 @@ public class StudentController extends BaseController {
      * @param student 实体
      */
     @ApiOperation(value="按ID查询student数据接口", notes="按ID查询数据接口")
-    @ApiParam(name = "id", value = "ID查询")
+    @ApiParam(name = "id", value = "ID查询",required=true)
     @RequestMapping(value="findById",method= RequestMethod.POST)
     public ModelMap findById(@RequestParam(value ="id",required=false) String id) {
         
@@ -144,40 +137,35 @@ public class StudentController extends BaseController {
                 return ResponseUtil.RetErrorInfo(e.getCause().getMessage());
             }
         }
-    
+
     /*
      * 显示学生个人信息：头像图片、姓名、学院、专业、班级、学号、辅导员
      * */
-    @ApiOperation(value = "显示学生个人信息数据接口",notes="按ID(UUID)查询个人信息")
-    @ApiParam(name = "id",value="ID查询")
-    @RequestMapping(value="showStudentInfo",method= RequestMethod.POST)
-    public ModelMap showStudentInfo(@RequestParam(value="id",required=false) String id){
-            
-    	logger.info("调用student按ID查询数据接口！返回学生个人信息");
-            if(StringUtils.isBlank(id)){
-                 return ResponseUtil.RetErrorInfo(" The id is null!");
-            }
-            
-            
-               Student  student = studentService.selectById(id);
-               if(student == null){
-                    return ResponseUtil.RetErrorInfo(" The object is null!");
-               }
-               Map<String, Object> result =  ReflectUtil.beanToMap(student, true);
-               System.out.println("test");
-               System.out.println("-------->"+result);
-               System.out.println(result.toString());
-               //学院Service。根据学生的学院ID查出 学院名称。
-               //专业Service。  根据专业id查出专业名称
-               
-                logger.info("调用student按ID查询数据接口,执行成功！......");
-               //return ResponseUtil.RetCorrectInfo(JSONUtils.toJSONObject(student));
-                return  null;
-                
-                
-          
-       
-    	
+    @ApiOperation(value = "显示学生个人信息数据接口", notes = "按ID(UUID)查询个人信息")
+    @ApiParam(name = "id", value = "ID查询")
+    @RequestMapping(value = "showStudentInfo", method = RequestMethod.POST)
+    public ModelMap showStudentInfo(@RequestParam(value = "id", required = false) String id) {
+
+        logger.info("调用student按ID查询数据接口！返回学生个人信息");
+        if (StringUtils.isBlank(id)) {
+            return ResponseUtil.RetErrorInfo(" The id is null!");
+        }
+
+        Student student = studentService.selectById(id);
+        if (student == null) {
+            return ResponseUtil.RetErrorInfo(" The object is null!");
+        }
+        Map<String, Object> result = ReflectUtil.beanToMap(student, true);
+        //隔离的字段
+        String ex[] = {"id","sex","birthday","nationCode","idenId","nativePlaceId","areaId","politicalId","entranceGrade","adress","email"
+                ,"oneCard","bankAccount"};
+        //学院Service。根据学生的学院ID查出 学院名称。
+        //专业Service。  根据专业id查出专业名称
+
+        logger.info("调用student按ID查询数据接口,执行成功！......");
+        //返回result就会过滤null的字段，返回 student 实体，就会返回所有字段
+        return ResponseUtil.RetCorrectInfo(JSONUtils.toJSONObject(result,ex));
+
+
     }
-    
 }

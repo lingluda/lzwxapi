@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.maiyue.weixin.business.mapper.StudentMapper" >
+  <resultMap id="BaseResultMap" type="com.maiyue.weixin.business.bean.Student" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="STUDENT_CODE" property="studentCode" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="SEX" property="sex" jdbcType="VARCHAR" />
+    <result column="BIRTHDAY" property="birthday" jdbcType="VARCHAR" />
+    <result column="NATION_CODE" property="nationCode" jdbcType="VARCHAR" />
+    <result column="IDEN_CODE" property="idenCode" jdbcType="VARCHAR" />
+    <result column="NATIVE_PLACE_CODE" property="nativePlaceCode" jdbcType="VARCHAR" />
+    <result column="AREA_CODE" property="areaCode" jdbcType="VARCHAR" />
+    <result column="POLITICAL_CODE" property="politicalCode" jdbcType="VARCHAR" />
+    <result column="DEPT_CODE" property="deptCode" jdbcType="VARCHAR" />
+    <result column="MAJOR_CODE" property="majorCode" jdbcType="VARCHAR" />
+    <result column="ENTRANCE_GRADE" property="entranceGrade" jdbcType="VARCHAR" />
+    <result column="CLASSES_NAME" property="classesName" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="INSTRUCTOR_CODE" property="instructorCode" jdbcType="VARCHAR" />
+    <result column="ONE_CARD" property="oneCard" jdbcType="VARCHAR" />
+    <result column="BANK_ACCOUNT" property="bankAccount" jdbcType="VARCHAR" />
+    <result column="IMAGE" property="image" jdbcType="VARCHAR" />
+    <result column="DEPT_NAME" property="deptName" jdbcType="VARCHAR" />
+    <result column="CLASSES_CODE" property="classesCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, STUDENT_CODE, NAME, SEX, BIRTHDAY, NATION_CODE, IDEN_CODE, NATIVE_PLACE_CODE, 
+    AREA_CODE, POLITICAL_CODE, DEPT_CODE, MAJOR_CODE, ENTRANCE_GRADE, CLASSES_NAME, ADDRESS, 
+    PHONE, EMAIL, INSTRUCTOR_CODE, ONE_CARD, BANK_ACCOUNT, IMAGE, DEPT_NAME, CLASSES_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_BIS_STUDENT
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_BIS_STUDENT
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.maiyue.weixin.business.bean.Student" >
+    insert into T_BIS_STUDENT (ID, STUDENT_CODE, NAME, 
+      SEX, BIRTHDAY, NATION_CODE, 
+      IDEN_CODE, NATIVE_PLACE_CODE, AREA_CODE, 
+      POLITICAL_CODE, DEPT_CODE, MAJOR_CODE, 
+      ENTRANCE_GRADE, CLASSES_NAME, ADDRESS, 
+      PHONE, EMAIL, INSTRUCTOR_CODE, 
+      ONE_CARD, BANK_ACCOUNT, IMAGE, 
+      DEPT_NAME, CLASSES_CODE)
+    values (#{id,jdbcType=VARCHAR}, #{studentCode,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{birthday,jdbcType=VARCHAR}, #{nationCode,jdbcType=VARCHAR}, 
+      #{idenCode,jdbcType=VARCHAR}, #{nativePlaceCode,jdbcType=VARCHAR}, #{areaCode,jdbcType=VARCHAR}, 
+      #{politicalCode,jdbcType=VARCHAR}, #{deptCode,jdbcType=VARCHAR}, #{majorCode,jdbcType=VARCHAR}, 
+      #{entranceGrade,jdbcType=VARCHAR}, #{classesName,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{instructorCode,jdbcType=VARCHAR}, 
+      #{oneCard,jdbcType=VARCHAR}, #{bankAccount,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, 
+      #{deptName,jdbcType=VARCHAR}, #{classesCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.maiyue.weixin.business.bean.Student" >
+    insert into T_BIS_STUDENT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="studentCode != null" >
+        STUDENT_CODE,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="sex != null" >
+        SEX,
+      </if>
+      <if test="birthday != null" >
+        BIRTHDAY,
+      </if>
+      <if test="nationCode != null" >
+        NATION_CODE,
+      </if>
+      <if test="idenCode != null" >
+        IDEN_CODE,
+      </if>
+      <if test="nativePlaceCode != null" >
+        NATIVE_PLACE_CODE,
+      </if>
+      <if test="areaCode != null" >
+        AREA_CODE,
+      </if>
+      <if test="politicalCode != null" >
+        POLITICAL_CODE,
+      </if>
+      <if test="deptCode != null" >
+        DEPT_CODE,
+      </if>
+      <if test="majorCode != null" >
+        MAJOR_CODE,
+      </if>
+      <if test="entranceGrade != null" >
+        ENTRANCE_GRADE,
+      </if>
+      <if test="classesName != null" >
+        CLASSES_NAME,
+      </if>
+      <if test="address != null" >
+        ADDRESS,
+      </if>
+      <if test="phone != null" >
+        PHONE,
+      </if>
+      <if test="email != null" >
+        EMAIL,
+      </if>
+      <if test="instructorCode != null" >
+        INSTRUCTOR_CODE,
+      </if>
+      <if test="oneCard != null" >
+        ONE_CARD,
+      </if>
+      <if test="bankAccount != null" >
+        BANK_ACCOUNT,
+      </if>
+      <if test="image != null" >
+        IMAGE,
+      </if>
+      <if test="deptName != null" >
+        DEPT_NAME,
+      </if>
+      <if test="classesCode != null" >
+        CLASSES_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="studentCode != null" >
+        #{studentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="nationCode != null" >
+        #{nationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="idenCode != null" >
+        #{idenCode,jdbcType=VARCHAR},
+      </if>
+      <if test="nativePlaceCode != null" >
+        #{nativePlaceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="areaCode != null" >
+        #{areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="politicalCode != null" >
+        #{politicalCode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptCode != null" >
+        #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="majorCode != null" >
+        #{majorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="entranceGrade != null" >
+        #{entranceGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="classesName != null" >
+        #{classesName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="instructorCode != null" >
+        #{instructorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="oneCard != null" >
+        #{oneCard,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccount != null" >
+        #{bankAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null" >
+        #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="classesCode != null" >
+        #{classesCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.maiyue.weixin.business.bean.Student" >
+    update T_BIS_STUDENT
+    <set >
+      <if test="studentCode != null" >
+        STUDENT_CODE = #{studentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        SEX = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        BIRTHDAY = #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="nationCode != null" >
+        NATION_CODE = #{nationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="idenCode != null" >
+        IDEN_CODE = #{idenCode,jdbcType=VARCHAR},
+      </if>
+      <if test="nativePlaceCode != null" >
+        NATIVE_PLACE_CODE = #{nativePlaceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="areaCode != null" >
+        AREA_CODE = #{areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="politicalCode != null" >
+        POLITICAL_CODE = #{politicalCode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptCode != null" >
+        DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="majorCode != null" >
+        MAJOR_CODE = #{majorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="entranceGrade != null" >
+        ENTRANCE_GRADE = #{entranceGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="classesName != null" >
+        CLASSES_NAME = #{classesName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        PHONE = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="instructorCode != null" >
+        INSTRUCTOR_CODE = #{instructorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="oneCard != null" >
+        ONE_CARD = #{oneCard,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccount != null" >
+        BANK_ACCOUNT = #{bankAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        IMAGE = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null" >
+        DEPT_NAME = #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="classesCode != null" >
+        CLASSES_CODE = #{classesCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.maiyue.weixin.business.bean.Student" >
+    update T_BIS_STUDENT
+    set STUDENT_CODE = #{studentCode,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      SEX = #{sex,jdbcType=VARCHAR},
+      BIRTHDAY = #{birthday,jdbcType=VARCHAR},
+      NATION_CODE = #{nationCode,jdbcType=VARCHAR},
+      IDEN_CODE = #{idenCode,jdbcType=VARCHAR},
+      NATIVE_PLACE_CODE = #{nativePlaceCode,jdbcType=VARCHAR},
+      AREA_CODE = #{areaCode,jdbcType=VARCHAR},
+      POLITICAL_CODE = #{politicalCode,jdbcType=VARCHAR},
+      DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+      MAJOR_CODE = #{majorCode,jdbcType=VARCHAR},
+      ENTRANCE_GRADE = #{entranceGrade,jdbcType=VARCHAR},
+      CLASSES_NAME = #{classesName,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      INSTRUCTOR_CODE = #{instructorCode,jdbcType=VARCHAR},
+      ONE_CARD = #{oneCard,jdbcType=VARCHAR},
+      BANK_ACCOUNT = #{bankAccount,jdbcType=VARCHAR},
+      IMAGE = #{image,jdbcType=VARCHAR},
+      DEPT_NAME = #{deptName,jdbcType=VARCHAR},
+      CLASSES_CODE = #{classesCode,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="findByPage" resultMap="BaseResultMap" parameterType="java.util.HashMap" >
+    select <include refid="Base_Column_List"/> from T_BIS_STUDENT
+    <where>
+      <if test="id != null">
+        AND ID = #{id,jdbcType=VARCHAR}
+      </if>
+      <if test="studentCode != null">
+        AND STUDENT_CODE = #{studentCode,jdbcType=VARCHAR}
+      </if>
+      <if test="name != null">
+        AND NAME = #{name,jdbcType=VARCHAR}
+      </if>
+      <if test="sex != null">
+        AND SEX = #{sex,jdbcType=VARCHAR}
+      </if>
+      <if test="birthday != null">
+        AND BIRTHDAY = #{birthday,jdbcType=VARCHAR}
+      </if>
+      <if test="nationCode != null">
+        AND NATION_CODE = #{nationCode,jdbcType=VARCHAR}
+      </if>
+      <if test="idenCode != null">
+        AND IDEN_CODE = #{idenCode,jdbcType=VARCHAR}
+      </if>
+      <if test="nativePlaceCode != null">
+        AND NATIVE_PLACE_CODE = #{nativePlaceCode,jdbcType=VARCHAR}
+      </if>
+      <if test="areaCode != null">
+        AND AREA_CODE = #{areaCode,jdbcType=VARCHAR}
+      </if>
+      <if test="politicalCode != null">
+        AND POLITICAL_CODE = #{politicalCode,jdbcType=VARCHAR}
+      </if>
+      <if test="deptCode != null">
+        AND DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+      </if>
+      <if test="majorCode != null">
+        AND MAJOR_CODE = #{majorCode,jdbcType=VARCHAR}
+      </if>
+      <if test="entranceGrade != null">
+        AND ENTRANCE_GRADE = #{entranceGrade,jdbcType=VARCHAR}
+      </if>
+      <if test="classesName != null">
+        AND CLASSES_NAME = #{classesName,jdbcType=VARCHAR}
+      </if>
+      <if test="address != null">
+        AND ADDRESS = #{address,jdbcType=VARCHAR}
+      </if>
+      <if test="phone != null">
+        AND PHONE = #{phone,jdbcType=VARCHAR}
+      </if>
+      <if test="email != null">
+        AND EMAIL = #{email,jdbcType=VARCHAR}
+      </if>
+      <if test="instructorCode != null">
+        AND INSTRUCTOR_CODE = #{instructorCode,jdbcType=VARCHAR}
+      </if>
+      <if test="oneCard != null">
+        AND ONE_CARD = #{oneCard,jdbcType=VARCHAR}
+      </if>
+      <if test="bankAccount != null">
+        AND BANK_ACCOUNT = #{bankAccount,jdbcType=VARCHAR}
+      </if>
+      <if test="image != null">
+        AND IMAGE = #{image,jdbcType=VARCHAR}
+      </if>
+      <if test="deptName != null">
+        AND DEPT_NAME = #{deptName,jdbcType=VARCHAR}
+      </if>
+      <if test="classesCode != null">
+        AND CLASSES_CODE = #{classesCode,jdbcType=VARCHAR}
+      </if>
+      <if test="ids != null">
+       AND ID IN 
+         <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> 
+        #{item,jdbcType=VARCHAR}
+         </foreach>
+      </if>
+    </where>
+      <if test="order != null">
+      ORDER BY ${order} ${sorting}
+      </if>
+  </select>
+</mapper>
