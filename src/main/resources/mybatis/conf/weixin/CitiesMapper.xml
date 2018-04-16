@@ -105,4 +105,11 @@
       ORDER BY ${order} ${sorting}
       </if>
   </select>
+
+  <select id="findByProId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+      select
+      <include refid="Base_Column_List" />
+      from T_BASE_CITIES
+      where PROVINCEID = #{provinceid,jdbcType=VARCHAR}
+  </select>
 </mapper>

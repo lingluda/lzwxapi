@@ -6,7 +6,6 @@ import com.maiyue.weixin.base.bean.Area;
 import com.maiyue.weixin.base.service.AreaService;
 import com.maiyue.weixin.constant.Constant;
 import com.maiyue.weixin.controller.BaseController;
-import com.maiyue.weixin.utils.ComUtil;
 import com.maiyue.weixin.utils.ResponseUtil;
 import com.maiyue.weixin.utils.jsonUtil.JSONUtils;
 import io.swagger.annotations.Api;
@@ -22,8 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import javax.annotation.Resource;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -32,7 +31,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/area/*")
-@Api(value = "AreaController", description = "")
+@Api(value = "AreaController", description = "地区接口（市、县、区）")
 public class AreaController extends BaseController {
     
     
@@ -47,10 +46,10 @@ public class AreaController extends BaseController {
      */
     @ApiOperation(value="area分页查询接口", notes="分页查询数据接口")
     @ApiImplicitParams({
-    	@ApiImplicitParam(name = "ids", value = "ID-IN查询", dataType = "List")
+    @ApiImplicitParam(name = "ids", value = "ID-IN查询", dataType = "List")
     })
     @RequestMapping(value="getPage",method= RequestMethod.POST)
-    public ModelMap getPage(@RequestParam(value ="ids[]",required=false) String[] ids, Area area) {
+    public ModelMap getPage(@RequestParam(value ="ids",required=false) String[] ids, Area area) {
         try {
             logger.info("调用area分页查询接口！");
             Map<String,Object> params = ReflectUtil.beanToMap(area, true);
@@ -67,6 +66,12 @@ public class AreaController extends BaseController {
      * 新增数据,POST方法
      * @param area 实体
      */
+    /*@ApiOperation(value="新增area数据接口", notes="新增数据接口")
+    @RequestMapping(value="newly",method= RequestMethod.POST)
+    public ModelMap newly(Area area) {
+    @ApiOperation(value="新增area数据接口", notes="新增数据接口")
+    @RequestMapping(value="newly",method= RequestMethod.POST)
+    public ModelMap newly(Area area) {
     @ApiOperation(value="新增area数据接口", notes="新增数据接口")
     @RequestMapping(value="newly",method= RequestMethod.POST)
     public ModelMap newly(Area area) {
@@ -86,12 +91,19 @@ public class AreaController extends BaseController {
             logger.error("调用area数据新增接口异常:" + e.getCause().getMessage(),e);
             return ResponseUtil.RetErrorInfo(e.getCause().getMessage());
         }
-    }
+    }*/
 
     /**
      * 编辑数据,POST方法
      * @param area 实体
      */
+    /*@ApiOperation(value="编辑area数据接口", notes="编辑数据接口")
+    @RequestMapping(value="editor",method= RequestMethod.POST)
+    public ModelMap editor(Area area) {
+        
+    @ApiOperation(value="编辑area数据接口", notes="编辑数据接口")
+    @RequestMapping(value="editor",method= RequestMethod.POST)
+    public ModelMap editor(Area area) {
     @ApiOperation(value="编辑area数据接口", notes="编辑数据接口")
     @RequestMapping(value="editor",method= RequestMethod.POST)
     public ModelMap editor(Area area) {
@@ -110,16 +122,15 @@ public class AreaController extends BaseController {
             logger.error("调用area数据编辑接口异常:" + e.getCause().getMessage(),e);
             return ResponseUtil.RetErrorInfo(e.getCause().getMessage());
         }
-         
-    }
+    }*/
 
     /**
      * 按ID查询数据,POST,get 方法
      * @param area 实体
      */
     @ApiOperation(value="按ID查询area数据接口", notes="按ID查询数据接口")
-    @ApiParam(name = "id", value = "ID查询",required=true)
-    @RequestMapping(value="findById",method= {RequestMethod.POST,RequestMethod.GET})
+    @ApiParam(name = "id", value = "ID查询")
+    @RequestMapping(value="findById",method= RequestMethod.POST)
     public ModelMap findById(@RequestParam(value ="id",required=false) String id) {
          try {
               logger.info("调用area按ID查询数据接口！");
@@ -134,6 +145,33 @@ public class AreaController extends BaseController {
                  return ResponseUtil.RetCorrectInfo(JSONUtils.toJSONObject(area));
             } catch (Exception e) {
                 logger.error("调用area按ID查询数据接口异常:" + e.getCause().getMessage(),e);
+                return ResponseUtil.RetErrorInfo(e.getCause().getMessage());
+            }
+        }
+
+    /**
+     * 按cityid查询数据,POST,get 方法
+     * @param area 实体
+     */
+    @ApiOperation(value="按cityid查询area数据接口", notes="按cityid查询数据接口")
+    @ApiParam(name = "cityid", value = "cityId查询")
+    @RequestMapping(value="findByCityId",method= RequestMethod.POST)
+    public ModelMap findByCityId(@RequestParam(value ="cityid",required=false) String cityid) {
+        int i = 10/0;
+        System.out.println(i);
+         try {
+              logger.info("调用area按CityId查询数据接口！");
+             if(StringUtils.isBlank(cityid)){
+                  return ResponseUtil.RetErrorInfo(" The cityId is null!");
+                 }
+                List<Area> area = areaService.selectByCityId(cityid);
+                if(area == null){
+                     return ResponseUtil.RetErrorInfo(" The object is null!");
+                }
+                 logger.info("调用area按CityId查询数据接口,执行成功！");
+                 return ResponseUtil.RetCorrectInfo(JSONUtils.toJSONArray(area));
+            } catch (Exception e) {
+                logger.error("调用area按CityId查询数据接口异常:" + e.getCause().getMessage(),e);
                 return ResponseUtil.RetErrorInfo(e.getCause().getMessage());
             }
         }

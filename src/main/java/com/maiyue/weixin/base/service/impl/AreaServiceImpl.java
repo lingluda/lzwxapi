@@ -43,4 +43,9 @@ public class AreaServiceImpl extends BaseServiceImpl<Area, String> implements Ar
     public PageInfo<Area> getPageData(Map<String, Object> params) {
         return super.findByPage(params);
     }
+
+    @Override
+    public List<Area> selectByCityId(String cityId){
+        return areaMapper.selectByCityId(cityId);
+    }
 }

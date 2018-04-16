@@ -18,4 +18,6 @@ public interface AreaService extends BaseService<Area, String> {
      * @return 分页结果实体
      */ 
     PageInfo<Area> getPageData(Map<String, Object> params);
+
+    List<Area> selectByCityId(String cityId);
 }

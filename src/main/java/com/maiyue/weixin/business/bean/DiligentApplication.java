@@ -5,6 +5,8 @@ import com.maiyue.weixin.bean.BaseSort;
 
 import io.swagger.annotations.ApiModelProperty;
 
+import java.io.Serializable;
+
 public class DiligentApplication extends BaseSort implements Serializable{
 
     /**
