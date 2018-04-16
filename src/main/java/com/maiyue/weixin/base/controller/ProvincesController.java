@@ -34,7 +34,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/provinces/*")
-@Api(value = "ProvincesController", description = "")
+@Api(value = "ProvincesController", description = "中国省份接口（直辖市、省、自治区）")
 public class ProvincesController extends BaseController {
     
     
@@ -70,7 +70,13 @@ public class ProvincesController extends BaseController {
      * 新增数据,POST方法
      * @param provinces 实体
      */
+    /*@ApiOperation(value="新增provinces数据接口", notes="新增数据接口")
+=======
     @ApiOperation(value="新增provinces数据接口", notes="新增数据接口")
+>>>>>>> remotes/origin/Develop
+=======
+    @ApiOperation(value="新增provinces数据接口", notes="新增数据接口")
+>>>>>>> remotes/origin/Develop
     @RequestMapping(value="newly",method= RequestMethod.POST)
     public ModelMap newly(Provinces provinces) {
         
@@ -90,12 +96,14 @@ public class ProvincesController extends BaseController {
             logger.error("调用provinces数据新增接口异常:" + e.getCause().getMessage(),e);
             return ResponseUtil.RetErrorInfo(e.getCause().getMessage());
         }
-    }
+    }*/
 
     /**
      * 编辑数据,POST方法
      * @param provinces 实体
      */
+    /*@ApiOperation(value="编辑provinces数据接口", notes="编辑数据接口")
+    @ApiOperation(value="编辑provinces数据接口", notes="编辑数据接口")
     @ApiOperation(value="编辑provinces数据接口", notes="编辑数据接口")
     @RequestMapping(value="editor",method= RequestMethod.POST)
     public ModelMap editor(Provinces provinces) {
@@ -115,7 +123,6 @@ public class ProvincesController extends BaseController {
             logger.error("调用provinces数据编辑接口异常:" + e.getCause().getMessage(),e);
             return ResponseUtil.RetErrorInfo(e.getCause().getMessage());
         }
-    }
 
     /**
      * 按ID查询数据,POST,get 方法

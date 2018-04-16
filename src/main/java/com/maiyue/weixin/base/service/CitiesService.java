@@ -18,4 +18,6 @@ public interface CitiesService extends BaseService<Cities, String> {
      * @return 分页结果实体
      */ 
     PageInfo<Cities> getPageData(Map<String, Object> params);
+
+    List<Cities> findByProId(String proId);
 }

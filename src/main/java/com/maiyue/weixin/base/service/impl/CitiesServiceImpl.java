@@ -6,10 +6,11 @@ import com.maiyue.weixin.base.mapper.CitiesMapper;
 import com.maiyue.weixin.base.service.CitiesService;
 import com.maiyue.weixin.mapper.BaseMapper;
 import com.maiyue.weixin.service.impl.BaseServiceImpl;
-import java.util.List;
-import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * CitiesService实现类
@@ -42,5 +43,10 @@ public class CitiesServiceImpl extends BaseServiceImpl<Cities, String> implement
     @Override
     public PageInfo<Cities> getPageData(Map<String, Object> params) {
         return super.findByPage(params);
+    }
+
+    @Override
+    public List<Cities> findByProId(String proId){
+        return citiesMapper.findByProId(proId);
     }
 }

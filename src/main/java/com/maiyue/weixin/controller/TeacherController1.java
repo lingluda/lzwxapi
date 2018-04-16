@@ -1,3 +1,4 @@
+
 package com.maiyue.weixin.controller;
 
 import java.util.ArrayList;
@@ -37,29 +38,4 @@ public class TeacherController1 extends BaseController {
 		return list;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
