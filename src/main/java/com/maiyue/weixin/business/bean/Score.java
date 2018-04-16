@@ -1,11 +1,19 @@
 package com.maiyue.weixin.business.bean;
 
-import io.swagger.annotations.ApiModelProperty;
-
+import java.io.Serializable;
 import java.util.Date;
 
-public class Score {
+import com.maiyue.weixin.bean.BaseSort;
+
+import io.swagger.annotations.ApiModelProperty;
+
+public class Score extends BaseSort implements Serializable{
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 3259206783938488895L;
+
+	/**
     * ID标识
     * 字段名:ID
     * 类型:VARCHAR

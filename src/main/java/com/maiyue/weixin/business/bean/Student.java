@@ -1,9 +1,18 @@
 package com.maiyue.weixin.business.bean;
 
+import java.io.Serializable;
+
+import com.maiyue.weixin.bean.BaseSort;
+
 import io.swagger.annotations.ApiModelProperty;
 
-public class Student {
+public class Student extends BaseSort implements Serializable{
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1533722906864471531L;
+
+	/**
     * 学生表ID
     * 字段名:ID
     * 类型:VARCHAR

@@ -1,5 +1,5 @@
 package com.maiyue;
-import com.mbase.mybatis.Generate;
+//import com.mbase.mybatis.Generate;
 
 /**
  * @Author We1less
@@ -10,7 +10,7 @@ public class GeneratorSqlmap {
     public static void main(String[] args) throws Exception{
 
         /*Generate.generate("D:\\maiyue\\liuzhiWX\\src\\main\\resources\\generatorConfig.xml");*/
-    	Generate.generate("C:\\Users\\hasee\\git\\liuzhiWX\\src\\main\\resources\\generatorConfig.xml");
+    //	Generate.generate("C:\\Users\\hasee\\git\\liuzhiWX\\src\\main\\resources\\generatorConfig.xml");
         System.out.println("运行完毕。");
     }
 }

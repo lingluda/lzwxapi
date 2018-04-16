@@ -158,7 +158,6 @@ public class StudentController extends BaseController {
                  return ResponseUtil.RetErrorInfo(" The id is null!");
             }
             
-            
                Student  student = studentService.selectById(id);
                if(student == null){
                     return ResponseUtil.RetErrorInfo(" The object is null!");
@@ -171,13 +170,9 @@ public class StudentController extends BaseController {
                //专业Service。  根据专业id查出专业名称
                
                 logger.info("调用student按ID查询数据接口,执行成功！......");
-               //return ResponseUtil.RetCorrectInfo(JSONUtils.toJSONObject(student));
-                return  null;
+               return ResponseUtil.RetCorrectInfo(JSONUtils.toJSONObject(student));
+               // return  null;
                 
-                
-          
-       
-    	
     }
     
 }

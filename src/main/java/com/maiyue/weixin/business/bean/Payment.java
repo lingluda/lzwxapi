@@ -1,12 +1,20 @@
 package com.maiyue.weixin.business.bean;
 
-import io.swagger.annotations.ApiModelProperty;
-
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class Payment {
+import com.maiyue.weixin.bean.BaseSort;
+
+import io.swagger.annotations.ApiModelProperty;
+
+public class Payment extends BaseSort implements Serializable{
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 8177036496737284678L;
+
+	/**
     * ID标识
     * 字段名:ID
     * 类型:VARCHAR

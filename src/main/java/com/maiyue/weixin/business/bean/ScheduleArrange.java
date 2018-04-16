@@ -1,11 +1,19 @@
 package com.maiyue.weixin.business.bean;
 
-import io.swagger.annotations.ApiModelProperty;
-
+import java.io.Serializable;
 import java.util.Date;
 
-public class ScheduleArrange {
+import com.maiyue.weixin.bean.BaseSort;
+
+import io.swagger.annotations.ApiModelProperty;
+
+public class ScheduleArrange extends BaseSort implements Serializable{
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = -6510270932440669265L;
+
+	/**
     * id标识
     * 字段名:ID
     * 类型:VARCHAR

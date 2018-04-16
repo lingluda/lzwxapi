@@ -1,19 +1,9 @@
 package com.maiyue.weixin.base.controller;
 
-import com.github.pagehelper.PageInfo;
-import com.maiyue.weixin.utils.ReflectUtil;
-import com.maiyue.weixin.base.bean.Area;
-import com.maiyue.weixin.base.service.AreaService;
-import com.maiyue.weixin.constant.Constant;
-import com.maiyue.weixin.controller.BaseController;
-import com.maiyue.weixin.utils.ComUtil;
-import com.maiyue.weixin.utils.ResponseUtil;
-import com.maiyue.weixin.utils.jsonUtil.JSONUtils;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import java.util.Map;
+
+import javax.annotation.Resource;
+
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,8 +13,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
-import java.util.Map;
+import com.github.pagehelper.PageInfo;
+import com.maiyue.weixin.base.bean.Area;
+import com.maiyue.weixin.base.service.AreaService;
+import com.maiyue.weixin.constant.Constant;
+import com.maiyue.weixin.controller.BaseController;
+import com.maiyue.weixin.utils.ComUtil;
+import com.maiyue.weixin.utils.ReflectUtil;
+import com.maiyue.weixin.utils.ResponseUtil;
+import com.maiyue.weixin.utils.jsonUtil.JSONUtils;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
 /**
  * AreaController
