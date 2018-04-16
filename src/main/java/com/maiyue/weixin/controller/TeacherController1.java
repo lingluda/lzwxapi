@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/teacher/*")
 @EnableAutoConfiguration
-public class TeacherController extends BaseController {
+public class TeacherController1 extends BaseController {
 
 	@GetMapping(value="teachers")
 	public Object getTeacherInformation(ModelMap model,HttpSession session,HttpServletRequest request) {

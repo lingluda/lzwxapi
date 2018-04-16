@@ -5,7 +5,8 @@
 <generatorConfiguration>  
 <!-- 数据库驱动 -->  
     <!--<classPathEntry  location="F:\.m2\repository\mysql\mysql-connector-java\5.1.30\mysql-connector-java-5.1.30.jar"/>-->
-    <classPathEntry  location="H:\Studio\oracle\install\patches\5923165\files\jdbc\lib\classes12.jar"/>
+   <!--  <classPathEntry  location="H:\Studio\oracle\install\patches\5923165\files\jdbc\lib\classes12.jar"/> -->
+     <classPathEntry  location="D:\oracle\product\10.2.0\db_1\install\patches\5923165\files\jdbc\lib\classes12.jar"/>
     <context id="DB2Tables"  targetRuntime="MyBatis3">
         <!-- 注释 -->
         <!-- 指定生成的java文件的编码,没有直接生成到项目时中文可能会乱码 -->
@@ -14,7 +15,7 @@
             <!-- 生成文件项目路径 -->
             <property name="daoTargetProject" value="src/main/java"></property>
             <!-- 生成Mapper的包路径 -->
-            <property name="daoTargetPackage" value="com.maiyue.weixin.base.mapper"></property>
+            <property name="daoTargetPackage" value="com.maiyue.weixin.business.mapper"></property>
             <!-- Mapper继承的BaseDao类 -->
             <property name="daoSuperClass" value="com.maiyue.weixin.mapper.BaseMapper"></property>
             <!-- 继承BaseDao的序列化类 -->
@@ -27,9 +28,9 @@
             <!-- 生成service接口的项目路径 -->
             <property name="serviceTargetProject" value="src/main/java"></property>
             <!-- 生成service接口的包路径 -->
-            <property name="serviceTargetPackage" value="com.maiyue.weixin.base.service"></property>
+            <property name="serviceTargetPackage" value="com.maiyue.weixin.business.service"></property>
             <!-- 生成service接口实现类的包 -->
-            <property name="serviceImplTargetPackage" value="com.maiyue.weixin.base.service.impl"></property>
+            <property name="serviceImplTargetPackage" value="com.maiyue.weixin.business.service.impl"></property>
             <!-- Service接口继承的BaseService -->
             <property name="serviceSuperClass" value="com.maiyue.weixin.service.BaseService"></property>
             <!-- 继承的BaseDao类 -->
@@ -43,11 +44,11 @@
             <!-- 生成controller的项目路径 -->
             <property name="controllerTargetProject" value="src/main/java"></property>
             <!-- 生成controller的包路径 -->
-            <property name="controllerTargetPackage" value="com.maiyue.weixin.base.controller"></property>
+            <property name="controllerTargetPackage" value="com.maiyue.weixin.business.controller"></property>
             <!-- 继承的BaseController类 -->
             <property name="baseControllerClass" value="com.maiyue.weixin.controller.BaseController"></property>
             <!-- service包 -->
-            <property name="servicePackage" value="com.maiyue.weixin.base.service"></property>
+            <property name="servicePackage" value="com.maiyue.weixin.business.service"></property>
             <!-- URL地址 -->
             <property name="controllerDir" value="/"></property>
             <!-- 绑定时间转换器的类 -->
@@ -77,7 +78,7 @@
             <property name="forceBigDecimals" value="true"/>  
         </javaTypeResolver>  
         <!-- 生成模型的包名和位置 -->  
-        <javaModelGenerator targetPackage="com.maiyue.weixin.base.bean" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.maiyue.weixin.business.bean" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>  
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
@@ -86,7 +87,7 @@
             <property name="enableSubPackages" value="true"/>  
         </sqlMapGenerator>
         <!-- 生成DAO的包名和位置 -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.maiyue.weixin.base.mapper" targetProject="src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.maiyue.weixin.business.mapper" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
         <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名 -->
@@ -96,7 +97,7 @@
         
 				
 				
-				<table  tableName="T_BASE_PROVINCES"  domainObjectName="Provinces" enableCountByExample="false"
+			<!--	<table  tableName="T_BASE_PROVINCES"  domainObjectName="Provinces" enableCountByExample="false"
                 enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                 selectByExampleQueryId="false" ></table>
 				<table  tableName="T_BASE_CITIES"  domainObjectName="Cities" enableCountByExample="false"
@@ -104,10 +105,12 @@
                 selectByExampleQueryId="false" ></table>
 				<table  tableName="T_BASE_AREA"  domainObjectName="Area" enableCountByExample="false"
                 enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+                selectByExampleQueryId="false" ></table>-->
+                
+                <table  tableName="T_BIS_STUDENT"  domainObjectName="Student" enableCountByExample="false"
+                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                 selectByExampleQueryId="false" ></table>
 
-				
-	
 				
     </context>
 </generatorConfiguration>

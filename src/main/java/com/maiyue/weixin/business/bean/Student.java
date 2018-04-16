@@ -22,11 +22,11 @@ public class Student extends BaseSort implements Serializable{
 
     /**
     * 学号
-    * 字段名:SNO
+    *  字段名:STUDENT_CODE
     * 类型:VARCHAR
      */
-    @ApiModelProperty(name="sno",value="学号",dataType="String")
-    private String sno;
+    @ApiModelProperty(name="studentCode",value="学号",dataType="String")
+    private String studentCode;
 
     /**
     * 姓名
@@ -62,51 +62,51 @@ public class Student extends BaseSort implements Serializable{
 
     /**
     * 身份证号
-    * 字段名:IDEN_ID
+    * 字段名:IDEN_CODE
     * 类型:VARCHAR
      */
-    @ApiModelProperty(name="idenId",value="身份证号",dataType="String")
-    private String idenId;
+    @ApiModelProperty(name="idenCode",value="身份证号",dataType="String")
+    private String idenCode;
 
     /**
     * 籍贯代码
-    * 字段名:NATIVE_PLACE_ID
+    * 字段名:NATIVE_PLACE_CODE
     * 类型:VARCHAR
      */
-    @ApiModelProperty(name="nativePlaceId",value="籍贯代码",dataType="String")
-    private String nativePlaceId;
+    @ApiModelProperty(name="nativePlaceCode",value="籍贯代码",dataType="String")
+    private String nativePlaceCode;
 
     /**
     * 地区(国家)代码
-    * 字段名:AREA_ID
+    * 字段名:AREA_CODE
     * 类型:VARCHAR
      */
-    @ApiModelProperty(name="areaId",value="地区(国家)代码",dataType="String")
-    private String areaId;
+    @ApiModelProperty(name="areaCode",value="地区(国家)代码",dataType="String")
+    private String areaCode;
 
     /**
     * 政治面貌代码
-    * 字段名:POLITICAL_ID
+    * 字段名:POLITICAL_CODE
     * 类型:VARCHAR
      */
-    @ApiModelProperty(name="politicalId",value="政治面貌代码",dataType="String")
-    private String politicalId;
+    @ApiModelProperty(name="politicalCode",value="政治面貌代码",dataType="String")
+    private String politicalCode;
 
     /**
     * 院系代码
-    * 字段名:COLLEGE_ID
+    * 字段名:DEPT_CODE
     * 类型:VARCHAR
      */
-    @ApiModelProperty(name="collegeId",value="院系代码",dataType="String")
-    private String collegeId;
+    @ApiModelProperty(name="deptCode",value="院系代码",dataType="String")
+    private String deptCode;
 
     /**
     * 专业代码
-    * 字段名:MAJOR_ID
+    * 字段名:MAJOR_CODE
     * 类型:VARCHAR
      */
-    @ApiModelProperty(name="majorId",value="专业代码",dataType="String")
-    private String majorId;
+    @ApiModelProperty(name="majorCode",value="专业代码",dataType="String")
+    private String majorCode;
 
     /**
     * 入学年级
@@ -118,19 +118,19 @@ public class Student extends BaseSort implements Serializable{
 
     /**
     * 班级名称
-    * 字段名:CLASSNAME
+    * 字段名:CLASSES_NAME
     * 类型:VARCHAR
      */
-    @ApiModelProperty(name="classname",value="班级名称",dataType="String")
-    private String classname;
+    @ApiModelProperty(name="classesName",value="班级名称",dataType="String")
+    private String classesName;
 
     /**
     * 家庭地址
-    * 字段名:ADRESS
+    * 字段名:ADDRESS
     * 类型:VARCHAR
      */
-    @ApiModelProperty(name="adress",value="家庭地址",dataType="String")
-    private String adress;
+    @ApiModelProperty(name="address",value="家庭地址",dataType="String")
+    private String address;
 
     /**
     * 电话号码
@@ -150,11 +150,11 @@ public class Student extends BaseSort implements Serializable{
 
     /**
     * 辅导员ID
-    * 字段名:INSTRUCTOR_ID
+    * 字段名:INSTRUCTOR_CODE
     * 类型:VARCHAR
      */
-    @ApiModelProperty(name="instructorId",value="辅导员ID",dataType="String")
-    private String instructorId;
+    @ApiModelProperty(name="instructorCode",value="辅导员ID",dataType="String")
+    private String instructorCode;
 
     /**
     * 一卡通号
@@ -181,6 +181,22 @@ public class Student extends BaseSort implements Serializable{
     private String image;
 
     /**
+    * 院系名称
+    * 字段名:DEPT_NAME
+    * 类型:VARCHAR
+     */
+    @ApiModelProperty(name="deptName",value="院系名称",dataType="String")
+    private String deptName;
+
+    /**
+    * 班级代码
+    * 字段名:CLASSES_CODE
+    * 类型:VARCHAR
+     */
+    @ApiModelProperty(name="classesCode",value="班级代码",dataType="String")
+    private String classesCode;
+
+    /**
      * 学生表ID
      * @return ID
      */
@@ -198,18 +214,18 @@ public class Student extends BaseSort implements Serializable{
 
     /**
      * 学号
-     * @return SNO
+     * @return STUDENT_CODE
      */
-    public String getSno() {
-        return sno;
+    public String getStudentCode() {
+        return studentCode;
     }
 
     /**
      * 学号
-     * @param sno
+     * @param studentCode
      */
-    public void setSno(String sno) {
-        this.sno = sno == null ? null : sno.trim();
+    public void setStudentCode(String studentCode) {
+        this.studentCode = studentCode == null ? null : studentCode.trim();
     }
 
     /**
@@ -278,98 +294,98 @@ public class Student extends BaseSort implements Serializable{
 
     /**
      * 身份证号
-     * @return IDEN_ID
+     * @return IDEN_CODE
      */
-    public String getIdenId() {
-        return idenId;
+    public String getIdenCode() {
+        return idenCode;
     }
 
     /**
      * 身份证号
-     * @param idenId
+     * @param idenCode
      */
-    public void setIdenId(String idenId) {
-        this.idenId = idenId == null ? null : idenId.trim();
+    public void setIdenCode(String idenCode) {
+        this.idenCode = idenCode == null ? null : idenCode.trim();
     }
 
     /**
      * 籍贯代码
-     * @return NATIVE_PLACE_ID
+     * @return NATIVE_PLACE_CODE
      */
-    public String getNativePlaceId() {
-        return nativePlaceId;
+    public String getNativePlaceCode() {
+        return nativePlaceCode;
     }
 
     /**
      * 籍贯代码
-     * @param nativePlaceId
+     * @param nativePlaceCode
      */
-    public void setNativePlaceId(String nativePlaceId) {
-        this.nativePlaceId = nativePlaceId == null ? null : nativePlaceId.trim();
+    public void setNativePlaceCode(String nativePlaceCode) {
+        this.nativePlaceCode = nativePlaceCode == null ? null : nativePlaceCode.trim();
     }
 
     /**
      * 地区(国家)代码
-     * @return AREA_ID
+     * @return AREA_CODE
      */
-    public String getAreaId() {
-        return areaId;
+    public String getAreaCode() {
+        return areaCode;
     }
 
     /**
      * 地区(国家)代码
-     * @param areaId
+     * @param areaCode
      */
-    public void setAreaId(String areaId) {
-        this.areaId = areaId == null ? null : areaId.trim();
+    public void setAreaCode(String areaCode) {
+        this.areaCode = areaCode == null ? null : areaCode.trim();
     }
 
     /**
      * 政治面貌代码
-     * @return POLITICAL_ID
+     * @return POLITICAL_CODE
      */
-    public String getPoliticalId() {
-        return politicalId;
+    public String getPoliticalCode() {
+        return politicalCode;
     }
 
     /**
      * 政治面貌代码
-     * @param politicalId
+     * @param politicalCode
      */
-    public void setPoliticalId(String politicalId) {
-        this.politicalId = politicalId == null ? null : politicalId.trim();
+    public void setPoliticalCode(String politicalCode) {
+        this.politicalCode = politicalCode == null ? null : politicalCode.trim();
     }
 
     /**
      * 院系代码
-     * @return COLLEGE_ID
+     * @return DEPT_CODE
      */
-    public String getCollegeId() {
-        return collegeId;
+    public String getDeptCode() {
+        return deptCode;
     }
 
     /**
      * 院系代码
-     * @param collegeId
+     * @param deptCode
      */
-    public void setCollegeId(String collegeId) {
-        this.collegeId = collegeId == null ? null : collegeId.trim();
+    public void setDeptCode(String deptCode) {
+        this.deptCode = deptCode == null ? null : deptCode.trim();
     }
 
     /**
      * 专业代码
-     * @return MAJOR_ID
+     * @return MAJOR_CODE
      */
-    public String getMajorId() {
-        return majorId;
+    public String getMajorCode() {
+        return majorCode;
     }
 
     /**
      * 专业代码
-     * @param majorId
+     * @param majorCode
      */
-    public void setMajorId(String majorId) {
-        this.majorId = majorId == null ? null : majorId.trim();
+    public void setMajorCode(String majorCode) {
+        this.majorCode = majorCode == null ? null : majorCode.trim();
     }
 
     /**
@@ -390,34 +406,34 @@ public class Student extends BaseSort implements Serializable{
 
     /**
      * 班级名称
-     * @return CLASSNAME
+     * @return CLASSES_NAME
      */
-    public String getClassname() {
-        return classname;
+    public String getClassesName() {
+        return classesName;
     }
 
     /**
      * 班级名称
-     * @param classname
+     * @param classesName
      */
-    public void setClassname(String classname) {
-        this.classname = classname == null ? null : classname.trim();
+    public void setClassesName(String classesName) {
+        this.classesName = classesName == null ? null : classesName.trim();
     }
 
     /**
      * 家庭地址
-     * @return ADRESS
+     * @return ADDRESS
      */
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 
     /**
      * 家庭地址
-     * @param adress
+     * @param address
      */
-    public void setAdress(String adress) {
-        this.adress = adress == null ? null : adress.trim();
+    public void setAddress(String address) {
+        this.address = address == null ? null : address.trim();
     }
 
     /**
@@ -454,18 +470,18 @@ public class Student extends BaseSort implements Serializable{
 
     /**
      * 辅导员ID
-     * @return INSTRUCTOR_ID
+     * @return INSTRUCTOR_CODE
      */
-    public String getInstructorId() {
-        return instructorId;
+    public String getInstructorCode() {
+        return instructorCode;
     }
 
     /**
      * 辅导员ID
-     * @param instructorId
+     * @param instructorCode
      */
-    public void setInstructorId(String instructorId) {
-        this.instructorId = instructorId == null ? null : instructorId.trim();
+    public void setInstructorCode(String instructorCode) {
+        this.instructorCode = instructorCode == null ? null : instructorCode.trim();
     }
 
     /**
@@ -514,5 +530,37 @@ public class Student extends BaseSort implements Serializable{
      */
     public void setImage(String image) {
         this.image = image == null ? null : image.trim();
+    }
+
+    /**
+     * 院系名称
+     * @return DEPT_NAME
+     */
+    public String getDeptName() {
+        return deptName;
+    }
+
+    /**
+     * 院系名称
+     * @param deptName
+     */
+    public void setDeptName(String deptName) {
+        this.deptName = deptName == null ? null : deptName.trim();
+    }
+
+    /**
+     * 班级代码
+     * @return CLASSES_CODE
+     */
+    public String getClassesCode() {
+        return classesCode;
+    }
+
+    /**
+     * 班级代码
+     * @param classesCode
+     */
+    public void setClassesCode(String classesCode) {
+        this.classesCode = classesCode == null ? null : classesCode.trim();
     }
 }

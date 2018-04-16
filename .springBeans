@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beansProjectDescription>
+	<version>1</version>
+	<pluginVersion><![CDATA[3.8.2.me201612231634]]></pluginVersion>
+	<configSuffixes>
+		<configSuffix><![CDATA[xml]]></configSuffix>
+	</configSuffixes>
+	<enableImports><![CDATA[false]]></enableImports>
+	<configs>
+		<config>java:com.maiyue.weixin.controller.StudentController1</config>
+		<config>java:com.maiyue.weixin.controller.TeacherController1</config>
+	</configs>
+	<autoconfigs>
+		<config>java:com.maiyue.weixin.base.controller.CitiesController</config>
+		<config>java:com.maiyue.weixin.controller.BasicController</config>
+		<config>java:com.maiyue.weixin.controller.LoginController</config>
+		<config>java:com.maiyue.weixin.controller.CourseScoreController</config>
+		<config>java:com.maiyue.weixin.controller.UploaderController</config>
+		<config>java:com.maiyue.StartUp</config>
+		<config>java:com.maiyue.weixin.controller.IndexController</config>
+		<config>java:com.maiyue.weixin.controller.QueryStuInforController</config>
+	</autoconfigs>
+	<configSets>
+	</configSets>
+</beansProjectDescription>

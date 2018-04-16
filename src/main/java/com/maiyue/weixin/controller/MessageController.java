@@ -37,7 +37,7 @@ public class MessageController {
 		return json;
 	}
 	 
-	//消息通知接口    消息通知列表
+	/*//消息通知接口    消息通知列表
     @RequestMapping("/messageInfo")
     public Object messageInfo(ModelMap modelMap,HttpSession session,HttpServletResponse response,
 			HttpServletRequest request){
@@ -75,7 +75,7 @@ public class MessageController {
     	modelMap1.addAttribute("status", "1");
     	modelMap1.addAttribute("messages", messages1);
     	return modelMap1;
-    }
+    }*/
     
     
     
