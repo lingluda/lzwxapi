@@ -43,4 +43,9 @@ public class DeptServiceImpl extends BaseServiceImpl<Dept, String> implements De
     public PageInfo<Dept> getPageData(Map<String, Object> params) {
         return super.findByPage(params);
     }
+
+    @Override
+    public Dept selectByCode(String deptCode) {
+        return deptMapper.selectByCode(deptCode);
+    }
 }

@@ -23,10 +23,10 @@
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.maiyue.weixin.base.bean.Dept" >
-    insert into T_BASE_DEPT (ID, DEPT_CODE, NAME, 
+    insert into T_BASE_DEPT (ID, DEPT_CODE, NAME,
       TYPE, CREATE_TIME, STATE
       )
-    values (#{id,jdbcType=VARCHAR}, #{deptCode,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=VARCHAR}, #{deptCode,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
       #{type,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{state,jdbcType=VARCHAR}
       )
   </insert>
@@ -125,8 +125,8 @@
         AND STATE = #{state,jdbcType=VARCHAR}
       </if>
       <if test="ids != null">
-       AND ID IN 
-         <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> 
+       AND ID IN
+         <foreach collection="ids" index="index" item="item" open="(" separator="," close=")">
         #{item,jdbcType=VARCHAR}
          </foreach>
       </if>
@@ -134,5 +134,11 @@
       <if test="order != null">
       ORDER BY ${order} ${sorting}
       </if>
+  </select>
+  <select id="selectByCode" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from T_BASE_DEPT
+    where DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
   </select>
 </mapper>

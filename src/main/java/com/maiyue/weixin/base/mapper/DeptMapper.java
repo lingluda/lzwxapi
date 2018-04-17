@@ -8,4 +8,6 @@ import com.maiyue.weixin.mapper.BaseMapper;
  * 2018/04/16
  */
 public interface DeptMapper extends BaseMapper<Dept, String> {
+
+    Dept selectByCode(String deptCode);
 }

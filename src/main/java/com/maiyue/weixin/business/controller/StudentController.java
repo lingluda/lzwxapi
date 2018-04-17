@@ -1,6 +1,10 @@
 package com.maiyue.weixin.business.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.maiyue.weixin.base.bean.Dept;
+import com.maiyue.weixin.base.bean.Major;
+import com.maiyue.weixin.base.service.DeptService;
+import com.maiyue.weixin.base.service.MajorService;
 import com.maiyue.weixin.business.bean.Student;
 import com.maiyue.weixin.business.service.StudentService;
 import com.maiyue.weixin.constant.Constant;
@@ -37,6 +41,12 @@ public class StudentController extends BaseController {
     
     @Resource(name = "studentService")
     private StudentService studentService;
+
+    @Resource(name = "majorService")
+    private MajorService majorService;
+
+    @Resource(name = "deptService")
+    private DeptService deptService;
 
     /**
      * 分页查询方法,POST方法
@@ -156,12 +166,17 @@ public class StudentController extends BaseController {
         if (student == null) {
             return ResponseUtil.RetErrorInfo(" The object is null!");
         }
-        Map<String, Object> result = ReflectUtil.beanToMap(student, true);
+        Map<String, Object> result = ReflectUtil.beanToMap(student, false);
         //隔离的字段
-        String ex[] = {"id","sex","birthday","nationCode","idenId","nativePlaceId","areaId","politicalId","entranceGrade","adress","email"
-                ,"oneCard","bankAccount"};
+        String ex[] = {"sex","birthday","nationCode","idenId","nativePlaceId","areaId","politicalId","entranceGrade","adress","email"
+        ,"oneCard","bankAccount"};
         //学院Service。根据学生的学院ID查出 学院名称。
         //专业Service。  根据专业id查出专业名称
+        Major major = majorService.selectByCode(student.getMajorCode());
+        Dept dept = deptService.selectByCode(student.getDeptCode());
+        result.put("majorName",major.getName());
+        result.put("deptName",dept.getName());
+
 
         logger.info("调用student按ID查询数据接口,执行成功！......");
         //返回result就会过滤null的字段，返回 student 实体，就会返回所有字段
