@@ -1,6 +1,11 @@
 package com.maiyue.weixin.business.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.maiyue.weixin.base.bean.Dept;
+import com.maiyue.weixin.base.bean.Major;
+import com.maiyue.weixin.base.service.DeptService;
+import com.maiyue.weixin.base.service.MajorService;
+import com.maiyue.weixin.business.bean.Teacher;
 import com.maiyue.weixin.business.bean.Teacher;
 import com.maiyue.weixin.business.service.TeacherService;
 import com.maiyue.weixin.constant.Constant;
@@ -37,6 +42,12 @@ public class TeacherController extends BaseController {
     
     @Resource(name = "teacherService")
     private TeacherService teacherService;
+
+    @Resource(name = "majorService")
+    private MajorService majorService;
+
+    @Resource(name = "deptService")
+    private DeptService deptService;
 
     /**
      * 分页查询方法,POST方法
@@ -137,4 +148,38 @@ public class TeacherController extends BaseController {
                 return ResponseUtil.RetErrorInfo(e.getCause().getMessage());
             }
         }
+
+    /*
+     * 显示教师个人信息：头像图片、姓名、学院、专业、班级、学号、辅导员
+     * */
+    @ApiOperation(value = "显示教师个人信息数据接口", notes = "按ID(UUID)查询个人信息")
+    @ApiParam(name = "id", value = "ID查询")
+    @RequestMapping(value = "showTeacherInfo", method = RequestMethod.POST)
+    public ModelMap showTeacherInfo(@RequestParam(value = "id", required = false) String id) {
+
+        logger.info("调用teacher按ID查询数据接口！返回学生个人信息");
+        if (StringUtils.isBlank(id)) {
+            return ResponseUtil.RetErrorInfo(" The id is null!");
+        }
+
+        Teacher teacher = teacherService.selectById(id);
+        if (teacher == null) {
+            return ResponseUtil.RetErrorInfo(" The object is null!");
+        }
+        Map<String, Object> result = ReflectUtil.beanToMap(teacher, false);
+        //隔离的字段
+//        String ex[] = {"id","sex","birthday","nationCode","idenId","nativePlaceId","areaId","politicalId","entranceGrade","adress","email"
+//                ,"oneCard","bankAccount"};
+        //Major major = majorService.selectByCode(teacher.getMajorCode());
+        Dept dept = deptService.selectByCode(teacher.getDeptCode());
+        //result.put("majorName",major.getName());
+        result.put("deptName",dept.getName());
+
+
+        logger.info("调用teacher按ID查询数据接口,执行成功！......");
+        //返回result就会过滤null的字段，返回 teacher 实体，就会返回所有字段
+        return ResponseUtil.RetCorrectInfo(JSONUtils.toJSONObject(result));
+
+
+    }
 }

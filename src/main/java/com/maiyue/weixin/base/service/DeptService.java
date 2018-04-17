@@ -18,4 +18,6 @@ public interface DeptService extends BaseService<Dept, String> {
      * @return 分页结果实体
      */ 
     PageInfo<Dept> getPageData(Map<String, Object> params);
+
+    Dept selectByCode(String deptCode);
 }

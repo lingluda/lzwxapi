@@ -30,7 +30,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/cities/*")
-@Api(value = "CitiesController", description = "")
+@Api(value = "CitiesController", description = "中国城市接口")
 @EnableAutoConfiguration
 public class CitiesController extends BaseController {
     
