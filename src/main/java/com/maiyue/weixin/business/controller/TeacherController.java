@@ -186,9 +186,9 @@ public class TeacherController extends BaseController {
             return ResponseUtil.RetErrorInfo(" The object is null!");
         }
         Map<String, Object> result = ReflectUtil.beanToMap(teacher, false);
-        //隔离的字段
-//        String ex[] = {"id","sex","birthday","nationCode","idenId","nativePlaceId","areaId","politicalId","entranceGrade","adress","email"
-//                ,"oneCard","bankAccount"};
+        //隔离的字段 ,只要显示教师个人信息:姓名、所属部门、教师工号、教师职称、联系电话
+       String ex[] = {"createTime","birthday","nationCode","idenCode","nativePlaceCode","areaCode","politicalCode","bankAccount"
+    		   ,"address","qq","education","classesCode","classesName"};
         //Major major = majorService.selectByCode(teacher.getMajorCode());
         Dept dept = deptService.selectByCode(teacher.getDeptCode());
         //result.put("majorName",major.getName());
@@ -197,7 +197,7 @@ public class TeacherController extends BaseController {
 
         logger.info("调用teacher按ID查询数据接口,执行成功！......");
         //返回result就会过滤null的字段，返回 teacher 实体，就会返回所有字段
-        return ResponseUtil.RetCorrectInfo(JSONUtils.toJSONObject(result));
+        return ResponseUtil.RetCorrectInfo(JSONUtils.toJSONObject(result,ex));
 
 
     }
